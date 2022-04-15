@@ -5,11 +5,10 @@ import {
 } from "@/lib-client/store/features/categories/categoriesSlice";
 import { useAppDispatch, useAppSelector } from "@/lib-client/store/hooks";
 import { NextPage } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import GenericHero from "components/common/Hero/GenericHero";
+import Card from "components/pages/categories/Card";
 const Categories: NextPage = () => {
   const categories = useAppSelector(selectCategories);
   const loading = useAppSelector(selectCategoriesStatus) === "loading";
@@ -28,37 +27,16 @@ const Categories: NextPage = () => {
         {loading && <p>Loading...</p>}
         {!loading && categories && (
           <div className="container mx-auto">
-            <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.map(({ _id, name, img }) => (
-                <motion.li
-                  key={_id}
-                  className="cursor-pointer"
-                  initial={{ x: "-100%" }}
-                  transition={{ duration: 0.5 }}
-                  animate={{ x: "0%" }}
-                >
-                  <Link href="/" passHref>
-                    <div className="card w-full bg-base-100 shadow-xl image-full before:opacity-40">
-                      <figure className="w-full h-44 lg:h-52 relative">
-                        <Image
-                          src={img}
-                          loading="lazy"
-                          alt="hero"
-                          layout="fill"
-                          className="object-center object-cover pointer-events-none"
-                        />
-                      </figure>
-                      <div className="card-body justify-end p-5">
-                        <h2 className="card-title capitalize text-white">
-                          {name}
-                        </h2>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.li>
+            <motion.ul
+              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+              initial={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              animate={{ opacity: 1 }}
+            >
+              {categories.map((category) => (
+                <Card key={category._id} {...{ category }} />
               ))}
-            </ul>
-            
+            </motion.ul>
           </div>
         )}
       </div>
