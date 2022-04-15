@@ -1,5 +1,9 @@
 import { fetchAccount } from "@/lib-client/store/features/account/accountSlice";
 import {
+  fetchCategories,
+  selectCategories,
+} from "@/lib-client/store/features/categories/categoriesSlice";
+import {
   fetchUser,
   selectUser,
 } from "@/lib-client/store/features/user/userSlice";
@@ -17,6 +21,10 @@ const WrapperLayout: FC<Props> = ({ children }) => {
   const isDashboard = useRouter().pathname.includes("/dashboard");
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
+  const categories = useAppSelector(selectCategories);
+  useEffect(() => {
+    if (!categories) dispatch(fetchCategories());
+  }, [categories, dispatch]);
   useEffect(() => {
     if (!user) dispatch(fetchUser());
     if (user) dispatch(fetchAccount());

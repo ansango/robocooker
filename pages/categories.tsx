@@ -14,10 +14,6 @@ import CategoriesCards from "components/skeletons/Cards/CategoriesCards";
 const Categories: NextPage = () => {
   const categories = useAppSelector(selectCategories);
   const loading = useAppSelector(selectCategoriesStatus) === "loading";
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    if (!categories) dispatch(fetchCategories());
-  }, [categories, dispatch]);
 
   return (
     <div>
