@@ -27,12 +27,12 @@ const Categories: NextPage = () => {
       />
       <div className="p-5">
         <div className="container mx-auto">
-          {!loading && (
+          {loading && (
             <motion.div
               className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 pb-5"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 1 }}
             >
               <CategoriesCards length={21} />
             </motion.div>
@@ -41,8 +41,8 @@ const Categories: NextPage = () => {
             <motion.ul
               className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
               initial={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
               animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
             >
               {categories.map((category) => (
                 <Card key={category._id} {...{ category }} />

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { motion } from "framer-motion";
+
 type Props = {
   length: number;
 };
