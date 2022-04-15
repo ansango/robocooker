@@ -5,6 +5,7 @@ import AddRecipe from "./AddRecipe";
 import NavDesktop from "./NavDesktop";
 import User from "./User";
 import Brand from "./Brand";
+import ThemeIcon from "./ThemeIcon";
 
 const Navbar: FC = () => {
   return (
@@ -17,6 +18,7 @@ const Navbar: FC = () => {
       <div className="navbar-end">
         <AddRecipe />
         <User />
+        <ThemeIcon />
         <SignIn />
       </div>
     </div>

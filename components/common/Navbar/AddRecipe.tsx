@@ -20,8 +20,8 @@ const AddRecipe = () => {
                 kind="outline"
                 className={
                   routeActive(pathname, "/recipe/add")
-                    ? "w-6 h-6 text-primary"
-                    : "w-6 h-6 text-gray-600"
+                    ? "w-6 h-6 text-primary dark:text-primary-content"
+                    : "w-6 h-6 text-gray-600 dark:text-base-content"
                 }
               />
             </button>

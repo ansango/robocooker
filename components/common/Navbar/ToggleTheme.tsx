@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 const ToggleTheme: FC = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.setAttribute("data-theme", "dark");
@@ -13,6 +12,8 @@ const ToggleTheme: FC = () => {
       document.documentElement.setAttribute("data-theme", "light");
     }
   }, [theme]);
+  useEffect(() => setMounted(true), []);
+  
   if (!mounted) return null;
 
   return (

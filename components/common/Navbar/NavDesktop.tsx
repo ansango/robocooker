@@ -14,8 +14,8 @@ const NavDesktop = () => {
               <a
                 className={
                   routeActive(pathname, path)
-                    ? "btn btn-link btn-active normal-case"
-                    : "btn btn-link normal-case text-gray-600"
+                    ? "btn btn-link btn-active normal-case text-primary dark:text-primary-content"
+                    : "btn btn-link normal-case text-gray-600 dark:text-base-content"
                 }
               >
                 {label}
