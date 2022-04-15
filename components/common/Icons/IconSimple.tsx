@@ -1,7 +1,3 @@
-/**
- * ?IconSimple Component
- */
-
 import { FC } from "react";
 import * as SimpleIcons from "@icons-pack/react-simple-icons";
 

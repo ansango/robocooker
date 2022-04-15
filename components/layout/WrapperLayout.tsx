@@ -5,11 +5,15 @@ import {
 } from "@/lib-client/store/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "@/lib-client/store/hooks";
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import DashboardLayout from "./DashboardLayout";
 import MainLayout from "./MainLayout";
 
-const WrapperLayout: FC = ({ children }) => {
+type Props = {
+  children?: ReactNode;
+};
+
+const WrapperLayout: FC<Props> = ({ children }) => {
   const isDashboard = useRouter().pathname.includes("/dashboard");
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);

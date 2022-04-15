@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 
 type Props = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const GreyContainer: FC<Props> = ({ children }) => {

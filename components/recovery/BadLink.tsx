@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { FC } from "react";
 
-const BadLink = () => {
+const BadLink: FC = () => {
   return (
     <div className="p-4 max-w-sm w-full bg-white rounded-lg border border-gray-200 shadow-sm sm:p-6 lg:p-8">
       <div className="space-y-5">

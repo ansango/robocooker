@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
 type Props = {
   defaultValues?: any;
   onSubmit: SubmitHandler<any>;
   className?: string;
+  children: ReactNode;
 };
 
 const Form: FC<Props> = ({ defaultValues, children, onSubmit, className }) => {

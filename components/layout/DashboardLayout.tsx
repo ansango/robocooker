@@ -3,7 +3,7 @@ import { useAppSelector } from "@/lib-client/store/hooks";
 import Footer from "components/dashboard/Footer/Footer";
 import Navbar from "components/dashboard/Navbar";
 import { useRouter } from "next/router";
-import React, { FC, useEffect } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import { routeActive } from "@/lib-utils/router";
@@ -12,7 +12,11 @@ import Brand from "components/common/Navbar/Brand";
 import { routes, routesDashboard } from "components/common/Navbar/routes";
 import { Icon } from "components/common/Icons";
 
-const DashboardLayout: FC = ({ children }) => {
+type Props = {
+  children?: ReactNode;
+};
+
+const DashboardLayout: FC<Props> = ({ children }) => {
   const user = useAppSelector(selectUser);
   const { replace, route, pathname } = useRouter();
   useEffect(() => {

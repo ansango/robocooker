@@ -1,11 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import { motion } from "framer-motion";
 
-type propTypes = {
+type Props = {
   route: string;
+  children: ReactNode;
 };
 
-const Motion: FC<propTypes> = ({ children, route }) => {
+const Motion: FC<Props> = ({ children, route }) => {
   return (
     <motion.div
       key={route}

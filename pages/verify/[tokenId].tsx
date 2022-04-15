@@ -6,7 +6,11 @@ import VerifyLink from "components/verify/VerifyLink";
 import { GetServerSideProps, NextPage } from "next";
 import nc from "next-connect";
 
-const Token: NextPage<{ valid: boolean }> = ({ valid }) => {
+type Props = {
+  valid: boolean;
+};
+
+const Token: NextPage<Props> = ({ valid }) => {
   return (
     <GreyContainer>
       <VerifyLink valid={valid} />

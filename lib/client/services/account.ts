@@ -2,7 +2,7 @@ import {
   responseService,
   errorSaveDataAccountService,
 } from "lib/constants/services";
-import { Account, User } from "models/user/user";
+import { Account } from "models/user/user";
 import toast from "react-hot-toast";
 import fetcher from "../fetcher";
 

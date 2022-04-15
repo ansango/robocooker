@@ -8,7 +8,6 @@ import ToggleTheme from "components/common/Navbar/ToggleTheme";
 const Home: NextPage = () => {
   return (
     <div>
-      <ToggleTheme />
       <Hero />
       <GreyContainer>
         <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">

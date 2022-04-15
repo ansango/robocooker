@@ -1,5 +1,5 @@
 import fetcher from "@/lib-client/fetcher";
-import { Account, User } from "models/user/user";
+import { User } from "models/user/user";
 
 import useSWR from "swr";
 

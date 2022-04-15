@@ -7,7 +7,13 @@ import { useCallback } from "react";
 const ResetPasswordForm = () => {
   const dispatch = useAppDispatch();
   const onSubmit = useCallback(
-    ({ oldPassword, newPassword }) => {
+    ({
+      oldPassword,
+      newPassword,
+    }: {
+      oldPassword: Password;
+      newPassword: Password;
+    }) => {
       dispatch(updatePassword({ oldPassword, newPassword }));
     },
     [dispatch]

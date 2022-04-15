@@ -1,6 +1,10 @@
 import React, { FC } from "react";
 import { motion } from "framer-motion";
-const Cards: FC<{ length: number }> = ({ length = 9 }) => {
+type Props = {
+  length: number;
+};
+
+const Cards: FC<Props> = ({ length = 9 }) => {
   const render = Array.from({ length }, (_, i) => ({ id: i }));
   return (
     <>

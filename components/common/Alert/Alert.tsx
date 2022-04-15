@@ -1,17 +1,9 @@
-/**
- * ?Alert Component
- */
-
 import { FC, useState } from "react";
-// import ButtonIcon from "../Button/ButtonIcon/ButtonIcon";
+
 import Icon from "../Icons/Icon";
 import AlertProps from "./AlertProps";
 
 import * as cn from "./AlertStyles";
-
-/**
- * Show contextual information to your users using alert elements based on Tailwind CSS
- */
 
 const Alert: FC<AlertProps> = ({
   kind = "info",

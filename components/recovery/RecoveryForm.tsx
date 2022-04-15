@@ -5,7 +5,11 @@ import { Form, Input } from "components/common/Forms";
 import { useRouter } from "next/router";
 import { FC, useCallback } from "react";
 
-const RecoveryForm: FC<{ tokenId: TokenId }> = ({ tokenId }) => {
+type Props = {
+  tokenId: TokenId;
+};
+
+const RecoveryForm: FC<Props> = ({ tokenId }) => {
   const dispatch = useAppDispatch();
   const { replace } = useRouter();
   const onRecovery = useCallback(

@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { FC } from "react";
 
-type propTypes = {
+type Props = {
   valid: boolean;
 };
 
-const VerifyLink: FC<propTypes> = ({ valid }) => {
+const VerifyLink: FC<Props> = ({ valid }) => {
   return (
     <div className="p-4 max-w-sm w-full bg-white rounded-lg border border-gray-200 shadow-sm sm:p-6 lg:p-8">
       <div className="space-y-5">

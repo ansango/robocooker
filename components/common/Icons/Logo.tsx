@@ -1,7 +1,8 @@
-import Link from "next/link";
 import React, { FC } from "react";
 
-const Logo: FC<{ className?: string }> = ({ className }) => {
+type Props = { className?: string };
+
+const Logo: FC<Props> = ({ className }) => {
   return (
     <svg
       className={className}

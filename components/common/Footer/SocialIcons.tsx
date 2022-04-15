@@ -1,6 +1,7 @@
+import { FC } from "react";
 import IconSimple from "../Icons/IconSimple";
 
-const SocialIcons = () => {
+const SocialIcons: FC = () => {
   return (
     <>
       <a href="https://facebook.com/" target="_blank" rel="noreferrer">

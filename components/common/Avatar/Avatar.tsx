@@ -1,13 +1,6 @@
-/**
- * ?Avatar Component
- */
-
 import { FC } from "react";
 
-import Image from "next/image";
-
 import { useAppSelector } from "@/lib-client/store/hooks";
-import { selectAccount } from "@/lib-client/store/features/account/accountSlice";
 import FullAvatar from "./FullAvatar";
 import BlankAvatar from "./BlankAvatar";
 import { selectUser } from "@/lib-client/store/features/user/userSlice";

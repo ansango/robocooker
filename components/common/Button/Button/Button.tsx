@@ -4,10 +4,6 @@ import ButtonProps from "./ButtonProps";
 
 import * as cn from "./ButtonStyles";
 
-/**
- * Use the button component inside forms, as links, social login, payment options with support for multiple styles, colors, sizes, gradients, and shadows
- */
-
 const Button: FC<ButtonProps> = ({
   label,
   size = "base",

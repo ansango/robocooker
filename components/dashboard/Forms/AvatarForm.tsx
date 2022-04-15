@@ -15,7 +15,7 @@ const AvatarForm = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
   const onSubmit = useCallback(
-    async ({ file }) => {
+    async ({ file }: any) => {
       const avatar = file[0];
       const isImage = avatar ? avatar.type.startsWith("image") : null;
       if (avatar && isImage) {
