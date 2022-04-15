@@ -32,6 +32,7 @@ handler.patch(upload.single("avatar"), async (req, res) => {
       width: 512,
       height: 512,
       crop: "fill",
+      format: ""
     }
   );
 
