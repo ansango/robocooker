@@ -1,8 +1,8 @@
-import { createToken } from "@/lib-api/db/token";
-import { sendMail, CONFIG as MAIL_CONFIG } from "@/lib-api/mail";
-import rawTemplateVerify from "@/lib-api/mail/rawTemplateVerify";
-import { auth, database } from "@/lib-api/middlewares";
-import { options } from "@/lib-api/nc";
+import { createToken } from "@/api/db/token";
+import { sendMail, CONFIG as MAIL_CONFIG } from "@/api/mail";
+import rawTemplateVerify from "@/api/mail/rawTemplateVerify";
+import { auth, database } from "@/api/middlewares";
+import { options } from "@/api/nc";
 import nc from "next-connect";
 
 const handler = nc(options);

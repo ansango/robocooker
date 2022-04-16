@@ -1,9 +1,9 @@
-import { auth, database } from "@/lib-api/middlewares";
-import { options } from "@/lib-api/nc";
+import { auth, database } from "@/api/middlewares";
+import { options } from "@/api/nc";
 import nc from "next-connect";
 import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
-import { updateAvatarAccountById } from "@/lib-api/db/account";
+import { updateAvatarAccountById } from "@/api/db/account";
 
 const upload = multer({ dest: "/tmp" });
 const handler = nc(options);

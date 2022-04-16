@@ -1,10 +1,10 @@
 import {
   findAccountByUserId,
   updateAccountDataById,
-} from "@/lib-api/db/account";
-import { auth, database } from "@/lib-api/middlewares";
-import { options } from "@/lib-api/nc";
-import { updateAccountValidation } from "@/lib-api/schemas/validations";
+} from "@/api/db/account";
+import { auth, database } from "@/api/middlewares";
+import { options } from "@/api/nc";
+import { updateAccountValidation } from "@/api/schemas/validations";
 import nc from "next-connect";
 
 const handler = nc(options);

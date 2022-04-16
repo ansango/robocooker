@@ -1,6 +1,6 @@
-import { findAndDeleteTokenByIdAndType } from "@/lib-api/db/token";
-import { updateUserEmailVerifiedById } from "@/lib-api/db/user";
-import { database } from "@/lib-api/middlewares";
+import { findAndDeleteTokenByIdAndType } from "@/api/db/token";
+import { updateUserEmailVerifiedById } from "@/api/db/user";
+import { database } from "@/api/middlewares";
 import GreyContainer from "components/common/Container/GreyContainer";
 import VerifyLink from "components/verify/VerifyLink";
 import { GetServerSideProps, NextPage } from "next";

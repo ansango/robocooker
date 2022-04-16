@@ -1,7 +1,7 @@
 import nc from "next-connect";
-import { database } from "@/lib-api/middlewares";
-import { options } from "@/lib-api/nc";
-import { findAllCategories } from "@/lib-api/db/categories";
+import { database } from "@/api/middlewares";
+import { options } from "@/api/nc";
+import { findAllCategories } from "@/api/db/categories";
 
 const handler = nc(options);
 handler.use(database);

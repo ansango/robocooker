@@ -1,5 +1,5 @@
-import passport from "@/lib-api/auth/passport";
-import session from "@/lib-api/middlewares/session";
+import passport from "@/api/auth/passport";
+import session from "@/api/middlewares/session";
 
 const auth = [session, passport.initialize(), passport.session()];
 

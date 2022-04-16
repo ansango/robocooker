@@ -16,11 +16,20 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/lib-api/*": ["lib/api/*"],
-      "@/lib-client/*": ["lib/client/*"],
-      "@/lib-utils/*": ["lib/utils/*"]
+      "@/api/*": ["lib/api/*"],
+      "@/mocks/*": ["lib/mocks/*"],
+      "@/models/*": ["lib/models/*"],
+      "@/services/*": ["lib/services/*"],
+      "@/store/*": ["lib/store/*"],
+      "@/utils/*": ["lib/utils/*"]
     }
   },
-  "include": ["types/next-env.d.ts","types/custom.d.ts", "types/generic.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "types/next-env.d.ts",
+    "types/custom.d.ts",
+    "types/generic.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
   "exclude": ["node_modules"]
 }

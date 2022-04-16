@@ -2,11 +2,11 @@ import {
   findUserByEmail,
   findUserByUsername,
   updateUserAccountDataById,
-} from "@/lib-api/db/user";
-import { auth, database } from "@/lib-api/middlewares";
+} from "@/api/db/user";
+import { auth, database } from "@/api/middlewares";
 
-import { options } from "@/lib-api/nc";
-import { updateUserValidation } from "@/lib-api/schemas/validations";
+import { options } from "@/api/nc";
+import { updateUserValidation } from "@/api/schemas/validations";
 
 import nc from "next-connect";
 

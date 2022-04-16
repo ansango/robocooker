@@ -1,5 +1,5 @@
-import { findTokenByIdAndType } from "@/lib-api/db/token";
-import { database } from "@/lib-api/middlewares";
+import { findTokenByIdAndType } from "@/api/db/token";
+import { database } from "@/api/middlewares";
 import GreyContainer from "components/common/Container/GreyContainer";
 import BadLink from "components/recovery/BadLink";
 import RecoveryForm from "components/recovery/RecoveryForm";

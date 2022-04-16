@@ -2,7 +2,7 @@ import Navbar from "components/dashboard/Navbar";
 import { useRouter } from "next/router";
 import React, { FC, ReactNode } from "react";
 import { motion } from "framer-motion";
-import { routeActive } from "@/lib-utils/router";
+import { routeActive } from "@/utils/router";
 import Link from "next/link";
 import Brand from "components/common/Navbar/Brand";
 import { routes, routesDashboard } from "components/common/Navbar/routes";

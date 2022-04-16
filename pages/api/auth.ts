@@ -1,6 +1,6 @@
-import passport from "@/lib-api/auth/passport";
-import { auth, database } from "@/lib-api/middlewares";
-import { options } from "@/lib-api/nc";
+import passport from "@/api/auth/passport";
+import { auth, database } from "@/api/middlewares";
+import { options } from "@/api/nc";
 import nc from "next-connect";
 
 const handler = nc(options);

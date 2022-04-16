@@ -1,4 +1,4 @@
-import { routeActive } from "@/lib-utils/router";
+import { routeActive } from "@/utils/router";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";

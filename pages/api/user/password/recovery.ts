@@ -1,13 +1,13 @@
-import { createToken, findAndDeleteTokenByIdAndType } from "@/lib-api/db/token";
-import { findUserByEmail, updateUserPasswordRecovery } from "@/lib-api/db/user";
-import { CONFIG as MAIL_CONFIG, sendMail } from "@/lib-api/mail";
-import rawTemplate from "@/lib-api/mail/rawTemplate";
-import { database } from "@/lib-api/middlewares";
-import { options } from "@/lib-api/nc";
+import { createToken, findAndDeleteTokenByIdAndType } from "@/api/db/token";
+import { findUserByEmail, updateUserPasswordRecovery } from "@/api/db/user";
+import { CONFIG as MAIL_CONFIG, sendMail } from "@/api/mail";
+import rawTemplate from "@/api/mail/rawTemplate";
+import { database } from "@/api/middlewares";
+import { options } from "@/api/nc";
 import {
   recoveryEmailValidation,
   recoveryPasswordValidation,
-} from "@/lib-api/schemas/validations";
+} from "@/api/schemas/validations";
 
 import nc from "next-connect";
 import normalizeEmail from "validator/lib/normalizeEmail";

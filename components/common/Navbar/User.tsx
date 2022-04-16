@@ -7,7 +7,7 @@ import {
   signOut,
 } from "lib/store/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
-import { routeActive } from "@/lib-utils/router";
+import { routeActive } from "@/utils/router";
 
 import Link from "next/link";
 import { useRouter } from "next/router";

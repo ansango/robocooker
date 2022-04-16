@@ -2,7 +2,7 @@ import MongoStore from "connect-mongo";
 import nextSession, { type Options as SessionOptions } from "next-session";
 import { promisifyStore } from "next-session/lib/compat";
 import type { ConnectMongoOptions } from "connect-mongo/build/main/lib/MongoStore";
-import { getMongoClient } from "@/lib-api/middlewares/database";
+import { getMongoClient } from "@/api/middlewares/database";
 
 const mongoOptions: ConnectMongoOptions = {
   clientPromise: getMongoClient(),

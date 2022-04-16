@@ -1,13 +1,13 @@
 import nc from "next-connect";
-import { signUpValidation } from "@/lib-api/schemas/validations";
-import { slug } from "@/lib-utils/slug";
-import { isEmail, normalizeEmail } from "@/lib-utils/validations";
-import { auth, database } from "@/lib-api/middlewares";
+import { signUpValidation } from "@/api/schemas/validations";
+import { slug } from "@/utils/slug";
+import { isEmail, normalizeEmail } from "@/utils/validations";
+import { auth, database } from "@/api/middlewares";
 import {
   findUserByEmail,
   findUserByUsername,
   insertUser,
-} from "@/lib-api/db/user";
+} from "@/api/db/user";
 
 const handler = nc();
 handler.use(database);

@@ -1,4 +1,4 @@
-import fetcher from "@/lib-utils/fetcher";
+import fetcher from "@/utils/fetcher";
 import {
   onSignInService,
   onSignOutService,

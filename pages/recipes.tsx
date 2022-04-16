@@ -1,7 +1,7 @@
 import GreyContainer from "components/common/Container/GreyContainer";
 import { Form, Input } from "components/common/Forms";
 import Cards from "components/skeletons/Cards";
-import { getRecipesBySearchParams } from "mocks/recipes";
+import { getRecipesBySearchParams } from "lib/mocks/recipes";
 import { motion } from "framer-motion";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
