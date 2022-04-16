@@ -5,10 +5,8 @@ import React from "react";
 import ResetPasswordForm from "components/dashboard/Forms/ResetPasswordForm";
 import Alert from "components/common/Alert/Alert";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
-import {
-  selectUser,
-  verifyEmail,
-} from "@/store/features/user";
+import { selectUser } from "@/store/features/user";
+import { verifyEmail } from "@/store/features/user/thunks";
 
 const Settings: NextPage = () => {
   const user = useAppSelector(selectUser);

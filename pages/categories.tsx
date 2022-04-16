@@ -1,15 +1,14 @@
-import {
-  fetchCategories,
-  selectCategories,
-  selectCategoriesStatus,
-} from "@/store/features/categories";
-import { useAppDispatch, useAppSelector } from "lib/store/hooks";
+import { useAppSelector } from "lib/store/hooks";
 import { NextPage } from "next";
-import { useEffect } from "react";
+
 import { motion } from "framer-motion";
 import GenericHero from "components/common/Hero/GenericHero";
 import Card from "components/pages/categories/Card";
 import CategoriesCards from "components/skeletons/Cards/CategoriesCards";
+import {
+  selectCategories,
+  selectCategoriesStatus,
+} from "@/store/features/categories";
 
 const Categories: NextPage = () => {
   const categories = useAppSelector(selectCategories);

@@ -1,7 +1,4 @@
-import {
-  selectAccount,
-  updateAvatar,
-} from "lib/store/features/account/accountSlice";
+
 import { selectUser } from "@/store/features/user";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import Avatar from "components/common/Avatar/Avatar";
@@ -9,6 +6,8 @@ import Button from "components/common/Button/Button/Button";
 import { Form } from "components/common/Forms";
 import File from "components/common/Forms/File";
 import { useCallback } from "react";
+import { selectAccount } from "@/store/features/account";
+import { updateAvatar } from "@/store/features/account/thunks";
 
 const AvatarForm = () => {
   const account = useAppSelector(selectAccount);

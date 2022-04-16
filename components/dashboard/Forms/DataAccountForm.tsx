@@ -1,16 +1,13 @@
-import {
-  selectAccount,
-  updateAccount,
-} from "lib/store/features/account/accountSlice";
-import {
-  selectUser,
-  updateUser,
-} from "@/store/features/user";
-import { useAppDispatch, useAppSelector } from "lib/store/hooks";
+import { Account, User } from "@/models/user/user";
+import { selectAccount } from "@/store/features/account";
+import { updateAccount } from "@/store/features/account/thunks";
+import { selectUser } from "@/store/features/user";
+import { updateUser } from "@/store/features/user/thunks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import { Date, Form, Input, TextArea } from "components/common/Forms";
-import { Account, User } from "lib/models/user/user";
 import { FC, useCallback } from "react";
+
 
 type AccountDataForm = {
   username: string;

@@ -1,4 +1,4 @@
-import { selectUser, signUp } from "@/store/features/user";
+
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import GreyContainer from "components/common/Container/GreyContainer";
@@ -7,6 +7,8 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
+import { selectUser } from "@/store/features/user";
+import { signUp } from "@/store/features/user/thunks";
 
 const SignUp: NextPage = () => {
   const user = useAppSelector(selectUser);

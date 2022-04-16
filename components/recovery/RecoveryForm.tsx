@@ -1,9 +1,10 @@
-import { resetPassword } from "@/store/features/user";
+
 import { useAppDispatch } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import { Form, Input } from "components/common/Forms";
 import { useRouter } from "next/router";
 import { FC, useCallback } from "react";
+import { resetPassword } from "@/store/features/user/thunks";
 
 type Props = {
   tokenId: TokenId;

@@ -3,21 +3,22 @@ import tendencias from "public/home/Tendencias.avif";
 import robousers from "public/home/Robousers.avif";
 import Link from "next/link";
 import Image from "next/image";
-const data = [
-  {
-    _id: 1,
-    title: "tendencias",
-    img: "https://res.cloudinary.com/db8nr4kcg/image/upload/v1650086360/Pages/Home/image_2_wsep6f.avif",
-    link: "/trending",
-  },
-  {
-    id: 2,
-    title: "robousers",
-    img: "https://res.cloudinary.com/db8nr4kcg/image/upload/v1650086360/Pages/Home/image_3_qvkepu.avif",
-    link: "/robousers",
-  },
-];
+
 const ContentTrending = () => {
+  const data = [
+    {
+      _id: 1,
+      title: "tendencias",
+      img: "https://res.cloudinary.com/db8nr4kcg/image/upload/v1650086360/Pages/Home/image_2_wsep6f.avif",
+      link: "/trending",
+    },
+    {
+      id: 2,
+      title: "robousers",
+      img: "https://res.cloudinary.com/db8nr4kcg/image/upload/v1650086360/Pages/Home/image_3_qvkepu.avif",
+      link: "/robousers",
+    },
+  ];
   return (
     <motion.ul
       className="grid gap-5 sm:grid-cols-2"
@@ -25,9 +26,9 @@ const ContentTrending = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      {data.map(({ img, _id, title }) => {
+      {data.map(({ img, id, title }) => {
         return (
-          <li key={_id} className="cursor-pointer">
+          <li key={id} className="cursor-pointer">
             <Link href="/" passHref>
               <div className="card w-full bg-base-100 shadow-xl image-full before:opacity-40">
                 <figure className="w-full h-44 lg:h-64 xl:h-72 relative">
