@@ -4,11 +4,11 @@ import { NextPage } from "next";
 import React from "react";
 import ResetPasswordForm from "components/dashboard/Forms/ResetPasswordForm";
 import Alert from "components/common/Alert/Alert";
-import { useAppDispatch, useAppSelector } from "@/lib-client/store/hooks";
+import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import {
   selectUser,
   verifyEmail,
-} from "@/lib-client/store/features/user/userSlice";
+} from "lib/store/features/user/userSlice";
 
 const Settings: NextPage = () => {
   const user = useAppSelector(selectUser);

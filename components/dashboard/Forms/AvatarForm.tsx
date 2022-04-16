@@ -1,9 +1,9 @@
 import {
   selectAccount,
   updateAvatar,
-} from "@/lib-client/store/features/account/accountSlice";
-import { selectUser } from "@/lib-client/store/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "@/lib-client/store/hooks";
+} from "lib/store/features/account/accountSlice";
+import { selectUser } from "lib/store/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import Avatar from "components/common/Avatar/Avatar";
 import Button from "components/common/Button/Button/Button";
 import { Form } from "components/common/Forms";

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Recipe } from "models/recipe/recipe";
+import { Recipe } from "lib/models/recipe/recipe";
 import Image from "next/image";
 
 const Recipes: NextPage = () => {

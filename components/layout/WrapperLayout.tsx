@@ -1,13 +1,13 @@
-import { fetchAccount } from "@/lib-client/store/features/account/accountSlice";
+import { fetchAccount } from "lib/store/features/account/accountSlice";
 import {
   fetchCategories,
   selectCategories,
-} from "@/lib-client/store/features/categories/categoriesSlice";
+} from "lib/store/features/categories/categoriesSlice";
 import {
   fetchUser,
   selectUser,
-} from "@/lib-client/store/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "@/lib-client/store/hooks";
+} from "lib/store/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import { useRouter } from "next/router";
 import { FC, ReactNode, useEffect } from "react";
 import DashboardLayout from "./DashboardLayout";

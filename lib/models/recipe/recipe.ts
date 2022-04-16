@@ -1,4 +1,4 @@
-import { Blender } from "models/blender";
+import { Blender } from "lib/models/blender";
 
 type Recipe = {
   _id: RecipeId;

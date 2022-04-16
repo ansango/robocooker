@@ -1,10 +1,10 @@
-import fetcher from "@/lib-client/fetcher";
+import fetcher from "@/lib-utils/fetcher";
 import {
   onSaveAccountService,
   onUpdateAvatarAccountService,
-} from "@/lib-client/services/account";
+} from "lib/services/account";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Account } from "models/user/user";
+import { Account } from "lib/models/user/user";
 import type { AppState } from "../../index";
 
 export interface AccountState {

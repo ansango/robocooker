@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import { type Db, ObjectId } from "mongodb";
 import { normalizeEmail } from "@/lib-utils/validations";
-import { Account, Address, User } from "models/user/user";
+import { Account, Address, User } from "lib/models/user/user";
 
 const dbProjectionUsers = (prefix = "") => {
   return {

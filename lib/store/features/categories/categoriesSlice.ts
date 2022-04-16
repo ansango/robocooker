@@ -1,6 +1,6 @@
-import { onGetAllCategories } from "@/lib-client/services/categories";
+import { onGetAllCategories } from "lib/services/categories";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Category } from "models/recipe/category";
+import { Category } from "lib/models/recipe/category";
 import { AppState } from "../..";
 
 export interface CategoriesState {

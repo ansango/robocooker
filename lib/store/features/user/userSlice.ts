@@ -1,18 +1,18 @@
-import fetcher from "@/lib-client/fetcher";
+import fetcher from "@/lib-utils/fetcher";
 import {
   onSignInService,
   onSignOutService,
   onSignUpService,
-} from "@/lib-client/services/auth";
+} from "lib/services/auth";
 import {
   onRecoveryPasswordService,
   onResetPasswordService,
   onSaveUserService,
   onUpdatePasswordService,
   onVerifyEmailService,
-} from "@/lib-client/services/user";
+} from "lib/services/user";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { User } from "models/user/user";
+import { User } from "lib/models/user/user";
 
 import type { AppState } from "../../index";
 

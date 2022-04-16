@@ -1,5 +1,5 @@
-import fetcher from "../fetcher";
-import { User } from "models/user/user";
+import fetcher from "../utils/fetcher";
+import { User } from "lib/models/user/user";
 
 const onSignInService = async ({
   email,

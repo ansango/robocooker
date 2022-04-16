@@ -1,5 +1,5 @@
-import { Category } from "models/recipe/category";
-import fetcher from "../fetcher";
+import { Category } from "lib/models/recipe/category";
+import fetcher from "../utils/fetcher";
 
 const onGetAllCategories = async (): Promise<Category[]> => {
   try {

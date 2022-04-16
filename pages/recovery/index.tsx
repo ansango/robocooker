@@ -1,5 +1,5 @@
-import { recoveryPassword } from "@/lib-client/store/features/user/userSlice";
-import { useAppDispatch } from "@/lib-client/store/hooks";
+import { recoveryPassword } from "lib/store/features/user/userSlice";
+import { useAppDispatch } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import GreyContainer from "components/common/Container/GreyContainer";
 import { Form, Input } from "components/common/Forms";

@@ -1,5 +1,5 @@
-import { selectUser } from "@/lib-client/store/features/user/userSlice";
-import { useAppSelector } from "@/lib-client/store/hooks";
+import { selectUser } from "lib/store/features/user/userSlice";
+import { useAppSelector } from "lib/store/hooks";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";

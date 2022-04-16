@@ -1,5 +1,5 @@
-import { Account } from "models/user/user";
-import fetcher from "../fetcher";
+import { Account } from "lib/models/user/user";
+import fetcher from "../utils/fetcher";
 
 const onGetAccountService = async (): Promise<Account> => {
   try {

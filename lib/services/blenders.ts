@@ -1,5 +1,5 @@
-import { Blender } from "models/blender";
-import fetcher from "../fetcher";
+import { Blender } from "lib/models/blender";
+import fetcher from "../utils/fetcher";
 
 const onGetAllBlendersService = async (): Promise<Blender[]> => {
   try {

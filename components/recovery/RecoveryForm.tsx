@@ -1,5 +1,5 @@
-import { resetPassword } from "@/lib-client/store/features/user/userSlice";
-import { useAppDispatch } from "@/lib-client/store/hooks";
+import { resetPassword } from "lib/store/features/user/userSlice";
+import { useAppDispatch } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import { Form, Input } from "components/common/Forms";
 import { useRouter } from "next/router";

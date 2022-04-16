@@ -1,4 +1,4 @@
-import { Recipe } from "models/recipe/recipe";
+import { Recipe } from "lib/models/recipe/recipe";
 
 type Collection = {
   _id: CollectionId;

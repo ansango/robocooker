@@ -1,4 +1,4 @@
-import { Account } from "models/user/user";
+import { Account } from "lib/models/user/user";
 import { type Db, ObjectId } from "mongodb";
 
 const findAccountByUserId = (db: Db, accountId: AccountId) => {

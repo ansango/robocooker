@@ -1,4 +1,4 @@
-import { Chat } from "models/chat/chat";
+import { Chat } from "lib/models/chat/chat";
 
 type Follower = {
   userId: UserId;

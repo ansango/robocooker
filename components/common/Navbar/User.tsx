@@ -1,12 +1,12 @@
 import {
   selectAccount,
   removeAccountOnSignOut,
-} from "@/lib-client/store/features/account/accountSlice";
+} from "lib/store/features/account/accountSlice";
 import {
   selectUser,
   signOut,
-} from "@/lib-client/store/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "@/lib-client/store/hooks";
+} from "lib/store/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import { routeActive } from "@/lib-utils/router";
 
 import Link from "next/link";

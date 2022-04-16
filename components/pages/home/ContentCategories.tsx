@@ -1,8 +1,8 @@
 import {
   selectCategories,
   selectCategoriesStatus,
-} from "@/lib-client/store/features/categories/categoriesSlice";
-import { useAppSelector } from "@/lib-client/store/hooks";
+} from "lib/store/features/categories/categoriesSlice";
+import { useAppSelector } from "lib/store/hooks";
 import CategoriesCards from "components/skeletons/Cards/CategoriesCards";
 import { motion } from "framer-motion";
 import Card from "../categories/Card";

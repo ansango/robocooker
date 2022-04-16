@@ -2,8 +2,8 @@ import {
   fetchCategories,
   selectCategories,
   selectCategoriesStatus,
-} from "@/lib-client/store/features/categories/categoriesSlice";
-import { useAppDispatch, useAppSelector } from "@/lib-client/store/hooks";
+} from "lib/store/features/categories/categoriesSlice";
+import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import { NextPage } from "next";
 import { useEffect } from "react";
 import { motion } from "framer-motion";

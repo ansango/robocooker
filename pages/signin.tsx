@@ -1,5 +1,5 @@
-import { selectUser, signIn } from "@/lib-client/store/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "@/lib-client/store/hooks";
+import { selectUser, signIn } from "lib/store/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import GreyContainer from "components/common/Container/GreyContainer";
 import { Form, Input, RadioGroup, Select } from "components/common/Forms";

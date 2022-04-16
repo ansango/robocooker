@@ -1,4 +1,4 @@
-import { Category } from "models/recipe/category";
+import { Category } from "lib/models/recipe/category";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
