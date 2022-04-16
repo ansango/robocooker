@@ -1,4 +1,3 @@
-
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import GreyContainer from "components/common/Container/GreyContainer";
@@ -28,7 +27,7 @@ const SignIn: NextPage = () => {
     <GreyContainer>
       <div className="p-4 max-w-sm w-full bg-white rounded-lg border border-gray-200 shadow-sm sm:p-6 lg:p-8">
         <Form onSubmit={onSignIn}>
-          <div className="space-y-5">
+          <div className="space-y-4">
             <h5 className="text-xl font-medium text-gray-900">Inicia sesión</h5>
 
             <Input
@@ -51,19 +50,24 @@ const SignIn: NextPage = () => {
                 required: { value: true, message: "Introduce tu contraseña" },
               }}
             />
-            <p>
-              <Link href="/recovery">
-                <a className="text-blue-700 hover:underline text-sm">
-                  ¿Olvidaste tu contraseña?
-                </a>
-              </Link>
-            </p>
-            <Button label="Iniciar sesión" fullWidth type="submit" />
 
-            <p className="text-sm font-medium text-gray-500">
+            <Link href="/recovery">
+              <a className="btn btn-link normal-case text-sm p-0">
+                ¿Olvidaste tu contraseña?
+              </a>
+            </Link>
+
+            <button
+              className="btn btn-primary normal-case w-full"
+              type="submit"
+            >
+              Iniciar sesión
+            </button>
+
+            <p className="text-sm">
               ¿No tienes cuenta?
               <Link href="/signup">
-                <a className="text-blue-700 hover:underline ml-1">
+                <a className="btn btn-link normal-case text-sm p-0 ml-1">
                   Crear cuenta
                 </a>
               </Link>
