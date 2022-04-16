@@ -6,6 +6,7 @@ import {
   ContainerLink,
   ContentCategories,
   ContentBlenders,
+  ContentTrending,
   LinkE,
   SubParagraph,
   Subtitle,
@@ -16,6 +17,15 @@ const Home: NextPage = () => {
   return (
     <div>
       <Hero />
+      <Container>
+        <ContainerHeader>
+          <Subtitle title="Ultimas tendencias" />
+          <SubParagraph content="Conoce las recetas favoritas de la comunidad y a los Robousers que mas se crean, cocinan y nos deleitan." />
+        </ContainerHeader>
+        <ContainerContent>
+          <ContentTrending />
+        </ContainerContent>
+      </Container>
       <Container>
         <ContainerHeader>
           <Subtitle title="¿Que procesador tienes?" />

@@ -4,6 +4,7 @@ import ContainerHeader from "./containers/ContainerHeader";
 import ContainerLink from "./containers/ContainerLink";
 import ContentCategories from "./content/ContentCategories";
 import ContentBlenders from "./content/ContentBlenders";
+import ContentTrending from "./content/ContentTrending";
 import Hero from "./elements/Hero";
 import LinkE from "./elements/LinkE";
 import SubParagraph from "./elements/SubParagraph";
@@ -16,6 +17,7 @@ export {
   ContainerLink,
   ContentCategories,
   ContentBlenders,
+  ContentTrending,
   Hero,
   LinkE,
   SubParagraph,
