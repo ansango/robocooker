@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 const Hero: FC = () => {
   const { replace } = useRouter();
   return (
-    <div className="relative h-[30rem] md:h-[35rem] max-w-[120rem] mx-auto">
+    <div className="relative h-[30rem] md:h-[35rem] mx-auto">
       <Image
         src={imgHero}
         priority
