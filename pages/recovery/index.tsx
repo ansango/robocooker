@@ -1,4 +1,3 @@
-
 import { useAppDispatch } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import GreyContainer from "components/common/Container/GreyContainer";
@@ -18,12 +17,10 @@ const Recovery: NextPage = () => {
 
   return (
     <GreyContainer>
-      <div className="p-4 max-w-sm w-full bg-white rounded-lg border border-gray-200 shadow-sm sm:p-6 lg:p-8">
-        <Form onSubmit={onForget}>
-          <div className="space-y-5">
-            <h5 className="text-xl font-medium text-gray-900">
-              Recuperar cuenta
-            </h5>
+      <div className="card shadow-md bg-base-100 max-w-md w-full">
+        <Form onSubmit={onForget} className="card-body">
+          <h5 className="card-title">Recuperar cuenta</h5>
+          <div className="space-y-4">
             <Input
               name="email"
               label="Tu correo"
@@ -36,12 +33,17 @@ const Recovery: NextPage = () => {
                 },
               }}
             />
+            <button
+              className="btn btn-primary normal-case w-full"
+              type="submit"
+            >
+              Recuperar cuenta
+            </button>
 
-            <Button label="Recuperar cuenta" fullWidth type="submit" />
-            <p className="text-sm font-medium text-gray-500">
+            <p className="text-sm">
               ¿Ya tienes una cuenta?
               <Link href="/signin">
-                <a className="text-blue-700 hover:underline ml-1">
+                <a className="btn btn-link normal-case text-sm p-0 ml-1">
                   Inicia sesión
                 </a>
               </Link>
