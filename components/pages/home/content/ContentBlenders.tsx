@@ -2,14 +2,20 @@ import {
   selectBlenders,
   selectBlendersStatus,
 } from "@/store/features/blenders";
-import { useAppSelector } from "@/store/hooks";
+import { getBlenders } from "@/store/features/blenders/thunks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import CategoriesCards from "components/skeletons/Cards/CategoriesCards";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import Card from "../elements/Card";
 
 const ContentBlenders = () => {
   const loading = useAppSelector(selectBlendersStatus) === "loading";
   const blenders = useAppSelector(selectBlenders);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!blenders) dispatch(getBlenders());
+  }, [dispatch, blenders]);
   return (
     <>
       {loading && (

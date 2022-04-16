@@ -1,4 +1,4 @@
-import { useAppSelector } from "lib/store/hooks";
+import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import { NextPage } from "next";
 
 import { motion } from "framer-motion";
@@ -9,11 +9,17 @@ import {
   selectCategories,
   selectCategoriesStatus,
 } from "@/store/features/categories";
+import { useEffect } from "react";
+import { getCategories } from "@/store/features/categories/thunks";
 
 const Categories: NextPage = () => {
   const categories = useAppSelector(selectCategories);
   const loading = useAppSelector(selectCategoriesStatus) === "loading";
-
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!categories) dispatch(getCategories());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div>
       <GenericHero

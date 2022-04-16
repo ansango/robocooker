@@ -2,14 +2,21 @@ import {
   selectCategories,
   selectCategoriesStatus,
 } from "@/store/features/categories";
-import { useAppSelector } from "lib/store/hooks";
+import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import CategoriesCards from "components/skeletons/Cards/CategoriesCards";
 import { motion } from "framer-motion";
 import Card from "../elements/Card";
+import { useEffect } from "react";
+import { getCategories } from "@/store/features/categories/thunks";
 
 const ContentCategories = () => {
   const loading = useAppSelector(selectCategoriesStatus) === "loading";
   const categories = useAppSelector(selectCategories);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!categories) dispatch(getCategories());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       {loading && (

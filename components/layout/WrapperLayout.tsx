@@ -29,14 +29,10 @@ const WrapperLayout: FC<Props> = ({ children }) => {
   const { pathname } = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
-  const categories = useAppSelector(selectCategories);
-  const blenders = useAppSelector(selectBlenders);
   useEffect(() => {
     if (!user) dispatch(getUser());
     if (user) dispatch(getAccount());
-    if (!categories) dispatch(getCategories());
-    if (!blenders) dispatch(getBlenders());
-  }, [dispatch, user, categories, blenders]);
+  }, [dispatch, user]);
   return pathname.startsWith("/dashboard") ? (
     <WithAuth>
       <DashboardLayout>{children}</DashboardLayout>
