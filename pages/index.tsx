@@ -47,6 +47,18 @@ const Home: NextPage = () => {
           </ContainerLink>
         </ContainerContent>
       </Container>
+      <Container>
+        <ContainerHeader>
+          <Subtitle title="Ultimas recetas" />
+          <SubParagraph content="Ponte al dia con las nuevas recetas para tu procesador de alimentos favorito, no olvides comentar o darle like si te gusta la publicación" />
+        </ContainerHeader>
+        <ContainerContent>
+          <ContentCategories />
+          <ContainerLink>
+            <LinkE href="/categories" label="Ver todas recetas" />
+          </ContainerLink>
+        </ContainerContent>
+      </Container>
     </div>
   );
 };

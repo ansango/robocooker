@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Image from "next/image";
-import imgHero from "public/home/Hero.avif";
+
 import { Form, Input } from "components/common/Forms";
 import { useRouter } from "next/router";
 
@@ -9,9 +9,9 @@ const Hero: FC = () => {
   return (
     <div className="relative h-[30rem] md:h-[35rem] mx-auto">
       <Image
-        src={imgHero}
-        priority
+        src="https://res.cloudinary.com/db8nr4kcg/image/upload/v1650115839/Pages/Home/Hero_q4d3u5.avif"
         alt="hero"
+        priority
         layout="fill"
         className="object-center object-cover pointer-events-none"
       />
