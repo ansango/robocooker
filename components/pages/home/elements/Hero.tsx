@@ -27,20 +27,24 @@ const Hero: FC = () => {
             <Form
               onSubmit={({ search }) => replace(`/recipes?search=${search}`)}
             >
-              <div className="max-w-sm px-5 mx-auto md:flex md:items-center md:space-x-5">
-                <Input
-                  name="search"
-                  type="text"
-                  kind="primary"
-                  placeholder="Introduce una receta"
-                  icon={{
-                    name: "SearchIcon",
-                    kind: "solid",
-                  }}
-                />
-                <button className="btn btn-primary normal-case" type="submit">
-                  Buscar
-                </button>
+              <div className="max-w-sm px-5 mx-auto grid gap-5 sm:grid-cols-12">
+                <div className="sm:col-span-9">
+                  <Input
+                    name="search"
+                    type="text"
+                    kind="primary"
+                    placeholder="Introduce una receta"
+                    icon={{
+                      name: "SearchIcon",
+                      kind: "solid",
+                    }}
+                  />
+                </div>
+                <div className="sm:col-span-3">
+                  <button className="btn btn-primary normal-case w-full" type="submit">
+                    Buscar
+                  </button>
+                </div>
               </div>
             </Form>
           </div>
