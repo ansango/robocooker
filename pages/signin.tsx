@@ -7,6 +7,10 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { selectUser } from "@/store/features/user";
 import { signIn } from "@/store/features/user/thunks";
+import CardBasic from "components/common/Cards/Basic/CardBasic";
+import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
+import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
+import ButtonLink from "components/common/Button/ButtonLink";
 
 const SignIn: NextPage = () => {
   const user = useAppSelector(selectUser);
@@ -24,10 +28,10 @@ const SignIn: NextPage = () => {
   );
   return (
     <GreyContainer>
-      <div className="card shadow-md bg-base-100 max-w-md w-full">
-        <Form onSubmit={onSignIn} className="card-body">
-          <h5 className="card-title">Inicia sesión</h5>
-          <div className="space-y-4">
+      <CardBasic>
+        <CardBasicTitle title="Inicia sesión" />
+        <Form onSubmit={onSignIn}>
+          <CardBasicContent>
             <Input
               name="email"
               label="Tu correo"
@@ -48,13 +52,9 @@ const SignIn: NextPage = () => {
                 required: { value: true, message: "Introduce tu contraseña" },
               }}
             />
-
-            <Link href="/recovery">
-              <a className="btn btn-link normal-case text-sm p-0">
-                ¿Olvidaste tu contraseña?
-              </a>
-            </Link>
-
+            <p className="text-sm">
+              <ButtonLink href="/recovery" label="¿Olvidaste tu contraseña?" />
+            </p>
             <button
               className="btn btn-primary normal-case w-full"
               type="submit"
@@ -62,17 +62,13 @@ const SignIn: NextPage = () => {
               Iniciar sesión
             </button>
 
-            <p className="text-sm">
-              ¿No tienes cuenta?
-              <Link href="/signup">
-                <a className="btn btn-link normal-case text-sm p-0 ml-1">
-                  Crear cuenta
-                </a>
-              </Link>
+            <p className="text-sm space-x-1">
+              <span>¿No tienes cuenta?</span>
+              <ButtonLink href="/signup" label="Crea una!" />
             </p>
-          </div>
+          </CardBasicContent>
         </Form>
-      </div>
+      </CardBasic>
     </GreyContainer>
   );
 };

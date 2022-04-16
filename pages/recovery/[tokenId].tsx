@@ -1,8 +1,8 @@
 import { findTokenByIdAndType } from "@/api/db/token";
 import { database } from "@/api/middlewares";
 import GreyContainer from "components/common/Container/GreyContainer";
-import BadLink from "components/recovery/BadLink";
-import RecoveryForm from "components/recovery/RecoveryForm";
+import BadLink from "components/pages/recovery/BadLink";
+import RecoveryForm from "components/pages/recovery/RecoveryForm";
 import { GetServerSideProps, NextPage } from "next";
 import nc from "next-connect";
 

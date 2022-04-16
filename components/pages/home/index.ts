@@ -6,7 +6,6 @@ import ContentCategories from "./content/ContentCategories";
 import ContentBlenders from "./content/ContentBlenders";
 import ContentTrending from "./content/ContentTrending";
 import Hero from "./elements/Hero";
-import LinkE from "./elements/LinkE";
 import SubParagraph from "./elements/SubParagraph";
 import Subtitle from "./elements/Subtitle";
 
@@ -19,7 +18,6 @@ export {
   ContentBlenders,
   ContentTrending,
   Hero,
-  LinkE,
   SubParagraph,
   Subtitle,
 };

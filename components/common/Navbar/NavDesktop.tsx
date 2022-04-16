@@ -1,8 +1,7 @@
-import { routeActive } from "@/utils/router";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { routes } from "./routes";
 import { motion } from "framer-motion";
+import ButtonLink from "../Button/ButtonLink";
 
 const NavDesktop = () => {
   const { pathname } = useRouter();
@@ -16,17 +15,7 @@ const NavDesktop = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <Link href={path}>
-              <a
-                className={
-                  routeActive(pathname, path)
-                    ? "btn btn-link btn-active normal-case text-primary dark:text-primary-content"
-                    : "btn btn-link normal-case text-gray-600 dark:text-base-content"
-                }
-              >
-                {label}
-              </a>
-            </Link>
+            <ButtonLink href={path} label={label} currentPath={pathname} />
           </motion.li>
         );
       })}

@@ -1,11 +1,13 @@
 import { useAppDispatch } from "lib/store/hooks";
-import Button from "components/common/Button/Button/Button";
 import GreyContainer from "components/common/Container/GreyContainer";
 import { Form, Input } from "components/common/Forms";
 import { NextPage } from "next";
-import Link from "next/link";
 import { useCallback } from "react";
 import { recoveryPassword } from "@/store/features/user/thunks";
+import ButtonLink from "components/common/Button/ButtonLink";
+import CardBasic from "components/common/Cards/Basic/CardBasic";
+import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
+import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
 const Recovery: NextPage = () => {
   const dispatch = useAppDispatch();
   const onForget = useCallback(
@@ -17,10 +19,10 @@ const Recovery: NextPage = () => {
 
   return (
     <GreyContainer>
-      <div className="card shadow-md bg-base-100 max-w-md w-full">
-        <Form onSubmit={onForget} className="card-body">
-          <h5 className="card-title">Recuperar cuenta</h5>
-          <div className="space-y-4">
+      <CardBasic>
+        <CardBasicTitle title="Recuperar contraseña" />
+        <Form onSubmit={onForget}>
+          <CardBasicContent>
             <Input
               name="email"
               label="Tu correo"
@@ -40,17 +42,13 @@ const Recovery: NextPage = () => {
               Recuperar cuenta
             </button>
 
-            <p className="text-sm">
-              ¿Ya tienes una cuenta?
-              <Link href="/signin">
-                <a className="btn btn-link normal-case text-sm p-0 ml-1">
-                  Inicia sesión
-                </a>
-              </Link>
+            <p className="text-sm space-x-2">
+              <span>¿Ya tienes una cuenta?</span>
+              <ButtonLink href="/signin" label="Inicia sesión" />
             </p>
-          </div>
+          </CardBasicContent>
         </Form>
-      </div>
+      </CardBasic>
     </GreyContainer>
   );
 };

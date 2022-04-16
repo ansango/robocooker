@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { selectUser } from "@/store/features/user";
 import { signUp } from "@/store/features/user/thunks";
+import ButtonLink from "components/common/Button/ButtonLink";
 
 const SignUp: NextPage = () => {
   const user = useAppSelector(selectUser);
@@ -83,13 +84,9 @@ const SignUp: NextPage = () => {
             >
               Crear cuenta
             </button>
-            <p className="text-sm">
-              ¿Ya tienes una cuenta?
-              <Link href="/signin">
-                <a className="btn btn-link normal-case text-sm p-0 ml-1">
-                  Inicia sesión
-                </a>
-              </Link>
+            <p className="text-sm space-x-2">
+              <span>¿Ya tienes una cuenta?</span>
+              <ButtonLink href="/signin" label="Inicia sesión" />
             </p>
           </div>
         </Form>
