@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import {
   selectUser,
   verifyEmail,
-} from "lib/store/features/user/userSlice";
+} from "@/store/features/user";
 
 const Settings: NextPage = () => {
   const user = useAppSelector(selectUser);

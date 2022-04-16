@@ -1,4 +1,4 @@
-import { selectUser } from "lib/store/features/user/userSlice";
+import { selectUser } from "@/store/features/user";
 import { useAppSelector } from "lib/store/hooks";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";

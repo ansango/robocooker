@@ -5,7 +5,7 @@ import {
 import {
   selectUser,
   updateUser,
-} from "lib/store/features/user/userSlice";
+} from "@/store/features/user";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import { Date, Form, Input, TextArea } from "components/common/Forms";

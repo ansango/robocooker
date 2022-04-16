@@ -1,54 +1,12 @@
-import fetcher from "@/utils/fetcher";
-import {
-  onSaveAccountService,
-  onUpdateAvatarAccountService,
-} from "lib/services/account";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Account } from "lib/models/user/user";
+import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "./state";
 import type { AppState } from "../../index";
-
-export interface AccountState {
-  value: Account | null;
-  status: "idle" | "loading" | "failed";
-}
-
-const initialState: AccountState = {
-  value: null,
-  status: "idle",
-};
-
-export const fetchAccount = createAsyncThunk(
-  "account/fetchAccount",
-  async () => {
-    const response = await fetcher("/api/account");
-    return response.account;
-  }
-);
-
-export const updateAccount = createAsyncThunk(
-  "account/updateAccount",
-  async (account: Account) => {
-    const response = await onSaveAccountService({ account });
-    return response;
-  }
-);
-
-export const updateAvatar = createAsyncThunk(
-  "account/updateAvatar",
-  async (formData: FormData) => {
-    const response = await onUpdateAvatarAccountService({ formData });
-    return response;
-  }
-);
-
-export const removeAccountOnSignOut = createAsyncThunk(
-  "account/removeAccountOnSignOut",
-  async (timing?: number) => {
-    return new Promise<void>((resolve) =>
-      setTimeout(() => resolve(), timing ?? 2000)
-    );
-  }
-);
+import {
+  getAccount,
+  removeAccountOnSignOut,
+  updateAccount,
+  updateAvatar,
+} from "./thunks";
 
 export const accountSlice = createSlice({
   name: "account",
@@ -56,14 +14,14 @@ export const accountSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAccount.pending, (state) => {
+      .addCase(getAccount.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchAccount.fulfilled, (state, action) => {
+      .addCase(getAccount.fulfilled, (state, action) => {
         state.status = "idle";
         state.value = action.payload;
       })
-      .addCase(fetchAccount.rejected, (state) => {
+      .addCase(getAccount.rejected, (state) => {
         state.status = "failed";
       });
     builder
@@ -104,4 +62,5 @@ export const accountSlice = createSlice({
 });
 
 export const selectAccount = (state: AppState) => state.account.value;
+export const selectAccountStatus = (state: AppState) => state.account.status;
 export default accountSlice.reducer;

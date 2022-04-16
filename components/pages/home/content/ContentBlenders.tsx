@@ -1,15 +1,15 @@
 import {
-  selectCategories,
-  selectCategoriesStatus,
-} from "lib/store/features/categories/categoriesSlice";
-import { useAppSelector } from "lib/store/hooks";
+  selectBlenders,
+  selectBlendersStatus,
+} from "@/store/features/blenders";
+import { useAppSelector } from "@/store/hooks";
 import CategoriesCards from "components/skeletons/Cards/CategoriesCards";
 import { motion } from "framer-motion";
-import Card from "../categories/Card";
+import Card from "../elements/Card";
 
-const ContentCategories = () => {
-  const loading = useAppSelector(selectCategoriesStatus) === "loading";
-  const categories = useAppSelector(selectCategories);
+const ContentBlenders = () => {
+  const loading = useAppSelector(selectBlendersStatus) === "loading";
+  const blenders = useAppSelector(selectBlenders);
   return (
     <>
       {loading && (
@@ -22,15 +22,15 @@ const ContentCategories = () => {
           <CategoriesCards length={9} />
         </motion.div>
       )}
-      {!loading && categories && (
+      {!loading && blenders && (
         <motion.ul
           className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          {categories.slice(0, 9).map((category) => {
-            return <Card key={category._id} {...{ category }} />;
+          {blenders.map((blender) => {
+            return <Card key={blender._id} data={blender} />;
           })}
         </motion.ul>
       )}
@@ -38,4 +38,4 @@ const ContentCategories = () => {
   );
 };
 
-export default ContentCategories;
+export default ContentBlenders;

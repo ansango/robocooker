@@ -1,4 +1,4 @@
-import { selectUser } from "lib/store/features/user/userSlice";
+import { selectUser } from "@/store/features/user";
 import { useAppSelector } from "lib/store/hooks";
 import { routeActive } from "@/utils/router";
 import Link from "next/link";

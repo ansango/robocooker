@@ -1,7 +1,7 @@
 import { Category } from "lib/models/recipe/category";
 import fetcher from "../utils/fetcher";
 
-const onGetAllCategories = async (): Promise<Category[]> => {
+const onGetAllCategoriesService = async (): Promise<Category[]> => {
   try {
     const response = await fetcher("/api/categories/all", {
       method: "GET",
@@ -12,4 +12,4 @@ const onGetAllCategories = async (): Promise<Category[]> => {
   }
 };
 
-export { onGetAllCategories };
+export { onGetAllCategoriesService };

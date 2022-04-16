@@ -1,12 +1,10 @@
-import { fetchAccount } from "lib/store/features/account/accountSlice";
-import {
-  fetchCategories,
-  selectCategories,
-} from "lib/store/features/categories/categoriesSlice";
-import {
-  fetchUser,
-  selectUser,
-} from "lib/store/features/user/userSlice";
+import { getAccount } from "@/store/features/account/thunks";
+import { selectBlenders } from "@/store/features/blenders";
+import { getBlenders } from "@/store/features/blenders/thunks";
+import { selectCategories } from "@/store/features/categories";
+import { getCategories } from "@/store/features/categories/thunks";
+import { selectUser } from "@/store/features/user";
+import { getUser } from "@/store/features/user/thunks";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import { useRouter } from "next/router";
 import { FC, ReactNode, useEffect } from "react";
@@ -32,11 +30,13 @@ const WrapperLayout: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
   const categories = useAppSelector(selectCategories);
+  const blenders = useAppSelector(selectBlenders);
   useEffect(() => {
-    if (!user) dispatch(fetchUser());
-    if (user) dispatch(fetchAccount());
-    if (!categories) dispatch(fetchCategories());
-  }, [dispatch, user, categories]);
+    if (!user) dispatch(getUser());
+    if (user) dispatch(getAccount());
+    if (!categories) dispatch(getCategories());
+    if (!blenders) dispatch(getBlenders());
+  }, [dispatch, user, categories, blenders]);
   return pathname.startsWith("/dashboard") ? (
     <WithAuth>
       <DashboardLayout>{children}</DashboardLayout>

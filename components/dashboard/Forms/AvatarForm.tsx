@@ -2,7 +2,7 @@ import {
   selectAccount,
   updateAvatar,
 } from "lib/store/features/account/accountSlice";
-import { selectUser } from "lib/store/features/user/userSlice";
+import { selectUser } from "@/store/features/user";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import Avatar from "components/common/Avatar/Avatar";
 import Button from "components/common/Button/Button/Button";

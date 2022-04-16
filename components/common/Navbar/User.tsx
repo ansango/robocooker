@@ -1,11 +1,3 @@
-import {
-  selectAccount,
-  removeAccountOnSignOut,
-} from "lib/store/features/account/accountSlice";
-import {
-  selectUser,
-  signOut,
-} from "lib/store/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import { routeActive } from "@/utils/router";
 
@@ -16,6 +8,10 @@ import Avatar from "../Avatar/Avatar";
 import { Icon } from "../Icons";
 import { routesDashboard } from "./routes";
 import ToggleTheme from "./ToggleTheme";
+import { selectUser } from "@/store/features/user";
+import { selectAccount } from "@/store/features/account";
+import { signOut } from "@/store/features/user/thunks";
+import { removeAccountOnSignOut } from "@/store/features/account/thunks";
 
 const User: FC = () => {
   const { pathname, replace } = useRouter();

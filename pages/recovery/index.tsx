@@ -1,4 +1,4 @@
-import { recoveryPassword } from "lib/store/features/user/userSlice";
+import { recoveryPassword } from "@/store/features/user";
 import { useAppDispatch } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import GreyContainer from "components/common/Container/GreyContainer";

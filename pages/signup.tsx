@@ -1,4 +1,4 @@
-import { selectUser, signUp } from "lib/store/features/user/userSlice";
+import { selectUser, signUp } from "@/store/features/user";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import GreyContainer from "components/common/Container/GreyContainer";

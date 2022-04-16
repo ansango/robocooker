@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useAppSelector } from "lib/store/hooks";
 import FullAvatar from "./FullAvatar";
 import BlankAvatar from "./BlankAvatar";
-import { selectUser } from "lib/store/features/user/userSlice";
+import { selectUser } from "@/store/features/user";
 
 type AvatarProps = {
   size: "xs" | "sm" | "md" | "lg";

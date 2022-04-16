@@ -1,118 +1,17 @@
-import fetcher from "@/utils/fetcher";
-import {
-  onSignInService,
-  onSignOutService,
-  onSignUpService,
-} from "lib/services/auth";
-import {
-  onRecoveryPasswordService,
-  onResetPasswordService,
-  onSaveUserService,
-  onUpdatePasswordService,
-  onVerifyEmailService,
-} from "lib/services/user";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { User } from "lib/models/user/user";
-
+import { createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "../../index";
-
-export interface UserState {
-  value: User | null;
-  status: "idle" | "loading" | "failed";
-}
-
-const initialState: UserState = {
-  value: null,
-  status: "idle",
-};
-
-export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
-  const response = await fetcher("/api/user");
-  return response.user;
-});
-
-export const signIn = createAsyncThunk(
-  "user/signIn",
-  async ({ email, password }: { email: Email; password: Password }) => {
-    const response = await onSignInService({ email, password });
-    return response;
-  }
-);
-
-export const signUp = createAsyncThunk(
-  "user/sigUp",
-  async ({
-    email,
-    password,
-    username,
-  }: {
-    email: Email;
-    password: Password;
-    username: Username;
-  }) => {
-    const response = await onSignUpService({ email, password, username });
-    return response;
-  }
-);
-
-export const signOut = createAsyncThunk("user/signOut", async () => {
-  await onSignOutService();
-  return null;
-});
-
-export const updateUser = createAsyncThunk(
-  "user/updateUser",
-  async (user: User) => {
-    const response = await onSaveUserService({ user });
-    return response;
-  }
-);
-
-export const updatePassword = createAsyncThunk(
-  "user/updatePassword",
-  async ({
-    oldPassword,
-    newPassword,
-  }: {
-    oldPassword: Password;
-    newPassword: Password;
-  }) => {
-    const response = await onUpdatePasswordService({
-      oldPassword,
-      newPassword,
-    });
-    return response;
-  }
-);
-
-export const recoveryPassword = createAsyncThunk(
-  "user/recoveryPassword",
-  async ({ email }: { email: Email }) => {
-    await onRecoveryPasswordService({ email });
-    return null;
-  }
-);
-
-export const resetPassword = createAsyncThunk(
-  "user/resetPassword",
-  async ({
-    tokenId,
-    newPassword,
-    redirect,
-  }: {
-    tokenId: TokenId;
-    newPassword: Password;
-    redirect: () => Promise<boolean>;
-  }) => {
-    await onResetPasswordService({ tokenId, newPassword, redirect });
-    return null;
-  }
-);
-
-export const verifyEmail = createAsyncThunk("user/verifyEmail", async () => {
-  await onVerifyEmailService();
-  return null;
-});
+import { initialState } from "./state";
+import {
+  getUser,
+  signIn,
+  signOut,
+  signUp,
+  updateUser,
+  recoveryPassword,
+  resetPassword,
+  updatePassword,
+  verifyEmail,
+} from "./thunks";
 
 export const userSlice = createSlice({
   name: "user",
@@ -120,14 +19,14 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUser.pending, (state) => {
+      .addCase(getUser.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchUser.fulfilled, (state, action) => {
+      .addCase(getUser.fulfilled, (state, action) => {
         state.status = "idle";
         state.value = action.payload;
       })
-      .addCase(fetchUser.rejected, (state) => {
+      .addCase(getUser.rejected, (state) => {
         state.status = "failed";
       });
     builder
@@ -218,4 +117,5 @@ export const userSlice = createSlice({
 });
 
 export const selectUser = (state: AppState) => state.user.value;
+export const selectUserStatus = (state: AppState) => state.user.status;
 export default userSlice.reducer;

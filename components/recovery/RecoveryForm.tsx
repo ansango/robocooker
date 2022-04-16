@@ -1,4 +1,4 @@
-import { resetPassword } from "lib/store/features/user/userSlice";
+import { resetPassword } from "@/store/features/user";
 import { useAppDispatch } from "lib/store/hooks";
 import Button from "components/common/Button/Button/Button";
 import { Form, Input } from "components/common/Forms";

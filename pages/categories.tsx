@@ -2,7 +2,7 @@ import {
   fetchCategories,
   selectCategories,
   selectCategoriesStatus,
-} from "lib/store/features/categories/categoriesSlice";
+} from "@/store/features/categories";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import { NextPage } from "next";
 import { useEffect } from "react";
