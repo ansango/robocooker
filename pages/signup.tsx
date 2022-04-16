@@ -1,6 +1,4 @@
-
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
-import Button from "components/common/Button/Button/Button";
 import GreyContainer from "components/common/Container/GreyContainer";
 import { Form, Input } from "components/common/Forms";
 import { NextPage } from "next";
@@ -35,7 +33,7 @@ const SignUp: NextPage = () => {
     <GreyContainer>
       <div className="p-4 max-w-sm w-full bg-white rounded-lg border border-gray-200 shadow-sm sm:p-6 lg:p-8">
         <Form onSubmit={onSignUp}>
-          <div className="space-y-5">
+          <div className="space-y-4">
             <h5 className="text-xl font-medium text-gray-900">
               Crea una cuenta
             </h5>
@@ -80,11 +78,17 @@ const SignUp: NextPage = () => {
                 },
               }}
             />
-            <Button label="Crear cuenta" fullWidth type="submit" />
-            <p className="text-sm font-medium text-gray-500">
+
+            <button
+              className="btn btn-primary normal-case w-full"
+              type="submit"
+            >
+              Crear cuenta
+            </button>
+            <p className="text-sm">
               ¿Ya tienes una cuenta?
               <Link href="/signin">
-                <a className="text-blue-700 hover:underline ml-1">
+                <a className="btn btn-link normal-case text-sm p-0 ml-1">
                   Inicia sesión
                 </a>
               </Link>
