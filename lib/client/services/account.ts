@@ -1,10 +1,14 @@
-import {
-  responseService,
-  errorSaveDataAccountService,
-} from "lib/constants/services";
 import { Account } from "models/user/user";
-import toast from "react-hot-toast";
 import fetcher from "../fetcher";
+
+const onGetAccountService = async (): Promise<Account> => {
+  try {
+    const response = await fetcher("/api/account");
+    return response.account;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const onSaveAccountService = async ({
   account,
@@ -19,13 +23,8 @@ const onSaveAccountService = async ({
         ...account,
       }),
     });
-    toast.success(responseService.saveAccount);
     return response.account;
   } catch (err: any) {
-    toast.error(
-      errorSaveDataAccountService[err.error] ||
-        errorSaveDataAccountService.default
-    );
     throw err;
   }
 };
@@ -40,16 +39,14 @@ const onUpdateAvatarAccountService = async ({
       method: "PATCH",
       body: formData,
     });
-
-    toast.success(responseService.updateAvatarAccount);
     return { avatar: response.avatar };
   } catch (err: any) {
-    toast.error(
-      errorSaveDataAccountService[err.error] ||
-        errorSaveDataAccountService.default
-    );
     throw err;
   }
 };
 
-export { onSaveAccountService, onUpdateAvatarAccountService };
+export {
+  onGetAccountService,
+  onSaveAccountService,
+  onUpdateAvatarAccountService,
+};

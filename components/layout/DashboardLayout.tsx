@@ -1,11 +1,7 @@
-import { selectUser } from "@/lib-client/store/features/user/userSlice";
-import { useAppSelector } from "@/lib-client/store/hooks";
-import Footer from "components/dashboard/Footer/Footer";
 import Navbar from "components/dashboard/Navbar";
 import { useRouter } from "next/router";
-import React, { FC, ReactNode, useEffect } from "react";
+import React, { FC, ReactNode } from "react";
 import { motion } from "framer-motion";
-
 import { routeActive } from "@/lib-utils/router";
 import Link from "next/link";
 import Brand from "components/common/Navbar/Brand";
@@ -17,12 +13,7 @@ type Props = {
 };
 
 const DashboardLayout: FC<Props> = ({ children }) => {
-  const user = useAppSelector(selectUser);
-  const { replace, route, pathname } = useRouter();
-  useEffect(() => {
-    if (!user) replace("/signin");
-  }, [user, replace]);
-  if (!user) return null;
+  const { route, pathname } = useRouter();
   return (
     <div className="">
       <div className="drawer drawer-mobile">

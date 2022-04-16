@@ -41,14 +41,19 @@ export const updateAvatar = createAsyncThunk(
   }
 );
 
+export const removeAccountOnSignOut = createAsyncThunk(
+  "account/removeAccountOnSignOut",
+  async (timing?: number) => {
+    return new Promise<void>((resolve) =>
+      setTimeout(() => resolve(), timing ?? 2000)
+    );
+  }
+);
+
 export const accountSlice = createSlice({
   name: "account",
   initialState,
-  reducers: {
-    removeAccount: (state) => {
-      state.value = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchAccount.pending, (state) => {
@@ -85,8 +90,18 @@ export const accountSlice = createSlice({
       .addCase(updateAvatar.rejected, (state) => {
         state.status = "failed";
       });
+    builder.addCase(removeAccountOnSignOut.fulfilled, (state) => {
+      state.value = null;
+      state.status = "idle";
+    });
+    builder.addCase(removeAccountOnSignOut.rejected, (state) => {
+      state.status = "failed";
+    });
+    builder.addCase(removeAccountOnSignOut.pending, (state) => {
+      state.status = "loading";
+    });
   },
 });
-export const { removeAccount } = accountSlice.actions;
+
 export const selectAccount = (state: AppState) => state.account.value;
 export default accountSlice.reducer;

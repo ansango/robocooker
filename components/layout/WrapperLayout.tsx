@@ -17,23 +17,32 @@ type Props = {
   children?: ReactNode;
 };
 
+const WithAuth: FC<Props> = ({ children }) => {
+  const user = !!useAppSelector(selectUser);
+  const { push } = useRouter();
+  useEffect(() => {
+    if (!user) push("/signin");
+  }, [user, push]);
+  if (!user) return null;
+  return <>{children}</>;
+};
+
 const WrapperLayout: FC<Props> = ({ children }) => {
-  const isDashboard = useRouter().pathname.includes("/dashboard");
+  const { pathname } = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
   const categories = useAppSelector(selectCategories);
   useEffect(() => {
-    if (!categories) dispatch(fetchCategories());
-  }, [categories, dispatch]);
-  useEffect(() => {
     if (!user) dispatch(fetchUser());
     if (user) dispatch(fetchAccount());
-  }, [user, dispatch]);
-  return (
-    <>
-      {!isDashboard && <MainLayout>{children}</MainLayout>}
-      {isDashboard && <DashboardLayout>{children}</DashboardLayout>}
-    </>
+    if (!categories) dispatch(fetchCategories());
+  }, [dispatch, user, categories]);
+  return pathname.startsWith("/dashboard") ? (
+    <WithAuth>
+      <DashboardLayout>{children}</DashboardLayout>
+    </WithAuth>
+  ) : (
+    <MainLayout>{children}</MainLayout>
   );
 };
 

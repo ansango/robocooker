@@ -1,6 +1,4 @@
 import fetcher from "../fetcher";
-import toast from "react-hot-toast";
-import { errorAuthService, responseService } from "lib/constants/services";
 import { User } from "models/user/user";
 
 const onSignInService = async ({
@@ -19,10 +17,8 @@ const onSignInService = async ({
         password,
       }),
     });
-    toast.success(responseService.sigIn);
     return response.user;
   } catch (err: any) {
-    toast.error(errorAuthService[err.error] || errorAuthService.default);
     throw err;
   }
 };
@@ -46,10 +42,9 @@ const onSignUpService = async ({
         username,
       }),
     });
-    toast.success(responseService.sigUp);
+
     return response.user;
   } catch (err: any) {
-    toast.error(errorAuthService[err.error] || errorAuthService.default);
     throw err;
   }
 };

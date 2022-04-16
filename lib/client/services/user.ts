@@ -1,12 +1,14 @@
-import {
-  responseService,
-  errorSaveDataAccountService,
-  errorUpdatePassword,
-  errorVerifyEmail,
-} from "lib/constants/services";
 import { User } from "models/user/user";
-import toast from "react-hot-toast";
 import fetcher from "../fetcher";
+
+const onGetUserService = async (): Promise<User | null> => {
+  try {
+    const response = await fetcher("/api/user");
+    return response.user;
+  } catch (err: any) {
+    throw err;
+  }
+};
 
 const onSaveUserService = async ({ user }: { user: User }): Promise<User> => {
   try {
@@ -17,13 +19,9 @@ const onSaveUserService = async ({ user }: { user: User }): Promise<User> => {
         ...user,
       }),
     });
-    toast.success(responseService.saveUser);
+
     return response.user;
   } catch (err: any) {
-    toast.error(
-      errorSaveDataAccountService[err.error] ||
-        errorSaveDataAccountService.default
-    );
     throw err;
   }
 };
@@ -44,9 +42,7 @@ const onUpdatePasswordService = async ({
         newPassword,
       }),
     });
-    toast.success(responseService.updatePassword);
   } catch (err: any) {
-    toast.error(errorUpdatePassword[err.error] || errorUpdatePassword.default);
     throw err;
   }
 };
@@ -64,9 +60,7 @@ const onRecoveryPasswordService = async ({
         email,
       }),
     });
-    toast.success(responseService.recoveryPassword);
   } catch (err: any) {
-    toast.error(errorUpdatePassword[err.error] || errorUpdatePassword.default);
     throw err;
   }
 };
@@ -89,10 +83,9 @@ const onResetPasswordService = async ({
         newPassword,
       }),
     });
-    toast.success(responseService.resetPassword);
+
     redirect();
   } catch (err: any) {
-    toast.error(errorUpdatePassword[err.error] || errorUpdatePassword.default);
     throw err;
   }
 };
@@ -102,10 +95,8 @@ const onVerifyEmailService = async (): Promise<boolean> => {
     await fetcher("/api/email/verify", {
       method: "POST",
     });
-    toast.success(responseService.verifyEmail);
     return true;
   } catch (err: any) {
-    toast.error(errorVerifyEmail[err.error] || errorUpdatePassword.default);
     throw err;
   }
 };
@@ -116,4 +107,5 @@ export {
   onRecoveryPasswordService,
   onResetPasswordService,
   onVerifyEmailService,
+  onGetUserService,
 };

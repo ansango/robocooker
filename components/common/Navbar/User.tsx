@@ -1,6 +1,6 @@
 import {
-  removeAccount,
   selectAccount,
+  removeAccountOnSignOut,
 } from "@/lib-client/store/features/account/accountSlice";
 import {
   selectUser,
@@ -18,14 +18,15 @@ import { routesDashboard } from "./routes";
 import ToggleTheme from "./ToggleTheme";
 
 const User: FC = () => {
-  const { pathname } = useRouter();
+  const { pathname, replace } = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
   const account = useAppSelector(selectAccount);
   const onSignOut = useCallback(() => {
+    replace("/");
     dispatch(signOut());
-    dispatch(removeAccount());
-  }, [dispatch]);
+    dispatch(removeAccountOnSignOut(1000));
+  }, [dispatch, replace]);
 
   return (
     <>

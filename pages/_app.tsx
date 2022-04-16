@@ -5,18 +5,25 @@ import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import store from "@/lib-client/store";
 import { ThemeProvider } from "next-themes";
+import { useRouter } from "next/router";
+import React, { FC, ReactNode, useEffect, useState } from "react";
+import { onGetUserService } from "@/lib-client/services/user";
 
-function MyApp({ Component, pageProps }: AppProps) {
+type Props = {
+  children?: ReactNode;
+};
+
+const RoboCooker = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider attribute="class" themes={["light", "dark"]}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <ThemeProvider attribute="class" themes={["light", "dark"]}>
         <WrapperLayout>
           <Component {...pageProps} />
           <Toaster />
         </WrapperLayout>
-      </Provider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Provider>
   );
-}
+};
 
-export default MyApp;
+export default RoboCooker;

@@ -1,16 +1,6 @@
 import type { NextPage } from "next";
 
 import Hero from "components/pages/home/Hero";
-import GenericHero from "components/common/Hero/GenericHero";
-import { useAppSelector } from "@/lib-client/store/hooks";
-import {
-  selectCategories,
-  selectCategoriesStatus,
-} from "@/lib-client/store/features/categories/categoriesSlice";
-import CategoriesCards from "components/skeletons/Cards/CategoriesCards";
-import { motion } from "framer-motion";
-import Card from "components/pages/categories/Card";
-import Link from "next/link";
 import Subtitle from "components/pages/home/Subtitle";
 import SubParagraph from "components/pages/home/SubParagraph";
 import Container from "components/pages/home/Container";
