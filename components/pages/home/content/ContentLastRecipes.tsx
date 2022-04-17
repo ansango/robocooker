@@ -5,7 +5,7 @@ import {
 import { getLastRecipes } from "@/store/features/recipes/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import React, { useEffect } from "react";
-import CardRecipe from "../elements/CardRecipe";
+import CardRecipe from "../../../common/Cards/Recipe/CardRecipe";
 
 const ContentLastRecipes = () => {
   const dispatch = useAppDispatch();
