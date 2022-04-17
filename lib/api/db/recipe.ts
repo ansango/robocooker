@@ -72,12 +72,14 @@ export const findLastRecipesPopulated = async (
   db: Db,
   limit: number
 ): Promise<RecipeDTO[] | void> => {
+  console.log(limit);
   try {
     const data = (await db
       .collection("recipes")
       .find()
-      .limit(limit)
+      .limit(parseInt(limit.toString(), 10))
       .toArray()) as Recipe[];
+
     const queries = data.map(async (recipe) => {
       const accountId = recipe.accountId;
       const { avatar, firstName, lastName } = (await db
@@ -89,7 +91,10 @@ export const findLastRecipesPopulated = async (
         .findOne({ accountId: new ObjectId(accountId) })) as User;
       return { ...recipe, account: { avatar, firstName, lastName, username } };
     });
-    return Promise.all(queries);
+
+    return Promise.all(queries).then((recipes) =>
+      recipes.sort((a, b) => b.created.getTime() - a.created.getTime())
+    );
   } catch (error) {
     throw error;
   }
