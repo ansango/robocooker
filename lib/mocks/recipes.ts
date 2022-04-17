@@ -7,7 +7,7 @@ const recipes: Recipe[] = [
     description:
       "A pizza margherita is a simple, classic pizza, made with a thin, crisp base of tomato sauce and mozzarella cheese.",
     img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    author: "bonniegreen",
+    accountId: "bonniegreen",
     categories: ["pizza", "italian"],
     servings: 4,
     duration: 30,
@@ -31,15 +31,15 @@ const recipes: Recipe[] = [
     ],
     steps: [
       {
-        name: "Preheat oven to 180°C",
+        description: "Preheat oven to 180°C",
         position: 1,
       },
       {
-        name: "Spread tomato sauce on pizza base",
+        description: "Spread tomato sauce on pizza base",
         position: 2,
       },
       {
-        name: "Spread mozzarella cheese on pizza base",
+        description: "Spread mozzarella cheese on pizza base",
         position: 3,
       },
     ],
@@ -63,7 +63,7 @@ const recipes: Recipe[] = [
     description:
       "A pizza margherita is a simple, classic pizza, made with a thin, crisp base of tomato sauce and mozzarella cheese.",
     img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    author: "bonniegreen",
+    accountId: "bonniegreen",
     categories: ["pizza", "italian"],
     servings: 4,
     duration: 30,
@@ -87,15 +87,15 @@ const recipes: Recipe[] = [
     ],
     steps: [
       {
-        name: "Preheat oven to 180°C",
+        description: "Preheat oven to 180°C",
         position: 1,
       },
       {
-        name: "Spread tomato sauce on pizza base",
+        description: "Spread tomato sauce on pizza base",
         position: 2,
       },
       {
-        name: "Spread mozzarella cheese on pizza base",
+        description: "Spread mozzarella cheese on pizza base",
         position: 3,
       },
     ],
@@ -119,7 +119,7 @@ const recipes: Recipe[] = [
     description:
       "A burger is a sandwich consisting of one or more cooked patties of meat, placed on a single piece of bread.",
     img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    author: "bonniegreen",
+    accountId: "bonniegreen",
     categories: ["burger", "fastfood"],
     servings: 4,
     duration: 30,
@@ -143,15 +143,15 @@ const recipes: Recipe[] = [
     ],
     steps: [
       {
-        name: "Preheat oven to 180°C",
+        description: "Preheat oven to 180°C",
         position: 1,
       },
       {
-        name: "Spread tomato sauce on pizza base",
+        description: "Spread tomato sauce on pizza base",
         position: 2,
       },
       {
-        name: "Spread mozzarella cheese on pizza base",
+        description: "Spread mozzarella cheese on pizza base",
         position: 3,
       },
     ],
@@ -175,7 +175,7 @@ const recipes: Recipe[] = [
     description:
       "A burger is a sandwich consisting of one or more cooked patties of meat, placed on a single piece of bread.",
     img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    author: "bonniegreen",
+    accountId: "bonniegreen",
     categories: ["burger", "fastfood"],
     servings: 4,
     duration: 30,
@@ -199,15 +199,15 @@ const recipes: Recipe[] = [
     ],
     steps: [
       {
-        name: "Preheat oven to 180°C",
+        description: "Preheat oven to 180°C",
         position: 1,
       },
       {
-        name: "Spread tomato sauce on pizza base",
+        description: "Spread tomato sauce on pizza base",
         position: 2,
       },
       {
-        name: "Spread mozzarella cheese on pizza base",
+        description: "Spread mozzarella cheese on pizza base",
         position: 3,
       },
     ],
@@ -231,7 +231,7 @@ const recipes: Recipe[] = [
     description:
       "A burger is a sandwich consisting of one or more cooked patties of meat, placed on a single piece of bread.",
     img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    author: "bonniegreen",
+    accountId: "bonniegreen",
     categories: ["burger", "fastfood"],
     servings: 4,
     duration: 30,
@@ -255,15 +255,15 @@ const recipes: Recipe[] = [
     ],
     steps: [
       {
-        name: "Preheat oven to 180°C",
+        description: "Preheat oven to 180°C",
         position: 1,
       },
       {
-        name: "Spread tomato sauce on pizza base",
+        description: "Spread tomato sauce on pizza base",
         position: 2,
       },
       {
-        name: "Spread mozzarella cheese on pizza base",
+        description: "Spread mozzarella cheese on pizza base",
         position: 3,
       },
     ],
@@ -287,7 +287,7 @@ const recipes: Recipe[] = [
     description:
       "A burger is a sandwich consisting of one or more cooked patties of meat, placed on a single piece of bread.",
     img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    author: "bonniegreen",
+    accountId: "bonniegreen",
     categories: ["burger", "fastfood"],
     servings: 4,
     duration: 30,
@@ -311,15 +311,15 @@ const recipes: Recipe[] = [
     ],
     steps: [
       {
-        name: "Preheat oven to 180°C",
+        description: "Preheat oven to 180°C",
         position: 1,
       },
       {
-        name: "Spread tomato sauce on pizza base",
+        description: "Spread tomato sauce on pizza base",
         position: 2,
       },
       {
-        name: "Spread mozzarella cheese on pizza base",
+        description: "Spread mozzarella cheese on pizza base",
         position: 3,
       },
     ],

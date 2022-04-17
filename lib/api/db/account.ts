@@ -1,14 +1,22 @@
 import { Account } from "lib/models/user/user";
 import { type Db, ObjectId } from "mongodb";
 
-const findAccountByUserId = (db: Db, accountId: AccountId) => {
+export const findAccountByUserId = (db: Db, accountId: AccountId) => {
   return db
     .collection("accounts")
     .findOne({ _id: new ObjectId(accountId) })
     .then((account) => account || null);
 };
 
-const updateAccountDataById = async (
+export const findAccountById = async (db: Db, accountId: AccountId) => {
+  const account = (await db
+    .collection("accounts")
+    .findOne({ _id: new ObjectId(accountId) })
+    .then((account) => account || null)) as Account;
+  return account;
+};
+
+export const updateAccountDataById = async (
   db: Db,
   accountId: AccountId,
   { about, address, birthday, firstName, lastName, phone }: Account
@@ -22,7 +30,7 @@ const updateAccountDataById = async (
     .then((account) => account || null);
 };
 
-const updateAvatarAccountById = async (
+export const updateAvatarAccountById = async (
   db: Db,
   accountId: AccountId,
   avatar: Url
@@ -33,4 +41,16 @@ const updateAvatarAccountById = async (
     .then((account) => account || null);
 };
 
-export { findAccountByUserId, updateAccountDataById, updateAvatarAccountById };
+export const updateAccountRecipesById = async (
+  db: Db,
+  accountId: AccountId,
+  recipeId: RecipeId
+) => {
+  return db
+    .collection("accounts")
+    .findOneAndUpdate(
+      { _id: new ObjectId(accountId) },
+      { $push: { recipes: recipeId } }
+    )
+    .then((account) => account || null);
+};

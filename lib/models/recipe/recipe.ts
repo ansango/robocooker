@@ -1,5 +1,3 @@
-import { Blender } from "lib/models/blender";
-
 type Recipe = {
   _id: RecipeId;
   name: Name;
@@ -14,11 +12,11 @@ type Recipe = {
   likes: UserId[];
   comments: CommentId[];
   created: Date;
-  author: UserId;
+  accountId: AccountId;
 };
 
 type Step = {
-  name: Name;
+  description: Content;
   position: Position;
 };
 
@@ -28,4 +26,4 @@ type Ingredient = {
   measure: Measure;
 };
 
-export { type Recipe };
+export { type Recipe, type Step, type Ingredient };

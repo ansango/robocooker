@@ -1,15 +1,17 @@
-import nc from "next-connect";
+import { findAllRecipesPopulated } from "@/api/db/recipe";
 import { database } from "@/api/middlewares";
 import { options } from "@/api/nc";
-import { findAllCategories } from "@/api/db/category";
+
+import nc from "next-connect";
 
 const handler = nc(options);
+
 handler.use(database);
 
 handler.get(async (req, res) => {
   try {
-    const categories = await findAllCategories(req.db);
-    return res.json({ categories });
+    const data = await findAllRecipesPopulated(req.db);
+    return res.json({ data });
   } catch (error) {
     return res.status(500).json({ error });
   }

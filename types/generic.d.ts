@@ -44,7 +44,7 @@ type CategoryName = Name;
 // Ingredient
 
 type Unit = number;
-type Measure = "gr" | "portion";
+type Measure = "gr" | "ml" | "portion";
 
 // Blender
 
