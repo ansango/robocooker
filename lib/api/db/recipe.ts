@@ -1,21 +1,8 @@
 import { Db, ObjectId } from "mongodb";
 
-import { Ingredient, Recipe, Step } from "@/models/recipe/recipe";
+import { Recipe, RecipeDAO, RecipeDTO } from "@/models/recipe/recipe";
 import { updateAccountRecipesById } from "./account";
 import { Account, User } from "@/models/user/user";
-
-export type RecipeDAO = {
-  accountId: AccountId;
-  blender: BlenderName;
-  categories: CategoryName[];
-  description: Content;
-  duration: Duration;
-  img: Url;
-  ingredients: Ingredient[];
-  name: Name;
-  servings: Servings;
-  steps: Step[];
-};
 
 export const insertRecipe = async (
   db: Db,
@@ -36,15 +23,6 @@ export const insertRecipe = async (
     throw error;
   }
 };
-
-export type RecipeDTO = {
-  account: {
-    avatar: Url;
-    firstName: Name;
-    lastName: Name;
-    username: Username;
-  };
-} & Recipe;
 
 export const findAllRecipesPopulated = async (
   db: Db

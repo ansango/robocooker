@@ -11,6 +11,7 @@ import {
   SubParagraph,
   Subtitle,
 } from "components/pages/home";
+import ContentLastRecipes from "components/pages/home/content/ContentLastRecipes";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
@@ -44,6 +45,18 @@ const Home: NextPage = () => {
           <ContentCategories />
           <ContainerLink>
             <ButtonLink href="/categories" label="Ver todas las categorías" />
+          </ContainerLink>
+        </ContainerContent>
+      </Container>
+      <Container>
+        <ContainerHeader>
+          <Subtitle title="Ultimas recetas" />
+          <SubParagraph content="Estas son las recetas mas recientes que hemos creado, y que estan siendo vistas por miles de usuarios." />
+        </ContainerHeader>
+        <ContainerContent>
+          <ContentLastRecipes />
+          <ContainerLink>
+            <ButtonLink href="/recipes" label="Ver todas las recetas" />
           </ContainerLink>
         </ContainerContent>
       </Container>

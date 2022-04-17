@@ -1,3 +1,25 @@
+type RecipeDAO = {
+  accountId: AccountId;
+  blender: BlenderName;
+  categories: CategoryName[];
+  description: Content;
+  duration: Duration;
+  img: Url;
+  ingredients: Ingredient[];
+  name: Name;
+  servings: Servings;
+  steps: Step[];
+};
+
+type RecipeDTO = {
+  account: {
+    avatar: Url;
+    firstName: Name;
+    lastName: Name;
+    username: Username;
+  };
+} & Recipe;
+
 type Recipe = {
   _id: RecipeId;
   name: Name;
@@ -26,4 +48,10 @@ type Ingredient = {
   measure: Measure;
 };
 
-export { type Recipe, type Step, type Ingredient };
+export {
+  type Recipe,
+  type Step,
+  type Ingredient,
+  type RecipeDAO,
+  type RecipeDTO,
+};

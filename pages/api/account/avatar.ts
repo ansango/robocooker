@@ -29,10 +29,13 @@ handler.patch(upload.single("avatar"), async (req, res) => {
   const { secure_url: avatar } = await cloudinary.uploader.upload(
     req.file.path,
     {
-      width: 512,
-      height: 512,
+      width: 200,
+      height: 200,
       crop: "fill",
-      format: ""
+      transformation: {
+        format: "webp",
+      },
+      folder: "avatars",
     }
   );
 
