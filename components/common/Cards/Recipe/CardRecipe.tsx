@@ -1,11 +1,8 @@
 import { RecipeDTO } from "@/models/recipe/recipe";
-import { Avatar } from "components/common/Avatar";
-import { Icon } from "components/common/Icons";
-import Image from "next/image";
 import React, { FC } from "react";
 import CardBody from "./CardBody";
 import CardHeader from "./CardHeader";
-
+import { motion } from "framer-motion";
 const CardRecipe: FC<RecipeDTO> = ({
   name,
   description,
@@ -27,6 +24,7 @@ const CardRecipe: FC<RecipeDTO> = ({
   return (
     <div className="card compact bg-base-100 shadow-lg">
       <CardHeader img={img} />
+
       <CardBody {...body} />
     </div>
   );
