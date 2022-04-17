@@ -14,7 +14,8 @@ handler.get(async (req, res) => {
   }
 
   try {
-    const data = await findLastRecipesPopulated(req.db, req.query.limit);
+    const limit = parseInt(req.query.limit as string);
+    const data = await findLastRecipesPopulated(req.db, limit);
     return res.json({ data });
   } catch (error) {
     return res.status(500).json({ error });

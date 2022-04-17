@@ -77,7 +77,7 @@ export const findLastRecipesPopulated = async (
     const data = (await db
       .collection("recipes")
       .find()
-      .limit(parseInt(limit.toString(), 10))
+      .limit(limit)
       .toArray()) as Recipe[];
 
     const queries = data.map(async (recipe) => {
