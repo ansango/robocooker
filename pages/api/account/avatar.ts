@@ -35,7 +35,7 @@ handler.patch(upload.single("avatar"), async (req, res) => {
       transformation: {
         format: "webp",
       },
-      folder: "avatars",
+      folder: "Avatars",
     }
   );
 
