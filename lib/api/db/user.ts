@@ -11,74 +11,102 @@ const dbProjectionUsers = (prefix = "") => {
   };
 };
 
-const findUserWithEmailAndPassword = async (
+export const findUserWithEmailAndPassword = async (
   db: Db,
   email: Email,
   password: Password
-) => {
-  const user = await db
+): Promise<User | null> => {
+  const user = (await db
     .collection("users")
-    .findOne({ email: normalizeEmail(email) });
-
-  if (user && (await bcrypt.compare(password, user.password))) {
+    .findOne({ email: normalizeEmail(email) })) as User;
+  if (!user.password) {
+    return null;
+  } else if (user && (await bcrypt.compare(password, user.password))) {
     return { ...user, password: undefined }; // filtered out password
+  } else {
+    return null;
   }
-  return null;
 };
 
-const findUserForAuth = async (db: Db, userId: UserId) => {
-  return db
+export const findUserForAuth = async (
+  db: Db,
+  userId: UserId
+): Promise<User | null> => {
+  const user = (await db
     .collection("users")
-    .findOne({ _id: new ObjectId(userId) }, { projection: { password: 0 } })
-    .then((user) => user || null);
+    .findOne(
+      { _id: new ObjectId(userId) },
+      { projection: { password: 0 } }
+    )) as User;
+  return user || null;
 };
 
-const findUserById = async (db: Db, userId: UserId) => {
-  return db
+export const findUserById = async (
+  db: Db,
+  userId: UserId
+): Promise<User | null> => {
+  const user = (await db
     .collection("users")
-    .findOne({ _id: new ObjectId(userId) }, { projection: dbProjectionUsers() })
-    .then((user) => user || null);
+    .findOne(
+      { _id: new ObjectId(userId) },
+      { projection: dbProjectionUsers() }
+    )) as User;
+  return user || null;
 };
 
-const findUserByUsername = async (db: Db, username: Username) => {
-  return db
+export const findUserByUsername = async (
+  db: Db,
+  username: Username
+): Promise<User | null> => {
+  const user = (await db
     .collection("users")
-    .findOne({ username }, { projection: dbProjectionUsers() })
-    .then((user) => user || null);
+    .findOne({ username }, { projection: dbProjectionUsers() })) as User;
+  return user || null;
 };
 
-const findUserByEmail = async (db: Db, email: Email) => {
-  return db
+export const findUserByEmail = async (
+  db: Db,
+  email: Email
+): Promise<User | null> => {
+  const user = (await db
     .collection("users")
     .findOne(
       { email: normalizeEmail(email) },
       { projection: dbProjectionUsers() }
     )
-    .then((user) => user || null);
+    .then((user) => user || null)) as User;
+  return user || null;
 };
 
-const updateUserPasswordByOldPassword = async (
+export const updateUserPasswordByOldPassword = async (
   db: Db,
   userId: UserId,
   oldPassword: Password,
   newPassword: Password
-) => {
-  const user = await db.collection("users").findOne(new ObjectId(userId));
-  if (!user) return null;
-  const matchedPasswords = await bcrypt.compare(oldPassword, user.password);
-  if (!matchedPasswords) return null;
-  const password = await bcrypt.hash(newPassword, 10);
-  await db
+): Promise<boolean | null> => {
+  const user = (await db
     .collection("users")
-    .updateOne({ _id: new ObjectId(userId) }, { $set: { password } });
-  return true;
+    .findOne(new ObjectId(userId))) as User;
+  if (!user || !user.password) {
+    return null;
+  }
+  const matchedPasswords = await bcrypt.compare(oldPassword, user.password);
+  if (!matchedPasswords) {
+    return null;
+  } else {
+    const password = await bcrypt.hash(newPassword, 10);
+    await db
+      .collection("users")
+      .updateOne({ _id: new ObjectId(userId) }, { $set: { password } });
+    return true;
+  }
 };
 
-const updateUserPasswordRecovery = async (
+export const updateUserPasswordRecovery = async (
   db: Db,
   userId: UserId,
   newPassword: Password
-) => {
+): Promise<boolean> => {
   const password = await bcrypt.hash(newPassword, 10);
   await db
     .collection("users")
@@ -86,7 +114,7 @@ const updateUserPasswordRecovery = async (
   return true;
 };
 
-const updateUserAccountDataById = async (
+export const updateUserAccountDataById = async (
   db: Db,
   userId: UserId,
   { email, username }: { email: Email; username: Username }
@@ -96,14 +124,14 @@ const updateUserAccountDataById = async (
     .updateOne({ _id: new ObjectId(userId) }, { $set: { email, username } });
 };
 
-const updateUserEmailVerifiedById = async (db: Db, userId: UserId) => {
+export const updateUserEmailVerifiedById = async (db: Db, userId: UserId) => {
   return db
     .collection("users")
     .updateOne({ _id: new ObjectId(userId) }, { $set: { emailVerified: true } })
     .then((user) => console.log(user));
 };
 
-const insertUser = async (
+export const insertUser = async (
   db: Db,
   {
     email,
@@ -157,17 +185,4 @@ const insertUser = async (
   await db.collection("users").insertOne({ ...user });
 
   return { ...user };
-};
-
-export {
-  findUserWithEmailAndPassword,
-  findUserForAuth,
-  findUserById,
-  findUserByUsername,
-  findUserByEmail,
-  updateUserAccountDataById,
-  updateUserPasswordByOldPassword,
-  updateUserPasswordRecovery,
-  updateUserEmailVerifiedById,
-  insertUser,
 };

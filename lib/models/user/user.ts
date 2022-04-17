@@ -10,7 +10,7 @@ type User = {
   email: Email;
   emailVerified: boolean;
   username: Username;
-  password: Password;
+  password: Password | undefined;
   accountId: AccountId;
   created: Date;
 };
