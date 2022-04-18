@@ -7,6 +7,7 @@ import ArrowIcon from "./ArrowIcon";
 import Title from "./Title";
 import Toggle from "./Toggle";
 import Collapse from "./Collapse";
+import StepContainer from "./StepContainer";
 
 type Props = {
   expanded?: boolean;
@@ -32,7 +33,9 @@ const Step: FC<Props> = ({ expanded = false, step, children, icon, title }) => {
 
         <ArrowIcon isExpanded={isExpanded} />
       </Toggle>
-      <Collapse getCollapseProps={getCollapseProps}>{children}</Collapse>
+      <Collapse getCollapseProps={getCollapseProps}>
+        <StepContainer>{children}</StepContainer>
+      </Collapse>
     </div>
   );
 };
