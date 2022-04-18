@@ -5,13 +5,6 @@ import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import store from "lib/store";
 import { ThemeProvider } from "next-themes";
-import { useRouter } from "next/router";
-import React, { FC, ReactNode, useEffect, useState } from "react";
-import { onGetUserService } from "lib/services/user";
-
-type Props = {
-  children?: ReactNode;
-};
 
 const RoboCooker = ({ Component, pageProps }: AppProps) => {
   return (
