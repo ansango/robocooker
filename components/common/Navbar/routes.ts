@@ -35,6 +35,11 @@ const routesDashboard: Props[] = [
     icon: "CogIcon",
   },
   {
+    path: "/dashboard/my-recipes",
+    label: "Mis recetas",
+    icon: "BookOpenIcon",
+  },
+  {
     path: "/dashboard/collections",
     label: "Colecciones",
     icon: "BookmarkIcon",

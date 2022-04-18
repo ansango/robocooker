@@ -32,13 +32,13 @@ const DashboardLayout: FC<Props> = ({ children }) => {
             transition={{ delay: 0.5 }}
             className="w-full h-full relative"
           >
-            <div className="absolute w-full h-full">{children}</div>
+            <div className="absolute w-full h-full bg-base-200">{children}</div>
           </motion.main>
         </div>
 
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+          <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content border-r">
             <Brand />
             <div className="flex flex-col w-full">
               <div tabIndex={0} className="collapse collapse-arrow bg-base-100">

@@ -20,7 +20,7 @@ const createIndexes = async (db: Db) => {
     db.collection("blenders").createIndex({ name: 1 }, { unique: true }),
     db
       .collection("recipes")
-      .createIndexes([{ key: { created: -1 } }, { key: { userId: -1 } }]),
+      .createIndexes([{ key: { created: -1 } }, { key: { accountId: -1 } }]),
     db.collection("collections").createIndex({ userId: -1 }),
     db
       .collection("comments")

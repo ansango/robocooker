@@ -50,7 +50,6 @@ export const findLastRecipesPopulated = async (
   db: Db,
   limit: number
 ): Promise<RecipeDTO[] | void> => {
-
   try {
     const data = (await db
       .collection("recipes")
@@ -73,6 +72,20 @@ export const findLastRecipesPopulated = async (
     return Promise.all(queries).then((recipes) =>
       recipes.sort((a, b) => b.created.getTime() - a.created.getTime())
     );
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const findRecipesByAccountId = async (db: Db, accountId: AccountId) => {
+  try {
+    const data = await db
+      .collection("recipes")
+      .find({
+        accountId: accountId.toString(),
+      })
+      .toArray();
+    return data;
   } catch (error) {
     throw error;
   }

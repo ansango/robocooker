@@ -1,8 +1,8 @@
 import {
   selectLastRecipes,
   selectLastRecipesStatus,
-} from "@/store/features/recipes";
-import { getLastRecipes } from "@/store/features/recipes/thunks";
+} from "@/store/features/recipes/lastRecipes";
+import { getLastRecipes } from "@/store/features/recipes/lastRecipes/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import React, { useEffect } from "react";
 import CardRecipe from "../../../common/Cards/Recipe/CardRecipe";

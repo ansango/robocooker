@@ -24,7 +24,6 @@ const CardRecipe: FC<RecipeDTO> = ({
   return (
     <div className="card compact bg-base-100 shadow-lg">
       <CardHeader img={img} />
-
       <CardBody {...body} />
     </div>
   );

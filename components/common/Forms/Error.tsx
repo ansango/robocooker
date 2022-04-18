@@ -10,7 +10,9 @@ const Error: FC<Props> = ({ errors, name }) => {
   return (
     <>
       {errors[name] && (
-        <p className="label label-text text-red-600">{errors[name].message}</p>
+        <p className="label label-text text-red-600">
+          {errors[name].message}
+        </p>
       )}
     </>
   );

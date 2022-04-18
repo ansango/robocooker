@@ -1,15 +1,15 @@
 import { Input, Select } from "components/common/Forms";
 import { Icon } from "components/common/Icons";
-import { memo } from "react";
+import { FC, memo } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
-const Ingredients = () => {
-  // TODO: VALIDATION
-  const { control, register } = useFormContext();
+const Ingredients: FC = () => {
+  const { control } = useFormContext();
   const { fields, remove, append } = useFieldArray({
     control,
     name: "ingredients",
   });
+
   return (
     <>
       <ul className="space-y-2 w-full">

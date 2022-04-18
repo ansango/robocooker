@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AppState } from "../..";
+import { AppState } from "../../..";
 import { initialState } from "./state";
 import { getLastRecipes } from "./thunks";
 export const lastRecipesSlice = createSlice({

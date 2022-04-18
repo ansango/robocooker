@@ -4,7 +4,8 @@ import userReducer from "./features/user";
 import accountReducer from "./features/account";
 import categoriesReducer from "./features/categories";
 import blenderReducer from "./features/blenders";
-import lastRecipesReducer from "./features/recipes";
+import lastRecipesReducer from "./features/recipes/lastRecipes";
+import myRecipesReducer from "./features/recipes/myRecipes";
 export function makeStore() {
   return configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export function makeStore() {
       categories: categoriesReducer,
       blenders: blenderReducer,
       lastRecipes: lastRecipesReducer,
+      myRecipes: myRecipesReducer,
     },
   });
 }

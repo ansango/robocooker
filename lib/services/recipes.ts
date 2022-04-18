@@ -13,3 +13,14 @@ export const onGetLastRecipesService = async (
     throw error;
   }
 };
+
+export const onGetMyRecipesService = async (): Promise<RecipeDTO[]> => {
+  try {
+    const response = await fetcher(`/api/recipes/user-recipes`, {
+      method: "GET",
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

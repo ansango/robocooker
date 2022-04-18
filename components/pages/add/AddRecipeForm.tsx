@@ -18,6 +18,21 @@ type Selector = {
   value: any;
 };
 
+const validateData = (data: RecipeDAO) => {
+  const errors: {
+    [key: string]: string;
+  } = {};
+
+  if (data.categories.length === 0)
+    errors.category = "La categoría es requerida";
+  if (data.ingredients.length === 0)
+    errors.ingredients = "Los ingredientes son requeridos";
+  if (data.steps.length === 0) errors.steps = "Los pasos son requeridos";
+  if (data.blenders.length === 0) errors.blender = "El blender es requerido";
+
+  return errors;
+};
+
 const AddRecipeForm = () => {
   const [selectedCategories, setSelectedCategories] = useState<Selector[]>([]);
   const [selectedBlenders, setSelectedBlenders] = useState<Selector[]>([]);
@@ -62,7 +77,11 @@ const AddRecipeForm = () => {
       steps: [],
     },
   });
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = methods;
+
   const onSubmit = (values: any) => {
     const data: RecipeDAO = {
       ...values,
@@ -71,6 +90,11 @@ const AddRecipeForm = () => {
       ingredients: values.ingredients,
       steps: values.steps,
     };
+    const errors = validateData(data);
+    if (Object.keys(errors).length > 0) {
+      console.log(errors);
+      return;
+    }
   };
   return (
     <FormProvider {...methods}>
@@ -78,16 +102,33 @@ const AddRecipeForm = () => {
         <div className="grid grid-cols-1 gap-10">
           <Step
             title="Información básica"
-            expanded
             step={1}
             icon={{
               kind: "outline",
               type: "DocumentIcon",
             }}
           >
-            <Input name="name" label="Nombre" type="text" />
-            <TextArea name="description" label="Descripción" />
-            <FileLarge name="image" />
+            <Input
+              name="name"
+              label="Nombre"
+              type="text"
+              options={{
+                required: { value: true, message: "Introduce un nombre" },
+              }}
+            />
+            <TextArea
+              name="description"
+              label="Descripción"
+              options={{
+                required: { value: true, message: "Introduce una descripción" },
+              }}
+            />
+            <FileLarge
+              name="image"
+              options={{
+                required: { value: true, message: "Añade una foto" },
+              }}
+            />
           </Step>
           <Step
             title="Categorías"
@@ -112,8 +153,22 @@ const AddRecipeForm = () => {
               labelledBy="Select"
             />
             <div className="grid gap-5 md:grid-cols-2">
-              <Input name="servings" type="number" label="Raciones" />
-              <Input name="duration" type="number" label="Tiempo (mins)" />
+              <Input
+                name="servings"
+                type="number"
+                label="Raciones"
+                options={{
+                  required: { value: true, message: "Introduce un número" },
+                }}
+              />
+              <Input
+                name="duration"
+                type="number"
+                label="Tiempo (mins)"
+                options={{
+                  required: { value: true, message: "Introduce un número" },
+                }}
+              />
             </div>
             <IngredientFields />
           </Step>

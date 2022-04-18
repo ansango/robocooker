@@ -19,6 +19,9 @@ export const findUserWithEmailAndPassword = async (
   const user = (await db
     .collection("users")
     .findOne({ email: normalizeEmail(email) })) as User;
+  if (!user) {
+    return null;
+  }
   if (!user.password) {
     return null;
   } else if (user && (await bcrypt.compare(password, user.password))) {
