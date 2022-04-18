@@ -14,10 +14,10 @@ const Recipe: NextPage = () => {
   const recipe = useAppSelector(selectRecipe);
 
   useEffect(() => {
-    if (!recipe && !Array.isArray(id) && id) {
+    if (!Array.isArray(id) && id) {
       dispatch(getRecipe(id));
     }
-  }, [id, dispatch, recipe]);
+  }, [id, dispatch]);
 
   return <div>{recipe?.name}</div>;
 };
