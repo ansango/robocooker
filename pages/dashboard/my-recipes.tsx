@@ -49,16 +49,6 @@ const MyRecipes: NextPage = () => {
                     </figure>
                   </div>
                   <div className="card-body space-y-1">
-                    <div className="justify-end">
-                      {categories.slice(0, 3).map((category, index) => (
-                        <div
-                          key={index}
-                          className="badge capitalize badge-accent"
-                        >
-                          {category}
-                        </div>
-                      ))}
-                    </div>
                     <h4 className="card-title">{name}</h4>
                     <p className="line-clamp-3">{description}</p>
                     <div className="card-actions justify-between items-center">
@@ -67,7 +57,31 @@ const MyRecipes: NextPage = () => {
                         {/* <span className="text-sm font-medium">@{username}</span> */}
                       </div>
                       <div className="flex items-center space-x-2">
-                        <div className="badge space-x-2">
+                        <div
+                          className="tooltip tooltip-left"
+                          data-tip="Editar receta"
+                        >
+                          <button className="btn btn-info btn-circle btn-sm">
+                            <Icon
+                              icon="PencilAltIcon"
+                              kind="outline"
+                              className="w-4 h-4"
+                            />
+                          </button>
+                        </div>
+                        <div
+                          className="tooltip tooltip-left"
+                          data-tip="Eliminar receta"
+                        >
+                          <button className="btn btn-error btn-circle btn-sm">
+                            <Icon
+                              icon="XIcon"
+                              kind="outline"
+                              className="w-4 h-4"
+                            />
+                          </button>
+                        </div>
+                        {/* <div className="badge space-x-2">
                           <Icon
                             icon="ClockIcon"
                             kind="solid"
@@ -82,7 +96,7 @@ const MyRecipes: NextPage = () => {
                             className="w-4 h-4"
                           />
                           <span>{servings}</span>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
