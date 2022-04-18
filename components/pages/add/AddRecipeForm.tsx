@@ -6,25 +6,33 @@ import { File, Form, Input, TextArea } from "components/common/Forms";
 import { MultiSelect } from "components/common/Forms/MultiSelect";
 import { useEffect, useState } from "react";
 import Step from "components/common/Stepper/Step";
+import { selectBlenders } from "@/store/features/blenders";
+import { getBlenders } from "@/store/features/blenders/thunks";
 
 type Selector = {
-  label: string;
-  value: string;
+  label: any;
+  value: any;
 };
 
 const AddRecipeForm = () => {
   const [selectedCategories, setSelectedCategories] = useState<Selector[]>([]);
-  const [options, setOptions] = useState<any>([]);
+  const [selectedBlenders, setSelectedBlenders] = useState<Selector[]>([]);
+  const [cats, setCat] = useState<any>([]);
+  const [blends, setBlend] = useState<any>([]);
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectCategories);
+  const blenders = useAppSelector(selectBlenders);
   useEffect(() => {
     if (!categories) {
       dispatch(getCategories());
     }
-  }, [dispatch, categories]);
+    if (!blenders) {
+      dispatch(getBlenders());
+    }
+  }, [dispatch, categories, blenders]);
   useEffect(() => {
     if (categories) {
-      setOptions(
+      setCat(
         categories.map(({ name }) => {
           return {
             label: name,
@@ -33,18 +41,29 @@ const AddRecipeForm = () => {
         })
       );
     }
-  }, [categories]);
+    if (blenders) {
+      setBlend(
+        blenders.map(({ name }) => {
+          return {
+            label: name,
+            value: name,
+          };
+        })
+      );
+    }
+  }, [categories, blenders]);
 
   const onSubmit = (values: RecipeDAO) => {
     const data: RecipeDAO = {
       ...values,
       categories: selectedCategories.map(({ value }) => value),
+      blenders: selectedBlenders.map(({ value }) => value),
     };
     console.log(data);
   };
   return (
-    <Form onSubmit={onSubmit} className="mx-auto space-y-10 max-w-6xl">
-      <div className="grid grid-cols-1 gap-10 mx-5 py-20">
+    <Form onSubmit={onSubmit} className="mx-auto space-y-10 max-w-6xl px-5">
+      <div className="grid grid-cols-1 gap-10 pt-5">
         <Step
           title="Información básica"
           step={1}
@@ -54,9 +73,11 @@ const AddRecipeForm = () => {
             type: "DocumentIcon",
           }}
         >
-          <Input name="name" label="Nombre" type="text" />
-          <TextArea name="description" label="Descripción" />
-          <File name="image" />
+          <div className="space-y-4">
+            <Input name="name" label="Nombre" type="text" />
+            <TextArea name="description" label="Descripción" />
+            <File name="image" />
+          </div>
         </Step>
         <Step
           title="Categorías"
@@ -66,16 +87,26 @@ const AddRecipeForm = () => {
             type: "DocumentTextIcon",
           }}
         >
-          <MultiSelect
-            label="Categorías"
-            options={options}
-            value={selectedCategories}
-            onChange={setSelectedCategories}
-            labelledBy="Select"
-            isCreatable
-          />
-          <Input name="servings" type="number" label="Raciones" />
-          <Input name="duration" type="number" label="Tiempo (mins)" />
+          <div className="space-y-4">
+            <MultiSelect
+              label="Categorías"
+              options={cats}
+              value={selectedCategories}
+              onChange={setSelectedCategories}
+              labelledBy="Select"
+            />
+            <MultiSelect
+              label="Robots de cocina"
+              options={blends}
+              value={selectedBlenders}
+              onChange={setSelectedBlenders}
+              labelledBy="Select"
+            />
+            <div className="grid gap-5 md:grid-cols-2">
+              <Input name="servings" type="number" label="Raciones" />
+              <Input name="duration" type="number" label="Tiempo (mins)" />
+            </div>
+          </div>
         </Step>
         <Step
           title="Pasos"
@@ -88,7 +119,7 @@ const AddRecipeForm = () => {
           <Input name="name" label="Nombre" type="text" />
         </Step>
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-end w-full">
         <button className="btn btn-primary normal-case" type="submit">
           Crear receta
         </button>

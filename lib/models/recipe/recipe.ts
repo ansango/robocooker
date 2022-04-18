@@ -1,6 +1,6 @@
 type RecipeDAO = {
   accountId: AccountId;
-  blender: BlenderName;
+  blenders: BlenderName[];
   categories: CategoryName[];
   description: Content;
   duration: Duration;
@@ -28,7 +28,7 @@ type Recipe = {
   categories: CategoryName[];
   servings: Servings;
   duration: Duration;
-  blender: BlenderName;
+  blenders: BlenderName[];
   ingredients: Ingredient[];
   steps: Step[];
   likes: UserId[];

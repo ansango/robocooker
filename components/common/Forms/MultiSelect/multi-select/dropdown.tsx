@@ -140,9 +140,9 @@ const Dropdown = () => {
               </button>
             )}
             {expanded ? (
-              <Icon icon="ChevronDownIcon" kind="outline" className="w-5 h-5" />
-            ) : (
               <Icon icon="ChevronUpIcon" kind="outline" className="w-5 h-5" />
+            ) : (
+              <Icon icon="ChevronDownIcon" kind="outline" className="w-5 h-5" />
             )}
           </div>
         </div>
