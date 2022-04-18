@@ -19,7 +19,7 @@ const DashboardLayout: FC<Props> = ({ children }) => {
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
-        <div className="drawer-content flex flex-col items-center justify-center relative">
+        <div className="drawer-content flex flex-col items-center justify-center relative bg-base-200">
           <Navbar />
           <motion.main
             key={route}
@@ -32,7 +32,7 @@ const DashboardLayout: FC<Props> = ({ children }) => {
             transition={{ delay: 0.5 }}
             className="w-full h-full relative"
           >
-            <div className="absolute w-full h-full bg-base-200">{children}</div>
+            <div className="absolute w-full h-full">{children}</div>
           </motion.main>
         </div>
 

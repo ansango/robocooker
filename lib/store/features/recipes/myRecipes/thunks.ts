@@ -1,4 +1,4 @@
-import { onGetLastRecipesService,onGetMyRecipesService } from "@/services/recipes";
+import { onGetMyRecipesService } from "@/services/recipes";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getMyRecipes = createAsyncThunk(

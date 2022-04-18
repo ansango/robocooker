@@ -6,6 +6,7 @@ import categoriesReducer from "./features/categories";
 import blenderReducer from "./features/blenders";
 import lastRecipesReducer from "./features/recipes/lastRecipes";
 import myRecipesReducer from "./features/recipes/myRecipes";
+import recipeReducer from "./features/recipes/recipe";
 export function makeStore() {
   return configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export function makeStore() {
       blenders: blenderReducer,
       lastRecipes: lastRecipesReducer,
       myRecipes: myRecipesReducer,
+      recipe: recipeReducer,
     },
   });
 }

@@ -1,4 +1,4 @@
-import myRecipes, {
+import {
   selectMyRecipes,
   selectMyRecipesStatus,
 } from "@/store/features/recipes/myRecipes";
@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Icon } from "components/common/Icons";
 import { NextPage } from "next";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
 const MyRecipes: NextPage = () => {
@@ -17,6 +18,7 @@ const MyRecipes: NextPage = () => {
     if (!myRecipes) dispatch(getMyRecipes());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const { push } = useRouter();
   return (
     <div className="bg-base-200 px-5 py-20 space-y-10">
       <div className="container mx-auto">
@@ -61,7 +63,10 @@ const MyRecipes: NextPage = () => {
                           className="tooltip tooltip-left"
                           data-tip="Editar receta"
                         >
-                          <button className="btn btn-info btn-circle btn-sm">
+                          <button
+                            className="btn btn-info btn-circle btn-sm"
+                            onClick={() => push(`/dashboard/my-recipes/${_id}`)}
+                          >
                             <Icon
                               icon="PencilAltIcon"
                               kind="outline"

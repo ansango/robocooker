@@ -24,3 +24,16 @@ export const onGetMyRecipesService = async (): Promise<RecipeDTO[]> => {
     throw error;
   }
 };
+
+export const onGetRecipeByIdService = async (
+  id: string
+): Promise<RecipeDTO> => {
+  try {
+    const response = await fetcher(`/api/recipes/${id}`, {
+      method: "GET",
+    });
+    return response.recipe;
+  } catch (error) {
+    throw error;
+  }
+};

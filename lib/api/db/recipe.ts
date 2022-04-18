@@ -90,3 +90,26 @@ export const findRecipesByAccountId = async (db: Db, accountId: AccountId) => {
     throw error;
   }
 };
+
+export const findRecipeByIdPopulated = async (
+  db: Db,
+  id: RecipeId
+): Promise<RecipeDTO | void> => {
+  try {
+    const recipe = (await db
+      .collection("recipes")
+      .findOne({ _id: new ObjectId(id) })) as Recipe;
+
+    const { avatar, firstName, lastName } = (await db
+      .collection("accounts")
+      .findOne({ _id: new ObjectId(recipe.accountId) })) as Account;
+
+    const { username } = (await db
+      .collection("users")
+      .findOne({ accountId: new ObjectId(recipe.accountId) })) as User;
+
+    return { ...recipe, account: { avatar, firstName, lastName, username } };
+  } catch (error) {
+    throw error;
+  }
+};
