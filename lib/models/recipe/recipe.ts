@@ -44,7 +44,7 @@ type Step = {
 
 type Ingredient = {
   name: Name;
-  unit: Unit;
+  quantity: Unit;
   measure: Measure;
 };
 

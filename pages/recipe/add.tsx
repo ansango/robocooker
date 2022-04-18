@@ -1,20 +1,8 @@
-
 import { NextPage } from "next";
 import AddRecipeForm from "components/pages/add/AddRecipeForm";
 import GenericHero from "components/common/Hero/GenericHero";
-import { onGetAllBlendersService } from "@/services/blenders";
-import { useEffect } from "react";
 
 const AddRecipe: NextPage = () => {
-  useEffect(() => {
-    onGetAllBlendersService()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
   return (
     <div>
       <GenericHero
