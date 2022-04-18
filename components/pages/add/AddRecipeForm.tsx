@@ -7,8 +7,13 @@ import { MultiSelect } from "components/common/Forms/MultiSelect";
 import { useEffect, useState } from "react";
 import Step from "components/common/Stepper/Step";
 
+type Selector = {
+  label: string;
+  value: string;
+};
+
 const AddRecipeForm = () => {
-  const [selected, setSelected] = useState<any>([]);
+  const [selectedCategories, setSelectedCategories] = useState<Selector[]>([]);
   const [options, setOptions] = useState<any>([]);
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectCategories);
@@ -20,10 +25,10 @@ const AddRecipeForm = () => {
   useEffect(() => {
     if (categories) {
       setOptions(
-        categories.map((category) => {
+        categories.map(({ name }) => {
           return {
-            label: category.name,
-            value: category.name,
+            label: name,
+            value: name,
           };
         })
       );
@@ -31,8 +36,11 @@ const AddRecipeForm = () => {
   }, [categories]);
 
   const onSubmit = (values: RecipeDAO) => {
-    console.log(values);
-    console.log(selected);
+    const data: RecipeDAO = {
+      ...values,
+      categories: selectedCategories.map(({ value }) => value),
+    };
+    console.log(data);
   };
   return (
     <Form onSubmit={onSubmit} className="mx-auto space-y-10 max-w-6xl">
@@ -61,8 +69,8 @@ const AddRecipeForm = () => {
           <MultiSelect
             label="Categorías"
             options={options}
-            value={selected}
-            onChange={setSelected}
+            value={selectedCategories}
+            onChange={setSelectedCategories}
             labelledBy="Select"
             isCreatable
           />
