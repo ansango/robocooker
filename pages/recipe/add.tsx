@@ -19,6 +19,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { selectCategories } from "@/store/features/categories";
 import { getCategories } from "@/store/features/categories/thunks";
 import { MultiSelect } from "components/common/Forms/MultiSelect";
+import { Category } from "@/models/recipe/category";
 const ArrowIcon: FC<{ isExpanded: boolean }> = ({ isExpanded }) => (
   <span>
     {isExpanded ? (
@@ -91,7 +92,28 @@ const options = [
 ];
 
 const AddRecipe: NextPage = () => {
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState<any>([]);
+  const [options, setOptions] = useState<any>([]);
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector(selectCategories);
+  useEffect(() => {
+    if (!categories) {
+      dispatch(getCategories());
+    }
+  }, [dispatch, categories]);
+  useEffect(() => {
+    if (categories) {
+      setOptions(
+        categories.map((category) => {
+          return {
+            label: category.name,
+            value: category.name,
+          };
+        })
+      );
+    }
+  }, [categories]);
+
   const onSubmit = (values: RecipeDAO) => {
     console.log(values);
     console.log(selected);
@@ -134,6 +156,8 @@ const AddRecipe: NextPage = () => {
                 labelledBy="Select"
                 isCreatable
               />
+              <Input name="servings" type="number" label="Raciones" />
+              <Input name="duration" type="number" label="Tiempo (mins)" />
             </Step>
             <Step
               title="Pasos"

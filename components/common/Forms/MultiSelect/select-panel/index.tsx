@@ -195,7 +195,7 @@ const SelectPanel = () => {
         </button>
       </div>
 
-      <ul className="pt-10 pb-5">
+      <ul className="pt-10 pb-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {hasSelectAll && hasSelectableOptions && (
           <SelectItem
             tabIndex={skipIndex === 1 ? 0 : 1}
