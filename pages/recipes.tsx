@@ -65,8 +65,8 @@ const Recipes: NextPage = () => {
               ({
                 _id,
                 name,
-                author,
-                blender,
+                accountId,
+                blenders,
                 categories,
                 comments,
                 created,
