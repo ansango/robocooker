@@ -32,7 +32,6 @@ const findAndDeleteTokenByIdAndType = (
   tokenId: TokenId,
   type: TokenType
 ) => {
-  console.log("findAndDeleteTokenByIdAndType", tokenId, type);
   return db
     .collection("tokens")
     .findOneAndDelete({ _id: new ObjectId(tokenId), type })

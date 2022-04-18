@@ -67,18 +67,20 @@ const AddRecipeForm = () => {
       ...values,
       categories: selectedCategories.map(({ value }) => value),
       blenders: selectedBlenders.map(({ value }) => value),
+      ingredients: values.ingredients,
+      steps: values.steps,
     };
-    console.log(data);
   };
   return (
     <FormProvider {...methods}>
       <form
-        className="mx-auto space-y-10 max-w-6xl px-2 md:px-5"
+        className="space-y-10 px-2 md:px-5"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid grid-cols-1 gap-10 pt-5">
           <Step
             title="Información básica"
+            expanded
             step={1}
             icon={{
               kind: "outline",
@@ -120,7 +122,6 @@ const AddRecipeForm = () => {
           <Step
             title="Pasos"
             step={3}
-            expanded
             icon={{
               kind: "outline",
               type: "CollectionIcon",
@@ -129,7 +130,7 @@ const AddRecipeForm = () => {
             <StepsFields />
           </Step>
         </div>
-        <div className="flex justify-end w-full p-5">
+        <div className="flex justify-end w-full py-5">
           <button className="btn btn-primary normal-case" type="submit">
             Crear receta
           </button>

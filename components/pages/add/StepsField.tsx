@@ -10,28 +10,25 @@ const Steps = () => {
     control,
     name: "steps",
   });
-  console.log(fields.length);
+
   return (
     <>
-      <ul className="space-y-5 w-full">
+      <ul className="space-y-2 w-full">
         {fields.map((item, index) => {
           return (
             <li key={item.id} className="grid grid-cols-12 gap-5">
-              <div className="col-span-full sm:col-span-2 flex items-center">
-                <p className="font-medium">Paso {index + 1}</p>
-              </div>
               <span className="hidden">
                 <Input name={`steps[${index}].position`} type="number" />
               </span>
-              <div className="col-span-full sm:col-span-8">
+              <div className="col-span-full sm:col-span-10">
                 <TextArea
                   name={`steps[${index}].description`}
-                  label="Descripción"
+                  label={`Paso ${index + 1}`}
                   size="xs"
                 />
               </div>
 
-              <div className="flex items-center justify-end col-span-full sm:col-span-2">
+              <div className="flex items-end justify-end col-span-full sm:col-span-2">
                 <button
                   className="btn btn-error w-full sm:max-w-[3rem] sm:btn-circle"
                   type="button"

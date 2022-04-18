@@ -6,25 +6,13 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 const Ingredients = () => {
   // TODO: VALIDATION
   const { control, register } = useFormContext();
-  const { fields, prepend, remove } = useFieldArray({
+  const { fields, remove, append } = useFieldArray({
     control,
     name: "ingredients",
   });
   return (
     <>
-      <div className="flex items-center justify-end space-x-4">
-        <h6 className="font-semibold">Añadir ingredientes</h6>
-        <button
-          className="btn btn-success normal-case btn-circle btn-md"
-          type="button"
-          onClick={() => {
-            prepend({ name: "", units: "", quantity: "" });
-          }}
-        >
-          <Icon icon="PlusIcon" kind="outline" className="w-5 h-5" />
-        </button>
-      </div>
-      <ul className="space-y-5 w-full">
+      <ul className="space-y-2 w-full">
         {fields.map((item, index) => {
           return (
             <li key={item.id} className="grid grid-cols-12 gap-5">
@@ -36,14 +24,14 @@ const Ingredients = () => {
                 />
               </div>
 
-              <div className="col-span-full sm:col-span-3 md:col-span-2 lg:col-span-2">
+              <div className="col-span-6 sm:col-span-3 md:col-span-2 lg:col-span-2">
                 <Input
                   name={`ingredients[${index}].quantity`}
                   type="number"
                   label="Cantidad"
                 />
               </div>
-              <div className="col-span-full sm:col-span-3 md:col-span-2 lg:col-span-2">
+              <div className="col-span-6 sm:col-span-3 md:col-span-2 lg:col-span-2">
                 <Select
                   name={`ingredients[${index}].measure`}
                   data={[
@@ -66,7 +54,19 @@ const Ingredients = () => {
             </li>
           );
         })}
-      </ul>
+      </ul>{" "}
+      <div className="flex items-center justify-end space-x-4">
+        <h6 className="font-semibold">Añadir ingredientes</h6>
+        <button
+          className="btn btn-success normal-case btn-circle btn-md"
+          type="button"
+          onClick={() => {
+            append({ name: "", measure: "", quantity: "" });
+          }}
+        >
+          <Icon icon="PlusIcon" kind="outline" className="w-5 h-5" />
+        </button>
+      </div>
     </>
   );
 };

@@ -10,7 +10,7 @@ const AddRecipe: NextPage = () => {
         description="Hay muchas recetas que no sabes que hacer, pero no te preocupes, puedes crear tu propia receta y compartirla con la comunidad."
       />
       <div className="bg-base-200 py-10 px-5">
-        <div className="bg-base-100 p-5 rounded-lg shadow-sm">
+        <div className="bg-base-100 p-5 rounded-lg shadow-sm mx-auto max-w-4xl">
           <AddRecipeForm />
         </div>
       </div>

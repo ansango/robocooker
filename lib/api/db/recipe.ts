@@ -50,7 +50,7 @@ export const findLastRecipesPopulated = async (
   db: Db,
   limit: number
 ): Promise<RecipeDTO[] | void> => {
-  console.log(limit);
+
   try {
     const data = (await db
       .collection("recipes")

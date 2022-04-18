@@ -128,7 +128,7 @@ export const updateUserEmailVerifiedById = async (db: Db, userId: UserId) => {
   return db
     .collection("users")
     .updateOne({ _id: new ObjectId(userId) }, { $set: { emailVerified: true } })
-    .then((user) => console.log(user));
+    .then((user) => user || null);
 };
 
 export const insertUser = async (
