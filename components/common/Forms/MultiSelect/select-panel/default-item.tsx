@@ -19,14 +19,14 @@ const DefaultItemRenderer = ({
   <div className="form-control max-w-xs">
     <label className="label cursor-pointer justify-start space-x-4">
       <input
-        className="checkbox"
+        className="checkbox checkbox-sm"
         type="checkbox"
         onChange={onClick}
         checked={checked}
         tabIndex={-1}
         disabled={disabled}
       />
-      <span>{option.label}</span>
+      <span className="capitalize">{option.label}</span>
     </label>
   </div>
 );

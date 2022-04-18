@@ -2,21 +2,41 @@ import React from "react";
 
 import { useMultiSelect } from "../hooks/use-multi-select";
 
+const Badges = () => {
+  const { value } = useMultiSelect();
+
+  return (
+    <div className="flex space-x-1 items-center w-full line-clamp-1">
+      {value.map((val, i) => (
+        <span className="badge badge-primary badge-sm capitalize" key={i}>
+          {val.label}
+        </span>
+      ))}
+    </div>
+  );
+};
+
+const AllSelected = () => {
+  const { t } = useMultiSelect();
+  return (
+    <span className="text-primary capitalize">{t("allItemsAreSelected")}</span>
+  );
+};
+
+const NoSelected = () => {
+  const { t } = useMultiSelect();
+  return <span className="gray">{t("selectSomeItems")}</span>;
+};
+
 export const DropdownHeader = () => {
-  const { t, value, options, valueRenderer } = useMultiSelect();
+  const { value, options } = useMultiSelect();
 
   const noneSelected = value.length === 0;
   const allSelected = value.length === options.length;
-  const customText = valueRenderer && valueRenderer(value, options);
-
-  const getSelectedText = () => value.map((s) => s.label).join(", ");
 
   return noneSelected ? (
-    <span className="gray">{customText || t("selectSomeItems")}</span>
+    <NoSelected />
   ) : (
-    <span>
-      {customText ||
-        (allSelected ? t("allItemsAreSelected") : getSelectedText())}
-    </span>
+    <>{allSelected ? <AllSelected /> : <Badges />}</>
   );
 };
