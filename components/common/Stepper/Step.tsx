@@ -8,7 +8,7 @@ import Title from "./Title";
 import Toggle from "./Toggle";
 import Collapse from "./Collapse";
 
-const Step: FC<{
+type Props = {
   expanded?: boolean;
   step: number;
   children: ReactNode;
@@ -17,7 +17,9 @@ const Step: FC<{
     type: keyof typeof SolidIcons | keyof typeof OutlineIcons;
     kind: "solid" | "outline";
   };
-}> = ({ expanded = false, step, children, icon, title }) => {
+};
+
+const Step: FC<Props> = ({ expanded = false, step, children, icon, title }) => {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({
     defaultExpanded: expanded,
   });

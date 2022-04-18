@@ -1,7 +1,9 @@
 import { FC } from "react";
 import { Icon } from "../Icons";
 
-const ArrowIcon: FC<{ isExpanded: boolean }> = ({ isExpanded }) => (
+type Props = { isExpanded: boolean };
+
+const ArrowIcon: FC<Props> = ({ isExpanded }) => (
   <span>
     {isExpanded ? (
       <Icon icon="ChevronUpIcon" kind="outline" className="w-5 h-5" />

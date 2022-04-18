@@ -1,9 +1,11 @@
 import { FC, ReactNode } from "react";
 
-const Toggle: FC<{
+type Props = {
   getToggleProps: any;
   children: ReactNode;
-}> = ({ children, getToggleProps }) => {
+};
+
+const Toggle: FC<Props> = ({ children, getToggleProps }) => {
   return (
     <button {...getToggleProps()} className="flex justify-between w-full">
       {children}
