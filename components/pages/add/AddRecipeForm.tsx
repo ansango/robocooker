@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Step from "components/common/Stepper/Step";
 import { selectBlenders } from "@/store/features/blenders";
 import { getBlenders } from "@/store/features/blenders/thunks";
+import StepContainer from "./StepContainer";
 
 type Selector = {
   label: any;
@@ -62,32 +63,35 @@ const AddRecipeForm = () => {
     console.log(data);
   };
   return (
-    <Form onSubmit={onSubmit} className="mx-auto space-y-10 max-w-6xl px-5">
+    <Form
+      onSubmit={onSubmit}
+      className="mx-auto space-y-10 max-w-6xl px-2 md:px-5"
+    >
       <div className="grid grid-cols-1 gap-10 pt-5">
         <Step
           title="Información básica"
           step={1}
-          expanded
           icon={{
             kind: "outline",
             type: "DocumentIcon",
           }}
         >
-          <div className="space-y-4">
+          <StepContainer>
             <Input name="name" label="Nombre" type="text" />
             <TextArea name="description" label="Descripción" />
             <File name="image" />
-          </div>
+          </StepContainer>
         </Step>
         <Step
           title="Categorías"
+          expanded
           step={2}
           icon={{
             kind: "outline",
             type: "DocumentTextIcon",
           }}
         >
-          <div className="space-y-4">
+          <StepContainer>
             <MultiSelect
               label="Categorías"
               options={cats}
@@ -106,7 +110,7 @@ const AddRecipeForm = () => {
               <Input name="servings" type="number" label="Raciones" />
               <Input name="duration" type="number" label="Tiempo (mins)" />
             </div>
-          </div>
+          </StepContainer>
         </Step>
         <Step
           title="Pasos"
@@ -116,10 +120,12 @@ const AddRecipeForm = () => {
             type: "CollectionIcon",
           }}
         >
-          <Input name="name" label="Nombre" type="text" />
+          <StepContainer>
+            <Input name="name" label="Nombre" type="text" />
+          </StepContainer>
         </Step>
       </div>
-      <div className="flex justify-end w-full">
+      <div className="flex justify-end w-full p-5">
         <button className="btn btn-primary normal-case" type="submit">
           Crear receta
         </button>
