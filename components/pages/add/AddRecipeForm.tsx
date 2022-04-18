@@ -11,6 +11,7 @@ import { getBlenders } from "@/store/features/blenders/thunks";
 import { FormProvider, useForm } from "react-hook-form";
 import IngredientFields from "./IngredientFields";
 import StepsFields from "./StepsField";
+import FileLarge from "components/common/Forms/FileLarge";
 
 type Selector = {
   label: any;
@@ -73,11 +74,8 @@ const AddRecipeForm = () => {
   };
   return (
     <FormProvider {...methods}>
-      <form
-        className="space-y-10 px-2 md:px-5"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="grid grid-cols-1 gap-10 pt-5">
+      <form className="space-y-10" onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid grid-cols-1 gap-10">
           <Step
             title="Información básica"
             expanded
@@ -89,7 +87,7 @@ const AddRecipeForm = () => {
           >
             <Input name="name" label="Nombre" type="text" />
             <TextArea name="description" label="Descripción" />
-            <File name="image" />
+            <FileLarge name="image" />
           </Step>
           <Step
             title="Categorías"
@@ -130,7 +128,7 @@ const AddRecipeForm = () => {
             <StepsFields />
           </Step>
         </div>
-        <div className="flex justify-end w-full py-5">
+        <div className="flex justify-end w-full px-5">
           <button className="btn btn-primary normal-case" type="submit">
             Crear receta
           </button>

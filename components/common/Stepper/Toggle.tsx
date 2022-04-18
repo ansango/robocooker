@@ -7,7 +7,7 @@ type Props = {
 
 const Toggle: FC<Props> = ({ children, getToggleProps }) => {
   return (
-    <button {...getToggleProps()} className="flex justify-between w-full">
+    <button {...getToggleProps()} className="flex justify-between items-center w-full">
       {children}
     </button>
   );

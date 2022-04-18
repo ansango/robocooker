@@ -4,7 +4,7 @@ import { Icon } from "../Icons";
 type Props = { isExpanded: boolean };
 
 const ArrowIcon: FC<Props> = ({ isExpanded }) => (
-  <span>
+  <span className="btn btn-ghost btn-circle">
     {isExpanded ? (
       <Icon icon="ChevronUpIcon" kind="outline" className="w-5 h-5" />
     ) : (
