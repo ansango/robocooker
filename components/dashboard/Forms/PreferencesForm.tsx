@@ -22,7 +22,7 @@ const PreferencesForm: FC = () => {
   return (
     <CardBasic>
       <CardBasicTitle title="Preferencias" />
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} className="space-y-5">
         <h6 className="font-semibold py-2">Categorías</h6>
         <div className="grid gap-4 grid-cols-12">
           <div className="col-span-full capitalize grid sm:gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-2">
@@ -55,6 +55,9 @@ const PreferencesForm: FC = () => {
             ))}
           </div>
         </div>
+        <button type="submit" className="btn btn-primary normal-case">
+          Guardar
+        </button>
       </Form>
     </CardBasic>
   );
