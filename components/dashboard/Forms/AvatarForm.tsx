@@ -1,4 +1,3 @@
-
 import { selectUser } from "@/store/features/user";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import Avatar from "components/common/Avatar/Avatar";
@@ -8,6 +7,8 @@ import File from "components/common/Forms/File";
 import { useCallback } from "react";
 import { selectAccount } from "@/store/features/account";
 import { updateAvatar } from "@/store/features/account/thunks";
+import CardBasic from "components/common/Cards/Basic/CardBasic";
+import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 
 const AvatarForm = () => {
   const account = useAppSelector(selectAccount);
@@ -27,17 +28,21 @@ const AvatarForm = () => {
   );
 
   return (
-    <Form onSubmit={onSubmit}>
-      <div className="p-4 bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 space-y-5 flex">
-        <div className="flex space-x-10">
-          <div className="my-auto">
+    <CardBasic>
+      {/* <CardBasicTitle title="Avatar" /> */}
+      <Form onSubmit={onSubmit}>
+        <div className="w-full flex space-x-5">
+          <div className="my-auto space-y-3">
             <div className="inline-flex flex-shrink ml-1">
               <div className="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 flex">
                 <Avatar size="md" imgUrl={account?.avatar} />
               </div>
             </div>
+            <button type="submit" className="btn btn-primary normal-case">
+              Guardar
+            </button>
           </div>
-          <div className="">
+          <div className="space-y-4 w-full">
             {account?.firstName && (
               <h5 className="text-xl font-medium text-gray-900">
                 {account.firstName} {account?.lastName}
@@ -51,12 +56,12 @@ const AvatarForm = () => {
             {account?.firstName && (
               <h4 className="text-gray-600">@{user?.username}</h4>
             )}
+
             <File name="file" />
-            <Button label="Guardar" type="submit" />
           </div>
         </div>
-      </div>
-    </Form>
+      </Form>
+    </CardBasic>
   );
 };
 

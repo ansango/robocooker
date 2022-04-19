@@ -1,5 +1,4 @@
 import { useAppDispatch } from "lib/store/hooks";
-import Button from "components/common/Button/Button/Button";
 import { Form, Input } from "components/common/Forms";
 import { useCallback } from "react";
 import { updatePassword } from "@/store/features/user/thunks";

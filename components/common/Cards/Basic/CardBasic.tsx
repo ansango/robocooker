@@ -6,7 +6,7 @@ type Props = {
 
 const CardBasic: FC<Props> = ({ children }) => {
   return (
-    <div className="card shadow-md bg-base-100 max-w-md w-full">
+    <div className="card shadow-md bg-base-100 w-full">
       <div className="card-body">{children}</div>
     </div>
   );

@@ -12,6 +12,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import IngredientFields from "./IngredientFields";
 import StepsFields from "./StepsField";
 import FileLarge from "components/common/Forms/FileLarge";
+import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
 
 type Selector = {
   label: any;
@@ -108,27 +109,32 @@ const AddRecipeForm = () => {
               type: "DocumentIcon",
             }}
           >
-            <Input
-              name="name"
-              label="Nombre"
-              type="text"
-              options={{
-                required: { value: true, message: "Introduce un nombre" },
-              }}
-            />
-            <TextArea
-              name="description"
-              label="Descripción"
-              options={{
-                required: { value: true, message: "Introduce una descripción" },
-              }}
-            />
-            <FileLarge
-              name="image"
-              options={{
-                required: { value: true, message: "Añade una foto" },
-              }}
-            />
+            <CardBasicContent>
+              <Input
+                name="name"
+                label="Nombre"
+                type="text"
+                options={{
+                  required: { value: true, message: "Introduce un nombre" },
+                }}
+              />
+              <TextArea
+                name="description"
+                label="Descripción"
+                options={{
+                  required: {
+                    value: true,
+                    message: "Introduce una descripción",
+                  },
+                }}
+              />
+              <FileLarge
+                name="image"
+                options={{
+                  required: { value: true, message: "Añade una foto" },
+                }}
+              />
+            </CardBasicContent>
           </Step>
           <Step
             title="Categorías"
@@ -138,39 +144,41 @@ const AddRecipeForm = () => {
               type: "DocumentTextIcon",
             }}
           >
-            <MultiSelect
-              label="Categorías"
-              options={cats}
-              value={selectedCategories}
-              onChange={setSelectedCategories}
-              labelledBy="Select"
-            />
-            <MultiSelect
-              label="Robots de cocina"
-              options={blends}
-              value={selectedBlenders}
-              onChange={setSelectedBlenders}
-              labelledBy="Select"
-            />
-            <div className="grid gap-5 md:grid-cols-2">
-              <Input
-                name="servings"
-                type="number"
-                label="Raciones"
-                options={{
-                  required: { value: true, message: "Introduce un número" },
-                }}
+            <CardBasicContent>
+              <MultiSelect
+                label="Categorías"
+                options={cats}
+                value={selectedCategories}
+                onChange={setSelectedCategories}
+                labelledBy="Select"
               />
-              <Input
-                name="duration"
-                type="number"
-                label="Tiempo (mins)"
-                options={{
-                  required: { value: true, message: "Introduce un número" },
-                }}
+              <MultiSelect
+                label="Robots de cocina"
+                options={blends}
+                value={selectedBlenders}
+                onChange={setSelectedBlenders}
+                labelledBy="Select"
               />
-            </div>
-            <IngredientFields />
+              <div className="grid gap-5 md:grid-cols-2">
+                <Input
+                  name="servings"
+                  type="number"
+                  label="Raciones"
+                  options={{
+                    required: { value: true, message: "Introduce un número" },
+                  }}
+                />
+                <Input
+                  name="duration"
+                  type="number"
+                  label="Tiempo (mins)"
+                  options={{
+                    required: { value: true, message: "Introduce un número" },
+                  }}
+                />
+              </div>
+              <IngredientFields />
+            </CardBasicContent>
           </Step>
           <Step
             title="Pasos"
@@ -180,7 +188,9 @@ const AddRecipeForm = () => {
               type: "CollectionIcon",
             }}
           >
-            <StepsFields />
+            <CardBasicContent>
+              <StepsFields />
+            </CardBasicContent>
           </Step>
         </div>
         <div className="flex justify-end w-full px-5">

@@ -8,6 +8,9 @@ import { useCallback, useEffect } from "react";
 import { selectUser } from "@/store/features/user";
 import { signUp } from "@/store/features/user/thunks";
 import ButtonLink from "components/common/Button/ButtonLink";
+import CardBasic from "components/common/Cards/Basic/CardBasic";
+import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
+import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
 
 const SignUp: NextPage = () => {
   const user = useAppSelector(selectUser);
@@ -32,64 +35,69 @@ const SignUp: NextPage = () => {
   );
   return (
     <GreyContainer>
-      <div className="card shadow-md bg-base-100 max-w-md w-full">
-        <Form onSubmit={onSignUp} className="card-body">
-          <h5 className="card-title">Crea una cuenta</h5>
-          <div className="space-y-4">
-            <Input
-              name="email"
-              label="Tu correo"
-              type="email"
-              options={{
-                required: { value: true, message: "Introduce un email" },
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Introduce un email valido",
-                },
-              }}
-            />
-            <Input
-              name="username"
-              label="Nombre de usuario"
-              type="text"
-              options={{
-                required: {
-                  value: true,
-                  message: "Introduce un nombre de usuario",
-                },
-                minLength: {
-                  value: 4,
-                  message:
-                    "El nombre de usuario debe tener al menos 4 caracteres",
-                },
-              }}
-            />
-            <Input
-              name="password"
-              label="Contraseña"
-              type="password"
-              options={{
-                required: { value: true, message: "Introduce una contraseña" },
-                minLength: {
-                  value: 8,
-                  message:
-                    "Tu contraseña tiene que tener al menos 8 caracteres",
-                },
-              }}
-            />
+      <div className="max-w-md w-full">
+        <CardBasic>
+          <CardBasicTitle title="Crea una cuenta" />
+          <Form onSubmit={onSignUp}>
+            <CardBasicContent>
+              <Input
+                name="email"
+                label="Tu correo"
+                type="email"
+                options={{
+                  required: { value: true, message: "Introduce un email" },
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Introduce un email valido",
+                  },
+                }}
+              />
+              <Input
+                name="username"
+                label="Nombre de usuario"
+                type="text"
+                options={{
+                  required: {
+                    value: true,
+                    message: "Introduce un nombre de usuario",
+                  },
+                  minLength: {
+                    value: 4,
+                    message:
+                      "El nombre de usuario debe tener al menos 4 caracteres",
+                  },
+                }}
+              />
+              <Input
+                name="password"
+                label="Contraseña"
+                type="password"
+                options={{
+                  required: {
+                    value: true,
+                    message: "Introduce una contraseña",
+                  },
+                  minLength: {
+                    value: 8,
+                    message:
+                      "Tu contraseña tiene que tener al menos 8 caracteres",
+                  },
+                }}
+              />
 
-            <button
-              className="btn btn-primary normal-case w-full"
-              type="submit"
-            >
-              Crear cuenta
-            </button>
-            <p className="text-sm space-x-2">
-              <span>¿Ya tienes una cuenta?</span>
-              <ButtonLink href="/signin" label="Inicia sesión" />
-            </p>
-          </div>
-        </Form>
+              <button
+                className="btn btn-primary normal-case w-full"
+                type="submit"
+              >
+                Crear cuenta
+              </button>
+              <p className="text-sm space-x-2">
+                <span>¿Ya tienes una cuenta?</span>
+                <ButtonLink href="/signin" label="Inicia sesión" />
+              </p>
+            </CardBasicContent>
+          </Form>
+        </CardBasic>
       </div>
     </GreyContainer>
   );

@@ -1,13 +1,14 @@
-const generateRandomGradient = () => {
-  const colors = [
-    "bg-gradient-to-r from-cyan-500 to-blue-500",
-    "bg-gradient-to-r from-blue-500 to-purple-500",
-    "bg-gradient-to-r from-purple-500 to-pink-500",
-    "bg-gradient-to-r from-pink-500 to-red-500",
-    "bg-gradient-to-r from-red-500 to-orange-500",
-  ];
+type Colors = "blue" | "sky" | "violet" | "purple";
 
-  return colors[Math.floor(Math.random() * colors.length)];
+const generateGradient = (color: Colors) => {
+  const colors = {
+    blue: "bg-gradient-to-r from-cyan-500 to-blue-500",
+    sky: "bg-gradient-to-r from-sky-500 to-indigo-500",
+    violet: "bg-gradient-to-r from-violet-500 to-fuchsia-500",
+    purple: "bg-gradient-to-r from-purple-500 to-pink-500",
+  };
+
+  return colors[color];
 };
 
-export { generateRandomGradient };
+export { generateGradient, type Colors };

@@ -7,39 +7,44 @@ import Alert from "components/common/Alert/Alert";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import { selectUser } from "@/store/features/user";
 import { verifyEmail } from "@/store/features/user/thunks";
+import ContainerDashboard from "components/dashboard/Container/ContainerDashboard";
+import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
+import { Icon } from "components/common/Icons";
 
 const Profile: NextPage = () => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const onVerify = () => dispatch(verifyEmail());
   return (
-    <>
-      <Alert
-        text="Parece que todavía no has verificado tu email"
-        opened={!user?.emailVerified}
-        dismissable
-        withIcon
-        icon="MailIcon"
-        link={{ action: onVerify, text: "Verificar email" }}
-      />
-
-      <main className="grid lg:grid-cols-12 md:space-y-0 gap-5 h-full p-5">
-        <div className="col-span-full xl:col-span-5">
-          <div className="gap-5 grid grid-cols-12">
-            <div className="col-span-full md:col-span-6 lg:col-span-6 xl:col-span-full">
-              <AvatarForm />
+    <ContainerDashboard>
+      <GenericDashboardHero title="Crea una receta!" />
+      {!user?.emailVerified && (
+        <div className="alert alert-info shadow-lg">
+          <div className="flex items-center justify-between w-full">
+            <div className="flex items-center space-x-2">
+              <Icon
+                icon="InformationCircleIcon"
+                kind="outline"
+                className="w-5 h-5"
+              />
+              <span>Parece que todavía no has verificado tu email</span>
             </div>
-            <div className="col-span-full md:col-span-6 lg:col-span-6 xl:col-span-full">
-              <ResetPasswordForm />
-            </div>
+            <button
+              className="btn btn-ghost normal-case text-gray-800 btn-sm"
+              onClick={onVerify}
+            >
+              Verificar
+            </button>
           </div>
         </div>
-        <div className="col-span-full xl:col-span-7">
-          <DataAccountForm />
-        </div>
-        <div className="py-10"></div>
-      </main>
-    </>
+      )}
+
+      <AvatarForm />
+
+      <ResetPasswordForm />
+
+      <DataAccountForm />
+    </ContainerDashboard>
   );
 };
 

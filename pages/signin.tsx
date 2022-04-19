@@ -27,47 +27,52 @@ const SignIn: NextPage = () => {
   );
   return (
     <GreyContainer>
-      <CardBasic>
-        <CardBasicTitle title="Inicia sesión" />
-        <Form onSubmit={onSignIn}>
-          <CardBasicContent>
-            <Input
-              name="email"
-              label="Tu correo"
-              type="email"
-              options={{
-                required: { value: true, message: "Introduce un email" },
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Introduce un email valido",
-                },
-              }}
-            />
-            <Input
-              name="password"
-              label="Contraseña"
-              type="password"
-              options={{
-                required: { value: true, message: "Introduce tu contraseña" },
-              }}
-            />
-            <p className="text-sm">
-              <ButtonLink href="/recovery" label="¿Olvidaste tu contraseña?" />
-            </p>
-            <button
-              className="btn btn-primary normal-case w-full"
-              type="submit"
-            >
-              Iniciar sesión
-            </button>
+      <div className="max-w-md w-full">
+        <CardBasic>
+          <CardBasicTitle title="Inicia sesión" />
+          <Form onSubmit={onSignIn}>
+            <CardBasicContent>
+              <Input
+                name="email"
+                label="Tu correo"
+                type="email"
+                options={{
+                  required: { value: true, message: "Introduce un email" },
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Introduce un email valido",
+                  },
+                }}
+              />
+              <Input
+                name="password"
+                label="Contraseña"
+                type="password"
+                options={{
+                  required: { value: true, message: "Introduce tu contraseña" },
+                }}
+              />
+              <p className="text-sm">
+                <ButtonLink
+                  href="/recovery"
+                  label="¿Olvidaste tu contraseña?"
+                />
+              </p>
+              <button
+                className="btn btn-primary normal-case w-full"
+                type="submit"
+              >
+                Iniciar sesión
+              </button>
 
-            <p className="text-sm space-x-1">
-              <span>¿No tienes cuenta?</span>
-              <ButtonLink href="/signup" label="Crea una!" />
-            </p>
-          </CardBasicContent>
-        </Form>
-      </CardBasic>
+              <p className="text-sm space-x-1">
+                <span>¿No tienes cuenta?</span>
+                <ButtonLink href="/signup" label="Crea una!" />
+              </p>
+            </CardBasicContent>
+          </Form>
+        </CardBasic>
+      </div>
     </GreyContainer>
   );
 };

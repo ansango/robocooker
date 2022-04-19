@@ -143,9 +143,9 @@ const DataAccountForm: FC = () => {
             label="Código postal"
             {...(account && { defaultValue: account.address.zip })}
           />
-          <div className="col-span-2">
-            <Button type="submit" label="Guardar" />
-          </div>
+          <button type="submit" className="btn btn-primary normal-case">
+            Guardar
+          </button>
         </CardBasicContent>
       </Form>
     </CardBasic>
