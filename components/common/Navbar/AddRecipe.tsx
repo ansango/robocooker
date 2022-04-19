@@ -12,14 +12,14 @@ const AddRecipe = () => {
   return (
     <>
       {user && (
-        <Link href="/recipe/add" passHref>
+        <Link href="/recipe-add" passHref>
           <div className="tooltip tooltip-left" data-tip="Crear receta">
             <button className="btn btn-ghost btn-circle">
               <Icon
                 icon="PlusCircleIcon"
                 kind="outline"
                 className={
-                  routeActive(pathname, "/recipe/add")
+                  routeActive(pathname, "/recipe-add")
                     ? "w-6 h-6 text-primary dark:text-primary-content"
                     : "w-6 h-6 text-gray-600 dark:text-base-content"
                 }
