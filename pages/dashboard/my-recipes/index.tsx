@@ -12,6 +12,7 @@ import { Icon } from "components/common/Icons";
 import ContainerDashboard from "components/dashboard/Container/ContainerDashboard";
 import { NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
@@ -27,96 +28,44 @@ const MyRecipes: NextPage = () => {
   return (
     <ContainerDashboard>
       <GenericDashboardHero title="Mis recetas" />
-      <div className="container mx-auto">
-        {!loading && myRecipes && (
-          <div className="grid gap-5 max-w-sm mx-auto sm:max-w-none sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {myRecipes.map(
-              ({
-                _id,
-                img,
-                categories,
-                name,
-                description,
-                duration,
-                servings,
-                steps,
-              }) => (
-                <div
-                  key={_id}
-                  className="bg-base-100 rounded-lg shadow-sm dark:shadow-lg"
-                >
-                  <div className="rounded-lg pt-5 px-5">
-                    <figure className="w-full h-44 relative">
-                      <Image
-                        src={img}
-                        loading="lazy"
-                        alt="hero"
-                        layout="fill"
-                        className="object-center object-cover pointer-events-none rounded-lg"
-                      />
-                    </figure>
-                  </div>
-                  <div className="card-body space-y-1">
-                    <h4 className="card-title">{name}</h4>
-                    <p className="line-clamp-3">{description}</p>
-                    <div className="card-actions justify-between items-center">
-                      <div className="flex space-x-2 items-center">
-                        {/* <Avatar size="xs" imgUrl={avatar} /> */}
-                        {/* <span className="text-sm font-medium">@{username}</span> */}
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div
-                          className="tooltip tooltip-left"
-                          data-tip="Editar receta"
-                        >
-                          <button
-                            className="btn btn-info btn-circle btn-sm"
-                            onClick={() => push(`/dashboard/my-recipes/${_id}`)}
-                          >
-                            <Icon
-                              icon="PencilAltIcon"
-                              kind="outline"
-                              className="w-4 h-4"
-                            />
-                          </button>
-                        </div>
-                        <div
-                          className="tooltip tooltip-left"
-                          data-tip="Eliminar receta"
-                        >
-                          <button className="btn btn-error btn-circle btn-sm">
-                            <Icon
-                              icon="XIcon"
-                              kind="outline"
-                              className="w-4 h-4"
-                            />
-                          </button>
-                        </div>
-                        {/* <div className="badge space-x-2">
-                          <Icon
-                            icon="ClockIcon"
-                            kind="solid"
-                            className="w-4 h-4"
-                          />
-                          <span>{duration}</span>
-                        </div>
-                        <div className="badge space-x-2">
-                          <Icon
-                            icon="UserGroupIcon"
-                            kind="solid"
-                            className="w-4 h-4"
-                          />
-                          <span>{servings}</span>
-                        </div> */}
-                      </div>
-                    </div>
+
+      {!loading && myRecipes && (
+        <ul className="grid gap-5 max-w-sm mx-auto sm:max-w-none sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+          {myRecipes.map(({ _id, img, name }) => (
+            <li key={_id}>
+              <div className="card w-full shadow-xl image-full before:opacity-50">
+                <figure className="w-full h-44 lg:h-40 relative">
+                  <Image
+                    src={img}
+                    loading="lazy"
+                    alt="hero"
+                    layout="fill"
+                    className="object-center object-cover pointer-events-none"
+                  />
+                </figure>
+                <div className="card-body p-5 justify-between">
+                  <h2 className="card-title capitalize text-white">{name}</h2>
+
+                  <div className="w-full flex justify-end space-x-2">
+                    <Link href={`/dashboard/my-recipes/${_id}`} passHref>
+                      <button className="btn btn-sm btn-info btn-circle">
+                        <Icon
+                          icon="PencilAltIcon"
+                          className="w-4 h-4"
+                          kind="outline"
+                        />
+                      </button>
+                    </Link>
+                    <button className="btn btn-sm btn-error btn-circle">
+                      <Icon icon="XIcon" className="w-4 h-4" kind="outline" />
+                    </button>
                   </div>
                 </div>
-              )
-            )}
-          </div>
-        )}
-      </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </ContainerDashboard>
   );
 };
