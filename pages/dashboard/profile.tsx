@@ -17,7 +17,7 @@ const Profile: NextPage = () => {
   const onVerify = () => dispatch(verifyEmail());
   return (
     <ContainerDashboard>
-      <GenericDashboardHero title="Crea una receta!" />
+      <GenericDashboardHero title="Tu cuenta" />
       {!user?.emailVerified && (
         <div className="alert alert-info shadow-lg">
           <div className="flex items-center justify-between w-full">
@@ -38,12 +38,17 @@ const Profile: NextPage = () => {
           </div>
         </div>
       )}
-
-      <AvatarForm />
-
-      <ResetPasswordForm />
-
-      <DataAccountForm />
+      <div className="grid gap-5 grid-cols-12">
+        <div className="col-span-full md:col-span-6">
+          <AvatarForm />
+        </div>
+        <div className="col-span-full md:col-span-6">
+          <ResetPasswordForm />
+        </div>
+        <div className="col-span-full">
+          <DataAccountForm />
+        </div>
+      </div>
     </ContainerDashboard>
   );
 };

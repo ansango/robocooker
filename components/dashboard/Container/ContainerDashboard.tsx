@@ -5,7 +5,7 @@ type Props = {
 };
 
 const ContainerDashboard: FC<Props> = ({ children }) => {
-  return <div className="p-5 mx-auto max-w-4xl space-y-5">{children}</div>;
+  return <div className="p-5 mx-auto max-w-4xl 2xl:max-w-7xl space-y-5">{children}</div>;
 };
 
 export default ContainerDashboard;

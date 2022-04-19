@@ -29,7 +29,6 @@ const AvatarForm = () => {
 
   return (
     <CardBasic>
-      {/* <CardBasicTitle title="Avatar" /> */}
       <Form onSubmit={onSubmit}>
         <div className="w-full flex space-x-5">
           <div className="my-auto space-y-3">
