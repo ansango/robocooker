@@ -6,6 +6,8 @@ import {
   removeAccountOnSignOut,
   updateAccount,
   updateAvatar,
+  updatePreferences,
+  updateSocial,
 } from "./thunks";
 
 export const accountSlice = createSlice({
@@ -58,6 +60,28 @@ export const accountSlice = createSlice({
     builder.addCase(removeAccountOnSignOut.pending, (state) => {
       state.status = "loading";
     });
+    builder
+      .addCase(updatePreferences.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updatePreferences.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.value = action.payload;
+      })
+      .addCase(updatePreferences.rejected, (state) => {
+        state.status = "failed";
+      });
+    builder
+      .addCase(updateSocial.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateSocial.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.value = action.payload;
+      })
+      .addCase(updateSocial.rejected, (state) => {
+        state.status = "failed";
+      });
   },
 });
 

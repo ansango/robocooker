@@ -6,7 +6,7 @@ import ResetPasswordForm from "components/dashboard/Forms/ResetPasswordForm";
 import ContainerDashboard from "components/dashboard/ContainerDashboard";
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import PreferencesForm from "components/dashboard/Forms/PreferencesForm";
-import SocialForms from "components/dashboard/Forms/SocialForms";
+import SocialForms from "components/dashboard/Forms/SocialForms/SocialForms";
 import Alert from "components/common/Alert/Alert";
 import DeleteAccount from "components/dashboard/Forms/DeleteAccount";
 import DashboardLayout from "components/layout/DashboardLayout";

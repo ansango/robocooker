@@ -54,3 +54,31 @@ export const updateAccountRecipesById = async (
     )
     .then((account) => account || null);
 };
+
+export const updatePreferencesAccountById = async (
+  db: Db,
+  accountId: AccountId,
+  preferences: string[]
+) => {
+  return db
+    .collection("accounts")
+    .findOneAndUpdate(
+      { _id: new ObjectId(accountId) },
+      { $set: { preferences } }
+    )
+    .then((account) => account || null);
+};
+
+export const updateSocialNetworksAccountById = async (
+  db: Db,
+  accountId: AccountId,
+  socialNetworks: any
+) => {
+  return db
+    .collection("accounts")
+    .findOneAndUpdate(
+      { _id: new ObjectId(accountId) },
+      { $set: { social: socialNetworks } }
+    )
+    .then((account) => account || null);
+};

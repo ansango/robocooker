@@ -1,8 +1,12 @@
 import { selectAccount } from "@/store/features/account";
+import {
+  updateAccount,
+  updatePreferences,
+} from "@/store/features/account/thunks";
 import { selectBlenders } from "@/store/features/blenders";
 import { selectCategories } from "@/store/features/categories";
 import { selectUser } from "@/store/features/user";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import CardBasic from "components/common/Cards/Basic/CardBasic";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import { Checkbox, Form } from "components/common/Forms";
@@ -13,9 +17,19 @@ const PreferencesForm: FC = () => {
   const account = useAppSelector(selectAccount);
   const categories = useAppSelector(selectCategories);
   const blenders = useAppSelector(selectBlenders);
-  const onSubmit = useCallback(async () => {
-    console.log("submit");
-  }, []);
+  const dispatch = useAppDispatch();
+  const onSubmit = useCallback(
+    async (data: { [key: string]: any }) => {
+      if (!account) return;
+      const checkedCategories: string[] = Object.keys(data).filter(
+        (key) => data[key] === true
+      );
+      dispatch(
+        updatePreferences({ ...account, preferences: checkedCategories })
+      );
+    },
+    [account, dispatch]
+  );
 
   if (!user || !account || !categories || !blenders) return null;
 
