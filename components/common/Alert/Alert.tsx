@@ -1,51 +1,36 @@
-import { FC, useState } from "react";
+import { selectUser } from "@/store/features/user";
+import { verifyEmail } from "@/store/features/user/thunks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { FC } from "react";
+import { Icon } from "../Icons";
 
-import Icon from "../Icons/Icon";
-import AlertProps from "./AlertProps";
-
-import * as cn from "./AlertStyles";
-
-const Alert: FC<AlertProps> = ({
-  kind = "info",
-  bordered = false,
-  dismissable = false,
-  opened = false,
-  withIcon = false,
-  icon,
-  text,
-  link,
-}) => {
-  const [isOpen, setIsOpen] = useState<boolean>(opened);
-  if (!isOpen) return null;
-  const isBorder = bordered ? cn.alertBorderKind[kind] : cn.alertKind[kind];
+const Alert: FC<{}> = () => {
+  const user = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
+  const onVerify = () => dispatch(verifyEmail());
   return (
-    <div
-      className={`${cn.alertBase} ${isBorder}`}
-      role="alert"
-      data-testid="alert"
-    >
-      {/* {withIcon && icon && (
-        <Icon icon={icon} classIcon={cn.iconAlert} kind="solid" />
-      )} */}
-      <div className={`${cn.textBase} ${cn.textKind[kind]}`}>
-        {text}
-        <span
-          className={`${cn.linkBase} ${cn.linkKind[kind]} cursor-pointer`}
-          onClick={link?.action}
-        >
-          {link?.text}
-        </span>
-      </div>
-      {/* {dismissable && (
-        <ButtonIcon
-          icon="XIcon"
-          classButton={`${cn.btnCloseBase} ${cn.btnCloseKind[kind]}`}
-          classIcon={cn.iconClose}
-          action={() => setIsOpen(false)}
-          data-testid="dismiss-button"
-        />
-      )} */}
-    </div>
+    <>
+      {!user?.emailVerified && (
+        <div className="alert alert-info shadow-lg">
+          <div className="flex items-center justify-between w-full">
+            <div className="flex items-center space-x-2">
+              <Icon
+                icon="InformationCircleIcon"
+                kind="outline"
+                className="w-5 h-5"
+              />
+              <span>Parece que todavía no has verificado tu email</span>
+            </div>
+            <button
+              className="btn btn-ghost normal-case text-gray-800 btn-sm"
+              onClick={onVerify}
+            >
+              Verificar
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
