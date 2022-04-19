@@ -3,6 +3,7 @@ import { selectRecipe } from "@/store/features/recipes/recipe";
 import { getRecipe } from "@/store/features/recipes/recipe/thunk";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Icon } from "components/common/Icons";
+import MainLayout from "components/layout/MainLayout";
 
 import { NextPage } from "next";
 import Link from "next/link";
@@ -23,7 +24,7 @@ const Recipe: NextPage = () => {
   }, [id, dispatch]);
 
   return (
-    <div>
+    <MainLayout>
       {recipe?.name}
       {isOwner && (
         <Link href={`/dashboard/my-recipes/${id}`}>
@@ -36,7 +37,7 @@ const Recipe: NextPage = () => {
           </a>
         </Link>
       )}
-    </div>
+    </MainLayout>
   );
 };
 

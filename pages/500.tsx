@@ -1,11 +1,12 @@
+import MainLayout from "components/layout/MainLayout";
 import { NextPage } from "next";
 
 const ErrorServer: NextPage = () => {
   return (
-    <div>
+    <MainLayout>
       <h1>500</h1>
       <p>Server error</p>
-    </div>
+    </MainLayout>
   );
 };
 

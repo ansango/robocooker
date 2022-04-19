@@ -1,8 +1,4 @@
 import { getAccount } from "@/store/features/account/thunks";
-import { selectBlenders } from "@/store/features/blenders";
-import { getBlenders } from "@/store/features/blenders/thunks";
-import { selectCategories } from "@/store/features/categories";
-import { getCategories } from "@/store/features/categories/thunks";
 import { selectUser } from "@/store/features/user";
 import { getUser } from "@/store/features/user/thunks";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
@@ -15,31 +11,14 @@ type Props = {
   children?: ReactNode;
 };
 
-const WithAuth: FC<Props> = ({ children }) => {
-  const user = !!useAppSelector(selectUser);
-  const { push } = useRouter();
-  useEffect(() => {
-    if (!user) push("/signin");
-  }, [user, push]);
-  if (!user) return null;
-  return <>{children}</>;
-};
-
 const WrapperLayout: FC<Props> = ({ children }) => {
-  const { pathname } = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
   useEffect(() => {
     if (!user) dispatch(getUser());
     if (user) dispatch(getAccount());
   }, [dispatch, user]);
-  return pathname.startsWith("/dashboard") ? (
-    <WithAuth>
-      <DashboardLayout>{children}</DashboardLayout>
-    </WithAuth>
-  ) : (
-    <MainLayout>{children}</MainLayout>
-  );
+  return <>{children}</>;
 };
 
 export default WrapperLayout;

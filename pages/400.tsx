@@ -1,11 +1,12 @@
+import MainLayout from "components/layout/MainLayout";
 import { NextPage } from "next";
 
 const NotFound: NextPage = () => {
   return (
-    <div>
+    <MainLayout>
       <h1>404</h1>
       <p>Page not found</p>
-    </div>
+    </MainLayout>
   );
 };
 

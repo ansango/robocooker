@@ -1,4 +1,5 @@
 import ButtonLink from "components/common/Button/ButtonLink";
+import MainLayout from "components/layout/MainLayout";
 import {
   Hero,
   Container,
@@ -16,7 +17,7 @@ import type { NextPage } from "next";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <MainLayout>
       <Hero />
       <Container>
         <ContainerHeader>
@@ -60,7 +61,7 @@ const Home: NextPage = () => {
           </ContainerLink>
         </ContainerContent>
       </Container>
-    </div>
+    </MainLayout>
   );
 };
 

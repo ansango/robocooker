@@ -20,6 +20,7 @@ const Token: NextPage<Props> = ({ valid }) => {
     : "El enlace que has utilizado para recuperar tu contraseña ha expirado o no es valido. Cierra esta ventana y vuelve a intentarlo.";
   return (
     <GreyContainer>
+      <div className="max-w-md py-80 sm:py-64">
       <CardBasic>
         <CardBasicTitle title={title} />
         <CardBasicContent>
@@ -29,6 +30,7 @@ const Token: NextPage<Props> = ({ valid }) => {
           </p>
         </CardBasicContent>
       </CardBasic>
+      </div>
     </GreyContainer>
   );
 };

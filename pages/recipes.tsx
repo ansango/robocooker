@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Recipe } from "lib/models/recipe/recipe";
 import Image from "next/image";
+import MainLayout from "components/layout/MainLayout";
 
 const Recipes: NextPage = () => {
   const { query, replace } = useRouter();
@@ -29,7 +30,7 @@ const Recipes: NextPage = () => {
   }, [search]);
 
   return (
-    <div>
+    <MainLayout>
       <div className="text-center w-full p-5 space-y-5">
         <h1 className="text-4xl font-extrabold sm:text-5xl xl:text-6xl">
           Yummy!
@@ -114,7 +115,7 @@ const Recipes: NextPage = () => {
           </div>
         )}
       </GreyContainer>
-    </div>
+    </MainLayout>
   );
 };
 

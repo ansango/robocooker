@@ -27,7 +27,7 @@ const SignIn: NextPage = () => {
   );
   return (
     <GreyContainer>
-      <div className="max-w-md w-full">
+      <div className="max-w-md w-full py-52">
         <CardBasic>
           <CardBasicTitle title="Inicia sesión" />
           <Form onSubmit={onSignIn}>

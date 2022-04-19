@@ -1,11 +1,12 @@
+import MainLayout from "components/layout/MainLayout";
 import { NextPage } from "next";
 
 const Robousers: NextPage = () => {
   return (
-    <div>
+    <MainLayout>
       <h1>Robousers</h1>
-    </div>
+    </MainLayout>
   );
-}
+};
 
 export default Robousers;

@@ -1,14 +1,17 @@
-import GenericDashboardHero from 'components/common/Hero/GenericDashboardHero';
-import ContainerDashboard from 'components/dashboard/Container/ContainerDashboard';
-import { NextPage } from 'next';
-import React from 'react'
+import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
+import ContainerDashboard from "components/dashboard/ContainerDashboard";
+import DashboardLayout from "components/layout/DashboardLayout";
+import { NextPage } from "next";
+import React from "react";
 
 const Messages: NextPage = () => {
   return (
-    <ContainerDashboard>
-      <GenericDashboardHero title="Mensajes" />
-    </ContainerDashboard>
+    <DashboardLayout>
+      <ContainerDashboard>
+        <GenericDashboardHero title="Mensajes" />
+      </ContainerDashboard>
+    </DashboardLayout>
   );
 };
 
-export default Messages
+export default Messages;

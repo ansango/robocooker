@@ -11,6 +11,7 @@ import {
 } from "@/store/features/categories";
 import { useEffect } from "react";
 import { getCategories } from "@/store/features/categories/thunks";
+import MainLayout from "components/layout/MainLayout";
 
 const Categories: NextPage = () => {
   const categories = useAppSelector(selectCategories);
@@ -21,7 +22,7 @@ const Categories: NextPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div>
+    <MainLayout>
       <GenericHero
         title="Categorías"
         description="Aquí encontrarás todas las categorías de recetas. 21 categorías para que puedas filtrar y encontrar más rápido tu nueva receta."
@@ -53,7 +54,7 @@ const Categories: NextPage = () => {
         </div>
       </div>
       <div className="pb-20"></div>
-    </div>
+    </MainLayout>
   );
 };
 

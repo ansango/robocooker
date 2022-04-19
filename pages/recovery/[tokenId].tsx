@@ -14,7 +14,9 @@ type Props = {
 const Token: NextPage<Props> = ({ valid, tokenId }) => {
   return (
     <GreyContainer>
-      {valid ? <RecoveryForm tokenId={tokenId} /> : <BadLink />}
+      <div className="max-w-md py-80 sm:py-64">
+        {valid ? <RecoveryForm tokenId={tokenId} /> : <BadLink />}
+      </div>
     </GreyContainer>
   );
 };

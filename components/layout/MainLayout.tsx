@@ -3,6 +3,7 @@ import Navbar from "components/common/Navbar/Navbar";
 import { useRouter } from "next/router";
 import React, { FC, ReactNode } from "react";
 import Motion from "./Motion";
+import { motion } from "framer-motion";
 
 type Props = {
   children?: ReactNode;
@@ -10,14 +11,26 @@ type Props = {
 
 const MainLayout: FC<Props> = ({ children }) => {
   const { route } = useRouter();
+
   return (
-    <div className="">
+    <>
       <Navbar />
-      <Motion route={route}>
-        <main className="h-full">{children}</main>
-      </Motion>
+      <motion.main
+        key={route}
+        initial="initial"
+        animate="animate"
+        variants={{
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+        }}
+        transition={{ delay: 0.5 }}
+        className="h-full"
+      >
+        {children}
+      </motion.main>
+
       <Footer />
-    </div>
+    </>
   );
 };
 
