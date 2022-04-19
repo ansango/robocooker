@@ -1,7 +1,9 @@
 import { FC } from "react";
 import { useFormContext, type RegisterOptions } from "react-hook-form";
 import * as HeroIcons from "@heroicons/react/solid";
-import { Icon } from "../Icons";
+import * as HeroIconsOutline from "@heroicons/react/outline";
+import * as SimpleIcons from "@icons-pack/react-simple-icons";
+import { Icon, IconSimple } from "../Icons";
 import Error from "./Error";
 import Label from "./Label";
 
@@ -18,8 +20,11 @@ type InputProps = {
 
 type Props = {
   icon?: {
-    name: keyof typeof HeroIcons;
+    name: keyof typeof HeroIcons | keyof typeof HeroIconsOutline;
     kind: "solid" | "outline";
+  };
+  iconSimple?: {
+    name: keyof typeof SimpleIcons;
   };
 } & InputProps;
 
@@ -42,6 +47,7 @@ enum inputKind {
 
 const Input: FC<Props> = ({
   icon,
+  iconSimple,
   name,
   label,
   type,
@@ -57,46 +63,73 @@ const Input: FC<Props> = ({
 
   return (
     <div className="form-control w-full">
-      {!icon ? (
-        <>
-          {label && <Label name={name} label={label} errors={errors} />}
-          <input
-            type={type}
-            className={
-              !errors[name]
-                ? `input w-full input-bordered ${inputSize[size]} ${inputKind[kind]}`
-                : `input w-full input-bordered ${inputSize[size]} input-error`
-            }
-            {...register(name, { ...options })}
-            {...rest}
-          />
-          <Error errors={errors} name={name} {...rest} />
-        </>
-      ) : (
-        <>
-          {label && <Label name={name} label={label} errors={errors} />}
-          <div className="relative">
-            <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-              <Icon
-                icon={icon.name}
-                kind={icon.kind}
-                className="w-5 h-5 text-gray-500"
-              />
-            </div>
+      <>
+        {!icon && !iconSimple && (
+          <>
+            {label && <Label name={name} label={label} errors={errors} />}
             <input
               type={type}
               className={
                 !errors[name]
-                  ? `pl-10 input w-full input-bordered ${inputSize[size]} ${inputKind[kind]}`
-                  : `pl-10 input w-full input-bordered ${inputSize[size]} input-error`
+                  ? `input w-full input-bordered ${inputSize[size]} ${inputKind[kind]}`
+                  : `input w-full input-bordered ${inputSize[size]} input-error`
               }
               {...register(name, { ...options })}
               {...rest}
             />
-          </div>
-          <Error errors={errors} name={name} {...rest} />
-        </>
-      )}
+            <Error errors={errors} name={name} {...rest} />
+          </>
+        )}
+        {icon && (
+          <>
+            {label && <Label name={name} label={label} errors={errors} />}
+            <div className="relative">
+              <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                <Icon
+                  icon={icon.name}
+                  kind={icon.kind}
+                  className="w-5 h-5 text-gray-500"
+                />
+              </div>
+              <input
+                type={type}
+                className={
+                  !errors[name]
+                    ? `pl-10 input w-full input-bordered ${inputSize[size]} ${inputKind[kind]}`
+                    : `pl-10 input w-full input-bordered ${inputSize[size]} input-error`
+                }
+                {...register(name, { ...options })}
+                {...rest}
+              />
+            </div>
+            <Error errors={errors} name={name} {...rest} />
+          </>
+        )}
+        {iconSimple && (
+          <>
+            {label && <Label name={name} label={label} errors={errors} />}
+            <div className="relative">
+              <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                <IconSimple
+                  icon={iconSimple.name}
+                  className="w-5 h-5 text-gray-500"
+                />
+              </div>
+              <input
+                type={type}
+                className={
+                  !errors[name]
+                    ? `pl-10 input w-full input-bordered ${inputSize[size]} ${inputKind[kind]}`
+                    : `pl-10 input w-full input-bordered ${inputSize[size]} input-error`
+                }
+                {...register(name, { ...options })}
+                {...rest}
+              />
+            </div>
+            <Error errors={errors} name={name} {...rest} />
+          </>
+        )}
+      </>
     </div>
   );
 };

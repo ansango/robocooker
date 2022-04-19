@@ -48,10 +48,4 @@ type Measure = "gr" | "ml" | "portion";
 
 // Blender
 
-type BlenderName =
-  | "Thermomix"
-  | "Mambo"
-  | "KCook"
-  | "Maxichef"
-  | "MyCook"
-  | "Monsieur Cusine";
+type BlenderName = string;

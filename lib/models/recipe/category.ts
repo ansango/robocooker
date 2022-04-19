@@ -1,6 +1,6 @@
 type Category = {
   _id: CategoryId;
-  name: Name;
+  name: Name | string;
   description: Content;
   img: Url;
 };

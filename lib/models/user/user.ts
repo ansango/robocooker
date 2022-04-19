@@ -30,7 +30,7 @@ type Account = {
   chat: Chat[];
   followers: Follower[];
   following: Follower[];
-  preferences: CategoryId[] | BlenderId[];
+  preferences: string[] | CategoryName[] | BlenderName[];
 };
 
 type Address = {

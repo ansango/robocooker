@@ -26,7 +26,7 @@ const ResetPasswordForm = () => {
       <CardBasicTitle title="Cambio de contraseña" />
       <Form onSubmit={onSubmit}>
         <CardBasicContent>
-          <Input label="Contraseña actual" type="password" name="oldPassword" />
+          <Input label="Contraseña actual" type="password" name="oldPassword"/>
           <Input label="Nueva contraseña" type="password" name="newPassword" />
           <button type="submit" className="btn btn-primary normal-case">
             Guardar

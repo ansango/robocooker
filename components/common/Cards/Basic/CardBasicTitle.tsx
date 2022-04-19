@@ -1,5 +1,3 @@
-import { routeActive } from "@/utils/router";
-import Link from "next/link";
 import { FC } from "react";
 
 type Props = {
