@@ -10,7 +10,7 @@ type Props = {
 const AuthLayout: FC<Props> = ({ children }) => {
   const { route } = useRouter();
   return (
-    <>
+    <div className="h-screen flex flex-col justify-between">
       <Navbar />
       <motion.main
         key={route}
@@ -23,10 +23,16 @@ const AuthLayout: FC<Props> = ({ children }) => {
         transition={{ delay: 0.5 }}
         className="h-full"
       >
-        {children}
+        <section className="bg-base-200 h-full py-20 md:py-0">
+          <div className="max-w-md mx-auto w-full h-full flex flex-col justify-center">
+            {children}
+          </div>
+        </section>
       </motion.main>
-      <Footer />
-    </>
+      <div>
+        <Footer />
+      </div>
+    </div>
   );
 };
 

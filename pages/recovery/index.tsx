@@ -1,5 +1,5 @@
 import { useAppDispatch } from "lib/store/hooks";
-import GreyContainer from "components/common/Container/GreyContainer";
+
 import { Form, Input } from "components/common/Forms";
 import { NextPage } from "next";
 import { useCallback } from "react";
@@ -8,6 +8,7 @@ import ButtonLink from "components/common/Button/ButtonLink";
 import CardBasic from "components/common/Cards/Basic/CardBasic";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
+import AuthLayout from "components/layout/AuthLayout";
 const Recovery: NextPage = () => {
   const dispatch = useAppDispatch();
   const onForget = useCallback(
@@ -18,7 +19,7 @@ const Recovery: NextPage = () => {
   );
 
   return (
-    <GreyContainer>
+    <AuthLayout>
       <CardBasic>
         <CardBasicTitle title="Recuperar contraseña" />
         <Form onSubmit={onForget}>
@@ -49,7 +50,7 @@ const Recovery: NextPage = () => {
           </CardBasicContent>
         </Form>
       </CardBasic>
-    </GreyContainer>
+    </AuthLayout>
   );
 };
 

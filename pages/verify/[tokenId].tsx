@@ -5,7 +5,8 @@ import ButtonLink from "components/common/Button/ButtonLink";
 import CardBasic from "components/common/Cards/Basic/CardBasic";
 import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
-import GreyContainer from "components/common/Container/GreyContainer";
+import AuthLayout from "components/layout/AuthLayout";
+
 import { GetServerSideProps, NextPage } from "next";
 import nc from "next-connect";
 
@@ -19,8 +20,7 @@ const Token: NextPage<Props> = ({ valid }) => {
     ? "Tu email ha sido verificado con éxito."
     : "El enlace que has utilizado para recuperar tu contraseña ha expirado o no es valido. Cierra esta ventana y vuelve a intentarlo.";
   return (
-    <GreyContainer>
-      <div className="max-w-md py-80 sm:py-64">
+    <AuthLayout>
       <CardBasic>
         <CardBasicTitle title={title} />
         <CardBasicContent>
@@ -30,8 +30,7 @@ const Token: NextPage<Props> = ({ valid }) => {
           </p>
         </CardBasicContent>
       </CardBasic>
-      </div>
-    </GreyContainer>
+    </AuthLayout>
   );
 };
 

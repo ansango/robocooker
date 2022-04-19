@@ -1,6 +1,6 @@
 import { findTokenByIdAndType } from "@/api/db/token";
 import { database } from "@/api/middlewares";
-import GreyContainer from "components/common/Container/GreyContainer";
+import AuthLayout from "components/layout/AuthLayout";
 import BadLink from "components/pages/recovery/BadLink";
 import RecoveryForm from "components/pages/recovery/RecoveryForm";
 import { GetServerSideProps, NextPage } from "next";
@@ -13,11 +13,11 @@ type Props = {
 
 const Token: NextPage<Props> = ({ valid, tokenId }) => {
   return (
-    <GreyContainer>
+    <AuthLayout>
       <div className="max-w-md py-80 sm:py-64">
         {valid ? <RecoveryForm tokenId={tokenId} /> : <BadLink />}
       </div>
-    </GreyContainer>
+    </AuthLayout>
   );
 };
 
