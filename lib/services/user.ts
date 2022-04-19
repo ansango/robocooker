@@ -101,6 +101,24 @@ const onVerifyEmailService = async (): Promise<boolean> => {
   }
 };
 
+const onDeleteUserService = async ({
+  password,
+}: {
+  password: Password;
+}): Promise<void> => {
+  try {
+    await fetcher("/api/user", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        password,
+      }),
+    });
+  } catch (err: any) {
+    throw err;
+  }
+};
+
 export {
   onSaveUserService,
   onUpdatePasswordService,
@@ -108,4 +126,5 @@ export {
   onResetPasswordService,
   onVerifyEmailService,
   onGetUserService,
+  onDeleteUserService,
 };

@@ -5,6 +5,7 @@ import {
   onSignUpService,
 } from "@/services/auth";
 import {
+  onDeleteUserService,
   onRecoveryPasswordService,
   onResetPasswordService,
   onSaveUserService,
@@ -101,3 +102,11 @@ export const verifyEmail = createAsyncThunk("user/verifyEmail", async () => {
   await onVerifyEmailService();
   return null;
 });
+
+export const deleteUser = createAsyncThunk(
+  "user/deleteUser",
+  async (password: Password) => {
+    const response = onDeleteUserService({ password });
+    return response;
+  }
+);

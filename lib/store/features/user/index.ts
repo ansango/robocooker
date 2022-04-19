@@ -11,6 +11,7 @@ import {
   resetPassword,
   updatePassword,
   verifyEmail,
+  deleteUser,
 } from "./thunks";
 
 export const userSlice = createSlice({
@@ -113,6 +114,17 @@ export const userSlice = createSlice({
     builder.addCase(verifyEmail.rejected, (state) => {
       state.status = "failed";
     });
+    builder
+      .addCase(deleteUser.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteUser.fulfilled, (state) => {
+        state.status = "idle";
+        state.value = null;
+      })
+      .addCase(deleteUser.rejected, (state) => {
+        state.status = "failed";
+      });
   },
 });
 

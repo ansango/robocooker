@@ -217,6 +217,7 @@ export const deleteUserById = async (
     await db
       .collection("accounts")
       .deleteOne({ _id: new ObjectId(user.accountId) });
+    return true;
   } catch (error) {
     throw error;
   }

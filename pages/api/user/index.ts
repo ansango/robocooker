@@ -42,13 +42,13 @@ handler.patch(updateUserValidation(), async (req, res) => {
 
 handler.delete(async (req, res) => {
   if (!req.user) return res.status(401).json({ error: "Unauthorized" });
-  if (!req.user.password)
+  if (!req.body.password)
     return res.status(400).json({ error: "Password is required" });
   try {
     const userIsDeleted = await deleteUserById(
       req.db,
       req.user._id,
-      req.user.password
+      req.body.password
     );
     if (!userIsDeleted) {
       return res.status(400).json({ error: "Error deleting user" });
