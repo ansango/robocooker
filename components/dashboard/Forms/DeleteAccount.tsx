@@ -20,9 +20,8 @@ const DeleteAccount = () => {
       <Form onSubmit={onSubmit}>
         <CardBasicContent>
           <p>
-            Eliminando tu cuenta, se eliminarán todos tus datos de forma
-            permanente, incluidas todas aquellas publicaciones que hayas
-            realizado.
+            Eliminando tu cuenta, se eliminarán todos tus datos personales de forma
+            permanente.
           </p>
           <p>
             Si deseas continuar, por favor, escribe tu contraseña actual para
