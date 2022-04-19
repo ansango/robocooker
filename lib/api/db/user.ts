@@ -171,6 +171,12 @@ export const insertUser = async (
     followers: [],
     following: [],
     preferences: [],
+    social: {
+      facebook: "",
+      instagram: "",
+      twitter: "",
+      youtube: "",
+    },
   };
   await db.collection("accounts").insertOne({ ...account });
 
@@ -188,4 +194,30 @@ export const insertUser = async (
   await db.collection("users").insertOne({ ...user });
 
   return { ...user };
+};
+
+export const deleteUserById = async (
+  db: Db,
+  userId: UserId,
+  currentPassword: Password
+) => {
+  const user = (await db
+    .collection("users")
+    .findOne(new ObjectId(userId))) as User;
+  if (!user || !user.password) {
+    return null;
+  }
+
+  const matchedPasswords = await bcrypt.compare(currentPassword, user.password);
+  if (!matchedPasswords) {
+    return null;
+  }
+  try {
+    await db.collection("users").deleteOne({ _id: new ObjectId(userId) });
+    await db
+      .collection("accounts")
+      .deleteOne({ _id: new ObjectId(user.accountId) });
+  } catch (error) {
+    throw error;
+  }
 };

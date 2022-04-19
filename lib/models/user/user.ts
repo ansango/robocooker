@@ -31,6 +31,14 @@ type Account = {
   followers: Follower[];
   following: Follower[];
   preferences: string[] | CategoryName[] | BlenderName[];
+  social: SocialNetwork
+};
+
+type SocialNetwork = {
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  youtube: string;
 };
 
 type Address = {
@@ -40,4 +48,10 @@ type Address = {
   zip: Zip;
 };
 
-export { type User, type Account, type Address, type Follower };
+export {
+  type User,
+  type Account,
+  type Address,
+  type Follower,
+  type SocialNetwork,
+};

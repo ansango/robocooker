@@ -1,4 +1,5 @@
 import {
+  deleteUserById,
   findUserByEmail,
   findUserByUsername,
   updateUserAccountDataById,
@@ -37,6 +38,26 @@ handler.patch(updateUserValidation(), async (req, res) => {
   return res.json({
     user: req.body,
   });
+});
+
+handler.delete(async (req, res) => {
+  if (!req.user) return res.status(401).json({ error: "Unauthorized" });
+  if (!req.user.password)
+    return res.status(400).json({ error: "Password is required" });
+  try {
+    const userIsDeleted = await deleteUserById(
+      req.db,
+      req.user._id,
+      req.user.password
+    );
+    if (!userIsDeleted) {
+      return res.status(400).json({ error: "Error deleting user" });
+    }
+    await req.session.destroy();
+    res.status(204).end();
+  } catch (error) {
+    throw error;
+  }
 });
 
 export default handler;
