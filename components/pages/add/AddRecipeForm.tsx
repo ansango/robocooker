@@ -129,7 +129,7 @@ const AddRecipeForm = () => {
                 }}
               />
               <FileLarge
-                name="image"
+                name="avatar"
                 options={{
                   required: { value: true, message: "Añade una foto" },
                 }}

@@ -77,6 +77,17 @@ const DataAccountForm: FC = () => {
               name="username"
               label="Nombre de usuario"
               {...(user && { defaultValue: user.username })}
+              options={{
+                required: {
+                  value: true,
+                  message: "Introduce un nombre de usuario",
+                },
+                minLength: {
+                  value: 4,
+                  message:
+                    "El nombre de usuario debe tener al menos 4 caracteres",
+                },
+              }}
             />
           </div>
 
@@ -86,6 +97,13 @@ const DataAccountForm: FC = () => {
               name="email"
               label="Correo electrónico"
               {...(user && { defaultValue: user.email })}
+              options={{
+                required: { value: true, message: "Introduce un email" },
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Introduce un email valido",
+                },
+              }}
             />
           </div>
 
@@ -104,6 +122,16 @@ const DataAccountForm: FC = () => {
               name="firstName"
               label="Nombre"
               {...(account && { defaultValue: account.firstName })}
+              options={{
+                required: {
+                  value: false,
+                  message: "Introduce un nombre",
+                },
+                minLength: {
+                  value: 4,
+                  message: "Tu nombre debe tener al menos 4 caracteres",
+                },
+              }}
             />
           </div>
 
@@ -113,6 +141,16 @@ const DataAccountForm: FC = () => {
               name="lastName"
               label="Apellido"
               {...(account && { defaultValue: account.lastName })}
+              options={{
+                required: {
+                  value: false,
+                  message: "Introduce un nombre",
+                },
+                minLength: {
+                  value: 4,
+                  message: "Tu nombre debe tener al menos 4 caracteres",
+                },
+              }}
             />
           </div>
 
@@ -122,6 +160,16 @@ const DataAccountForm: FC = () => {
               name="phone"
               label="Teléfono"
               {...(account && { defaultValue: account.phone })}
+              options={{
+                required: {
+                  value: false,
+                  message: "Introduce un teléfono",
+                },
+                minLength: {
+                  value: 10,
+                  message: "Tu teléfono debe tener 10 dígitos",
+                },
+              }}
             />
           </div>
 
@@ -140,6 +188,7 @@ const DataAccountForm: FC = () => {
               name="address"
               label="Dirección"
               {...(account && { defaultValue: account.address.address })}
+              
             />
           </div>
 

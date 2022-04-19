@@ -55,8 +55,14 @@ const AvatarForm = () => {
             {account?.firstName && (
               <h4 className="text-gray-600">@{user?.username}</h4>
             )}
-
-            <File name="file" />
+            <div>
+              <File
+                name="file"
+                options={{
+                  required: { value: true, message: "Añade una foto" },
+                }}
+              />
+            </div>
           </div>
         </div>
       </Form>
