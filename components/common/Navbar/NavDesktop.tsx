@@ -9,14 +9,9 @@ const NavDesktop = () => {
     <ul className="hidden w-full md:flex md:w-auto ml-3">
       {routes.map(({ label, path }) => {
         return (
-          <motion.li
-            key={path}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
+          <li key={path}>
             <ButtonLink href={path} label={label} currentPath={pathname} />
-          </motion.li>
+          </li>
         );
       })}
     </ul>

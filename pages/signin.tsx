@@ -10,6 +10,7 @@ import CardBasic from "components/common/Cards/Basic/CardBasic";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
 import ButtonLink from "components/common/Button/ButtonLink";
+import AuthLayout from "components/layout/AuthLayout";
 
 const SignIn: NextPage = () => {
   const user = useAppSelector(selectUser);
@@ -26,7 +27,7 @@ const SignIn: NextPage = () => {
     [dispatch]
   );
   return (
-    <GreyContainer>
+    <AuthLayout>
       <div className="max-w-md w-full py-52">
         <CardBasic>
           <CardBasicTitle title="Inicia sesión" />
@@ -73,7 +74,7 @@ const SignIn: NextPage = () => {
           </Form>
         </CardBasic>
       </div>
-    </GreyContainer>
+    </AuthLayout>
   );
 };
 

@@ -2,10 +2,7 @@ import { getAccount } from "@/store/features/account/thunks";
 import { selectUser } from "@/store/features/user";
 import { getUser } from "@/store/features/user/thunks";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
-import { useRouter } from "next/router";
 import { FC, ReactNode, useEffect } from "react";
-import DashboardLayout from "./DashboardLayout";
-import MainLayout from "./MainLayout";
 
 type Props = {
   children?: ReactNode;

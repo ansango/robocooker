@@ -2,29 +2,8 @@ import Navbar from "components/dashboard/Navbar";
 import { useRouter } from "next/router";
 import React, { FC, ReactNode, useEffect } from "react";
 import { motion } from "framer-motion";
-import { routeActive } from "@/utils/router";
-import Link from "next/link";
-import Brand from "components/common/Navbar/Brand";
-import { routes, routesDashboard } from "components/common/Navbar/routes";
-import { Icon, Logo } from "components/common/Icons";
-import { useAppSelector } from "@/store/hooks";
-import { selectUser } from "@/store/features/user";
-import DrawerBar from "components/dashboard/Drawer/DrawerBar";
 import DrawerContainer from "components/dashboard/Drawer/DrawerContainer";
-
-type PropsAuth = {
-  children?: ReactNode;
-};
-
-const WithAuth: FC<PropsAuth> = ({ children }) => {
-  const user = !!useAppSelector(selectUser);
-  const { push } = useRouter();
-  useEffect(() => {
-    if (!user) push("/signin");
-  }, [user, push]);
-  if (!user) return null;
-  return <>{children}</>;
-};
+import WithAuth from "./WithAuth";
 
 type Props = {
   children?: ReactNode;

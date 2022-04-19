@@ -2,7 +2,6 @@ import Footer from "components/common/Footer/Footer";
 import Navbar from "components/common/Navbar/Navbar";
 import { useRouter } from "next/router";
 import React, { FC, ReactNode } from "react";
-import Motion from "./Motion";
 import { motion } from "framer-motion";
 
 type Props = {
