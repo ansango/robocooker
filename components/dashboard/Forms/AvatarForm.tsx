@@ -26,7 +26,9 @@ const AvatarForm = () => {
     },
     [dispatch]
   );
-
+  const title = account?.firstName
+    ? `${account.firstName} ${account.lastName}`
+    : `@${user?.username} `;
   return (
     <CardBasic>
       <Form onSubmit={onSubmit}>
@@ -42,18 +44,10 @@ const AvatarForm = () => {
             </button>
           </div>
           <div className="space-y-4 w-full">
+            <CardBasicTitle title={title} />
+
             {account?.firstName && (
-              <h5 className="text-xl font-medium text-gray-900">
-                {account.firstName} {account?.lastName}
-              </h5>
-            )}
-            {!account?.firstName && (
-              <h5 className="text-xl font-medium text-gray-900">
-                @{user?.username}
-              </h5>
-            )}
-            {account?.firstName && (
-              <h4 className="text-gray-600">@{user?.username}</h4>
+              <h4 className="text-gray-600 dark:text-gray-400">@{user?.username}</h4>
             )}
             <div>
               <File
