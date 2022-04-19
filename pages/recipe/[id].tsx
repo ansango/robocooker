@@ -1,3 +1,4 @@
+import { selectAccount } from "@/store/features/account";
 import { selectRecipe } from "@/store/features/recipes/recipe";
 import { getRecipe } from "@/store/features/recipes/recipe/thunk";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -13,7 +14,8 @@ const Recipe: NextPage = () => {
   const { id } = query;
   const dispatch = useAppDispatch();
   const recipe = useAppSelector(selectRecipe);
-
+  const account = useAppSelector(selectAccount);
+  const isOwner = account?._id === recipe?.accountId;
   useEffect(() => {
     if (!Array.isArray(id) && id) {
       dispatch(getRecipe(id));
@@ -23,11 +25,17 @@ const Recipe: NextPage = () => {
   return (
     <div>
       {recipe?.name}
-      <Link href={`/recipe-edit/${id}`}>
-        <a className="btn btn-ghost btn-circle">
-          <Icon icon="DotsHorizontalIcon" kind="outline" className="w-5 h-5" />
-        </a>
-      </Link>
+      {isOwner && (
+        <Link href={`/dashboard/my-recipes/${id}`}>
+          <a className="btn btn-ghost btn-circle">
+            <Icon
+              icon="DotsHorizontalIcon"
+              kind="outline"
+              className="w-5 h-5"
+            />
+          </a>
+        </Link>
+      )}
     </div>
   );
 };
