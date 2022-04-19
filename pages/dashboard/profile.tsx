@@ -13,7 +13,6 @@ const Profile: NextPage = () => {
   return (
     <ContainerDashboard>
       <GenericDashboardHero title="Tu cuenta" />
-
       <div className="grid gap-5 grid-cols-12">
         <div className="col-span-full md:col-span-6 flex flex-col justify-end space-y-5">
           <Alert />
