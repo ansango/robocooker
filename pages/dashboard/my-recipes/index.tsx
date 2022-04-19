@@ -4,7 +4,12 @@ import {
 } from "@/store/features/recipes/myRecipes";
 import { getMyRecipes } from "@/store/features/recipes/myRecipes/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import Breadcrumb from "components/common/Breadcrumb/Breadcrumb";
+import BreadcrumbLink from "components/common/Breadcrumb/BreadcrumbLink";
+import BreadcrumbNoLink from "components/common/Breadcrumb/BreadcrumbNoLink";
+import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import { Icon } from "components/common/Icons";
+import ContainerDashboard from "components/dashboard/Container/ContainerDashboard";
 import { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -20,7 +25,8 @@ const MyRecipes: NextPage = () => {
   }, []);
   const { push } = useRouter();
   return (
-    <div className="bg-base-200 px-5 py-20 space-y-10">
+    <ContainerDashboard>
+      <GenericDashboardHero title="Mis recetas" />
       <div className="container mx-auto">
         {!loading && myRecipes && (
           <div className="grid gap-5 max-w-sm mx-auto sm:max-w-none sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
@@ -111,7 +117,7 @@ const MyRecipes: NextPage = () => {
           </div>
         )}
       </div>
-    </div>
+    </ContainerDashboard>
   );
 };
 

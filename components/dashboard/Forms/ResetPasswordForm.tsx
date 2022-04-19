@@ -3,6 +3,9 @@ import Button from "components/common/Button/Button/Button";
 import { Form, Input } from "components/common/Forms";
 import { useCallback } from "react";
 import { updatePassword } from "@/store/features/user/thunks";
+import CardBasic from "components/common/Cards/Basic/CardBasic";
+import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
+import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
 
 const ResetPasswordForm = () => {
   const dispatch = useAppDispatch();
@@ -20,16 +23,18 @@ const ResetPasswordForm = () => {
   );
 
   return (
-    <Form onSubmit={onSubmit}>
-      <div className="p-4 bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
-        <h5 className="text-xl font-medium text-gray-900">
-          Cambio de contraseña
-        </h5>
-        <Input label="Contraseña actual" type="password" name="oldPassword" />
-        <Input label="Nueva contraseña" type="password" name="newPassword" />
-        <Button label="Guardar" type="submit" />
-      </div>
-    </Form>
+    <CardBasic>
+      <CardBasicTitle title="Cambio de contraseña" />
+      <Form onSubmit={onSubmit}>
+        <CardBasicContent>
+          <Input label="Contraseña actual" type="password" name="oldPassword" />
+          <Input label="Nueva contraseña" type="password" name="newPassword" />
+          <button type="submit" className="btn btn-primary normal-case">
+            Guardar
+          </button>
+        </CardBasicContent>
+      </Form>
+    </CardBasic>
   );
 };
 

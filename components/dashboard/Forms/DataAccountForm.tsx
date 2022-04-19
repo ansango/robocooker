@@ -5,9 +5,11 @@ import { selectUser } from "@/store/features/user";
 import { updateUser } from "@/store/features/user/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Button from "components/common/Button/Button/Button";
+import CardBasic from "components/common/Cards/Basic/CardBasic";
+import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
+import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import { Date, Form, Input, TextArea } from "components/common/Forms";
 import { FC, useCallback } from "react";
-
 
 type AccountDataForm = {
   username: string;
@@ -65,10 +67,10 @@ const DataAccountForm: FC = () => {
   );
   if (!user || !account) return <></>;
   return (
-    <Form onSubmit={onSubmit}>
-      <div className="p-4 bg-white rounded-lg border border-gray-200 shadow-sm sm:p-6 lg:p-8">
-        <h5 className="text-xl font-medium text-gray-900">Información</h5>
-        <div className="space-y-5 md:space-y-0 md:grid md:gap-5 md:grid-cols-2">
+    <CardBasic>
+      <CardBasicTitle title="Información" />
+      <Form onSubmit={onSubmit}>
+        <CardBasicContent>
           <Input
             type="text"
             name="username"
@@ -144,9 +146,9 @@ const DataAccountForm: FC = () => {
           <div className="col-span-2">
             <Button type="submit" label="Guardar" />
           </div>
-        </div>
-      </div>
-    </Form>
+        </CardBasicContent>
+      </Form>
+    </CardBasic>
   );
 };
 
