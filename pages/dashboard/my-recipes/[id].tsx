@@ -20,7 +20,7 @@ const Edit: NextPage = () => {
       <GenericDashboardHero title="Editar receta"/>
       <Breadcrumb>
         <BreadcrumbLink
-          href="/my-recipes"
+          href="/dashboard/my-recipes"
           label="Mis recetas"
           icon={{
             icon: "BookOpenIcon",

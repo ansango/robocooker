@@ -12,6 +12,8 @@ import { selectUser } from "@/store/features/user";
 import { selectAccount } from "@/store/features/account";
 import { signOut } from "@/store/features/user/thunks";
 import { removeAccountOnSignOut } from "@/store/features/account/thunks";
+import { removeMyRecipes } from "@/store/features/recipes/myRecipes/thunks";
+
 
 const User: FC = () => {
   const { pathname, replace } = useRouter();
@@ -22,6 +24,7 @@ const User: FC = () => {
     replace("/");
     dispatch(signOut());
     dispatch(removeAccountOnSignOut(1000));
+    dispatch(removeMyRecipes(1000));
   }, [dispatch, replace]);
 
   return (

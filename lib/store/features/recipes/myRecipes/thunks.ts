@@ -8,3 +8,12 @@ export const getMyRecipes = createAsyncThunk(
     return response;
   }
 );
+
+export const removeMyRecipes = createAsyncThunk(
+  "myRecipes/removeMyRecipes",
+  async (timing?: number) => {
+    return new Promise<void>((resolve) =>
+      setTimeout(() => resolve(), timing ?? 2000)
+    );
+  }
+);
