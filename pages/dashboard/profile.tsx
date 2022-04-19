@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import { selectUser } from "@/store/features/user";
 import { verifyEmail } from "@/store/features/user/thunks";
 
-const Settings: NextPage = () => {
+const Profile: NextPage = () => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const onVerify = () => dispatch(verifyEmail());
@@ -43,4 +43,4 @@ const Settings: NextPage = () => {
   );
 };
 
-export default Settings;
+export default Profile;

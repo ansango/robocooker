@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { FC, useCallback } from "react";
 import Avatar from "../Avatar/Avatar";
 import { Icon } from "../Icons";
-import { routesDashboard } from "./routes";
+import { routesDashboard, userNavRoutes } from "./routes";
 import ToggleTheme from "./ToggleTheme";
 import { selectUser } from "@/store/features/user";
 import { selectAccount } from "@/store/features/account";
@@ -40,7 +40,7 @@ const User: FC = () => {
           >
             <ToggleTheme />
 
-            {routesDashboard.map(({ label, path, icon }) => {
+            {userNavRoutes.map(({ label, path, icon }) => {
               const cn = routeActive(pathname, path)
                 ? "bg-primary text-white"
                 : "";

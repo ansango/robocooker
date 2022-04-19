@@ -2,7 +2,6 @@ import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import GreyContainer from "components/common/Container/GreyContainer";
 import { Form, Input } from "components/common/Forms";
 import { NextPage } from "next";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { selectUser } from "@/store/features/user";
@@ -15,11 +14,11 @@ import ButtonLink from "components/common/Button/ButtonLink";
 const SignIn: NextPage = () => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
-  const router = useRouter();
+  const { replace } = useRouter();
 
   useEffect(() => {
-    if (user) router.replace("/dashboard/settings/");
-  }, [user, router]);
+    if (user) replace("/dashboard");
+  }, [user, replace]);
 
   const onSignIn = useCallback(
     ({ email, password }: { email: Email; password: Password }) =>

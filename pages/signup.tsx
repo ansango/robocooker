@@ -14,7 +14,7 @@ const SignUp: NextPage = () => {
   const dispatch = useAppDispatch();
   const { replace } = useRouter();
   useEffect(() => {
-    if (user) replace("/dashboard/settings/");
+    if (user) replace("/dashboard");
   }, [user, replace]);
   const onSignUp = useCallback(
     ({
