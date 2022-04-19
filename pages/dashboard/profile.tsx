@@ -7,6 +7,7 @@ import ContainerDashboard from "components/dashboard/Container/ContainerDashboar
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import PreferencesForm from "components/dashboard/Forms/PreferencesForm";
 import SocialForms from "components/dashboard/Forms/SocialForms";
+import Alert from "components/common/Alert/Alert";
 
 const Profile: NextPage = () => {
   return (
@@ -15,6 +16,7 @@ const Profile: NextPage = () => {
 
       <div className="grid gap-5 grid-cols-12">
         <div className="col-span-full md:col-span-6 flex flex-col justify-end space-y-5">
+          <Alert />
           <div></div>
           <AvatarForm />
         </div>
