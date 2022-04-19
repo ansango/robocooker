@@ -19,13 +19,10 @@ const DeleteAccount = () => {
       <CardBasicTitle title="Eliminar cuenta" />
       <Form onSubmit={onSubmit}>
         <CardBasicContent>
-          <p>
-            Eliminando tu cuenta, se eliminarán todos tus datos personales de forma
-            permanente.
-          </p>
-          <p>
-            Si deseas continuar, por favor, escribe tu contraseña actual para
-            confirmar tu solicitud.
+          <p className="text-sm">
+            Eliminando tu cuenta, se eliminarán todos tus datos personales de
+            forma permanente. Si deseas continuar, por favor, escribe tu
+            contraseña actual para confirmar tu solicitud.
           </p>
           <div className="grid md:grid-cols-3">
             <Input
