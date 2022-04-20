@@ -1,6 +1,7 @@
 import { deleteUser } from "@/store/features/user/thunks";
 import { useAppDispatch } from "@/store/hooks";
 import CardBasic from "components/common/Cards/Basic/CardBasic";
+import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
 import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import { Form, Input } from "components/common/Forms";
@@ -37,9 +38,11 @@ const DeleteAccount = () => {
               }}
             />
           </div>
-          <button className="btn btn-error normal-case" type="submit">
-            Eliminar cuenta
-          </button>
+          <CardBasicAction>
+            <button className="btn btn-error normal-case" type="submit">
+              Eliminar cuenta
+            </button>
+          </CardBasicAction>
         </CardBasicContent>
       </Form>
     </CardBasic>

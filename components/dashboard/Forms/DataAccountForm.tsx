@@ -5,6 +5,7 @@ import { selectUser } from "@/store/features/user";
 import { updateUser } from "@/store/features/user/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import CardBasic from "components/common/Cards/Basic/CardBasic";
+import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import { Date, Form, Input, TextArea } from "components/common/Forms";
 import { FC, useCallback } from "react";
@@ -186,7 +187,6 @@ const DataAccountForm: FC = () => {
               name="address"
               label="Dirección"
               {...(account && { defaultValue: account.address.address })}
-              
             />
           </div>
 
@@ -219,9 +219,11 @@ const DataAccountForm: FC = () => {
           </div>
 
           <div className="col-span-full">
-            <button type="submit" className="btn btn-primary normal-case">
-              Guardar
-            </button>
+            <CardBasicAction>
+              <button type="submit" className="btn btn-primary normal-case">
+                Guardar
+              </button>
+            </CardBasicAction>
           </div>
         </div>
       </Form>

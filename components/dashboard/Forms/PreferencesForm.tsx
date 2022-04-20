@@ -10,6 +10,7 @@ import { getCategories } from "@/store/features/categories/thunks";
 import { selectUser } from "@/store/features/user";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import CardBasic from "components/common/Cards/Basic/CardBasic";
+import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import { Checkbox, Form } from "components/common/Forms";
 import React, { FC, useCallback, useEffect } from "react";
@@ -76,9 +77,11 @@ const PreferencesForm: FC = () => {
             ))}
           </div>
         </div>
-        <button type="submit" className="btn btn-primary normal-case">
-          Guardar
-        </button>
+        <CardBasicAction>
+          <button type="submit" className="btn btn-primary normal-case">
+            Guardar
+          </button>
+        </CardBasicAction>
       </Form>
     </CardBasic>
   );

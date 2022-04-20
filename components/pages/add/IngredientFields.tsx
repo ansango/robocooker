@@ -16,7 +16,7 @@ const Ingredients: FC = () => {
         {fields.map((item, index) => {
           return (
             <li key={item.id} className="grid grid-cols-12 gap-5">
-              <div className="col-span-full sm:col-span-4 md:col-span-6 lg:col-span-7">
+              <div className="col-span-full sm:col-span-4 md:col-span-6 lg:col-span-6">
                 <Input
                   name={`ingredients[${index}].name`}
                   type="text"
@@ -42,9 +42,9 @@ const Ingredients: FC = () => {
                   label="Unidad"
                 />
               </div>
-              <div className="flex items-end justify-end col-span-full sm:col-span-2 lg:col-span-1">
+              <div className="flex items-end justify-end col-span-full sm:col-span-2 lg:col-span-2">
                 <button
-                  className="btn btn-error w-full sm:max-w-[3rem] sm:btn-circle"
+                  className="btn btn-error btn-circle"
                   type="button"
                   onClick={() => remove(index)}
                 >
@@ -54,18 +54,19 @@ const Ingredients: FC = () => {
             </li>
           );
         })}
-      </ul>{" "}
+      </ul>
       <div className="flex items-center justify-end space-x-4">
-        <h6 className="font-semibold">Añadir ingredientes</h6>
-        <button
-          className="btn btn-success normal-case btn-circle btn-md"
-          type="button"
-          onClick={() => {
-            append({ name: "", measure: "", quantity: "" });
-          }}
-        >
-          <Icon icon="PlusIcon" kind="outline" className="w-5 h-5" />
-        </button>
+        <div className="tooltip tooltip-left" data-tip="Añadir ingredientes">
+          <button
+            className="btn btn-success normal-case btn-circle btn-md"
+            type="button"
+            onClick={() => {
+              append({ name: "", measure: "", quantity: "" });
+            }}
+          >
+            <Icon icon="PlusIcon" kind="outline" className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </>
   );

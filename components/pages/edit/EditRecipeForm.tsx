@@ -12,6 +12,9 @@ import { FormProvider, useForm } from "react-hook-form";
 import IngredientFields from "./IngredientFields";
 import StepsFields from "./StepsField";
 import FileLarge from "components/common/Forms/FileLarge";
+import CardSlim from "components/common/Cards/Slim/CardSlim";
+import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
+import CardSlimAction from "components/common/Cards/Slim/CardSlimAction";
 
 type Selector = {
   label: any;
@@ -123,108 +126,178 @@ const EditRecipeForm: FC<Props> = ({ recipe }) => {
     };
     const errors = validateData(data);
     if (Object.keys(errors).length > 0) {
-      
       return;
     }
-    
   };
   if (!recipe) return null;
   return (
     <FormProvider {...methods}>
-      <form className="space-y-10" onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-1 gap-10">
-          <Step
-            title="Información básica"
-            step={1}
-            icon={{
-              kind: "outline",
-              type: "DocumentIcon",
-            }}
-          >
-            <Input
-              name="name"
-              label="Nombre"
-              type="text"
-              options={{
-                required: { value: true, message: "Introduce un nombre" },
+      <form
+        className="grid gap-5 grid-cols-12"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="col-span-full md:col-span-6 lg:col-span-6 2xl:col-span-3 flex flex-col justify-end">
+          <CardSlim>
+            <Step
+              title="Foto de la receta"
+              step={1}
+              icon={{
+                kind: "outline",
+                type: "CameraIcon",
               }}
-              {...(recipe && { defaultValue: recipe.name })}
-            />
-            <TextArea
-              name="description"
-              label="Descripción"
-              options={{
-                required: { value: true, message: "Introduce una descripción" },
-              }}
-              {...(recipe && { defaultValue: recipe.description })}
-            />
-            <FileLarge
-              name="image"
-              options={{
-                required: { value: true, message: "Añade una foto" },
-              }}
-              // TODO: CAMBIAR POR AVATAR ?
-            />
-          </Step>
-          <Step
-            title="Categorías"
-            step={2}
-            icon={{
-              kind: "outline",
-              type: "DocumentTextIcon",
-            }}
-          >
-            <MultiSelect
-              label="Categorías"
-              options={cats}
-              value={selectedCategories}
-              onChange={setSelectedCategories}
-              labelledBy="Select"
-            />
-            <MultiSelect
-              label="Robots de cocina"
-              options={blends}
-              value={selectedBlenders}
-              onChange={setSelectedBlenders}
-              labelledBy="Select"
-            />
-            <div className="grid gap-5 md:grid-cols-2">
-              <Input
-                name="servings"
-                type="number"
-                label="Raciones"
-                options={{
-                  required: { value: true, message: "Introduce un número" },
-                }}
-                {...(recipe && { defaultValue: recipe.servings })}
-              />
-              <Input
-                name="duration"
-                type="number"
-                label="Tiempo (mins)"
-                options={{
-                  required: { value: true, message: "Introduce un número" },
-                }}
-                {...(recipe && { defaultValue: recipe.duration })}
-              />
-            </div>
-            <IngredientFields />
-          </Step>
-          <Step
-            title="Pasos"
-            step={3}
-            icon={{
-              kind: "outline",
-              type: "CollectionIcon",
-            }}
-          >
-            <StepsFields />
-          </Step>
+            >
+              <CardSlimContent>
+                <FileLarge
+                  name="image"
+                  options={{
+                    required: { value: true, message: "Añade una foto" },
+                  }}
+                  // TODO: CAMBIAR POR AVATAR ?
+                />
+                <CardSlimAction>
+                  <button className="btn btn-primary normal-case" type="submit">
+                    Guardar
+                  </button>
+                </CardSlimAction>
+              </CardSlimContent>
+            </Step>
+          </CardSlim>
         </div>
-        <div className="flex justify-end w-full px-5">
-          <button className="btn btn-primary normal-case" type="submit">
-            Guardar cambios
-          </button>
+        <div className="col-span-full md:col-span-6 lg:col-span-6 2xl:col-span-3 flex flex-col justify-end">
+          <CardSlim>
+            <Step
+              title="Información básica"
+              step={2}
+              icon={{
+                kind: "outline",
+                type: "DocumentIcon",
+              }}
+            >
+              <CardSlimContent>
+                <Input
+                  name="name"
+                  label="Nombre"
+                  type="text"
+                  options={{
+                    required: { value: true, message: "Introduce un nombre" },
+                  }}
+                  {...(recipe && { defaultValue: recipe.name })}
+                />
+                <Input
+                  name="servings"
+                  type="number"
+                  label="Raciones"
+                  options={{
+                    required: { value: true, message: "Introduce un número" },
+                  }}
+                  {...(recipe && { defaultValue: recipe.servings })}
+                />
+                <Input
+                  name="duration"
+                  type="number"
+                  label="Tiempo (mins)"
+                  options={{
+                    required: { value: true, message: "Introduce un número" },
+                  }}
+                  {...(recipe && { defaultValue: recipe.duration })}
+                />
+                <TextArea
+                  name="description"
+                  label="Descripción"
+                  options={{
+                    required: {
+                      value: true,
+                      message: "Introduce una descripción",
+                    },
+                  }}
+                  {...(recipe && { defaultValue: recipe.description })}
+                />
+
+                <CardSlimAction>
+                  <button className="btn btn-primary normal-case" type="submit">
+                    Guardar
+                  </button>
+                </CardSlimAction>
+              </CardSlimContent>
+            </Step>
+          </CardSlim>
+        </div>
+
+        <div className="col-span-full 2xl:col-span-6 flex flex-col justify-end">
+          <CardSlim>
+            <Step
+              title="Categorías"
+              step={3}
+              icon={{
+                kind: "outline",
+                type: "DocumentTextIcon",
+              }}
+            >
+              <CardSlimContent>
+                <MultiSelect
+                  label="Categorías"
+                  options={cats}
+                  value={selectedCategories}
+                  onChange={setSelectedCategories}
+                  labelledBy="Select"
+                />
+                <MultiSelect
+                  label="Robots de cocina"
+                  options={blends}
+                  value={selectedBlenders}
+                  onChange={setSelectedBlenders}
+                  labelledBy="Select"
+                />
+                <CardSlimAction>
+                  <button className="btn btn-primary normal-case" type="submit">
+                    Guardar
+                  </button>
+                </CardSlimAction>
+              </CardSlimContent>
+            </Step>
+          </CardSlim>
+        </div>
+        <div className="col-span-full 2xl:col-span-6">
+          <CardSlim>
+            <Step
+              title="Ingredientes"
+              step={4}
+              icon={{
+                kind: "outline",
+                type: "ClipboardListIcon",
+              }}
+            >
+              <CardSlimContent>
+                <IngredientFields />
+                <CardSlimAction>
+                  <button className="btn btn-primary normal-case" type="submit">
+                    Guardar
+                  </button>
+                </CardSlimAction>
+              </CardSlimContent>
+            </Step>
+          </CardSlim>
+        </div>
+        <div className="col-span-full 2xl:col-span-6">
+          <CardSlim>
+            <Step
+              title="Preparación"
+              step={5}
+              icon={{
+                kind: "outline",
+                type: "CollectionIcon",
+              }}
+            >
+              <CardSlimContent>
+                <StepsFields />
+                <CardSlimAction>
+                  <button className="btn btn-primary normal-case" type="submit">
+                    Guardar
+                  </button>
+                </CardSlimAction>
+              </CardSlimContent>
+            </Step>
+          </CardSlim>
         </div>
       </form>
     </FormProvider>

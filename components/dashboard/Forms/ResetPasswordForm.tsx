@@ -5,6 +5,7 @@ import { updatePassword } from "@/store/features/user/thunks";
 import CardBasic from "components/common/Cards/Basic/CardBasic";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
+import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
 
 const ResetPasswordForm = () => {
   const dispatch = useAppDispatch();
@@ -41,10 +42,12 @@ const ResetPasswordForm = () => {
             options={{
               required: { value: true, message: "Introduce tu contraseña" },
             }}
-          />
-          <button type="submit" className="btn btn-primary normal-case">
-            Guardar
-          </button>
+          />{" "}
+          <CardBasicAction>
+            <button type="submit" className="btn btn-primary normal-case">
+              Guardar
+            </button>
+          </CardBasicAction>
         </CardBasicContent>
       </Form>
     </CardBasic>

@@ -36,10 +36,7 @@ const Edit: NextPage = () => {
             }}
           />
         </Breadcrumb>
-
-        <div className="bg-base-100 p-5 rounded-lg shadow-sm mx-auto">
-          <EditRecipeForm recipe={recipe} />
-        </div>
+        <EditRecipeForm recipe={recipe} />
       </ContainerDashboard>
     </DashboardLayout>
   );

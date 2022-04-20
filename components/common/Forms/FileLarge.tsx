@@ -16,7 +16,7 @@ const FileLarge: FC<Props> = ({ name, options, label, ...rest }) => {
     formState: { errors },
   } = useFormContext();
   return (
-    <>
+    <div className="form-control w-full">
       {label && <Label name={name} label={label} errors={errors} />}
       <input
         type="file"
@@ -25,7 +25,7 @@ const FileLarge: FC<Props> = ({ name, options, label, ...rest }) => {
         {...rest}
       />
       <Error errors={errors} name={name} {...rest} />
-    </>
+    </div>
   );
 };
 

@@ -5,7 +5,7 @@ type Props = {
 };
 
 const StepContainer: FC<Props> = ({ children }) => {
-  return <div className="space-y-2 px-2 md:px-5">{children}</div>;
+  return <div className="space-y-2">{children}</div>;
 };
 
 export default StepContainer;

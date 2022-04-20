@@ -9,6 +9,7 @@ import { selectAccount } from "@/store/features/account";
 import { updateAvatar } from "@/store/features/account/thunks";
 import CardBasic from "components/common/Cards/Basic/CardBasic";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
+import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
 
 const AvatarForm = () => {
   const account = useAppSelector(selectAccount);
@@ -39,15 +40,14 @@ const AvatarForm = () => {
                 <Avatar size="md" imgUrl={account?.avatar} />
               </div>
             </div>
-            <button type="submit" className="btn btn-primary normal-case">
-              Guardar
-            </button>
           </div>
           <div className="space-y-4 w-full">
             <CardBasicTitle title={title} />
 
             {account?.firstName && (
-              <h4 className="text-gray-600 dark:text-gray-400">@{user?.username}</h4>
+              <h4 className="text-gray-600 dark:text-gray-400">
+                @{user?.username}
+              </h4>
             )}
             <div>
               <File
@@ -59,6 +59,11 @@ const AvatarForm = () => {
             </div>
           </div>
         </div>
+        <CardBasicAction>
+          <button type="submit" className="btn btn-primary normal-case">
+            Guardar
+          </button>
+        </CardBasicAction>
       </Form>
     </CardBasic>
   );

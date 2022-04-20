@@ -8,16 +8,16 @@ import { useCallback, useEffect, useState } from "react";
 import Step from "components/common/Stepper/Step";
 import { selectBlenders } from "@/store/features/blenders";
 import { getBlenders } from "@/store/features/blenders/thunks";
-import { FieldErrors, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import IngredientFields from "./IngredientFields";
 import StepsFields from "./StepsField";
 import FileLarge from "components/common/Forms/FileLarge";
 import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
-import Error from "components/common/Forms/Error";
-import { getLastRecipes } from "@/store/features/recipes/lastRecipes/thunks";
 import { addMyRecipe } from "@/store/features/recipes/myRecipes/thunks";
 import { selectAccount } from "@/store/features/account";
 import { useRouter } from "next/router";
+import CardSlim from "components/common/Cards/Slim/CardSlim";
+import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 
 type Selector = {
   label: any;
@@ -102,109 +102,163 @@ const AddRecipeForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <form className="space-y-10" onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-1 gap-10">
-          <Step
-            title="Información básica"
-            step={1}
-            icon={{
-              kind: "outline",
-              type: "DocumentIcon",
-            }}
-          >
-            <CardBasicContent>
-              <Input
-                name="name"
-                label="Nombre"
-                type="text"
-                options={{
-                  required: { value: true, message: "Introduce un nombre" },
-                }}
-              />
-              <TextArea
-                name="description"
-                label="Descripción"
-                options={{
-                  required: {
-                    value: true,
-                    message: "Introduce una descripción",
-                  },
-                }}
-              />
-              <FileLarge
-                name="file"
-                options={{
-                  required: {
-                    value: true,
-                    message: "Añade una imagen",
-                  },
-                }}
-              />
-            </CardBasicContent>
-          </Step>
-          <Step
-            title="Categorías"
-            step={2}
-            icon={{
-              kind: "outline",
-              type: "DocumentTextIcon",
-            }}
-          >
-            <CardBasicContent>
-              <MultiSelect
-                label="Categorías"
-                options={cats}
-                value={selectedCategories}
-                onChange={setSelectedCategories}
-                labelledBy="Select"
-              />
-
-              <MultiSelect
-                label="Robots de cocina"
-                options={blends}
-                value={selectedBlenders}
-                onChange={setSelectedBlenders}
-                labelledBy="Select"
-              />
-
-              <div className="grid gap-5 md:grid-cols-2">
-                <Input
-                  name="servings"
-                  type="number"
-                  label="Raciones"
-                  options={{
-                    required: { value: true, message: "Introduce un número" },
-                  }}
-                />
-                <Input
-                  name="duration"
-                  type="number"
-                  label="Tiempo (mins)"
-                  options={{
-                    required: { value: true, message: "Introduce un número" },
-                  }}
-                />
-              </div>
-              <IngredientFields />
-            </CardBasicContent>
-          </Step>
-          <Step
-            title="Pasos"
-            step={3}
-            icon={{
-              kind: "outline",
-              type: "CollectionIcon",
-            }}
-          >
-            <CardBasicContent>
-              <StepsFields />
-            </CardBasicContent>
-          </Step>
+      <form
+        className="grid gap-5 grid-cols-12"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="col-span-full lg:col-span-6">
+          <CardSlim>
+            <Step
+              title="Información básica"
+              step={1}
+              icon={{
+                kind: "outline",
+                type: "DocumentIcon",
+              }}
+            >
+              <CardSlimContent>
+                <div className="grid gap-4 grid-cols-12">
+                  <div className="col-span-full sm:col-span-6 lg:col-span-full 2xl:col-span-6">
+                    <Input
+                      name="name"
+                      label="Nombre"
+                      type="text"
+                      options={{
+                        required: {
+                          value: true,
+                          message: "Introduce un nombre",
+                        },
+                      }}
+                    />
+                  </div>
+                  <div className="col-span-full sm:col-span-6 lg:col-span-full 2xl:col-span-6">
+                    <FileLarge
+                      label="Imagen"
+                      name="file"
+                      options={{
+                        required: {
+                          value: true,
+                          message: "Añade una imagen",
+                        },
+                      }}
+                    />
+                  </div>
+                  <div className="col-span-full sm:col-span-6 lg:col-span-full 2xl:col-span-6">
+                    <Input
+                      name="servings"
+                      type="number"
+                      label="Raciones"
+                      options={{
+                        required: {
+                          value: true,
+                          message: "Introduce un número",
+                        },
+                      }}
+                    />
+                  </div>
+                  <div className="col-span-full sm:col-span-6 lg:col-span-full 2xl:col-span-6">
+                    <Input
+                      name="duration"
+                      type="number"
+                      label="Tiempo (mins)"
+                      options={{
+                        required: {
+                          value: true,
+                          message: "Introduce un número",
+                        },
+                      }}
+                    />
+                  </div>
+                  <div className="col-span-full">
+                    <TextArea
+                      name="description"
+                      label="Descripción"
+                      options={{
+                        required: {
+                          value: true,
+                          message: "Introduce una descripción",
+                        },
+                      }}
+                    />
+                  </div>
+                </div>
+              </CardSlimContent>
+            </Step>
+          </CardSlim>
         </div>
-        <div className="flex justify-end w-full px-5">
-          <button className="btn btn-primary normal-case" type="submit">
-            Crear receta
-          </button>
+        <div className="col-span-full lg:col-span-6">
+          <CardSlim>
+            <Step
+              title="Categorías"
+              step={2}
+              icon={{
+                kind: "outline",
+                type: "DocumentTextIcon",
+              }}
+            >
+              <CardSlimContent>
+                <div className="grid gap-4 grid-cols-12">
+                  <div className="col-span-full sm:col-span-6 lg:col-span-full ">
+                    <MultiSelect
+                      label="Categorías"
+                      options={cats}
+                      value={selectedCategories}
+                      onChange={setSelectedCategories}
+                      labelledBy="Select"
+                    />
+                  </div>
+                  <div className="col-span-full sm:col-span-6 lg:col-span-full ">
+                    <MultiSelect
+                      label="Robots de cocina"
+                      options={blends}
+                      value={selectedBlenders}
+                      onChange={setSelectedBlenders}
+                      labelledBy="Select"
+                    />
+                  </div>
+                </div>
+              </CardSlimContent>
+            </Step>
+          </CardSlim>
+        </div>
+        <div className="col-span-full 2xl:col-span-6">
+          <CardSlim>
+            <Step
+              title="Ingredientes"
+              step={3}
+              icon={{
+                kind: "outline",
+                type: "ClipboardListIcon",
+              }}
+            >
+              <CardSlimContent>
+                <IngredientFields />
+              </CardSlimContent>
+            </Step>
+          </CardSlim>
+        </div>
+        <div className="col-span-full 2xl:col-span-6">
+          <CardSlim>
+            <Step
+              title="Preparación"
+              step={4} 
+              icon={{
+                kind: "outline",
+                type: "CollectionIcon",
+              }}
+            >
+              <CardBasicContent>
+                <StepsFields />
+              </CardBasicContent>
+            </Step>
+          </CardSlim>
+        </div>
+        <div className="col-span-full">
+          <div className="flex justify-end w-full">
+            <button className="btn btn-primary normal-case" type="submit">
+              Crear receta
+            </button>
+          </div>
         </div>
       </form>
     </FormProvider>

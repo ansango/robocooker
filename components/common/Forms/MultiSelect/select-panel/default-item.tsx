@@ -26,7 +26,7 @@ const DefaultItemRenderer = ({
         tabIndex={-1}
         disabled={disabled}
       />
-      <span className="capitalize">{option.label}</span>
+      <span className="capitalize line-clamp-1">{option.label}</span>
     </label>
   </div>
 );

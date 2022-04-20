@@ -10,9 +10,7 @@ const AddRecipe: NextPage = () => {
       <ContainerDashboard>
         <GenericDashboardHero title="Crea una receta!" />
 
-        <div className="bg-base-100 p-5 rounded-lg shadow-sm mx-auto max-w-4xl">
-          <AddRecipeForm />
-        </div>
+        <AddRecipeForm />
       </ContainerDashboard>
     </DashboardLayout>
   );

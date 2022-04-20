@@ -42,16 +42,17 @@ const Steps = () => {
         })}
       </ul>
       <div className="flex items-center justify-end space-x-4">
-        <h6 className="font-semibold">Añadir pasos</h6>
-        <button
-          className="btn btn-success normal-case btn-circle btn-md"
-          type="button"
-          onClick={() => {
-            append({ description: "", position: fields.length + 1 });
-          }}
-        >
-          <Icon icon="PlusIcon" kind="outline" className="w-5 h-5" />
-        </button>
+        <div className="tooltip tooltip-left" data-tip="Añadir pasos">
+          <button
+            className="btn btn-success normal-case btn-circle btn-md"
+            type="button"
+            onClick={() => {
+              append({ description: "", position: fields.length + 1 });
+            }}
+          >
+            <Icon icon="PlusIcon" kind="outline" className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </>
   );
