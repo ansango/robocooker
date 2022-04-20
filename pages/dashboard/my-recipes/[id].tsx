@@ -5,12 +5,13 @@ import BreadcrumbLink from "components/common/Breadcrumb/BreadcrumbLink";
 import BreadcrumbNoLink from "components/common/Breadcrumb/BreadcrumbNoLink";
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import ContainerDashboard from "components/dashboard/ContainerDashboard";
+import BasicDataForm from "components/dashboard/pages/my-recipes/BasicDataForm";
+import CategoriesForm from "components/dashboard/pages/my-recipes/CategoriesForm";
+import ImageForm from "components/dashboard/pages/my-recipes/ImageForm";
+import IngredientsForm from "components/dashboard/pages/my-recipes/IngredientsForm";
+import StepsForm from "components/dashboard/pages/my-recipes/StepsForm";
 import DashboardLayout from "components/layout/DashboardLayout";
-import BasicDataForm from "components/pages/edit/Forms/BasicDataForm";
-import CategoriesForm from "components/pages/edit/Forms/CategoriesForm";
-import ImageForm from "components/pages/edit/Forms/ImageForm";
-import IngredientsForm from "components/pages/edit/Forms/IngredientsForm";
-import StepsForm from "components/pages/edit/Forms/StepsForm";
+
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 

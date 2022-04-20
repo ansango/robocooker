@@ -1,8 +1,9 @@
 import { NextPage } from "next";
-import AddRecipeForm from "components/pages/add/AddRecipeForm";
+
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import ContainerDashboard from "components/dashboard/ContainerDashboard";
 import DashboardLayout from "components/layout/DashboardLayout";
+import AddRecipeForm from "components/dashboard/pages/recipe-add/AddRecipeForm";
 
 const AddRecipe: NextPage = () => {
   return (

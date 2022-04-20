@@ -76,7 +76,7 @@ const CategoriesForm: FC<Props> = ({ recipe }) => {
     }
   }, [categories, blenders]);
   return (
-    <div className="col-span-full 2xl:col-span-6 flex flex-col justify-end">
+    <div className="col-span-full 2xl:col-span-4">
       <Form onSubmit={() => {}}>
         <CardSlim>
           <Step

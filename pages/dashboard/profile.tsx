@@ -1,15 +1,15 @@
-import DataAccountForm from "components/dashboard/Forms/DataAccountForm";
-import AvatarForm from "components/dashboard/Forms/AvatarForm";
-import { NextPage } from "next";
-import React from "react";
-import ResetPasswordForm from "components/dashboard/Forms/ResetPasswordForm";
-import ContainerDashboard from "components/dashboard/ContainerDashboard";
-import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
-import PreferencesForm from "components/dashboard/Forms/PreferencesForm";
-import SocialForms from "components/dashboard/Forms/SocialForms/SocialForms";
 import Alert from "components/common/Alert/Alert";
-import DeleteAccount from "components/dashboard/Forms/DeleteAccount";
+import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
+import ContainerDashboard from "components/dashboard/ContainerDashboard";
+import AvatarForm from "components/dashboard/pages/profile/AvatarForm";
+import DataAccountForm from "components/dashboard/pages/profile/DataAccountForm";
+import DeleteAccount from "components/dashboard/pages/profile/DeleteAccount";
+import PreferencesForm from "components/dashboard/pages/profile/PreferencesForm";
+import ResetPasswordForm from "components/dashboard/pages/profile/ResetPasswordForm";
+import SocialForms from "components/dashboard/pages/profile/SocialForms/SocialForms";
 import DashboardLayout from "components/layout/DashboardLayout";
+import { NextPage } from "next";
+
 const Profile: NextPage = () => {
   return (
     <DashboardLayout>

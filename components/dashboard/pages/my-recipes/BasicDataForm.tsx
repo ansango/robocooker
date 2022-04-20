@@ -12,7 +12,7 @@ type Props = {
 
 const BasicDataForm: FC<Props> = ({ recipe }) => {
   return (
-    <div className="col-span-full md:col-span-6 lg:col-span-6 2xl:col-span-3 flex flex-col justify-end">
+    <div className="col-span-full md:col-span-6 lg:col-span-6 2xl:col-span-4">
       <Form onSubmit={() => {}}>
         <CardSlim>
           <Step
