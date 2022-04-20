@@ -30,7 +30,7 @@ const Steps = () => {
 
               <div className="flex items-end justify-end col-span-full sm:col-span-2">
                 <button
-                  className="btn btn-error w-full sm:max-w-[3rem] sm:btn-circle"
+                  className="btn btn-error btn-circle"
                   type="button"
                   onClick={() => remove(index)}
                 >

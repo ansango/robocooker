@@ -1,18 +1,16 @@
-import { selectRecipe } from "@/store/features/recipes/recipe";
-import { useAppSelector } from "@/store/hooks";
+
 import { Input, Select } from "components/common/Forms";
 import { Icon } from "components/common/Icons";
 import { FC, memo } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
 const Ingredients: FC = () => {
-  const ingredients = useAppSelector(selectRecipe)?.ingredients;
   const { control } = useFormContext();
   const { fields, remove, append } = useFieldArray({
     control,
     name: "ingredients",
   });
-  if (!ingredients) return null;
+
   return (
     <>
       <ul className="space-y-2 w-full">
@@ -47,7 +45,7 @@ const Ingredients: FC = () => {
               </div>
               <div className="flex items-end justify-end col-span-full sm:col-span-2 lg:col-span-2">
                 <button
-                  className="btn btn-error w-full sm:max-w-[3rem] sm:btn-circle"
+                  className="btn btn-error btn-circle"
                   type="button"
                   onClick={() => remove(index)}
                 >

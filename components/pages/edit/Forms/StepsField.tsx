@@ -1,11 +1,10 @@
-import { Input, Select, TextArea } from "components/common/Forms";
+import { Input, TextArea } from "components/common/Forms";
 import { Icon } from "components/common/Icons";
 import React, { memo } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
 const Steps = () => {
-  // TODO: VALIDATION
-  const { control, register } = useFormContext();
+  const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "steps",
@@ -30,7 +29,7 @@ const Steps = () => {
 
               <div className="flex items-end justify-end col-span-full sm:col-span-2">
                 <button
-                  className="btn btn-error w-full sm:max-w-[3rem] sm:btn-circle"
+                  className="btn btn-error btn-circle"
                   type="button"
                   onClick={() => remove(index)}
                 >
