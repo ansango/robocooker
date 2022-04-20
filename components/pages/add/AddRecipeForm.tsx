@@ -74,19 +74,25 @@ const AddRecipeForm = () => {
   const onSubmit = useCallback(
     async (values: any) => {
       if (!accountId) return;
-      const recipe: RecipeDAO = {
-        name: values.name,
-        description: values.description,
-        accountId,
-        duration: values.duration,
-        servings: values.servings,
-        categories: selectedCategories.map(({ value }) => value),
-        blenders: selectedBlenders.map(({ value }) => value),
-        ingredients: values.ingredients,
-        steps: values.steps,
-      };
-
-      dispatch(addMyRecipe({ recipe }));
+      console.log(values);
+      const image = values.file[0];
+      const isImage = image ? image.type.startsWith("image") : null;
+      if (image && isImage) {
+        const formData = new FormData();
+        formData.append("image", image);
+        const recipe: RecipeDAO = {
+          name: values.name,
+          description: values.description,
+          accountId,
+          duration: values.duration,
+          servings: values.servings,
+          categories: selectedCategories.map(({ value }) => value),
+          blenders: selectedBlenders.map(({ value }) => value),
+          ingredients: values.ingredients,
+          steps: values.steps,
+        };
+        dispatch(addMyRecipe({ recipe, file: formData }));
+      }
     },
     [dispatch, accountId, selectedCategories, selectedBlenders]
   );
@@ -119,6 +125,15 @@ const AddRecipeForm = () => {
                   required: {
                     value: true,
                     message: "Introduce una descripción",
+                  },
+                }}
+              />
+              <FileLarge
+                name="file"
+                options={{
+                  required: {
+                    value: true,
+                    message: "Añade una imagen",
                   },
                 }}
               />

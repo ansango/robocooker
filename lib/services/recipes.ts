@@ -47,7 +47,21 @@ export const onPostRecipeService = async (
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ recipe }),
     });
+    return response.recipe;
+  } catch (error) {
+    throw error;
+  }
+};
 
+export const onUpdateImageRecipeService = async (
+  id: string,
+  file: FormData
+): Promise<RecipeDTO> => {
+  try {
+    const response = await fetcher(`/api/recipes/image/${id}`, {
+      method: "PATCH",
+      body: file,
+    });
     return response.recipe;
   } catch (error) {
     throw error;

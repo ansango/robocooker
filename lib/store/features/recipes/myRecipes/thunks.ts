@@ -1,5 +1,9 @@
 import { RecipeDAO } from "@/models/recipe/recipe";
-import { onGetMyRecipesService, onPostRecipeService } from "@/services/recipes";
+import {
+  onGetMyRecipesService,
+  onPostRecipeService,
+  onUpdateImageRecipeService,
+} from "@/services/recipes";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getMyRecipes = createAsyncThunk(
@@ -21,8 +25,9 @@ export const removeMyRecipes = createAsyncThunk(
 
 export const addMyRecipe = createAsyncThunk(
   "myRecipes/addMyRecipe",
-  async ({ recipe }: { recipe: RecipeDAO }) => {
-    const response = await onPostRecipeService(recipe);
+  async ({ recipe, file }: { recipe: RecipeDAO; file: FormData }) => {
+    const { _id } = await onPostRecipeService(recipe);
+    const response = await onUpdateImageRecipeService(_id, file);
     return response;
   }
 );
