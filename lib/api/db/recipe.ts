@@ -6,19 +6,48 @@ import { Account, User } from "@/models/user/user";
 
 export const insertRecipe = async (
   db: Db,
+  accountId: AccountId,
   content: RecipeDAO
-): Promise<Recipe> => {
-  const recipe: Recipe = {
+): Promise<RecipeDAO> => {
+  const recipe: any = {
     ...content,
     likes: [],
     comments: [],
     created: new Date(),
     _id: new ObjectId(),
+    img: "",
   };
+  
   try {
     await db.collection("recipes").insertOne(recipe);
-    await updateAccountRecipesById(db, content.accountId, recipe._id);
+    await updateAccountRecipesById(db, accountId, recipe._id);
     return recipe;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const findRecipeById = async (db: Db, id: RecipeId): Promise<Recipe> => {
+  try {
+    const response = (await db
+      .collection("recipes")
+      .findOne({ _id: new ObjectId(id) })) as Recipe;
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateImageRecipeById = async (
+  db: Db,
+  id: string,
+  img: string
+): Promise<boolean> => {
+  try {
+    await db
+      .collection("recipes")
+      .findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { img } });
+    return true;
   } catch (error) {
     throw error;
   }

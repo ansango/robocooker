@@ -123,10 +123,10 @@ const EditRecipeForm: FC<Props> = ({ recipe }) => {
     };
     const errors = validateData(data);
     if (Object.keys(errors).length > 0) {
-      console.log(errors);
+      
       return;
     }
-    console.log(data);
+    
   };
   if (!recipe) return null;
   return (

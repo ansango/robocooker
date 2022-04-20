@@ -1,4 +1,4 @@
-import { RecipeDTO } from "@/models/recipe/recipe";
+import { RecipeDAO, RecipeDTO } from "@/models/recipe/recipe";
 import fetcher from "@/utils/fetcher";
 
 export const onGetLastRecipesService = async (
@@ -32,6 +32,22 @@ export const onGetRecipeByIdService = async (
     const response = await fetcher(`/api/recipes/${id}`, {
       method: "GET",
     });
+    return response.recipe;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const onPostRecipeService = async (
+  recipe: RecipeDAO
+): Promise<RecipeDTO> => {
+  try {
+    const response = await fetcher(`/api/recipes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ recipe }),
+    });
+
     return response.recipe;
   } catch (error) {
     throw error;

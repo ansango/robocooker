@@ -14,7 +14,6 @@ handler.get(async (req, res) => {
   }
 
   try {
-    console.log(req.user);
     const data = await findRecipesByAccountId(req.db, req.user.accountId);
     return res.json({ data });
   } catch (error) {

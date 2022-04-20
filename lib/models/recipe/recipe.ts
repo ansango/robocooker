@@ -4,7 +4,6 @@ type RecipeDAO = {
   categories: CategoryName[];
   description: Content;
   duration: Duration;
-  img: Url;
   ingredients: Ingredient[];
   name: Name;
   servings: Servings;
@@ -24,7 +23,7 @@ type Recipe = {
   _id: RecipeId;
   name: Name;
   description: Content;
-  img: Url;
+  img: Url | null;
   categories: CategoryName[];
   servings: Servings;
   duration: Duration;

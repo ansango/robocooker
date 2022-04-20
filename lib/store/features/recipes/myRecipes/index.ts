@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AppState } from "../../..";
 import { initialState } from "./state";
-import { getMyRecipes, removeMyRecipes } from "./thunks";
+import { getMyRecipes, removeMyRecipes, addMyRecipe } from "./thunks";
 export const myRecipesSlice = createSlice({
   name: "myRecipes",
   initialState,
@@ -27,6 +27,16 @@ export const myRecipesSlice = createSlice({
         state.value = null;
       })
       .addCase(removeMyRecipes.rejected, (state) => {
+        state.status = "failed";
+      });
+    builder
+      .addCase(addMyRecipe.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(addMyRecipe.fulfilled, (state) => {
+        state.status = "idle";
+      })
+      .addCase(addMyRecipe.rejected, (state) => {
         state.status = "failed";
       });
   },

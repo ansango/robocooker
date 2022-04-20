@@ -12,8 +12,9 @@ handler.post(...auth, async (req, res) => {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
-  const recipe = await insertRecipe(req.db, req.body);
-  res.status(200).json({ recipe });
+  const { recipe } = req.body;
+  const recipeInserted = await insertRecipe(req.db, req.user.accountId, recipe);
+  res.status(200).json({ recipe: recipeInserted });
 });
 
 export default handler;
