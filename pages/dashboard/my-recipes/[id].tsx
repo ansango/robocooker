@@ -43,7 +43,7 @@ const Edit: NextPage = () => {
           />
         </Breadcrumb>
         <div className="grid gap-5 grid-cols-12">
-          <ImageForm />
+          <ImageForm img={recipe.img} />
           <BasicDataForm recipe={recipe} />
           <CategoriesForm recipe={recipe} />
           <IngredientsForm ingredients={recipe.ingredients} />

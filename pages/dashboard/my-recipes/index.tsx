@@ -32,13 +32,15 @@ const MyRecipes: NextPage = () => {
               <li key={_id}>
                 <div className="card w-full shadow-xl image-full before:opacity-50">
                   <figure className="w-full h-44 lg:h-40 relative">
-                    <Image
-                      src={img}
-                      loading="lazy"
-                      alt="hero"
-                      layout="fill"
-                      className="object-center object-cover pointer-events-none"
-                    />
+                    {img && (
+                      <Image
+                        src={img}
+                        loading="lazy"
+                        alt="hero"
+                        layout="fill"
+                        className="object-center object-cover pointer-events-none"
+                      />
+                    )}
                   </figure>
                   <div className="card-body p-5 justify-between">
                     <h2 className="card-title capitalize text-white">{name}</h2>
