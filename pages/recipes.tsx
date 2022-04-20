@@ -1,4 +1,3 @@
-import GreyContainer from "components/common/Container/GreyContainer";
 import { Form, Input } from "components/common/Forms";
 import Cards from "components/skeletons/Cards";
 import { getRecipesBySearchParams } from "lib/mocks/recipes";
@@ -55,66 +54,63 @@ const Recipes: NextPage = () => {
           </button>
         </div>
       </Form>
-      <GreyContainer>
-        {loading ? (
-          <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-            <Cards length={9} />
-          </div>
-        ) : recipes ? (
-          <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-            {recipes.map(
-              ({
-                _id,
-                name,
-                accountId,
-                blenders,
-                categories,
-                comments,
-                created,
-                description,
-                duration,
-                img,
-                ingredients,
-                likes,
-                servings,
-                steps,
-              }) => (
-                <motion.div
-                  key={_id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="max-w-sm w-full p-4 mx-auto border border-gray-200 rounded-md shadow-sm max-h-md"
-                >
-                  <div className="w-full h-48">
-                    <img
-                      src={img}
-                      alt={name}
-                      className="object-cover h-48 w-full rounded-md"
-                    />
+
+      {loading ? (
+        <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
+          <Cards length={9} />
+        </div>
+      ) : recipes ? (
+        <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
+          {recipes.map(
+            ({
+              _id,
+              name,
+              accountId,
+              blenders,
+              categories,
+              comments,
+              created,
+              description,
+              duration,
+              img,
+              ingredients,
+              likes,
+              servings,
+              steps,
+            }) => (
+              <motion.div
+                key={_id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-sm w-full p-4 mx-auto border border-gray-200 rounded-md shadow-sm max-h-md"
+              >
+                <div className="w-full h-48">
+                  <img
+                    src={img}
+                    alt={name}
+                    className="object-cover h-48 w-full rounded-md"
+                  />
+                </div>
+                {categories.map((category) => (
+                  <div
+                    key={category}
+                    className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                  >
+                    {category}
                   </div>
-                  {categories.map((category) => (
-                    <div
-                      key={category}
-                      className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                    >
-                      {category}
-                    </div>
-                  ))}
-                  <h5 className="text-xl font-semibold text-gray-700">
-                    {name}
-                  </h5>
-                  <p className="text-gray-700">{description}</p>
-                </motion.div>
-              )
-            )}
-          </div>
-        ) : (
-          <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-            nope
-          </div>
-        )}
-      </GreyContainer>
+                ))}
+                <h5 className="text-xl font-semibold text-gray-700">{name}</h5>
+                <p className="text-gray-700">{description}</p>
+              </motion.div>
+            )
+          )}
+        </div>
+      ) : (
+        <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
+          nope
+        </div>
+      )}
     </MainLayout>
   );
 };

@@ -68,11 +68,9 @@ const onRecoveryPasswordService = async ({
 const onResetPasswordService = async ({
   tokenId,
   newPassword,
-  redirect,
 }: {
   tokenId: TokenId;
   newPassword: Password;
-  redirect: () => Promise<boolean>;
 }): Promise<void> => {
   try {
     await fetcher(`/api/user/password/recovery`, {
@@ -83,8 +81,6 @@ const onResetPasswordService = async ({
         newPassword,
       }),
     });
-
-    redirect();
   } catch (err: any) {
     throw err;
   }

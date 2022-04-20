@@ -93,7 +93,8 @@ export const resetPassword = createAsyncThunk(
     newPassword: Password;
     redirect: () => Promise<boolean>;
   }) => {
-    await onResetPasswordService({ tokenId, newPassword, redirect });
+    await onResetPasswordService({ tokenId, newPassword });
+    redirect();
     return null;
   }
 );

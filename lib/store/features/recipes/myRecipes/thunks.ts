@@ -25,9 +25,18 @@ export const removeMyRecipes = createAsyncThunk(
 
 export const addMyRecipe = createAsyncThunk(
   "myRecipes/addMyRecipe",
-  async ({ recipe, file }: { recipe: RecipeDAO; file: FormData }) => {
+  async ({
+    recipe,
+    file,
+    redirect,
+  }: {
+    recipe: RecipeDAO;
+    file: FormData;
+    redirect: (id: string) => Promise<boolean>;
+  }) => {
     const { _id } = await onPostRecipeService(recipe);
     const response = await onUpdateImageRecipeService(_id, file);
+    redirect(response._id);
     return response;
   }
 );

@@ -17,6 +17,7 @@ import Error from "components/common/Forms/Error";
 import { getLastRecipes } from "@/store/features/recipes/lastRecipes/thunks";
 import { addMyRecipe } from "@/store/features/recipes/myRecipes/thunks";
 import { selectAccount } from "@/store/features/account";
+import { useRouter } from "next/router";
 
 type Selector = {
   label: any;
@@ -70,6 +71,7 @@ const AddRecipeForm = () => {
       );
     }
   }, [categories, blenders]);
+  const { replace } = useRouter();
 
   const onSubmit = useCallback(
     async (values: any) => {
@@ -91,10 +93,11 @@ const AddRecipeForm = () => {
           ingredients: values.ingredients,
           steps: values.steps,
         };
-        dispatch(addMyRecipe({ recipe, file: formData }));
+        const redirect = (id: string) => replace(`/recipe/${id}`);
+        dispatch(addMyRecipe({ recipe, file: formData, redirect }));
       }
     },
-    [dispatch, accountId, selectedCategories, selectedBlenders]
+    [dispatch, accountId, selectedCategories, selectedBlenders, replace]
   );
 
   return (
