@@ -23,8 +23,8 @@ const CardBody: FC<Props> = ({
 }) => {
   return (
     <div className="card-body space-y-1">
-      <div className="justify-end">
-        {categories.slice(0, 3).map((category, index) => (
+      <div className="justify-end space-x-2">
+        {categories.slice(0, 4).map((category, index) => (
           <div key={index} className="badge capitalize badge-accent">
             {category}
           </div>

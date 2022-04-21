@@ -2,7 +2,6 @@ import { RecipeDTO } from "@/models/recipe/recipe";
 import React, { FC } from "react";
 import CardBody from "./CardBody";
 import CardHeader from "./CardHeader";
-import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 const CardRecipe: FC<RecipeDTO> = ({
   name,
