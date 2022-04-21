@@ -53,7 +53,7 @@ const Edit: NextPage = () => {
           <ImageForm img={recipe.img} id={recipe._id} />
           <BasicDataForm recipe={recipe} />
           <CategoriesForm recipe={recipe} />
-          <IngredientsForm ingredients={recipe.ingredients} />
+          <IngredientsForm ingredients={recipe.ingredients} id={recipe._id} />
           <StepsForm steps={recipe.steps} />
         </div>
       </ContainerDashboard>

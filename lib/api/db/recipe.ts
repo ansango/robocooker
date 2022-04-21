@@ -180,3 +180,20 @@ export const updateRecipeCategoriesById = async (
     throw error;
   }
 };
+
+export const updateRecipeIngredientsById = async(
+  db: Db,
+  id: RecipeId,
+  content: {
+    ingredients: RecipeDAO["ingredients"];
+  }
+): Promise<boolean> => {
+  try {
+    await db
+      .collection("recipes")
+      .findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { ...content } });
+    return true;
+  } catch (error) {
+    throw error;
+  }
+}

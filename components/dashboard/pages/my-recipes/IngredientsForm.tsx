@@ -1,17 +1,21 @@
-import { RecipeDTO } from "@/models/recipe/recipe";
+import { Ingredient, RecipeDTO } from "@/models/recipe/recipe";
+import { updateMyIngredientsRecipe } from "@/store/features/recipes/myRecipes/thunks";
+import { useAppDispatch } from "@/store/hooks";
 import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimAction from "components/common/Cards/Slim/CardSlimAction";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import Step from "components/common/Stepper/Step";
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import IngredientFields from "./IngredientFields";
 
 type Props = {
+  id: RecipeId;
   ingredients: RecipeDTO["ingredients"];
 };
 
-const IngredientsForm: FC<Props> = ({ ingredients }) => {
+const IngredientsForm: FC<Props> = ({ ingredients, id }) => {
+  const dispatch = useAppDispatch();
   const methods = useForm({
     defaultValues: {
       ingredients: ingredients.map(({ measure, name, quantity }) => {
@@ -24,10 +28,21 @@ const IngredientsForm: FC<Props> = ({ ingredients }) => {
     },
   });
   const { handleSubmit } = methods;
+  const onSubmit = useCallback(
+    (values: any) => {
+      const ingredients = values.ingredients.filter(
+        ({ name, quantity, measure }: Ingredient) => {
+          return name && quantity && measure;
+        }
+      );
+      dispatch(updateMyIngredientsRecipe({ recipeId: id, ingredients }));
+    },
+    [dispatch, id]
+  );
   return (
     <div className="col-span-full 2xl:col-span-6">
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(() => {})}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <CardSlim>
             <Step
               title="Ingredientes"
