@@ -126,8 +126,15 @@ export const updateMyStepsRecipe = createAsyncThunk(
 
 export const removeMyRecipe = createAsyncThunk(
   "myRecipes/removeMyRecipe",
-  async (id: RecipeId) => {
+  async ({
+    id,
+    redirect,
+  }: {
+    id: RecipeId;
+    redirect: () => Promise<boolean>;
+  }) => {
     await onDeleteRecipeService(id);
+    redirect();
     return { _id: id };
   }
 );

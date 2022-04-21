@@ -11,7 +11,6 @@ const Modal: FC<Props> = ({ id, children }) => {
   return (
     <Portal>
       <div>
-        <input type="checkbox" id={id} className="modal-toggle" />
         <label htmlFor={id} className={cn}>
           {children}
         </label>

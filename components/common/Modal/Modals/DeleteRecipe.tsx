@@ -1,25 +1,35 @@
-import { Form, Input } from "components/common/Forms";
+import { removeMyRecipe } from "@/store/features/recipes/myRecipes/thunks";
+import { Form } from "components/common/Forms";
+import { useRouter } from "next/router";
 import React, { FC } from "react";
+import { useDispatch } from "react-redux";
 import Modal from "../Modal";
 import ModalAction from "../ModalAction";
 import ModalBox from "../ModalBox";
 import ModalContent from "../ModalContent";
 import ModalTitle from "../ModalTitle";
-import ModalTrigger from "../ModalOpen";
 import { closeModal } from "../utils";
 
-const DeleteRecipe: FC<{ id: string }> = ({ id }) => {
-  const onSubmit = (values: any) => {
-    console.log(values);
+const DeleteRecipe: FC<{ id: string; idRecipe: string }> = ({
+  id,
+  idRecipe,
+}) => {
+  const { push } = useRouter();
+  const redirect = () => push("/dashboard/my-recipes");
+  const dispatch = useDispatch();
+  const onSubmit = () => {
+    dispatch(
+      removeMyRecipe({
+        id: idRecipe,
+        redirect,
+      })
+    );
     closeModal(id);
   };
   return (
     <Modal id={id}>
       <ModalBox id={id}>
         <Form onSubmit={onSubmit}>
-          <div className="hidden">
-            <Input label="Contraseña" type="password" name="password" />
-          </div>
           <ModalTitle label="Estás seguro de borrar esta receta?" />
           <ModalContent>
             <p>
