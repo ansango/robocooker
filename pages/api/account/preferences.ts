@@ -8,7 +8,7 @@ import nc from "next-connect";
 const handler = nc(options);
 handler.use(database, ...auth);
 
-handler.patch(updateAccountValidation(), async (req, res) => {
+handler.patch(async (req, res) => {
   if (!req.user) return res.status(401).json({ error: "Unauthorized" });
   const { _id, preferences } = req.body as Account;
   try {
