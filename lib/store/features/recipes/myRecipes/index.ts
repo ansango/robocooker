@@ -6,6 +6,10 @@ import {
   removeMyRecipes,
   addMyRecipe,
   updateMyPictureRecipe,
+  updateMyInfoRecipe,
+  updateMyCategoriesRecipe,
+  updateMyIngredientsRecipe,
+  updateMyStepsRecipe,
 } from "./thunks";
 export const myRecipesSlice = createSlice({
   name: "myRecipes",
@@ -60,6 +64,79 @@ export const myRecipesSlice = createSlice({
           });
       })
       .addCase(updateMyPictureRecipe.rejected, (state) => {
+        state.status = "failed";
+      });
+    builder
+      .addCase(updateMyInfoRecipe.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateMyInfoRecipe.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.value =
+          state.value &&
+          state.value.map((recipe) => {
+            if (recipe._id === action.payload._id) {
+              return action.payload;
+            }
+            return recipe;
+          });
+      })
+      .addCase(updateMyInfoRecipe.rejected, (state) => {
+        state.status = "failed";
+      });
+    builder
+      .addCase(updateMyCategoriesRecipe.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateMyCategoriesRecipe.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.value =
+          state.value &&
+          state.value.map((recipe) => {
+            if (recipe._id === action.payload._id) {
+              return action.payload;
+            }
+            return recipe;
+          });
+      })
+      .addCase(updateMyCategoriesRecipe.rejected, (state) => {
+        state.status = "failed";
+      });
+    builder
+      .addCase(updateMyIngredientsRecipe.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateMyIngredientsRecipe.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.value =
+          state.value &&
+          state.value.map((recipe) => {
+            if (recipe._id === action.payload._id) {
+              return action.payload;
+            }
+            return recipe;
+          });
+      })
+
+      .addCase(updateMyIngredientsRecipe.rejected, (state) => {
+        state.status = "failed";
+      });
+    builder
+      .addCase(updateMyStepsRecipe.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateMyStepsRecipe.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.value =
+          state.value &&
+          state.value.map((recipe) => {
+            if (recipe._id === action.payload._id) {
+              return action.payload;
+            }
+            return recipe;
+          });
+      })
+      .addCase(updateMyStepsRecipe.rejected, (state) => {
         state.status = "failed";
       });
   },
