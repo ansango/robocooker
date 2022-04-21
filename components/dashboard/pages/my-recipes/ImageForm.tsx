@@ -1,7 +1,6 @@
 import { RecipeDTO } from "@/models/recipe/recipe";
-import { selectAccount } from "@/store/features/account";
 import { updateMyPictureRecipe } from "@/store/features/recipes/myRecipes/thunks";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useAppDispatch } from "@/store/hooks";
 import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimAction from "components/common/Cards/Slim/CardSlimAction";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
@@ -16,11 +15,9 @@ type Props = {
 };
 
 const ImageForm: FC<Props> = ({ img, id }) => {
-  const accountId = useAppSelector(selectAccount)?._id;
   const dispatch = useAppDispatch();
   const onSubmit = useCallback(
     (values: any) => {
-      if (!accountId) return;
       const image = values.file[0];
       const isImage = image ? image.type.startsWith("image") : null;
       if (image && isImage) {
@@ -29,7 +26,7 @@ const ImageForm: FC<Props> = ({ img, id }) => {
         dispatch(updateMyPictureRecipe({ recipeId: id, file: formData }));
       }
     },
-    [dispatch, id, accountId]
+    [dispatch, id]
   );
 
   return (

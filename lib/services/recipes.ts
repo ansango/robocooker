@@ -96,13 +96,14 @@ export const onUpdateBasicInfoRecipeService = async (
 
 export const onUpdateCategoriesRecipeService = async (
   id: RecipeId,
-  categories: RecipeDAO["categories"]
+  categories: RecipeDAO["categories"],
+  blenders: RecipeDAO["blenders"]
 ): Promise<RecipeDTO> => {
   try {
     const response = await fetcher(`/api/recipes/categories/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ categories }),
+      body: JSON.stringify({ categories, blenders }),
     });
     return response.recipe;
   } catch (error) {

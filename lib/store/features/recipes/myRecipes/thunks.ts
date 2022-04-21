@@ -83,13 +83,16 @@ export const updateMyCategoriesRecipe = createAsyncThunk(
   async ({
     recipeId,
     categories,
+    blenders,
   }: {
     recipeId: RecipeId;
     categories: CategoryName[];
+    blenders: BlenderName[];
   }) => {
     const response = await onUpdateCategoriesRecipeService(
       recipeId,
-      categories
+      categories,
+      blenders
     );
     return response;
   }

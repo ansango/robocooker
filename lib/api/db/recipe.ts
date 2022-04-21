@@ -17,7 +17,7 @@ export const insertRecipe = async (
     _id: new ObjectId(),
     img: "",
   };
-  
+
   try {
     await db.collection("recipes").insertOne(recipe);
     await updateAccountRecipesById(db, accountId, recipe._id);
@@ -33,21 +33,6 @@ export const findRecipeById = async (db: Db, id: RecipeId): Promise<Recipe> => {
       .collection("recipes")
       .findOne({ _id: new ObjectId(id) })) as Recipe;
     return response;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const updateImageRecipeById = async (
-  db: Db,
-  id: string,
-  img: string
-): Promise<boolean> => {
-  try {
-    await db
-      .collection("recipes")
-      .findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { img } });
-    return true;
   } catch (error) {
     throw error;
   }
@@ -138,6 +123,59 @@ export const findRecipeByIdPopulated = async (
       .findOne({ accountId: new ObjectId(recipe.accountId) })) as User;
 
     return { ...recipe, account: { avatar, firstName, lastName, username } };
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateImageRecipeById = async (
+  db: Db,
+  id: string,
+  img: string
+): Promise<boolean> => {
+  try {
+    await db
+      .collection("recipes")
+      .findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { img } });
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateRecipeInfoById = async (
+  db: Db,
+  id: RecipeId,
+  content: {
+    name: RecipeDAO["name"];
+    description: RecipeDAO["description"];
+    servings: RecipeDAO["servings"];
+    duration: RecipeDAO["duration"];
+  }
+): Promise<boolean> => {
+  try {
+    await db
+      .collection("recipes")
+      .findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { ...content } });
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateRecipeCategoriesById = async (
+  db: Db,
+  id: RecipeId,
+  content: {
+    categories: RecipeDAO["categories"];
+    blenders: RecipeDAO["blenders"];
+  }
+): Promise<boolean> => {
+  try {
+    await db
+      .collection("recipes")
+      .findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { ...content } });
+    return true;
   } catch (error) {
     throw error;
   }

@@ -3,6 +3,7 @@ import { selectBlenders } from "@/store/features/blenders";
 import { getBlenders } from "@/store/features/blenders/thunks";
 import { selectCategories } from "@/store/features/categories";
 import { getCategories } from "@/store/features/categories/thunks";
+import { updateMyCategoriesRecipe } from "@/store/features/recipes/myRecipes/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimAction from "components/common/Cards/Slim/CardSlimAction";
@@ -10,7 +11,7 @@ import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import { Form } from "components/common/Forms";
 import { MultiSelect } from "components/common/Forms/MultiSelect";
 import Step from "components/common/Stepper/Step";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 
 type Selector = {
   label: any;
@@ -75,9 +76,21 @@ const CategoriesForm: FC<Props> = ({ recipe }) => {
       );
     }
   }, [categories, blenders]);
+
+  const onSubmit = useCallback(
+    () =>
+      dispatch(
+        updateMyCategoriesRecipe({
+          recipeId: recipe._id,
+          categories: selectedCategories.map(({ value }) => value),
+          blenders: selectedBlenders.map(({ value }) => value),
+        })
+      ),
+    [dispatch, recipe, selectedCategories, selectedBlenders]
+  );
   return (
     <div className="col-span-full 2xl:col-span-4">
-      <Form onSubmit={() => {}}>
+      <Form onSubmit={onSubmit}>
         <CardSlim>
           <Step
             title="Categorías"

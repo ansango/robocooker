@@ -1,19 +1,36 @@
 import { RecipeDTO } from "@/models/recipe/recipe";
+import { updateMyInfoRecipe } from "@/store/features/recipes/myRecipes/thunks";
+import { useAppDispatch } from "@/store/hooks";
 import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimAction from "components/common/Cards/Slim/CardSlimAction";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import { Form, Input, TextArea } from "components/common/Forms";
 import Step from "components/common/Stepper/Step";
-import { FC } from "react";
+import { FC, useCallback } from "react";
 
 type Props = {
   recipe: RecipeDTO;
 };
 
 const BasicDataForm: FC<Props> = ({ recipe }) => {
+  const dispatch = useAppDispatch();
+  const onSubmit = useCallback(
+    (values: any) => {
+      dispatch(
+        updateMyInfoRecipe({
+          recipeId: recipe._id,
+          name: values.name,
+          description: values.description,
+          duration: values.duration,
+          servings: values.servings,
+        })
+      );
+    },
+    [dispatch, recipe]
+  );
   return (
     <div className="col-span-full md:col-span-6 lg:col-span-6 2xl:col-span-4">
-      <Form onSubmit={() => {}}>
+      <Form onSubmit={onSubmit}>
         <CardSlim>
           <Step
             title="Información básica"
