@@ -1,49 +1,40 @@
 import { RecipeDTO } from "@/models/recipe/recipe";
+import { selectAccount } from "@/store/features/account";
+import { updateMyPictureRecipe } from "@/store/features/recipes/myRecipes/thunks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimAction from "components/common/Cards/Slim/CardSlimAction";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import { File, Form } from "components/common/Forms";
 import Step from "components/common/Stepper/Step";
 import Image from "next/image";
-import { FC } from "react";
-
-type FullAvatar = {
-  size: "xs" | "sm" | "md" | "lg";
-  imgUrl: string;
-};
-
-enum sizeFull {
-  xs = "w-8",
-  sm = "w-16",
-  md = "w-20",
-  lg = "w-32",
-}
-
-const FullAvatar: FC<FullAvatar> = ({ size, imgUrl }) => {
-  const cnSize = `${sizeFull[size]} rounded-full`;
-  return (
-    <div className="avatar">
-      <div className={cnSize}>
-        <Image
-          src={imgUrl}
-          alt=""
-          layout="fill"
-          objectFit="contain"
-          className="rounded-full"
-        />
-      </div>
-    </div>
-  );
-};
+import { FC, useCallback } from "react";
 
 type Props = {
+  id: RecipeDTO["_id"];
   img: RecipeDTO["img"];
 };
 
-const ImageForm: FC<Props> = ({ img }) => {
+const ImageForm: FC<Props> = ({ img, id }) => {
+  const accountId = useAppSelector(selectAccount)?._id;
+  const dispatch = useAppDispatch();
+  const onSubmit = useCallback(
+    (values: any) => {
+      if (!accountId) return;
+      const image = values.file[0];
+      const isImage = image ? image.type.startsWith("image") : null;
+      if (image && isImage) {
+        const formData = new FormData();
+        formData.append("image", image);
+        dispatch(updateMyPictureRecipe({ recipeId: id, file: formData }));
+      }
+    },
+    [dispatch, id, accountId]
+  );
+
   return (
     <div className="col-span-full md:col-span-6 lg:col-span-6 2xl:col-span-4">
-      <Form onSubmit={() => {}}>
+      <Form onSubmit={onSubmit}>
         <CardSlim>
           <Step
             title="Foto de la receta"
@@ -71,7 +62,7 @@ const ImageForm: FC<Props> = ({ img }) => {
                   </div>
                 )}
                 <File
-                  name="image"
+                  name="file"
                   options={{
                     required: { value: true, message: "Añade una foto" },
                   }}

@@ -76,7 +76,6 @@ const AddRecipeForm = () => {
   const onSubmit = useCallback(
     async (values: any) => {
       if (!accountId) return;
-      console.log(values);
       const image = values.file[0];
       const isImage = image ? image.type.startsWith("image") : null;
       if (image && isImage) {
@@ -241,7 +240,7 @@ const AddRecipeForm = () => {
           <CardSlim>
             <Step
               title="Preparación"
-              step={4} 
+              step={4}
               icon={{
                 kind: "outline",
                 type: "CollectionIcon",

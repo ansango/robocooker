@@ -50,7 +50,7 @@ const Edit: NextPage = () => {
           />
         </Breadcrumb>
         <div className="grid gap-5 grid-cols-12">
-          <ImageForm img={recipe.img} />
+          <ImageForm img={recipe.img} id={recipe._id} />
           <BasicDataForm recipe={recipe} />
           <CategoriesForm recipe={recipe} />
           <IngredientsForm ingredients={recipe.ingredients} />

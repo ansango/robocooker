@@ -40,3 +40,17 @@ export const addMyRecipe = createAsyncThunk(
     return response;
   }
 );
+
+export const updateMyPictureRecipe = createAsyncThunk(
+  "myRecipes/updateMyPictureRecipe",
+  async({
+    recipeId,
+    file,
+  }: {
+    recipeId: RecipeId;
+    file: FormData;
+    }) => {
+    const response = await onUpdateImageRecipeService(recipeId, file);
+    return response;
+  }
+);

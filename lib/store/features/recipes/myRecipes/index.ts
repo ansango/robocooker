@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AppState } from "../../..";
 import { initialState } from "./state";
-import { getMyRecipes, removeMyRecipes, addMyRecipe } from "./thunks";
+import {
+  getMyRecipes,
+  removeMyRecipes,
+  addMyRecipe,
+  updateMyPictureRecipe,
+} from "./thunks";
 export const myRecipesSlice = createSlice({
   name: "myRecipes",
   initialState,
@@ -37,6 +42,24 @@ export const myRecipesSlice = createSlice({
         state.status = "idle";
       })
       .addCase(addMyRecipe.rejected, (state) => {
+        state.status = "failed";
+      });
+    builder
+      .addCase(updateMyPictureRecipe.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateMyPictureRecipe.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.value =
+          state.value &&
+          state.value.map((recipe) => {
+            if (recipe._id === action.payload._id) {
+              return action.payload;
+            }
+            return recipe;
+          });
+      })
+      .addCase(updateMyPictureRecipe.rejected, (state) => {
         state.status = "failed";
       });
   },
