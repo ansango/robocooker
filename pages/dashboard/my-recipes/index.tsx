@@ -6,12 +6,21 @@ import { getMyRecipes } from "@/store/features/recipes/myRecipes/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import { Icon } from "components/common/Icons";
+import Modal from "components/common/Modal/Modal";
+import ModalAction from "components/common/Modal/ModalAction";
+import ModalBox from "components/common/Modal/ModalBox";
+import ModalContent from "components/common/Modal/ModalContent";
+import ModalOpen from "components/common/Modal/ModalOpen";
+import DeleteRecipe from "components/common/Modal/Modals/DeleteRecipe";
+import ModalTitle from "components/common/Modal/ModalTitle";
+import ModalTrigger from "components/common/Modal/ModalTrigger";
+import { openModal } from "components/common/Modal/utils";
 import ContainerDashboard from "components/dashboard/ContainerDashboard";
 import DashboardLayout from "components/layout/DashboardLayout";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const MyRecipes: NextPage = () => {
   const myRecipes = useAppSelector(selectMyRecipes);
@@ -21,6 +30,7 @@ const MyRecipes: NextPage = () => {
     if (!myRecipes) dispatch(getMyRecipes());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <DashboardLayout>
       <ContainerDashboard>
@@ -55,9 +65,12 @@ const MyRecipes: NextPage = () => {
                           />
                         </button>
                       </Link>
-                      <button className="btn btn-sm btn-error btn-circle">
+                      <ModalOpen
+                        className="btn btn-sm btn-error btn-circle"
+                        id="delete-recipe"
+                      >
                         <Icon icon="XIcon" className="w-4 h-4" kind="outline" />
-                      </button>
+                      </ModalOpen>
                     </div>
                   </div>
                 </div>
@@ -65,6 +78,7 @@ const MyRecipes: NextPage = () => {
             ))}
           </ul>
         )}
+        <DeleteRecipe id="delete-recipe" />
       </ContainerDashboard>
     </DashboardLayout>
   );

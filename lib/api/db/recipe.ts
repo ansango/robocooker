@@ -214,3 +214,24 @@ export const updateRecipeStepsById = async (
     throw error;
   }
 };
+
+export const deleteRecipeById = async (
+  db: Db,
+  recipeId: RecipeId,
+  accountId: AccountId
+): Promise<boolean> => {
+  try {
+    await db
+      .collection("recipes")
+      .findOneAndDelete({ _id: new ObjectId(recipeId) });
+    await db
+      .collection("accounts")
+      .findOneAndUpdate(
+        { _id: new ObjectId(accountId) },
+        { $pull: { recipes: recipeId } }
+      );
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};

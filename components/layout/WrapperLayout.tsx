@@ -2,7 +2,7 @@ import { getAccount } from "@/store/features/account/thunks";
 import { selectUser } from "@/store/features/user";
 import { getUser } from "@/store/features/user/thunks";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
-import { FC, ReactNode, useEffect } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 
 type Props = {
   children?: ReactNode;

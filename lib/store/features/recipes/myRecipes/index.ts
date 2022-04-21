@@ -10,6 +10,7 @@ import {
   updateMyCategoriesRecipe,
   updateMyIngredientsRecipe,
   updateMyStepsRecipe,
+  removeMyRecipe,
 } from "./thunks";
 export const myRecipesSlice = createSlice({
   name: "myRecipes",
@@ -137,6 +138,21 @@ export const myRecipesSlice = createSlice({
           });
       })
       .addCase(updateMyStepsRecipe.rejected, (state) => {
+        state.status = "failed";
+      });
+    builder
+      .addCase(removeMyRecipe.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(removeMyRecipe.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.value =
+          state.value &&
+          state.value.filter((recipe) => {
+            return recipe._id !== action.payload._id;
+          });
+      })
+      .addCase(removeMyRecipe.rejected, (state) => {
         state.status = "failed";
       });
   },

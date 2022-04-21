@@ -142,3 +142,13 @@ export const onUpdateStepsRecipeService = async (
     throw error;
   }
 };
+
+export const onDeleteRecipeService = async (id: RecipeId): Promise<void> => {
+  try {
+    await fetcher(`/api/recipes/${id}`, {
+      method: "DELETE",
+    });
+  } catch (error) {
+    throw error;
+  }
+};

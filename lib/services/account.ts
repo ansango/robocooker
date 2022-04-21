@@ -1,4 +1,4 @@
-import { Account, SocialNetwork } from "lib/models/user/user";
+import { Account } from "lib/models/user/user";
 import fetcher from "../utils/fetcher";
 
 const onGetAccountService = async (): Promise<Account> => {

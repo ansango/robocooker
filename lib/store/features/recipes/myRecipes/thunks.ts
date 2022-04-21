@@ -7,6 +7,7 @@ import {
   onUpdateCategoriesRecipeService,
   onUpdateIngredientsRecipeService,
   onUpdateStepsRecipeService,
+  onDeleteRecipeService,
 } from "@/services/recipes";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -120,5 +121,13 @@ export const updateMyStepsRecipe = createAsyncThunk(
   async ({ recipeId, steps }: { recipeId: RecipeId; steps: Step[] }) => {
     const response = await onUpdateStepsRecipeService(recipeId, steps);
     return response;
+  }
+);
+
+export const removeMyRecipe = createAsyncThunk(
+  "myRecipes/removeMyRecipe",
+  async (id: RecipeId) => {
+    await onDeleteRecipeService(id);
+    return { _id: id };
   }
 );

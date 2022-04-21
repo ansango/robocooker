@@ -5,9 +5,9 @@ import nc from "next-connect";
 
 const handler = nc(options);
 
-handler.use(database);
+handler.use(database, ...auth);
 
-handler.post(...auth, async (req, res) => {
+handler.post(async (req, res) => {
   if (!req.user) {
     res.status(401).json({ error: "Unauthorized" });
     return;
