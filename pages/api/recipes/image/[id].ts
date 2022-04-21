@@ -20,10 +20,6 @@ if (CLOUDINARY_CLOUD_NAME && CLOUDINARY_API_KEY && CLOUDINARY_API_SECRET) {
 handler.use(database, ...auth);
 
 handler.patch(upload.single("image"), async (req, res) => {
-  console.log(req.file);
-  console.log(req.body);
-  console.log(req.user);
-  console.log(req.query);
   if (!req.user) {
     res.status(401).json({ error: "Unauthorized" });
     return;
@@ -31,7 +27,6 @@ handler.patch(upload.single("image"), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "You must attach an image" });
   }
-  console.log(req.file);
   const { secure_url: img } = await cloudinary.uploader.upload(req.file.path, {
     width: 960,
     height: 480,
@@ -45,7 +40,6 @@ handler.patch(upload.single("image"), async (req, res) => {
   if (!img) {
     res.status(400).json({ error: "Error uploading image" });
   }
-  console.log(img);
   const unUpdatedRecipe = await findRecipeById(req.db, req.query.id);
   const imgUpdated = await updateImageRecipeById(req.db, req.query.id, img);
   if (!imgUpdated) {
