@@ -1,8 +1,12 @@
-import { RecipeDAO } from "@/models/recipe/recipe";
+import { Ingredient, RecipeDAO, Step } from "@/models/recipe/recipe";
 import {
   onGetMyRecipesService,
   onPostRecipeService,
+  onUpdateBasicInfoRecipeService,
   onUpdateImageRecipeService,
+  onUpdateCategoriesRecipeService,
+  onUpdateIngredientsRecipeService,
+  onUpdateStepsRecipeService,
 } from "@/services/recipes";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -43,14 +47,75 @@ export const addMyRecipe = createAsyncThunk(
 
 export const updateMyPictureRecipe = createAsyncThunk(
   "myRecipes/updateMyPictureRecipe",
-  async({
+  async ({ recipeId, file }: { recipeId: RecipeId; file: FormData }) => {
+    const response = await onUpdateImageRecipeService(recipeId, file);
+    return response;
+  }
+);
+
+export const updateMyInfoRecipe = createAsyncThunk(
+  "myRecipes/updateMyInfoRecipe",
+  async ({
     recipeId,
-    file,
+    name,
+    description,
+    duration,
+    servings,
   }: {
     recipeId: RecipeId;
-    file: FormData;
-    }) => {
-    const response = await onUpdateImageRecipeService(recipeId, file);
+    name: Name;
+    description: Content | string;
+    servings: Servings;
+    duration: Duration;
+  }) => {
+    const response = onUpdateBasicInfoRecipeService(recipeId, {
+      name,
+      description,
+      servings,
+      duration,
+    });
+    return response;
+  }
+);
+
+export const updateMyCategoriesRecipe = createAsyncThunk(
+  "myRecipes/updateMyCategoriesRecipe",
+  async ({
+    recipeId,
+    categories,
+  }: {
+    recipeId: RecipeId;
+    categories: CategoryName[];
+  }) => {
+    const response = await onUpdateCategoriesRecipeService(
+      recipeId,
+      categories
+    );
+    return response;
+  }
+);
+
+export const updateMyIngredientsRecipe = createAsyncThunk(
+  "myRecipes/updateMyIngredientsRecipe",
+  async ({
+    recipeId,
+    ingredients,
+  }: {
+    recipeId: RecipeId;
+    ingredients: Ingredient[];
+  }) => {
+    const response = await onUpdateIngredientsRecipeService(
+      recipeId,
+      ingredients
+    );
+    return response;
+  }
+);
+
+export const updateMyStepsRecipe = createAsyncThunk(
+  "myRecipes/updateMyStepsRecipe",
+  async ({ recipeId, steps }: { recipeId: RecipeId; steps: Step[] }) => {
+    const response = await onUpdateStepsRecipeService(recipeId, steps);
     return response;
   }
 );

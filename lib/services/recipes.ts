@@ -54,13 +54,87 @@ export const onPostRecipeService = async (
 };
 
 export const onUpdateImageRecipeService = async (
-  id: string,
+  id: RecipeId,
   file: FormData
 ): Promise<RecipeDTO> => {
   try {
     const response = await fetcher(`/api/recipes/image/${id}`, {
       method: "PATCH",
       body: file,
+    });
+    return response.recipe;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const onUpdateBasicInfoRecipeService = async (
+  id: RecipeId,
+  {
+    description,
+    duration,
+    name,
+    servings,
+  }: {
+    name: RecipeDAO["name"];
+    description: RecipeDAO["description"];
+    servings: RecipeDAO["servings"];
+    duration: RecipeDAO["duration"];
+  }
+): Promise<RecipeDTO> => {
+  try {
+    const response = await fetcher(`/api/recipes/info/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ description, duration, name, servings }),
+    });
+    return response.recipe;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const onUpdateCategoriesRecipeService = async (
+  id: RecipeId,
+  categories: RecipeDAO["categories"]
+): Promise<RecipeDTO> => {
+  try {
+    const response = await fetcher(`/api/recipes/categories/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ categories }),
+    });
+    return response.recipe;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const onUpdateIngredientsRecipeService = async (
+  id: RecipeId,
+  ingredients: RecipeDAO["ingredients"]
+): Promise<RecipeDTO> => {
+  try {
+    const response = await fetcher(`/api/recipes/ingredients/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ingredients }),
+    });
+    return response.recipe;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const onUpdateStepsRecipeService = async (
+  id: RecipeId,
+  steps: RecipeDAO["steps"]
+): Promise<RecipeDTO> => {
+  try {
+    const response = await fetcher(`/api/recipes/steps/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ steps }),
     });
     return response.recipe;
   } catch (error) {
