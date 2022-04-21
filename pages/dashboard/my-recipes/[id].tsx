@@ -1,5 +1,6 @@
 import { selectMyRecipes } from "@/store/features/recipes/myRecipes";
-import { useAppSelector } from "@/store/hooks";
+import { getMyRecipes } from "@/store/features/recipes/myRecipes/thunks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Breadcrumb from "components/common/Breadcrumb/Breadcrumb";
 import BreadcrumbLink from "components/common/Breadcrumb/BreadcrumbLink";
 import BreadcrumbNoLink from "components/common/Breadcrumb/BreadcrumbNoLink";
@@ -14,12 +15,18 @@ import DashboardLayout from "components/layout/DashboardLayout";
 
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const Edit: NextPage = () => {
   const { query } = useRouter();
   const { id } = query;
   const recipe = useAppSelector(selectMyRecipes)?.find(({ _id }) => _id === id);
-  // !recipe fetch recipe from store
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!recipe) {
+      dispatch(getMyRecipes());
+    }
+  }, [dispatch, recipe]);
   if (!recipe) return null;
   return (
     <DashboardLayout>
