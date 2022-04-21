@@ -181,7 +181,7 @@ export const updateRecipeCategoriesById = async (
   }
 };
 
-export const updateRecipeIngredientsById = async(
+export const updateRecipeIngredientsById = async (
   db: Db,
   id: RecipeId,
   content: {
@@ -196,4 +196,21 @@ export const updateRecipeIngredientsById = async(
   } catch (error) {
     throw error;
   }
-}
+};
+
+export const updateRecipeStepsById = async (
+  db: Db,
+  id: RecipeId,
+  content: {
+    steps: RecipeDAO["steps"];
+  }
+): Promise<boolean> => {
+  try {
+    await db
+      .collection("recipes")
+      .findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { ...content } });
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
