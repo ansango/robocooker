@@ -86,11 +86,13 @@ const Recipes: NextPage = () => {
                 className="max-w-sm w-full p-4 mx-auto border border-gray-200 rounded-md shadow-sm max-h-md"
               >
                 <div className="w-full h-48">
-                  <img
-                    src={img}
-                    alt={name}
-                    className="object-cover h-48 w-full rounded-md"
-                  />
+                  {img && (
+                    <img
+                      src={img}
+                      alt={name}
+                      className="object-cover h-48 w-full rounded-md"
+                    />
+                  )}
                 </div>
                 {categories.map((category) => (
                   <div
