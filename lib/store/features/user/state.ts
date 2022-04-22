@@ -10,6 +10,7 @@ export interface UserState {
   onUpdatePassword: boolean;
   onUpdateUser: boolean;
   onDeleteUser: boolean;
+  onVerifyEmail: boolean;
 }
 
 export const initialState: UserState = {
@@ -22,4 +23,5 @@ export const initialState: UserState = {
   onUpdatePassword: false,
   onUpdateUser: false,
   onDeleteUser: false,
+  onVerifyEmail: false,
 };

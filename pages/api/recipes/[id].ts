@@ -38,7 +38,7 @@ handler.delete(async (req, res) => {
     const recipeDeleted = await deleteRecipeById(
       req.db,
       id,
-      req.user.accountId
+      req.user.accountId.toString()
     );
     if (!recipeDeleted) {
       res.status(404).json({ error: "Error trying to delete recipe" });

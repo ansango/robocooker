@@ -7,7 +7,6 @@ import BreadcrumbNoLink from "components/common/Breadcrumb/BreadcrumbNoLink";
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import { Icon } from "components/common/Icons";
 import ModalOpen from "components/common/Modal/ModalOpen";
-import DeleteRecipe from "components/common/Modal/Modals/DeleteRecipe";
 import ContainerDashboard from "components/dashboard/ContainerDashboard";
 import BasicDataForm from "components/dashboard/pages/my-recipes/BasicDataForm";
 import CategoriesForm from "components/dashboard/pages/my-recipes/CategoriesForm";
@@ -15,7 +14,7 @@ import ImageForm from "components/dashboard/pages/my-recipes/ImageForm";
 import IngredientsForm from "components/dashboard/pages/my-recipes/IngredientsForm";
 import StepsForm from "components/dashboard/pages/my-recipes/StepsForm";
 import DashboardLayout from "components/layout/DashboardLayout";
-
+import DeleteRecipe from "components/dashboard/pages/my-recipes/DeleteRecipe";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";

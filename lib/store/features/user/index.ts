@@ -140,13 +140,16 @@ export const userSlice = createSlice({
     builder
       .addCase(verifyEmail.pending, (state) => {
         state.status = "loading";
+        state.onVerifyEmail = true;
       })
       .addCase(verifyEmail.fulfilled, (state) => {
         state.status = "idle";
+        state.onVerifyEmail = false;
         toast.success("Te hemos enviado un correo para verificar tu cuenta");
       });
     builder.addCase(verifyEmail.rejected, (state) => {
       state.status = "failed";
+      state.onVerifyEmail = false;
       toast.error("Error al enviar el correo");
     });
     builder
@@ -182,5 +185,7 @@ export const selectOnUpdateUserStatus = (state: AppState) =>
   state.user.onUpdateUser;
 export const selectOnDeleteUserStatus = (state: AppState) =>
   state.user.onDeleteUser;
+export const selectOnVerifyEmailStatus = (state: AppState) =>
+  state.user.onVerifyEmail;
 
 export default userSlice.reducer;

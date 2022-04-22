@@ -18,6 +18,7 @@ const createIndexes = async (db: Db) => {
       .collection("tokens")
       .createIndex({ expireAt: -1 }, { expireAfterSeconds: 0 }),
     db.collection("blenders").createIndex({ name: 1 }, { unique: true }),
+    db.collection("categories").createIndex({ name: 1 }, { unique: true }),
     db
       .collection("recipes")
       .createIndexes([{ key: { created: -1 } }, { key: { accountId: -1 } }]),

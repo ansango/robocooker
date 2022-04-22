@@ -44,13 +44,13 @@ export const updateAvatarAccountById = async (
 export const updateAccountRecipesById = async (
   db: Db,
   accountId: AccountId,
-  recipeId: RecipeId
+  recipe: RecipeId
 ) => {
   return db
     .collection("accounts")
     .findOneAndUpdate(
       { _id: new ObjectId(accountId) },
-      { $push: { recipes: recipeId } }
+      { $push: { recipes: recipe.toString() } }
     )
     .then((account) => account || null);
 };

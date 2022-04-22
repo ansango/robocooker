@@ -1,4 +1,4 @@
-import { selectUser } from "@/store/features/user";
+import { selectOnVerifyEmailStatus, selectUser } from "@/store/features/user";
 import { verifyEmail } from "@/store/features/user/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { FC } from "react";
@@ -7,6 +7,10 @@ import { Icon } from "../Icons";
 const Alert: FC<{}> = () => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
+  const cn =
+    useAppSelector(selectOnVerifyEmailStatus) === true
+      ? "btn btn-ghost normal-case text-gray-800 btn-sm loading"
+      : "btn btn-ghost normal-case text-gray-800 btn-sm";
   const onVerify = () => dispatch(verifyEmail());
   return (
     <>
@@ -21,10 +25,7 @@ const Alert: FC<{}> = () => {
               />
               <span>Parece que todavía no has verificado tu email</span>
             </div>
-            <button
-              className="btn btn-ghost normal-case text-gray-800 btn-sm"
-              onClick={onVerify}
-            >
+            <button className={cn} onClick={onVerify}>
               Verificar
             </button>
           </div>

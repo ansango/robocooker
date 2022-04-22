@@ -6,8 +6,6 @@ import { getMyRecipes } from "@/store/features/recipes/myRecipes/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import { Icon } from "components/common/Icons";
-import ModalOpen from "components/common/Modal/ModalOpen";
-import DeleteRecipe from "components/common/Modal/Modals/DeleteRecipe";
 import ContainerDashboard from "components/dashboard/ContainerDashboard";
 import DashboardLayout from "components/layout/DashboardLayout";
 import { NextPage } from "next";

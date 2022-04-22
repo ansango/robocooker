@@ -1,14 +1,14 @@
 import { removeMyRecipe } from "@/store/features/recipes/myRecipes/thunks";
 import { Form } from "components/common/Forms";
+import Modal from "components/common/Modal/Modal";
+import ModalAction from "components/common/Modal/ModalAction";
+import ModalBox from "components/common/Modal/ModalBox";
+import ModalContent from "components/common/Modal/ModalContent";
+import ModalTitle from "components/common/Modal/ModalTitle";
+import { closeModal } from "components/common/Modal/utils";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { useDispatch } from "react-redux";
-import Modal from "../Modal";
-import ModalAction from "../ModalAction";
-import ModalBox from "../ModalBox";
-import ModalContent from "../ModalContent";
-import ModalTitle from "../ModalTitle";
-import { closeModal } from "../utils";
 
 const DeleteRecipe: FC<{ id: string; idRecipe: string }> = ({
   id,
@@ -39,7 +39,7 @@ const DeleteRecipe: FC<{ id: string; idRecipe: string }> = ({
           </ModalContent>
           <ModalAction>
             <button className="btn btn-error normal-case" type="submit">
-              Eliminar cuenta
+              Eliminar receta
             </button>
           </ModalAction>
         </Form>
