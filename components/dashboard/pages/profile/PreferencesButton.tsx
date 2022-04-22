@@ -1,4 +1,4 @@
-import { selectAccountOnUpdatePreferences } from "@/store/features/account";
+import { selectAccountOnUpdatePreferences } from "@/store/features/account/account";
 import { useAppSelector } from "@/store/hooks";
 import ButtonSubmit from "components/common/Button/ButtonSubmit";
 

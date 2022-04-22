@@ -4,13 +4,15 @@ import Avatar from "components/common/Avatar/Avatar";
 import { Form } from "components/common/Forms";
 import File from "components/common/Forms/File";
 import { useCallback } from "react";
-import { selectAccount } from "@/store/features/account";
-import { updateAvatar } from "@/store/features/account/thunks";
+
+
 import CardBasic from "components/common/Cards/Basic/CardBasic";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
 import ButtonSubmit from "components/common/Button/ButtonSubmit";
 import AvatarButton from "./AvatarButton";
+import { updateAvatar } from "@/store/features/account/account/thunks";
+import { selectAccount } from "@/store/features/account/account";
 
 const AvatarForm = () => {
   const account = useAppSelector(selectAccount);

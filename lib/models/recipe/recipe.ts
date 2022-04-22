@@ -23,7 +23,7 @@ type Recipe = {
   _id: RecipeId;
   name: Name;
   description: Content;
-  img: Url | null;
+  img: Url;
   categories: CategoryName[];
   servings: Servings;
   duration: Duration;

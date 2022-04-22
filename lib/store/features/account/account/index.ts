@@ -163,6 +163,8 @@ export const accountSlice = createSlice({
 });
 
 export const selectAccount = (state: AppState) => state.account.value;
+export const selectAccountId = (state: AppState) =>
+  state.account.value ? state.account.value._id : null;
 export const selectAccountStatus = (state: AppState) => state.account.status;
 export const selectAccountOnUpdateAccount = (state: AppState) =>
   state.account.onUpdateAccount;

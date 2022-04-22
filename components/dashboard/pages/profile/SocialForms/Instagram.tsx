@@ -1,10 +1,11 @@
 import { SocialNetwork } from "@/models/user/user";
-import { selectAccount } from "@/store/features/account";
-import { updateSocialIG } from "@/store/features/account/thunks";
+import { selectAccount } from "@/store/features/account/account";
+import { updateSocialIG } from "@/store/features/account/account/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Form, Input } from "components/common/Forms";
 import { FC, useCallback } from "react";
 import InstagramButton from "./InstagramButton";
+
 const Instagram: FC = () => {
   const account = useAppSelector(selectAccount);
   const dispatch = useAppDispatch();

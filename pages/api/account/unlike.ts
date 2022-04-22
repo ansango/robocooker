@@ -33,4 +33,7 @@ handler.post(async (req, res) => {
   res.status(204).end();
 });
 
+
+//TODO : SIN ACABAR!!! ---> MIGRAR A DB
+
 export default handler;

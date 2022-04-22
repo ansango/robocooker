@@ -1,8 +1,5 @@
-import { selectAccount } from "@/store/features/account";
-import {
-  updateAccount,
-  updatePreferences,
-} from "@/store/features/account/thunks";
+import { selectAccount } from "@/store/features/account/account";
+import { updatePreferences } from "@/store/features/account/account/thunks";
 import { selectBlenders } from "@/store/features/blenders";
 import { getBlenders } from "@/store/features/blenders/thunks";
 import { selectCategories } from "@/store/features/categories";

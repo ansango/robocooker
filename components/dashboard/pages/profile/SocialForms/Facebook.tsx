@@ -1,6 +1,7 @@
 import { SocialNetwork } from "@/models/user/user";
-import { selectAccount } from "@/store/features/account";
-import { updateSocialFB } from "@/store/features/account/thunks";
+import { selectAccount } from "@/store/features/account/account";
+import { updateSocialFB } from "@/store/features/account/account/thunks";
+
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Form, Input } from "components/common/Forms";
 import { FC, useCallback } from "react";

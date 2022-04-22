@@ -1,6 +1,7 @@
 import { Account, User } from "@/models/user/user";
-import { selectAccount } from "@/store/features/account";
-import { updateAccount } from "@/store/features/account/thunks";
+import { selectAccount } from "@/store/features/account/account";
+import { updateAccount } from "@/store/features/account/account/thunks";
+
 import { selectUser } from "@/store/features/user";
 import { updateUser } from "@/store/features/user/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
