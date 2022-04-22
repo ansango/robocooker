@@ -1,4 +1,4 @@
-import { removeMyRecipe } from "@/store/features/recipes/myRecipes/thunks";
+import { removeMyRecipe } from "@/store/features/account/myRecipes/thunks";
 import { Form } from "components/common/Forms";
 import Modal from "components/common/Modal/Modal";
 import ModalAction from "components/common/Modal/ModalAction";

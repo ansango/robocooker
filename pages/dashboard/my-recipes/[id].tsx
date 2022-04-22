@@ -1,5 +1,5 @@
-import { selectMyRecipes } from "@/store/features/recipes/myRecipes";
-import { getMyRecipes } from "@/store/features/recipes/myRecipes/thunks";
+import { selectMyRecipes } from "@/store/features/account/myRecipes";
+import { getMyRecipes } from "@/store/features/account/myRecipes/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Breadcrumb from "components/common/Breadcrumb/Breadcrumb";
 import BreadcrumbLink from "components/common/Breadcrumb/BreadcrumbLink";

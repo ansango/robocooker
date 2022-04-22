@@ -3,7 +3,7 @@ import { selectBlenders } from "@/store/features/blenders";
 import { getBlenders } from "@/store/features/blenders/thunks";
 import { selectCategories } from "@/store/features/categories";
 import { getCategories } from "@/store/features/categories/thunks";
-import { updateMyCategoriesRecipe } from "@/store/features/recipes/myRecipes/thunks";
+import { updateMyCategoriesRecipe } from "@/store/features/account/myRecipes/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimAction from "components/common/Cards/Slim/CardSlimAction";

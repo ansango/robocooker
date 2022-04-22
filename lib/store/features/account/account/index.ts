@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./state";
-import type { AppState } from "../../index";
+import type { AppState } from "../../../index";
 import {
   getAccount,
   removeAccountOnSignOut,

@@ -13,13 +13,12 @@ import IngredientFields from "./IngredientFields";
 import StepsFields from "./StepsField";
 import FileLarge from "components/common/Forms/FileLarge";
 import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
-import { addMyRecipe } from "@/store/features/recipes/myRecipes/thunks";
-import { selectAccount } from "@/store/features/account";
+import { addMyRecipe } from "@/store/features/account/myRecipes/thunks";
 import { useRouter } from "next/router";
 import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import AddRecipeButton from "./AddRecipeButton";
-
+import { selectAccount } from "@/store/features/account/account";
 type Selector = {
   label: any;
   value: any;

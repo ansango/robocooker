@@ -1,7 +1,7 @@
 import { Account } from "lib/models/user/user";
 import fetcher from "../utils/fetcher";
 
-const onGetAccountService = async (): Promise<Account> => {
+export const onGetAccountService = async (): Promise<Account> => {
   try {
     const response = await fetcher("/api/account");
     return response.account;
@@ -10,7 +10,7 @@ const onGetAccountService = async (): Promise<Account> => {
   }
 };
 
-const onSaveAccountService = async ({
+export const onSaveAccountService = async ({
   account,
 }: {
   account: Account;
@@ -29,7 +29,7 @@ const onSaveAccountService = async ({
   }
 };
 
-const onUpdateAvatarAccountService = async ({
+export const onUpdateAvatarAccountService = async ({
   formData,
 }: {
   formData: FormData;
@@ -45,7 +45,7 @@ const onUpdateAvatarAccountService = async ({
   }
 };
 
-const onUpdatePreferencesService = async (
+export const onUpdatePreferencesService = async (
   account: Account
 ): Promise<Account> => {
   try {
@@ -62,7 +62,7 @@ const onUpdatePreferencesService = async (
   }
 };
 
-const onUpdateSocialNetworkService = async (
+export const onUpdateSocialNetworkService = async (
   account: Account
 ): Promise<Account> => {
   try {
@@ -79,10 +79,26 @@ const onUpdateSocialNetworkService = async (
   }
 };
 
-export {
-  onGetAccountService,
-  onSaveAccountService,
-  onUpdateAvatarAccountService,
-  onUpdatePreferencesService,
-  onUpdateSocialNetworkService,
+export const onLikeRecipeService = async (id: RecipeId): Promise<void> => {
+  try {
+    await fetcher(`/api/account/like/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const onUnlikeRecipeService = async (id: RecipeId): Promise<void> => {
+  try {
+    await fetcher(`/api/account/unlike/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+  } catch (error) {
+    throw error;
+  }
 };

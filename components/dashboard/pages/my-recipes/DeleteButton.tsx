@@ -1,4 +1,4 @@
-import { selectOnDeleteRecipeStatus } from "@/store/features/recipes/myRecipes";
+import { selectOnDeleteRecipeStatus } from "@/store/features/account/myRecipes";
 import { useAppSelector } from "@/store/hooks";
 import ButtonSubmit from "components/common/Button/ButtonSubmit";
 

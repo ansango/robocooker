@@ -1,8 +1,8 @@
 import {
   selectMyRecipes,
   selectMyRecipesStatus,
-} from "@/store/features/recipes/myRecipes";
-import { getMyRecipes } from "@/store/features/recipes/myRecipes/thunks";
+} from "@/store/features/account/myRecipes";
+import { getMyRecipes } from "@/store/features/account/myRecipes/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import { Icon } from "components/common/Icons";

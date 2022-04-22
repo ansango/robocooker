@@ -1,5 +1,5 @@
 import { RecipeDTO, Step as StepModel } from "@/models/recipe/recipe";
-import { updateMyStepsRecipe } from "@/store/features/recipes/myRecipes/thunks";
+import { updateMyStepsRecipe } from "@/store/features/account/myRecipes/thunks";
 import { useAppDispatch } from "@/store/hooks";
 import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimAction from "components/common/Cards/Slim/CardSlimAction";

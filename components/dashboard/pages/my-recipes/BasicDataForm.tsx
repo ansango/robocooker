@@ -1,5 +1,5 @@
 import { RecipeDTO } from "@/models/recipe/recipe";
-import { updateMyInfoRecipe } from "@/store/features/recipes/myRecipes/thunks";
+import { updateMyInfoRecipe } from "@/store/features/account/myRecipes/thunks";
 import { useAppDispatch } from "@/store/hooks";
 import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimAction from "components/common/Cards/Slim/CardSlimAction";

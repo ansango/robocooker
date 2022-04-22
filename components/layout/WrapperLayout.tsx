@@ -1,4 +1,5 @@
-import { getAccount } from "@/store/features/account/thunks";
+
+import { getAccount } from "@/store/features/account/account/thunks";
 import { selectUser } from "@/store/features/user";
 import { getUser } from "@/store/features/user/thunks";
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";

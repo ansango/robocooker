@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from "lib/store/hooks";
 import { routeActive } from "@/utils/router";
-
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, useCallback } from "react";
@@ -9,10 +8,10 @@ import { Icon } from "../Icons";
 import { routesDashboard, userNavRoutes } from "./routes";
 import ToggleTheme from "./ToggleTheme";
 import { selectUser } from "@/store/features/user";
-import { selectAccount } from "@/store/features/account";
 import { signOut } from "@/store/features/user/thunks";
-import { removeAccountOnSignOut } from "@/store/features/account/thunks";
-import { removeMyRecipes } from "@/store/features/recipes/myRecipes/thunks";
+import { removeMyRecipes } from "@/store/features/account/myRecipes/thunks";
+import { selectAccount } from "@/store/features/account/account";
+import { removeAccountOnSignOut } from "@/store/features/account/account/thunks";
 
 
 const User: FC = () => {
