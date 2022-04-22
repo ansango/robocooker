@@ -1,9 +1,10 @@
 import { SocialNetwork } from "@/models/user/user";
 import { selectAccount } from "@/store/features/account";
-import { updateSocial } from "@/store/features/account/thunks";
+import { updateSocialYT } from "@/store/features/account/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Form, Input } from "components/common/Forms";
 import { FC, useCallback } from "react";
+import YoutubeButton from "./YoutubeButton";
 const Youtube: FC = () => {
   const account = useAppSelector(selectAccount);
   const dispatch = useAppDispatch();
@@ -11,7 +12,7 @@ const Youtube: FC = () => {
     ({ youtube }: SocialNetwork) => {
       if (!account) return;
       dispatch(
-        updateSocial({
+        updateSocialYT({
           ...account,
           social: { ...account.social, youtube },
         })
@@ -37,9 +38,7 @@ const Youtube: FC = () => {
           })}
       />
 
-      <button type="submit" className="btn btn-primary normal-case">
-        Guardar
-      </button>
+      <YoutubeButton />
     </Form>
   );
 };

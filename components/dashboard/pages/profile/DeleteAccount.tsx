@@ -6,6 +6,7 @@ import CardBasicContent from "components/common/Cards/Basic/CardBasicContent";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import { Form, Input } from "components/common/Forms";
 import React, { useCallback } from "react";
+import DeleteAccountButton from "./DeleteAccountButton";
 
 const DeleteAccount = () => {
   const dispatch = useAppDispatch();
@@ -39,9 +40,7 @@ const DeleteAccount = () => {
             />
           </div>
           <CardBasicAction>
-            <button className="btn btn-error normal-case" type="submit">
-              Eliminar cuenta
-            </button>
+            <DeleteAccountButton />
           </CardBasicAction>
         </CardBasicContent>
       </Form>

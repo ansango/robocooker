@@ -1,9 +1,10 @@
 import { SocialNetwork } from "@/models/user/user";
 import { selectAccount } from "@/store/features/account";
-import { updateSocial } from "@/store/features/account/thunks";
+import { updateSocialTW } from "@/store/features/account/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Form, Input } from "components/common/Forms";
 import { FC, useCallback } from "react";
+import TwitterButton from "./TwitterButton";
 
 const Twitter: FC = () => {
   const account = useAppSelector(selectAccount);
@@ -12,7 +13,7 @@ const Twitter: FC = () => {
     ({ twitter }: SocialNetwork) => {
       if (!account) return;
       dispatch(
-        updateSocial({
+        updateSocialTW({
           ...account,
           social: { ...account.social, twitter },
         })
@@ -38,9 +39,7 @@ const Twitter: FC = () => {
           })}
       />
 
-      <button type="submit" className="btn btn-primary normal-case">
-        Guardar
-      </button>
+      <TwitterButton />
     </Form>
   );
 };

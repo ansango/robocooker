@@ -1,9 +1,10 @@
 import { SocialNetwork } from "@/models/user/user";
 import { selectAccount } from "@/store/features/account";
-import { updateSocial } from "@/store/features/account/thunks";
+import { updateSocialIG } from "@/store/features/account/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Form, Input } from "components/common/Forms";
 import { FC, useCallback } from "react";
+import InstagramButton from "./InstagramButton";
 const Instagram: FC = () => {
   const account = useAppSelector(selectAccount);
   const dispatch = useAppDispatch();
@@ -11,7 +12,7 @@ const Instagram: FC = () => {
     ({ instagram }: SocialNetwork) => {
       if (!account) return;
       dispatch(
-        updateSocial({
+        updateSocialIG({
           ...account,
           social: { ...account.social, instagram },
         })
@@ -37,9 +38,7 @@ const Instagram: FC = () => {
           })}
       />
 
-      <button type="submit" className="btn btn-primary normal-case">
-        Guardar
-      </button>
+      <InstagramButton />
     </Form>
   );
 };

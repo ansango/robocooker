@@ -10,6 +10,7 @@ import CardBasic from "components/common/Cards/Basic/CardBasic";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
 import ButtonSubmit from "components/common/Button/ButtonSubmit";
+import AvatarButton from "./AvatarButton";
 
 const AvatarForm = () => {
   const account = useAppSelector(selectAccount);
@@ -60,9 +61,7 @@ const AvatarForm = () => {
           </div>
         </div>
         <CardBasicAction>
-          <button type="submit" className="btn btn-primary normal-case">
-            Guardar
-          </button>
+          <AvatarButton />
         </CardBasicAction>
       </Form>
     </CardBasic>

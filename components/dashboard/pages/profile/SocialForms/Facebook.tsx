@@ -1,9 +1,10 @@
 import { SocialNetwork } from "@/models/user/user";
 import { selectAccount } from "@/store/features/account";
-import { updateSocial } from "@/store/features/account/thunks";
+import { updateSocialFB } from "@/store/features/account/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Form, Input } from "components/common/Forms";
 import { FC, useCallback } from "react";
+import FacebookButton from "./FacebookButton";
 
 const Facebook: FC = () => {
   const account = useAppSelector(selectAccount);
@@ -12,7 +13,7 @@ const Facebook: FC = () => {
     ({ facebook }: SocialNetwork) => {
       if (!account) return;
       dispatch(
-        updateSocial({
+        updateSocialFB({
           ...account,
           social: { ...account.social, facebook },
         })
@@ -38,9 +39,7 @@ const Facebook: FC = () => {
           })}
       />
 
-      <button type="submit" className="btn btn-primary normal-case">
-        Guardar
-      </button>
+      <FacebookButton />
     </Form>
   );
 };

@@ -46,8 +46,32 @@ export const updatePreferences = createAsyncThunk(
   }
 );
 
-export const updateSocial = createAsyncThunk(
-  "account/updateSocial",
+export const updateSocialFB = createAsyncThunk(
+  "account/updateSocialFB",
+  async (account: Account) => {
+    const response = await onUpdateSocialNetworkService(account);
+    return response;
+  }
+);
+
+export const updateSocialIG = createAsyncThunk(
+  "account/updateSocialIG",
+  async (account: Account) => {
+    const response = await onUpdateSocialNetworkService(account);
+    return response;
+  }
+);
+
+export const updateSocialTW = createAsyncThunk(
+  "account/updateSocialTW",
+  async (account: Account) => {
+    const response = await onUpdateSocialNetworkService(account);
+    return response;
+  }
+);
+
+export const updateSocialYT = createAsyncThunk(
+  "account/updateSocialYT",
   async (account: Account) => {
     const response = await onUpdateSocialNetworkService(account);
     return response;

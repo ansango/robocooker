@@ -79,26 +79,32 @@ export const userSlice = createSlice({
     builder
       .addCase(updateUser.pending, (state) => {
         state.status = "loading";
+        state.onUpdateUser = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.status = "idle";
         state.value = action.payload;
+        state.onUpdateUser = false;
         toast.success("Datos actualizados!");
       })
       .addCase(updateUser.rejected, (state) => {
         state.status = "failed";
+        state.onUpdateUser = false;
         toast.error("Error al actualizar los datos");
       });
     builder
       .addCase(updatePassword.pending, (state) => {
         state.status = "loading";
+        state.onUpdatePassword = true;
       })
       .addCase(updatePassword.fulfilled, (state) => {
         state.status = "idle";
+        state.onUpdatePassword = false;
         toast.success("Contraseña actualizada!");
       })
       .addCase(updatePassword.rejected, (state) => {
         state.status = "failed";
+        state.onUpdatePassword = false;
         toast.error("Error al actualizar la contraseña");
       });
     builder
@@ -146,14 +152,17 @@ export const userSlice = createSlice({
     builder
       .addCase(deleteUser.pending, (state) => {
         state.status = "loading";
+        state.onDeleteUser = true;
       })
       .addCase(deleteUser.fulfilled, (state) => {
         state.status = "idle";
         state.value = null;
+        state.onDeleteUser = false;
         toast.success("Te echaremos de menos!");
       })
       .addCase(deleteUser.rejected, (state) => {
         state.status = "failed";
+        state.onDeleteUser = false;
         toast.error("Error al eliminar el usuario");
       });
   },
@@ -167,4 +176,11 @@ export const selectOnRecoveryPasswordStatus = (state: AppState) =>
   state.user.onRecoveryPassword;
 export const selectOnResetPasswordStatus = (state: AppState) =>
   state.user.onResetPassword;
+export const selectOnUpdatePasswordStatus = (state: AppState) =>
+  state.user.onUpdatePassword;
+export const selectOnUpdateUserStatus = (state: AppState) =>
+  state.user.onUpdateUser;
+export const selectOnDeleteUserStatus = (state: AppState) =>
+  state.user.onDeleteUser;
+
 export default userSlice.reducer;

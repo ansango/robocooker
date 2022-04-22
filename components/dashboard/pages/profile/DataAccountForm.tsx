@@ -9,6 +9,7 @@ import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import { Date, Form, Input, TextArea } from "components/common/Forms";
 import { FC, useCallback } from "react";
+import DataAccountButton from "./DataAccountButton";
 
 type AccountDataForm = {
   username: string;
@@ -220,9 +221,7 @@ const DataAccountForm: FC = () => {
 
           <div className="col-span-full">
             <CardBasicAction>
-              <button type="submit" className="btn btn-primary normal-case">
-                Guardar
-              </button>
+              <DataAccountButton />
             </CardBasicAction>
           </div>
         </div>

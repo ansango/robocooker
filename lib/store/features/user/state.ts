@@ -7,6 +7,9 @@ export interface UserState {
   onSignUp: boolean;
   onRecoveryPassword: boolean;
   onResetPassword: boolean;
+  onUpdatePassword: boolean;
+  onUpdateUser: boolean;
+  onDeleteUser: boolean;
 }
 
 export const initialState: UserState = {
@@ -16,4 +19,7 @@ export const initialState: UserState = {
   onSignUp: false,
   onRecoveryPassword: false,
   onResetPassword: false,
+  onUpdatePassword: false,
+  onUpdateUser: false,
+  onDeleteUser: false,
 };

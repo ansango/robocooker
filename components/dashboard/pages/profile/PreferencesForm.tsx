@@ -14,6 +14,7 @@ import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import { Checkbox, Form } from "components/common/Forms";
 import React, { FC, useCallback, useEffect } from "react";
+import PreferencesButton from "./PreferencesButton";
 
 const PreferencesForm: FC = () => {
   const user = useAppSelector(selectUser);
@@ -78,9 +79,7 @@ const PreferencesForm: FC = () => {
           </div>
         </div>
         <CardBasicAction>
-          <button type="submit" className="btn btn-primary normal-case">
-            Guardar
-          </button>
+          <PreferencesButton />
         </CardBasicAction>
       </Form>
     </CardBasic>
