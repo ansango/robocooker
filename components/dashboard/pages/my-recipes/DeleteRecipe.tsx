@@ -9,6 +9,7 @@ import { closeModal } from "components/common/Modal/utils";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { useDispatch } from "react-redux";
+import DeleteButton from "./DeleteButton";
 
 const DeleteRecipe: FC<{ id: string; idRecipe: string }> = ({
   id,
@@ -38,9 +39,7 @@ const DeleteRecipe: FC<{ id: string; idRecipe: string }> = ({
             </p>
           </ModalContent>
           <ModalAction>
-            <button className="btn btn-error normal-case" type="submit">
-              Eliminar receta
-            </button>
+            <DeleteButton />
           </ModalAction>
         </Form>
       </ModalBox>

@@ -8,6 +8,7 @@ import { File, Form } from "components/common/Forms";
 import Step from "components/common/Stepper/Step";
 import Image from "next/image";
 import { FC, useCallback } from "react";
+import ImageButton from "./ImageButton";
 
 type Props = {
   id: RecipeDTO["_id"];
@@ -66,9 +67,7 @@ const ImageForm: FC<Props> = ({ img, id }) => {
                 />
               </div>
               <CardSlimAction>
-                <button className="btn btn-primary normal-case" type="submit">
-                  Guardar
-                </button>
+                <ImageButton />
               </CardSlimAction>
             </CardSlimContent>
           </Step>

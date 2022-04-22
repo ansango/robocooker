@@ -18,6 +18,7 @@ import { selectAccount } from "@/store/features/account";
 import { useRouter } from "next/router";
 import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
+import AddRecipeButton from "./AddRecipeButton";
 
 type Selector = {
   label: any;
@@ -254,9 +255,7 @@ const AddRecipeForm = () => {
         </div>
         <div className="col-span-full">
           <div className="flex justify-end w-full">
-            <button className="btn btn-primary normal-case" type="submit">
-              Crear receta
-            </button>
+            <AddRecipeButton />
           </div>
         </div>
       </form>

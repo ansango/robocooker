@@ -7,6 +7,7 @@ import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import { Form, Input, TextArea } from "components/common/Forms";
 import Step from "components/common/Stepper/Step";
 import { FC, useCallback } from "react";
+import BasicDataButton from "./BasicDataButton";
 
 type Props = {
   recipe: RecipeDTO;
@@ -81,9 +82,7 @@ const BasicDataForm: FC<Props> = ({ recipe }) => {
               />
 
               <CardSlimAction>
-                <button className="btn btn-primary normal-case" type="submit">
-                  Guardar
-                </button>
+                <BasicDataButton />
               </CardSlimAction>
             </CardSlimContent>
           </Step>

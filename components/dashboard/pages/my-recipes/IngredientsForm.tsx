@@ -8,6 +8,7 @@ import Step from "components/common/Stepper/Step";
 import React, { FC, useCallback } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import IngredientFields from "./IngredientFields";
+import IngredientsButton from "./IngredientsButton";
 
 type Props = {
   id: RecipeId;
@@ -56,9 +57,7 @@ const IngredientsForm: FC<Props> = ({ ingredients, id }) => {
                 <IngredientFields />
               </CardSlimContent>
               <CardSlimAction>
-                <button className="btn btn-primary normal-case" type="submit">
-                  Guardar
-                </button>
+                <IngredientsButton />
               </CardSlimAction>
             </Step>
           </CardSlim>

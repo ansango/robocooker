@@ -7,6 +7,7 @@ import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import Step from "components/common/Stepper/Step";
 import React, { FC, useCallback } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import StepsButton from "./StepsButton";
 import StepsFields from "./StepsField";
 
 type Props = {
@@ -55,9 +56,7 @@ const StepsForm: FC<Props> = ({ steps, id }) => {
                 <StepsFields />
               </CardSlimContent>
               <CardSlimAction>
-                <button className="btn btn-primary normal-case" type="submit">
-                  Guardar
-                </button>
+                <StepsButton />
               </CardSlimAction>
             </Step>
           </CardSlim>

@@ -12,6 +12,7 @@ import { Form } from "components/common/Forms";
 import { MultiSelect } from "components/common/Forms/MultiSelect";
 import Step from "components/common/Stepper/Step";
 import React, { FC, useCallback, useEffect, useState } from "react";
+import CategoriesButton from "./CategoriesButton";
 
 type Selector = {
   label: any;
@@ -116,9 +117,7 @@ const CategoriesForm: FC<Props> = ({ recipe }) => {
                 labelledBy="Select"
               />
               <CardSlimAction>
-                <button className="btn btn-primary normal-case" type="submit">
-                  Guardar
-                </button>
+                <CategoriesButton />
               </CardSlimAction>
             </CardSlimContent>
           </Step>
