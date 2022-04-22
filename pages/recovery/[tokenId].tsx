@@ -2,7 +2,7 @@ import { findTokenByIdAndType } from "@/api/db/token";
 import { database } from "@/api/middlewares";
 import AuthLayout from "components/layout/AuthLayout";
 import BadLink from "components/pages/recovery/BadLink";
-import RecoveryForm from "components/pages/recovery/RecoveryForm";
+import ResetForm from "components/pages/recovery/ResetForm";
 import { GetServerSideProps, NextPage } from "next";
 import nc from "next-connect";
 
@@ -15,7 +15,7 @@ const Token: NextPage<Props> = ({ valid, tokenId }) => {
   return (
     <AuthLayout>
       <div className="max-w-md py-80 sm:py-64">
-        {valid ? <RecoveryForm tokenId={tokenId} /> : <BadLink />}
+        {valid ? <ResetForm tokenId={tokenId} /> : <BadLink />}
       </div>
     </AuthLayout>
   );

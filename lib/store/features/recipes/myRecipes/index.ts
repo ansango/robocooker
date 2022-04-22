@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 import { AppState } from "../../..";
 import { initialState } from "./state";
 import {
@@ -45,9 +46,11 @@ export const myRecipesSlice = createSlice({
       })
       .addCase(addMyRecipe.fulfilled, (state) => {
         state.status = "idle";
+        toast.success("Receta agregada");
       })
       .addCase(addMyRecipe.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al agregar receta");
       });
     builder
       .addCase(updateMyPictureRecipe.pending, (state) => {
@@ -63,9 +66,11 @@ export const myRecipesSlice = createSlice({
             }
             return recipe;
           });
+        toast.success("Imagen actualizada");
       })
       .addCase(updateMyPictureRecipe.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al actualizar imagen");
       });
     builder
       .addCase(updateMyInfoRecipe.pending, (state) => {
@@ -81,9 +86,11 @@ export const myRecipesSlice = createSlice({
             }
             return recipe;
           });
+        toast.success("Información actualizada");
       })
       .addCase(updateMyInfoRecipe.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al actualizar información");
       });
     builder
       .addCase(updateMyCategoriesRecipe.pending, (state) => {
@@ -99,9 +106,11 @@ export const myRecipesSlice = createSlice({
             }
             return recipe;
           });
+        toast.success("Categorías actualizadas");
       })
       .addCase(updateMyCategoriesRecipe.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al actualizar categorías");
       });
     builder
       .addCase(updateMyIngredientsRecipe.pending, (state) => {
@@ -117,10 +126,12 @@ export const myRecipesSlice = createSlice({
             }
             return recipe;
           });
+        toast.success("Ingredientes actualizados");
       })
 
       .addCase(updateMyIngredientsRecipe.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al actualizar ingredientes");
       });
     builder
       .addCase(updateMyStepsRecipe.pending, (state) => {
@@ -136,9 +147,11 @@ export const myRecipesSlice = createSlice({
             }
             return recipe;
           });
+        toast.success("Preparación actualizada");
       })
       .addCase(updateMyStepsRecipe.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al actualizar preparación");
       });
     builder
       .addCase(removeMyRecipe.pending, (state) => {
@@ -151,9 +164,11 @@ export const myRecipesSlice = createSlice({
           state.value.filter((recipe) => {
             return recipe._id !== action.payload._id;
           });
+        toast.success("Receta eliminada");
       })
       .addCase(removeMyRecipe.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al eliminar receta");
       });
   },
 });

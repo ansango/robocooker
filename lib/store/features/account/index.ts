@@ -9,6 +9,7 @@ import {
   updatePreferences,
   updateSocial,
 } from "./thunks";
+import toast from "react-hot-toast";
 
 export const accountSlice = createSlice({
   name: "account",
@@ -25,6 +26,7 @@ export const accountSlice = createSlice({
       })
       .addCase(getAccount.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al obtener la cuenta");
       });
     builder
       .addCase(updateAccount.pending, (state) => {
@@ -33,9 +35,11 @@ export const accountSlice = createSlice({
       .addCase(updateAccount.fulfilled, (state, action) => {
         state.status = "idle";
         state.value = action.payload;
+        toast.success("Cuenta actualizada");
       })
       .addCase(updateAccount.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al actualizar la cuenta");
       });
     builder
       .addCase(updateAvatar.pending, (state) => {
@@ -45,10 +49,12 @@ export const accountSlice = createSlice({
         state.status = "idle";
         if (state.value) {
           state.value.avatar = action.payload.avatar;
+          toast.success("Avatar actualizado");
         }
       })
       .addCase(updateAvatar.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al actualizar el avatar");
       });
     builder.addCase(removeAccountOnSignOut.fulfilled, (state) => {
       state.value = null;
@@ -67,9 +73,11 @@ export const accountSlice = createSlice({
       .addCase(updatePreferences.fulfilled, (state, action) => {
         state.status = "idle";
         state.value = action.payload;
+        toast.success("Preferencias actualizadas");
       })
       .addCase(updatePreferences.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al actualizar las preferencias");
       });
     builder
       .addCase(updateSocial.pending, (state) => {
@@ -78,9 +86,11 @@ export const accountSlice = createSlice({
       .addCase(updateSocial.fulfilled, (state, action) => {
         state.status = "idle";
         state.value = action.payload;
+        toast.success("Redes sociales actualizadas");
       })
       .addCase(updateSocial.rejected, (state) => {
         state.status = "failed";
+        toast.error("Error al actualizar las redes sociales");
       });
   },
 });
