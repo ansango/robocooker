@@ -1,17 +1,11 @@
 import { selectOnResetPasswordStatus } from "@/store/features/user";
 import { useAppSelector } from "@/store/hooks";
+import ButtonSubmit from "components/common/Button/ButtonSubmit";
 import { FC } from "react";
 
 const ResetButton: FC = () => {
-  const cn =
-    useAppSelector(selectOnResetPasswordStatus) === true
-      ? `btn btn-primary normal-case w-full loading`
-      : `btn btn-primary normal-case w-full`;
-  return (
-    <button className={cn} type="submit">
-      Recuperar cuenta
-    </button>
-  );
+  const loading = useAppSelector(selectOnResetPasswordStatus) === true;
+  return <ButtonSubmit label="Recuperar cuenta" isLoading={loading} isFull />;
 };
 
 export default ResetButton;

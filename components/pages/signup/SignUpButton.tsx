@@ -1,17 +1,11 @@
 import { selectOnSignUpStatus } from "@/store/features/user";
 import { useAppSelector } from "@/store/hooks";
+import ButtonSubmit from "components/common/Button/ButtonSubmit";
 import { FC } from "react";
 
 const SignUpButton: FC = () => {
-  const cn =
-    useAppSelector(selectOnSignUpStatus) === true
-      ? `btn btn-primary normal-case w-full loading`
-      : `btn btn-primary normal-case w-full`;
-  return (
-    <button className={cn} type="submit">
-      Crear cuenta
-    </button>
-  );
+  const loading = useAppSelector(selectOnSignUpStatus) === true;
+  return <ButtonSubmit isLoading={loading} isFull label="Registrarse" />;
 };
 
 export default SignUpButton;

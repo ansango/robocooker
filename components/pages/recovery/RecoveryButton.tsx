@@ -1,15 +1,11 @@
 import { selectOnRecoveryPasswordStatus } from "@/store/features/user";
 import { useAppSelector } from "@/store/hooks";
+import ButtonSubmit from "components/common/Button/ButtonSubmit";
 
 const RecoveryButton = () => {
-  const cn =
-    useAppSelector(selectOnRecoveryPasswordStatus) === true
-      ? `btn btn-primary normal-case w-full loading`
-      : `btn btn-primary normal-case w-full`;
+  const loading = useAppSelector(selectOnRecoveryPasswordStatus) === true;
   return (
-    <button className={cn} type="submit">
-      Recuperar cuenta
-    </button>
+    <ButtonSubmit label="Recuperar contraseña" isLoading={loading} isFull />
   );
 };
 
