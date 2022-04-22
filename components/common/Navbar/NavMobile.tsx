@@ -9,8 +9,10 @@ const NavMobile: FC = () => {
   const { pathname } = useRouter();
   return (
     <div className="dropdown md:hidden">
-      <label tabIndex={0} className="btn btn-ghost btn-circle">
-        <Icon icon="MenuAlt2Icon" kind="outline" className="w-5 h-5" />
+      <label tabIndex={0} className="btn btn-ghost btn-circle swap swap-rotate">
+        <input type="checkbox" />
+        <Icon icon="MenuAlt2Icon" kind="outline" className="w-5 h-5 swap-off" />
+        <Icon icon="XIcon" kind="outline" className="w-5 h-5 swap-on" />
       </label>
       <ul
         tabIndex={0}
@@ -22,7 +24,7 @@ const NavMobile: FC = () => {
             <li key={path}>
               <Link href={path}>
                 <a className={cn}>
-                  <Icon icon={icon} kind="outline" className="w-4 h-4"/>
+                  <Icon icon={icon} kind="outline" className="w-4 h-4" />
                   {label}
                 </a>
               </Link>
