@@ -8,7 +8,7 @@ type FullAvatar = {
 
 enum sizeFull {
   xs = "w-8",
-  sm = "w-16",
+  sm = "w-12",
   md = "w-20",
   lg = "w-32",
 }
