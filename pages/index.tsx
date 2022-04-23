@@ -49,18 +49,21 @@ const Home: NextPage = () => {
           </ContainerLink>
         </ContainerContent>
       </Container>
-      <Container>
-        <ContainerHeader>
-          <Subtitle title="Ultimas recetas" />
-          <SubParagraph content="Estas son las recetas mas recientes que hemos creado, y que estan siendo vistas por miles de usuarios." />
-        </ContainerHeader>
-        <ContainerContent>
-          <ContentLastRecipes />
-          <ContainerLink>
-            <ButtonLink href="/recipes" label="Ver todas las recetas" />
-          </ContainerLink>
-        </ContainerContent>
-      </Container>
+      <div className="bg-gray-50 dark:bg-gray-800 py-5">
+        <Container>
+          <ContainerHeader>
+            <Subtitle title="Ultimas recetas" />
+            <SubParagraph content="Estas son las recetas mas recientes que hemos creado, y que estan siendo vistas por miles de usuarios." />
+          </ContainerHeader>
+
+          <ContainerContent>
+            <ContentLastRecipes />
+            <ContainerLink>
+              <ButtonLink href="/recipes" label="Ver todas las recetas" />
+            </ContainerLink>
+          </ContainerContent>
+        </Container>
+      </div>
     </MainLayout>
   );
 };
