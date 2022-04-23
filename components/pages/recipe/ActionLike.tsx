@@ -1,4 +1,5 @@
 import { onLikeRecipeService } from "@/services/account";
+import { addFavoriteRecipe } from "@/store/features/account/account";
 import { likeRecipe } from "@/store/features/recipes/recipe";
 import { useAppDispatch } from "@/store/hooks";
 import { Icon } from "components/common/Icons";
@@ -6,19 +7,21 @@ import React, { FC, useCallback, useState } from "react";
 
 type Props = {
   recipeId: string;
+  accountId: string;
 };
 
-const ActionLike: FC<Props> = ({ recipeId }) => {
+const ActionLike: FC<Props> = ({ recipeId, accountId }) => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const onLike = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await onLikeRecipeService(recipeId);
-      dispatch(likeRecipe(response.id));
+      await onLikeRecipeService(recipeId);
+      dispatch(likeRecipe(accountId));
+      dispatch(addFavoriteRecipe(recipeId));
     } catch (error) {}
     setIsLoading(false);
-  }, [recipeId, dispatch]);
+  }, [recipeId, accountId, dispatch]);
 
   return (
     <button

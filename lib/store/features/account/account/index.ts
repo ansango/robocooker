@@ -17,7 +17,14 @@ import toast from "react-hot-toast";
 export const accountSlice = createSlice({
   name: "account",
   initialState,
-  reducers: {},
+  reducers: {
+    addFavoriteRecipe: (state, action) => {
+      state.favorites = [...state.favorites, action.payload];
+    },
+    removeFavoriteRecipe: (state, action) => {
+      state.favorites = state.favorites.filter((id) => id !== action.payload);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAccount.pending, (state) => {
@@ -162,7 +169,10 @@ export const accountSlice = createSlice({
   },
 });
 
+export const { addFavoriteRecipe, removeFavoriteRecipe } = accountSlice.actions;
+
 export const selectAccount = (state: AppState) => state.account.value;
+export const selectFavorites = (state: AppState) => state.account.favorites;
 export const selectAccountId = (state: AppState) =>
   state.account.value ? state.account.value._id : null;
 export const selectAccountStatus = (state: AppState) => state.account.status;

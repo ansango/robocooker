@@ -2,6 +2,7 @@ import { Account } from "@/models/user/user";
 
 export interface AccountState {
   value: Account | null;
+  favorites: RecipeId[];
   status: "idle" | "loading" | "failed";
   onUpdateAvatar: boolean;
   onUpdateAccount: boolean;
@@ -15,6 +16,7 @@ export interface AccountState {
 
 export const initialState: AccountState = {
   value: null,
+  favorites: [],
   status: "idle",
   onUpdateAccount: false,
   onUpdateAvatar: false,
