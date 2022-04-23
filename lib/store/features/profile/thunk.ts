@@ -3,8 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getProfile = createAsyncThunk(
   "profile/getProfile",
-  async (accountId: AccountId) => {
-    const response = await onGetProfileService(accountId);
+  async (username: Username) => {
+    const response = await onGetProfileService(username);
     return response;
   }
 );
