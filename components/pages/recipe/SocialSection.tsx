@@ -5,19 +5,15 @@ import ContainerSection from "./ContainerSection";
 import Likes from "./Likes";
 import SocialActions from "./SocialActions";
 
-type Props = {};
-
 const SocialSection: FC = () => {
   const user = useAppSelector(selectUser);
   return (
-    <>
-      <ContainerSection>
-        <div className="flex justify-between items-center">
-          <Likes />
-          {user && <SocialActions />}
-        </div>
-      </ContainerSection>
-    </>
+    <ContainerSection>
+      <div className="flex justify-between items-center">
+        <Likes />
+        {user && <SocialActions />}
+      </div>
+    </ContainerSection>
   );
 };
 
