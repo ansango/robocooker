@@ -1,4 +1,4 @@
-import { Account, SocialNetwork } from "@/models/user/user";
+import { Account } from "@/models/user/user";
 import {
   onSaveAccountService,
   onUpdateAvatarAccountService,

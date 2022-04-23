@@ -1,18 +1,15 @@
-import { RecipeDTO } from "@/models/recipe/recipe";
 import { FC } from "react";
 import Author from "./Author";
 import Options from "./Options";
 
 type Props = {
-  account: RecipeDTO["account"];
-  created: RecipeDTO["created"];
-  id: string;
+  id: RecipeId;
 };
 
-const AuthorOptionsBlock: FC<Props> = ({ account, created, id }) => {
+const AuthorOptionsBlock: FC<Props> = ({ id }) => {
   return (
     <div className="flex justify-between items-center">
-      <Author account={account} created={created} />
+      <Author />
       <Options id={id} />
     </div>
   );

@@ -13,7 +13,7 @@ const Hero: FC<Props> = ({ img, name }) => {
       <figure className="w-full h-96 relative">
         <Image
           src={img}
-          loading="lazy"
+          priority
           alt="hero"
           layout="fill"
           className="object-center object-cover pointer-events-none"

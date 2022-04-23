@@ -35,5 +35,7 @@ export const { likeRecipe, unlikeRecipe } = recipeSlice.actions;
 export const selectRecipe = (state: AppState) => state.recipe.value;
 export const selectRecipeAccountId = (state: AppState) =>
   state.recipe.value && state.recipe.value.accountId;
+export const selectRecipeAccount = (state: AppState) =>
+  state.recipe.value && state.recipe.value.account;
 export const selectRecipeStatus = (state: AppState) => state.recipe.status;
 export default recipeSlice.reducer;

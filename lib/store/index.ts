@@ -7,17 +7,19 @@ import blenderReducer from "./features/blenders";
 import lastRecipesReducer from "./features/recipes/lastRecipes";
 import myRecipesReducer from "./features/account/myRecipes";
 import recipeReducer from "./features/recipes/recipe";
+import profileReducer from "./features/profile";
+
 export function makeStore() {
   return configureStore({
     reducer: {
       user: userReducer,
       account: accountReducer,
       myRecipes: myRecipesReducer,
-      favoriteRecipes: {} as any,
       categories: categoriesReducer,
       blenders: blenderReducer,
       lastRecipes: lastRecipesReducer,
       recipe: recipeReducer,
+      profile: profileReducer,
     },
   });
 }

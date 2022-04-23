@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FC } from "react";
 
 type Props = {
-  id: string;
+  id: RecipeId;
 };
 
 const Options: FC<Props> = ({ id }) => {
