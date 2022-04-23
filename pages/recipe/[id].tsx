@@ -24,6 +24,8 @@ import CommentForm from "components/pages/recipe/CommentForm";
 import CommentC from "components/pages/recipe/Comment";
 import { Comment } from "@/models/recipe/comment";
 import Comments from "components/pages/recipe/Comments";
+import Likes from "components/pages/recipe/Likes";
+import SocialActions from "components/pages/recipe/SocialActions";
 
 const comments: Comment[] = [
   {
@@ -151,6 +153,12 @@ const Recipe: NextPage = () => {
               <Steps steps={recipe.steps} />
             </div>
           </article>
+        </ContainerSection>
+        <ContainerSection>
+          <div className="flex justify-between items-center">
+            <Likes />
+            <SocialActions />
+          </div>
         </ContainerSection>
         <ContainerSection>
           <div className="p-5 rounded-lg bg-base-200">

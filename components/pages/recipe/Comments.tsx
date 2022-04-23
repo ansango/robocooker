@@ -8,7 +8,7 @@ type Props = {
 
 const Comments: FC<Props> = ({ comments }) => {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {comments.map((comment, i) => (
         <CommentC key={i} comment={comment} />
       ))}
