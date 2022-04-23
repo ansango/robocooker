@@ -96,14 +96,19 @@ export const onLikeRecipeService = async (
   // }
 };
 
-export const onUnlikeRecipeService = async (id: RecipeId): Promise<void> => {
-  try {
-    await fetcher(`/api/account/unlike/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-  } catch (error) {
-    throw error;
-  }
+export const onUnlikeRecipeService = async (
+  id: RecipeId
+): Promise<{ id: string }> => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve({ id: "6262daa6cd9dd1c34a10e608" }), 1500);
+  });
+  // try {
+  //   await fetcher(`/api/account/unlike/`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ id }),
+  //   });
+  // } catch (error) {
+  //   throw error;
+  // }
 };
