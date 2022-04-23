@@ -81,6 +81,20 @@ export const findUserByEmail = async (
   return user || null;
 };
 
+export const findUserByAccountId = async(
+  db: Db,
+  accountId: AccountId
+): Promise<User | null> => {
+  const user = (await db
+    .collection("users")
+    .findOne(
+      { accountId: new ObjectId(accountId) },
+      { projection: dbProjectionUsers() }
+  )
+    .then((user) => user || null)) as User;
+  return user || null;
+};
+
 export const updateUserPasswordByOldPassword = async (
   db: Db,
   userId: UserId,

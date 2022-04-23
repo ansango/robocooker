@@ -2,6 +2,7 @@ import { RecipeDTO } from "../recipe/recipe";
 import { Follower, SocialNetwork } from "./user";
 
 type Profile = {
+  username: Username;
   accountId: AccountId;
   about: Content;
   avatar: Url;
