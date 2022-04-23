@@ -1,13 +1,14 @@
 import { RecipeDTO } from "@/models/recipe/recipe";
 import { formatDate } from "@/utils/date";
 import { Avatar } from "components/common/Avatar";
-import  { FC } from "react";
+import { FC } from "react";
 
 type Props = {
-  recipe: RecipeDTO;
+  account: RecipeDTO["account"];
+  created: RecipeDTO["created"];
 };
 
-const Author: FC<Props> = ({ recipe: { account, created } }) => {
+const Author: FC<Props> = ({ account, created }) => {
   return (
     <div className="flex items-center space-x-2">
       <div className="flex items-center">

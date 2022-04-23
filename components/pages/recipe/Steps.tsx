@@ -23,7 +23,7 @@ const Steps: FC<Props> = ({ steps }) => {
         </ul>
       )}
       {!user && (
-        <div className="space-y-5 px-3 flex justify-end items-end space-x-2">
+        <div className="space-y-5 px-3 flex sm:justify-end items-end space-x-2">
           <Icon icon="LoginIcon" kind="outline" className="text-primary w-5 h-5 mb-0.5" />
           <ButtonLink href="/sigin" label="Inicia session para ver los pasos" />
         </div>

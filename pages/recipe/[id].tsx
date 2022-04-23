@@ -1,76 +1,21 @@
 import { selectRecipe } from "@/store/features/recipes/recipe";
 import { getRecipe } from "@/store/features/recipes/recipe/thunk";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { Icon } from "components/common/Icons";
 import MainLayout from "components/layout/MainLayout";
-import Author from "components/pages/recipe/Author";
 import Hero from "components/pages/recipe/Hero";
-import Options from "components/pages/recipe/Options";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import Categories from "components/pages/recipe/Categories";
 import { useEffect } from "react";
-import Printer from "components/pages/recipe/Printer";
-import Duration from "components/pages/recipe/Duration";
-import Servings from "components/pages/recipe/Servings";
-import Subtitle from "components/pages/recipe/Subtitle";
-import Ingredients from "components/pages/recipe/Ingredients";
-import Steps from "components/pages/recipe/Steps";
 import Divider from "components/pages/recipe/Divider";
 import Container from "components/pages/recipe/Container";
 import ContainerSection from "components/pages/recipe/ContainerSection";
-import Blenders from "components/pages/recipe/Blenders";
-import CommentForm from "components/pages/recipe/CommentForm";
-import CommentC from "components/pages/recipe/Comment";
-import { Comment } from "@/models/recipe/comment";
-import Comments from "components/pages/recipe/Comments";
-import Likes from "components/pages/recipe/Likes";
-import SocialActions from "components/pages/recipe/SocialActions";
-
-const comments: Comment[] = [
-  {
-    _id: "",
-    author: "anibalsantos",
-    content:
-      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
-    created: new Date(),
-  },
-  {
-    _id: "",
-    author: "anibalsantos",
-    content:
-      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
-    created: new Date(),
-  },
-  {
-    _id: "",
-    author: "anibalsantos",
-    content:
-      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
-    created: new Date(),
-  },
-  {
-    _id: "",
-    author: "anibalsantos",
-    content:
-      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
-    created: new Date(),
-  },
-  {
-    _id: "",
-    author: "anibalsantos",
-    content:
-      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
-    created: new Date(),
-  },
-  {
-    _id: "",
-    author: "anibalsantos",
-    content:
-      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
-    created: new Date(),
-  },
-];
+import SocialSection from "components/pages/recipe/SocialSection";
+import CommentsSection from "components/pages/recipe/CommentsSection";
+import CommentsUserSection from "components/pages/recipe/CommentsUserSection";
+import StepsBlock from "components/pages/recipe/StepsBlock";
+import IngredientsBlock from "components/pages/recipe/IngredientsBlock";
+import CategoriesDescriptionBlock from "components/pages/recipe/CategoriesDescriptionBlock";
+import AuthorOptionsBlock from "components/pages/recipe/AuthorOptionsBlock";
 
 const Recipe: NextPage = () => {
   const { query } = useRouter();
@@ -87,97 +32,22 @@ const Recipe: NextPage = () => {
     <MainLayout>
       <Container>
         <ContainerSection>
-          <div className="flex justify-between items-center">
-            <Author recipe={recipe} />
-            <Options id={id} />
-          </div>
+          <AuthorOptionsBlock
+            account={recipe.account}
+            created={recipe.created}
+            id={id}
+          />
           <Hero img={recipe.img} name={recipe.name} />
           <div className="grid gap-5 grid-cols-12">
-            <article className="col-span-full md:col-span-6 flex flex-col justify-end space-y-5">
-              <div className="space-y-1 pl-1 flex flex-col justify-center h-full">
-                <div className="flex justify-between">
-                  <div className="flex flex-row flex-wrap">
-                    <Categories categories={recipe.categories} />
-                  </div>
-                  <Printer />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-1">
-                    <Duration duration={recipe.duration} />
-                    <Servings servings={recipe.servings} />
-                  </div>
-                  <div className="flex flex-row flex-wrap">
-                    <Blenders blenders={recipe.blenders} />
-                  </div>
-                </div>
-              </div>
-              <div className="bg-base-200 shadow-sm p-5 rounded-xl space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Subtitle text="Descripción" />
-                  <Icon
-                    icon="BadgeCheckIcon"
-                    kind="outline"
-                    className="w-6 h-6 text-accent-focus"
-                  />
-                </div>
-                <p>{recipe.description}</p>
-              </div>
-            </article>
-            <article className="col-span-full md:col-span-6 flex flex-col justify-end">
-              <div className="bg-base-200 shadow-sm p-5 rounded-lg space-y-2">
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center space-x-2">
-                    <Subtitle text="Ingredientes" />
-                    <Icon
-                      icon="ClipboardListIcon"
-                      kind="outline"
-                      className="w-6 h-6 text-accent-focus"
-                    />
-                  </div>
-                </div>
-                <Ingredients ingredients={recipe.ingredients} />
-              </div>
-            </article>
+            <CategoriesDescriptionBlock {...recipe} />
+            <IngredientsBlock ingredients={recipe.ingredients} />
           </div>
           <Divider />
-          <article>
-            <div className="p-5 rounded-lg space-y-3 bg-base-200">
-              <div className="flex items-center space-x-2 px-3">
-                <Subtitle text="Preparación" />
-                <Icon
-                  icon="BeakerIcon"
-                  kind="outline"
-                  className="w-6 h-6 text-accent-focus"
-                />
-              </div>
-              <Steps steps={recipe.steps} />
-            </div>
-          </article>
+          <StepsBlock steps={recipe.steps} />
         </ContainerSection>
-        <ContainerSection>
-          <div className="flex justify-between items-center">
-            <Likes />
-            <SocialActions />
-          </div>
-        </ContainerSection>
-        <ContainerSection>
-          <div className="p-5 rounded-lg bg-base-200">
-            <CommentForm />
-          </div>
-        </ContainerSection>
-        <ContainerSection>
-          <article className="space-y-5">
-            <div className="flex items-center space-x-2">
-              <Subtitle text="Comentarios" />
-              <Icon
-                icon="AnnotationIcon"
-                kind="outline"
-                className=" w-6 h-6 text-accent-focus"
-              />
-            </div>
-            <Comments comments={comments} />
-          </article>
-        </ContainerSection>
+        <SocialSection />
+        <CommentsSection />
+        <CommentsUserSection />
       </Container>
     </MainLayout>
   );
