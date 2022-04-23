@@ -13,7 +13,7 @@ const Author: FC = () => {
       {recipe && (
         <div className="flex items-center space-x-2">
           <div className="flex items-center">
-            <Link href={`/profile/${recipe.accountId}`} passHref>
+            <Link href={`/profile/${recipe.account.username}`} passHref>
               <button className="btn btn-circle btn-ghost">
                 <Avatar size="xs" imgUrl={recipe.account.avatar} />
               </button>
