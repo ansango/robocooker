@@ -14,8 +14,6 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-
-
 const Profile: NextPage = () => {
   const { query } = useRouter();
   const { username } = query;
@@ -40,24 +38,17 @@ const Profile: NextPage = () => {
           </CardSecondCol>
         </CardContainer>
       </Container>
-      <Container>
-        <article className="container mx-auto space-y-5">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-            {profile.recipes.map((recipe) => (
-              <CardRecipe
-                key={recipe._id}
-                {...recipe}
-                account={{
-                  avatar: profile.avatar,
-                  username: profile.username,
-                  firstName: profile.firstName,
-                  lastName: profile.lastName,
-                }}
-              />
-            ))}
-          </div>
-        </article>
-      </Container>
+      <div className="bg-gray-50 dark:bg-gray-800">
+        <Container>
+          <article className="container mx-auto space-y-5">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+              {profile.recipes.map((recipe) => (
+                <CardRecipe key={recipe._id} {...recipe} id={recipe._id} />
+              ))}
+            </div>
+          </article>
+        </Container>
+      </div>
     </MainLayout>
   );
 };

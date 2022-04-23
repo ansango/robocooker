@@ -4,14 +4,26 @@ import CardBody from "./CardBody";
 import CardHeader from "./CardHeader";
 import CardFooter from "./CardFooter";
 import Link from "next/link";
-const CardRecipe: FC<RecipeDTO> = ({
+
+type Props = {
+  name: RecipeDTO["name"];
+  description: RecipeDTO["description"];
+  img: RecipeDTO["img"];
+  categories: RecipeDTO["categories"];
+  servings: RecipeDTO["servings"];
+  duration: RecipeDTO["duration"];
+  id: RecipeDTO["_id"];
+  likes: RecipeDTO["likes"];
+};
+
+const CardRecipe: FC<Props> = ({
   name,
   description,
   img,
   categories,
   servings,
   duration,
-  _id,
+  id,
   likes,
 }) => {
   const body = {
@@ -26,7 +38,7 @@ const CardRecipe: FC<RecipeDTO> = ({
   };
   return (
     <div className="card compact bg-base-100 shadow-md transform hover:scale-[1.005] hover:shadow-lg transition duration-250 ease-out hover:ease-in">
-      <Link href={`/recipe/${_id}`}>
+      <Link href={`/recipe/${id}`}>
         <a>
           <CardHeader img={img} />
           <CardBody {...body} />
