@@ -38,7 +38,7 @@ const Recipe: NextPage = () => {
             id={id}
           />
           <Hero img={recipe.img} name={recipe.name} />
-          <div className="grid gap-5 grid-cols-12">
+          <div className="grid gap-5 grid-cols-12 pt-2">
             <CategoriesDescriptionBlock {...recipe} />
             <IngredientsBlock ingredients={recipe.ingredients} />
           </div>

@@ -11,14 +11,12 @@ const SocialSection: FC = () => {
   const user = useAppSelector(selectUser);
   return (
     <>
-      {user && (
-        <ContainerSection>
-          <div className="flex justify-between items-center">
-            <Likes />
-            <SocialActions />
-          </div>
-        </ContainerSection>
-      )}
+      <ContainerSection>
+        <div className="flex justify-between items-center">
+          <Likes />
+          {user && <SocialActions />}
+        </div>
+      </ContainerSection>
     </>
   );
 };
