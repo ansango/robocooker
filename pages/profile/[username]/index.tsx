@@ -28,16 +28,16 @@ const Profile: NextPage = () => {
             <div className="bg-base-100 p-5 rounded-2xl shadow-sm sm:p-10">
               <div className="flex flex-col sm:flex-row sm:space-x-5">
                 <div className="flex items-center space-x-5 sm:justify-center sm:items-start md:space-x-0 ">
-                  <div className="flex items-center md:hidden">
+                  <div className="flex items-center md:hidden sm:mt-5">
                     <Avatar size="md" imgUrl={profile.avatar} />
                   </div>
-                  <div className="hidden md:flex md:items-center">
+                  <div className="hidden md:flex md:items-center mt-5">
                     <Avatar size="lg" imgUrl={profile.avatar} />
                   </div>
 
                   <div className="sm:hidden">
                     <div className="">
-                      <h1 className="font-semibold text-xl sm:text-2xl">
+                      <h1 className="font-semibold text-xl pb-2">
                         @{profile.username}
                       </h1>
                     </div>
