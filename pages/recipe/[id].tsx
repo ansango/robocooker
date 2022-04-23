@@ -20,10 +20,26 @@ import Divider from "components/pages/recipe/Divider";
 import Container from "components/pages/recipe/Container";
 import ContainerSection from "components/pages/recipe/ContainerSection";
 import Blenders from "components/pages/recipe/Blenders";
-import { Form, Input, TextArea } from "components/common/Forms";
-import ButtonSubmit from "components/common/Button/ButtonSubmit";
-import { Avatar } from "components/common/Avatar";
-import DividerComment from "components/pages/recipe/DividerComment";
+import CommentForm from "components/pages/recipe/CommentForm";
+import CommentC from "components/pages/recipe/Comment";
+import { Comment } from "@/models/recipe/comment";
+
+const comments: Comment[] = [
+  {
+    _id: "",
+    author: "anibalsantos",
+    content:
+      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
+    created: new Date(),
+  },
+  {
+    _id: "",
+    author: "anibalsantos",
+    content:
+      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
+    created: new Date(),
+  },
+];
 
 const Recipe: NextPage = () => {
   const { query } = useRouter();
@@ -109,33 +125,7 @@ const Recipe: NextPage = () => {
         </ContainerSection>
         <ContainerSection>
           <div className="p-5 rounded-lg bg-base-200">
-            <Form
-              onSubmit={() => {}}
-              className="flex flex-col space-y-5 sm:space-y-0 sm:flex-row sm:space-x-5"
-            >
-              <Input
-                type="text"
-                name="comment"
-                placeholder="Escribe un comentario"
-                options={{
-                  required: {
-                    value: true,
-                    message: "Escribe algo!",
-                  },
-                  minLength: {
-                    value: 5,
-                    message: "Mínimo 5 caracteres",
-                  },
-                  maxLength: {
-                    value: 200,
-                    message: "Máximo 200 caracteres",
-                  },
-                }}
-              />
-              <div>
-                <ButtonSubmit label="Enviar" isFull />
-              </div>
-            </Form>
+            <CommentForm />
           </div>
         </ContainerSection>
         <ContainerSection>
@@ -149,26 +139,8 @@ const Recipe: NextPage = () => {
               />
             </div>
             <div className="space-y-3">
-              {Array.from(Array(5).keys()).map((i) => (
-                <div key={i} className="space-y-3">
-                  <div className="sm:flex sm:items-center sm:justify-between md:space-x-2">
-                    <div className="space-x-2">
-                      <Avatar size="xs" />
-                      <span className="font-medium">
-                        @{recipe.account.username}
-                      </span>
-                    </div>
-                    <span className="text-xs text-gray-500 dark:text-gray-600">
-                      Hace 2 dias
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-500">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pellentesque euismod, ipsum eu consectetur consectetur, nisi
-                    nisl tincidunt nisi,
-                  </p>
-                  <hr className="bg-gray-100"></hr>
-                </div>
+              {comments.map((comment, i) => (
+                <CommentC key={i} comment={comment} />
               ))}
             </div>
           </article>
