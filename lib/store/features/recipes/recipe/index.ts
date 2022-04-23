@@ -8,10 +8,13 @@ export const recipeSlice = createSlice({
   initialState,
   reducers: {
     likeRecipe: (state, action) => {
-      state.likes = state.likes ? state.likes + 1 : 1;
+      state.likes = state.likes
+        ? [...state.likes, action.payload]
+        : [action.payload];
     },
     unlikeRecipe: (state, action) => {
-      state.likes = state.likes && state.likes > 0 ? state.likes - 1 : 0;
+      state.likes =
+        state.likes && state.likes.filter((id) => id !== action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -22,7 +25,7 @@ export const recipeSlice = createSlice({
       .addCase(getRecipe.fulfilled, (state, action) => {
         state.status = "idle";
         state.value = action.payload;
-        state.likes = action.payload.likes.length;
+        state.likes = action.payload.likes;
       })
       .addCase(getRecipe.rejected, (state) => {
         state.status = "failed";
@@ -38,4 +41,5 @@ export const selectRecipeAccountId = (state: AppState) =>
 export const selectRecipeAccount = (state: AppState) =>
   state.recipe.value && state.recipe.value.account;
 export const selectRecipeStatus = (state: AppState) => state.recipe.status;
+export const selectRecipeLikes = (state: AppState) => state.recipe.likes;
 export default recipeSlice.reducer;
