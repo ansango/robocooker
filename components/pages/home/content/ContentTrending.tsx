@@ -29,7 +29,7 @@ const ContentTrending = () => {
         return (
           <li key={index} className="cursor-pointer">
             <Link href="/" passHref>
-              <div className="card w-full bg-base-100 shadow-xl image-full before:opacity-40">
+              <div className="card w-full bg-base-100 image-full before:opacity-40 shadow-xl transform hover:scale-[1.006] hover:shadow-2xl transition duration-250 ease-out hover:ease-in">
                 <figure className="w-full h-44 lg:h-64 xl:h-72 relative">
                   <Image
                     src={img}
