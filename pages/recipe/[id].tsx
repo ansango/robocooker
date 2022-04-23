@@ -23,8 +23,37 @@ import Blenders from "components/pages/recipe/Blenders";
 import CommentForm from "components/pages/recipe/CommentForm";
 import CommentC from "components/pages/recipe/Comment";
 import { Comment } from "@/models/recipe/comment";
+import Comments from "components/pages/recipe/Comments";
 
 const comments: Comment[] = [
+  {
+    _id: "",
+    author: "anibalsantos",
+    content:
+      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
+    created: new Date(),
+  },
+  {
+    _id: "",
+    author: "anibalsantos",
+    content:
+      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
+    created: new Date(),
+  },
+  {
+    _id: "",
+    author: "anibalsantos",
+    content:
+      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
+    created: new Date(),
+  },
+  {
+    _id: "",
+    author: "anibalsantos",
+    content:
+      "Lores ipsum dolor sit amet consectetur adipisicing elit. Qui, quis.",
+    created: new Date(),
+  },
   {
     _id: "",
     author: "anibalsantos",
@@ -138,11 +167,7 @@ const Recipe: NextPage = () => {
                 className=" w-6 h-6 text-accent-focus"
               />
             </div>
-            <div className="space-y-3">
-              {comments.map((comment, i) => (
-                <CommentC key={i} comment={comment} />
-              ))}
-            </div>
+            <Comments comments={comments} />
           </article>
         </ContainerSection>
       </Container>
