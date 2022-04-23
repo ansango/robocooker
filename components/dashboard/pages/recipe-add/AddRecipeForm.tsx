@@ -177,6 +177,10 @@ const AddRecipeForm = () => {
                           value: true,
                           message: "Introduce una descripción",
                         },
+                        minLength: {
+                          value: 135,
+                          message: "Al menos 135 caracteres",
+                        },
                       }}
                     />
                   </div>

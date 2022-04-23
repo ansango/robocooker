@@ -77,6 +77,10 @@ const BasicDataForm: FC<Props> = ({ recipe }) => {
                     value: true,
                     message: "Introduce una descripción",
                   },
+                  minLength: {
+                    value: 135,
+                    message: "Al menos 135 caracteres",
+                  },
                 }}
                 {...{ defaultValue: recipe.description }}
               />
