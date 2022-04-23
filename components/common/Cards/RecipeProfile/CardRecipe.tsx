@@ -12,7 +12,7 @@ const CardRecipe: FC<RecipeDTO> = ({
   servings,
   duration,
   _id,
-  account: { avatar, username },
+  likes,
 }) => {
   const body = {
     name,
@@ -22,8 +22,7 @@ const CardRecipe: FC<RecipeDTO> = ({
   const footer = {
     servings,
     duration,
-    avatar,
-    username,
+    likes: likes.length,
   };
   return (
     <div className="card compact bg-base-100 shadow-md transform hover:scale-[1.005] hover:shadow-lg transition duration-250 ease-out hover:ease-in">

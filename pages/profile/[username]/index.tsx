@@ -1,8 +1,7 @@
 import { selectProfile } from "@/store/features/profile";
 import { getProfile } from "@/store/features/profile/thunk";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { Avatar } from "components/common/Avatar";
-import { Icon, IconSimple } from "components/common/Icons";
+import CardRecipe from "components/common/Cards/RecipeProfile/CardRecipe";
 import MainLayout from "components/layout/MainLayout";
 import CardAvatar from "components/pages/profile/CardAvatar";
 import CardContainer from "components/pages/profile/CardContainer";
@@ -14,6 +13,8 @@ import Container from "components/pages/profile/Container";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+
+
 
 const Profile: NextPage = () => {
   const { query } = useRouter();
@@ -38,6 +39,24 @@ const Profile: NextPage = () => {
             <CardSecondColContent profile={profile} />
           </CardSecondCol>
         </CardContainer>
+      </Container>
+      <Container>
+        <article className="container mx-auto space-y-5">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+            {profile.recipes.map((recipe) => (
+              <CardRecipe
+                key={recipe._id}
+                {...recipe}
+                account={{
+                  avatar: profile.avatar,
+                  username: profile.username,
+                  firstName: profile.firstName,
+                  lastName: profile.lastName,
+                }}
+              />
+            ))}
+          </div>
+        </article>
       </Container>
     </MainLayout>
   );

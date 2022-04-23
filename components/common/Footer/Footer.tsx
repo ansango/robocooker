@@ -6,7 +6,7 @@ import { FC } from "react";
 
 const Footer: FC = () => {
   return (
-    <footer className="lg:container mx-auto p-10 bg-base text-base-content">
+    <footer className="lg:container mx-auto p-5 bg-base text-base-content">
       <div className="footer">
         <div className="space-y-2">
           <Logo className="fill-current w-12 h-12" />

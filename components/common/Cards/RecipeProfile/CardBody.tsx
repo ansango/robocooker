@@ -1,3 +1,5 @@
+import { Avatar } from "components/common/Avatar";
+import { Icon } from "components/common/Icons";
 import React, { FC } from "react";
 
 type Props = {
