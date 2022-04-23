@@ -5,7 +5,7 @@ type Props = {
   ingredient: Ingredient;
 };
 
-const Ingredient: FC<Props> = ({ ingredient: { measure, name, quantity } }) => {
+const IngredientC: FC<Props> = ({ ingredient: { measure, name, quantity } }) => {
   return (
     <div className="form-control">
       <label className="label cursor-pointer">
@@ -22,4 +22,4 @@ const Ingredient: FC<Props> = ({ ingredient: { measure, name, quantity } }) => {
   );
 };
 
-export default Ingredient;
+export default IngredientC;

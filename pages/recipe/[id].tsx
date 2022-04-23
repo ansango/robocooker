@@ -20,6 +20,8 @@ import Divider from "components/pages/recipe/Divider";
 import Container from "components/pages/recipe/Container";
 import ContainerSection from "components/pages/recipe/ContainerSection";
 import Blenders from "components/pages/recipe/Blenders";
+import { Form, Input, TextArea } from "components/common/Forms";
+import ButtonSubmit from "components/common/Button/ButtonSubmit";
 
 const Recipe: NextPage = () => {
   const { query } = useRouter();
@@ -104,10 +106,40 @@ const Recipe: NextPage = () => {
           </article>
         </ContainerSection>
         <ContainerSection>
-          <div className="p-5 rounded-lg space-y-3 bg-base-200">
-            <div className="flex items-center space-x-2 px-3">
-              <Subtitle text="Receta" />
-            </div>
+          <div className="p-5 rounded-lg bg-base-200">
+            <Form onSubmit={() => {}} className="flex space-x-5">
+              <Input
+                type="text"
+                name="comment"
+                placeholder="Escribe un comentario"
+                options={{
+                  required: {
+                    value: true,
+                    message: "Escribe algo!",
+                  },
+                  minLength: {
+                    value: 5,
+                    message: "Mínimo 5 caracteres",
+                  },
+                  maxLength: {
+                    value: 200,
+                    message: "Máximo 200 caracteres",
+                  },
+                }}
+              />
+              <ButtonSubmit label="Enviar" />
+            </Form>
+          </div>
+        </ContainerSection>
+
+        <ContainerSection>
+          <div className="flex items-center space-x-2 px-3">
+            <Subtitle text="Comentarios" />
+            <Icon
+              icon="AnnotationIcon"
+              kind="outline"
+              className=" w-6 h-6 text-accent-focus"
+            />
           </div>
         </ContainerSection>
       </Container>

@@ -5,7 +5,7 @@ type Props = {
   step: Step;
 };
 
-const Step: FC<Props> = ({ step: { description, position } }) => {
+const StepC: FC<Props> = ({ step: { description, position } }) => {
   return (
     <li>
       <div className="flex flex-col h-full w-full p-3 rounded-md">
@@ -18,4 +18,4 @@ const Step: FC<Props> = ({ step: { description, position } }) => {
   );
 };
 
-export default Step;
+export default StepC;
