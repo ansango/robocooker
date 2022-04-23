@@ -22,6 +22,8 @@ import ContainerSection from "components/pages/recipe/ContainerSection";
 import Blenders from "components/pages/recipe/Blenders";
 import { Form, Input, TextArea } from "components/common/Forms";
 import ButtonSubmit from "components/common/Button/ButtonSubmit";
+import { Avatar } from "components/common/Avatar";
+import DividerComment from "components/pages/recipe/DividerComment";
 
 const Recipe: NextPage = () => {
   const { query } = useRouter();
@@ -107,7 +109,10 @@ const Recipe: NextPage = () => {
         </ContainerSection>
         <ContainerSection>
           <div className="p-5 rounded-lg bg-base-200">
-            <Form onSubmit={() => {}} className="flex space-x-5">
+            <Form
+              onSubmit={() => {}}
+              className="flex flex-col space-y-5 sm:space-y-0 sm:flex-row sm:space-x-5"
+            >
               <Input
                 type="text"
                 name="comment"
@@ -127,20 +132,46 @@ const Recipe: NextPage = () => {
                   },
                 }}
               />
-              <ButtonSubmit label="Enviar" />
+              <div>
+                <ButtonSubmit label="Enviar" isFull />
+              </div>
             </Form>
           </div>
         </ContainerSection>
-
         <ContainerSection>
-          <div className="flex items-center space-x-2 px-3">
-            <Subtitle text="Comentarios" />
-            <Icon
-              icon="AnnotationIcon"
-              kind="outline"
-              className=" w-6 h-6 text-accent-focus"
-            />
-          </div>
+          <article className="space-y-5">
+            <div className="flex items-center space-x-2">
+              <Subtitle text="Comentarios" />
+              <Icon
+                icon="AnnotationIcon"
+                kind="outline"
+                className=" w-6 h-6 text-accent-focus"
+              />
+            </div>
+            <div className="space-y-3">
+              {Array.from(Array(5).keys()).map((i) => (
+                <div key={i} className="space-y-3">
+                  <div className="sm:flex sm:items-center sm:justify-between md:space-x-2">
+                    <div className="space-x-2">
+                      <Avatar size="xs" />
+                      <span className="font-medium">
+                        @{recipe.account.username}
+                      </span>
+                    </div>
+                    <span className="text-xs text-gray-500 dark:text-gray-600">
+                      Hace 2 dias
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-500">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Pellentesque euismod, ipsum eu consectetur consectetur, nisi
+                    nisl tincidunt nisi,
+                  </p>
+                  <hr className="bg-gray-100"></hr>
+                </div>
+              ))}
+            </div>
+          </article>
         </ContainerSection>
       </Container>
     </MainLayout>
