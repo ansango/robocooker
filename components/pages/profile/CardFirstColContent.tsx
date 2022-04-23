@@ -12,11 +12,11 @@ const CardFirstColContent: FC<Props> = ({ username }) => {
         <h1 className="font-semibold text-xl pb-2">@{username}</h1>
       </div>
       <div className="space-x-2">
-        <button className="btn btn-primary normal-case btn-sm space-x-1">
+        <button className="btn btn-primary normal-case btn-sm space-x-1 text-xs sm:text-base">
           <Icon icon="UserAddIcon" kind="solid" className="w-4 h-4" />
           <span>Seguir</span>
         </button>
-        <button className="btn btn-primary normal-case btn-sm space-x-1">
+        <button className="btn btn-primary normal-case btn-sm space-x-1 text-xs sm:text-base">
           <Icon icon="PaperAirplaneIcon" kind="solid" className="w-4 h-4" />
           <span>Mensaje</span>
         </button>
