@@ -55,7 +55,6 @@ const Home: NextPage = () => {
             <Subtitle title="Ultimas recetas" />
             <SubParagraph content="Estas son las recetas mas recientes que hemos creado, y que estan siendo vistas por miles de usuarios." />
           </ContainerHeader>
-
           <ContainerContent>
             <ContentLastRecipes />
             <ContainerLink>

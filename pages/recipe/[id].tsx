@@ -16,15 +16,18 @@ import StepsBlock from "components/pages/recipe/StepsBlock";
 import IngredientsBlock from "components/pages/recipe/IngredientsBlock";
 import CategoriesDescriptionBlock from "components/pages/recipe/CategoriesDescriptionBlock";
 import AuthorOptionsBlock from "components/pages/recipe/AuthorOptionsBlock";
+import { getComments } from "@/store/features/comments/thunk";
 
 const Recipe: NextPage = () => {
   const { query } = useRouter();
   const { id } = query;
   const dispatch = useAppDispatch();
   const recipe = useAppSelector(selectRecipe);
+
   useEffect(() => {
     if (!Array.isArray(id) && id) {
       dispatch(getRecipe(id));
+      dispatch(getComments(id));
     }
   }, [id, dispatch]);
   if (!recipe || !id || Array.isArray(id)) return null;

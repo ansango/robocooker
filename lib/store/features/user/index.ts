@@ -173,6 +173,8 @@ export const userSlice = createSlice({
 
 export const selectUser = (state: AppState) => state.user.value;
 export const selectUserStatus = (state: AppState) => state.user.status;
+export const selectUserUsername = (state: AppState) =>
+  state.user.value && state.user.value.username;
 export const selectOnSignInStatus = (state: AppState) => state.user.onSignIn;
 export const selectOnSignUpStatus = (state: AppState) => state.user.onSignUp;
 export const selectOnRecoveryPasswordStatus = (state: AppState) =>

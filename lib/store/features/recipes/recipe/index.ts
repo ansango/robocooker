@@ -7,9 +7,6 @@ export const recipeSlice = createSlice({
   name: "recipe",
   initialState,
   reducers: {
-    setLikes(state, action) {
-      state.likes = action.payload;
-    },
     likeRecipe: (state, action) => {
       state.likes = state.likes
         ? [...state.likes, action.payload]
@@ -47,4 +44,6 @@ export const selectRecipeStatus = (state: AppState) => state.recipe.status;
 export const selectRecipeLikes = (state: AppState) => state.recipe.likes;
 export const selectRecipeId = (state: AppState) =>
   state.recipe.value && state.recipe.value._id;
+export const selectRecipeComments = (state: AppState) => state.recipe.comments;
+
 export default recipeSlice.reducer;

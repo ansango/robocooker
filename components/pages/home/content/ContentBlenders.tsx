@@ -14,8 +14,10 @@ const ContentBlenders = () => {
   const blenders = useAppSelector(selectBlenders);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (!blenders) dispatch(getBlenders());
-  }, [dispatch, blenders]);
+    if (!blenders && !loading) dispatch(getBlenders());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  console.log(loading);
   return (
     <>
       {loading && (

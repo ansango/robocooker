@@ -6,7 +6,6 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Recipe } from "lib/models/recipe/recipe";
-import Image from "next/image";
 import MainLayout from "components/layout/MainLayout";
 
 const Recipes: NextPage = () => {

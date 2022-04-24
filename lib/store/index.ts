@@ -7,6 +7,7 @@ import blenderReducer from "./features/blenders";
 import lastRecipesReducer from "./features/recipes/lastRecipes";
 import myRecipesReducer from "./features/account/myRecipes";
 import recipeReducer from "./features/recipes/recipe";
+import commentsReducer from "./features/comments";
 import profileReducer from "./features/profile";
 
 export function makeStore() {
@@ -19,6 +20,7 @@ export function makeStore() {
       blenders: blenderReducer,
       lastRecipes: lastRecipesReducer,
       recipe: recipeReducer,
+      comments: commentsReducer,
       profile: profileReducer,
     },
   });

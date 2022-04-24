@@ -1,8 +1,16 @@
-type Comment = {
-  _id: CommentId;
+type CommentDAO = {
   author: Username;
+  recipeId: RecipeId;
   content: Content;
   created: Date;
 };
 
-export { type Comment };
+type Comment = {
+  _id: CommentId;
+  author: Username;
+  recipeId: RecipeId;
+  content: Content;
+  created: Date;
+};
+
+export { type Comment, type CommentDAO };
