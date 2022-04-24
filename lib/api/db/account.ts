@@ -82,3 +82,45 @@ export const updateSocialNetworksAccountById = async (
     )
     .then((account) => account || null);
 };
+
+export const updateAccountLikesById = async (
+  db: Db,
+  accountId: AccountId,
+  recipeId: RecipeId
+) => {
+  try {
+    const accountLike = await db.collection("accounts").findOneAndUpdate(
+      { _id: new ObjectId(accountId) },
+      {
+        $push: { favorites: recipeId.toString() },
+      }
+    );
+    if (accountLike.value) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateAccountDislikesById = async (
+  db: Db,
+  accountId: AccountId,
+  recipeId: RecipeId
+) => {
+  try {
+    const accountDislike = await db.collection("accounts").findOneAndUpdate(
+      { _id: new ObjectId(accountId) },
+      {
+        $pull: { favorites: recipeId.toString() },
+      }
+    );
+    if (accountDislike.value) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    throw error;
+  }
+};

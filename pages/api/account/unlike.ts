@@ -1,6 +1,10 @@
+import { updateAccountDislikesById } from "@/api/db/account";
+import {
+  findRecipeLikedByAccountId,
+  updateRecipeDislikesById,
+} from "@/api/db/recipe";
 import { auth, database } from "@/api/middlewares";
 import { options } from "@/api/nc";
-import { ObjectId } from "mongodb";
 import nc from "next-connect";
 
 const handler = nc(options);
@@ -14,27 +18,30 @@ handler.post(async (req, res) => {
   }
   const recipeId = req.body.recipeId;
   const accountId = req.user.accountId;
-  const accountLike = await req.db.collection("recipes").findOneAndUpdate(
-    { _id: new ObjectId(recipeId) },
-    {
-      $pull: { likes: accountId.toString() },
+  const isLiked = await findRecipeLikedByAccountId(req.db, recipeId, accountId);
+
+  if (isLiked) {
+    const recipeDislike = await updateRecipeDislikesById(
+      req.db,
+      recipeId,
+      accountId
+    );
+
+    const accountDislike = await updateAccountDislikesById(
+      req.db,
+      accountId,
+      recipeId
+    );
+
+    if (!accountDislike || !recipeDislike) {
+      res.status(404).json({ error: "Recipe or account not found" });
+      return;
     }
-  );
-  const recipeLike = await req.db.collection("accounts").findOneAndUpdate(
-    { _id: new ObjectId(accountId) },
-    {
-      $pull: { favorites: recipeId.toString() },
-    }
-  );
-  if (!accountLike.value || !recipeLike.value) {
-    res.status(404).json({ error: "Recipe or account not found" });
-    return;
+
+    res.status(204).end();
+  } else {
+    res.status(400).json({ error: "Recipe not liked" });
   }
-
-  res.status(204).end();
 });
-
-
-//TODO : SIN ACABAR!!! ---> MIGRAR A DB
 
 export default handler;

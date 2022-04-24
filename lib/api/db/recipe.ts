@@ -105,6 +105,22 @@ export const findRecipesByAccountId = async (db: Db, accountId: AccountId) => {
   }
 };
 
+export const findRecipeLikedByAccountId = async (
+  db: Db,
+  recipeId: RecipeId,
+  accountId: AccountId
+): Promise<Recipe | null> => {
+  const isLiked = (await db.collection("recipes").findOne({
+    _id: new ObjectId(recipeId),
+    likes: accountId.toString(),
+  })) as Recipe;
+
+  if (isLiked) {
+    return isLiked;
+  }
+  return null;
+};
+
 export const findRecipeByIdPopulated = async (
   db: Db,
   id: RecipeId
@@ -209,6 +225,42 @@ export const updateRecipeStepsById = async (
     await db
       .collection("recipes")
       .findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { ...content } });
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateRecipeLikesById = async (
+  db: Db,
+  recipeId: RecipeId,
+  accountId: AccountId
+): Promise<boolean> => {
+  try {
+    await db.collection("recipes").findOneAndUpdate(
+      { _id: new ObjectId(recipeId) },
+      {
+        $push: { likes: accountId.toString() },
+      }
+    );
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateRecipeDislikesById = async (
+  db: Db,
+  recipeId: RecipeId,
+  accountId: AccountId
+): Promise<boolean> => {
+  try {
+    await db.collection("recipes").findOneAndUpdate(
+      { _id: new ObjectId(recipeId) },
+      {
+        $pull: { likes: accountId.toString() },
+      }
+    );
     return true;
   } catch (error) {
     throw error;

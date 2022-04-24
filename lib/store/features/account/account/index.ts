@@ -33,6 +33,7 @@ export const accountSlice = createSlice({
       .addCase(getAccount.fulfilled, (state, action) => {
         state.status = "idle";
         state.value = action.payload;
+        state.favorites = action.payload.favorites;
       })
       .addCase(getAccount.rejected, (state) => {
         state.status = "failed";
