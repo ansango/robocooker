@@ -42,7 +42,7 @@ export const commentsSlice = createSlice({
     builder.addCase(removeComment.fulfilled, (state, action) => {
       state.status = "idle";
       state.value = state.value
-        ? state.value.filter((comment) => comment._id !== action.payload)
+        ? state.value.filter((comment) => comment._id !== action.payload._id)
         : [];
       state.onRemoveComment = false;
     });

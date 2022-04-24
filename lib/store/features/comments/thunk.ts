@@ -26,5 +26,6 @@ export const removeComment = createAsyncThunk(
   "comments/removeComment",
   async (comment: Comment) => {
     await onDeleteCommentService(comment);
+    return comment;
   }
 );
