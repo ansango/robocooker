@@ -1,5 +1,6 @@
 import { auth, database } from "@/api/middlewares";
 import { options } from "@/api/nc";
+import { ObjectId } from "mongodb";
 import nc from "next-connect";
 
 const handler = nc(options);
@@ -14,13 +15,13 @@ handler.post(async (req, res) => {
   const recipeId = req.body.recipeId;
   const accountId = req.user.accountId;
   const accountLike = await req.db.collection("recipes").findOneAndUpdate(
-    { _id: recipeId },
+    { _id: new ObjectId(recipeId) },
     {
       $pull: { likes: accountId.toString() },
     }
   );
   const recipeLike = await req.db.collection("accounts").findOneAndUpdate(
-    { _id: accountId },
+    { _id: new ObjectId(accountId) },
     {
       $pull: { favorites: recipeId.toString() },
     }

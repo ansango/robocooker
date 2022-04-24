@@ -1,5 +1,6 @@
 import { auth, database } from "@/api/middlewares";
 import { options } from "@/api/nc";
+import { ObjectId } from "mongodb";
 import nc from "next-connect";
 
 const handler = nc(options);
@@ -11,6 +12,7 @@ handler.post(async (req, res) => {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
+  console.log(req.body);
   if (!req.body.recipeId) {
     res.status(400).json({ error: "Missing recipeId" });
     return;
@@ -18,15 +20,16 @@ handler.post(async (req, res) => {
   const recipeId = req.body.recipeId;
   const accountId = req.user.accountId;
   const accountLike = await req.db.collection("recipes").findOneAndUpdate(
-    { _id: recipeId },
+    { _id: new ObjectId(recipeId) },
     {
-      $addToSet: { likes: accountId.toString() },
+      $push: { likes: accountId.toString() },
     }
   );
+  
   const recipeLike = await req.db.collection("accounts").findOneAndUpdate(
-    { _id: accountId },
+    { _id: new ObjectId(accountId) },
     {
-      $addToSet: { favorites: recipeId.toString() },
+      $push: { favorites: recipeId.toString() },
     }
   );
   if (!accountLike.value || !recipeLike.value) {
