@@ -1,5 +1,6 @@
-import { CommentDAO } from "@/models/recipe/comment";
+import { Comment, CommentDAO } from "@/models/recipe/comment";
 import {
+  onDeleteCommentService,
   onGetCommentsService,
   onPostCommentService,
 } from "@/services/comments";
@@ -18,5 +19,12 @@ export const addComment = createAsyncThunk(
   async (comment: CommentDAO) => {
     const response = await onPostCommentService(comment);
     return response;
+  }
+);
+
+export const removeComment = createAsyncThunk(
+  "comments/removeComment",
+  async (comment: Comment) => {
+    await onDeleteCommentService(comment);
   }
 );

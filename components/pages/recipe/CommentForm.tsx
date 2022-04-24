@@ -1,4 +1,5 @@
 import { CommentDAO } from "@/models/recipe/comment";
+import { selectOnAddComment } from "@/store/features/comments";
 import { addComment } from "@/store/features/comments/thunk";
 import { selectRecipeId } from "@/store/features/recipes/recipe";
 import { selectUserUsername } from "@/store/features/user";
@@ -13,6 +14,7 @@ const CommentForm: FC = () => {
   const dispatch = useAppDispatch();
   const username = useAppSelector(selectUserUsername);
   const recipeId = useAppSelector(selectRecipeId);
+  const loading = useAppSelector(selectOnAddComment);
   const onSubmit = useCallback(
     async ({ content }: any) => {
       if (username && recipeId) {
@@ -28,31 +30,30 @@ const CommentForm: FC = () => {
     [dispatch, username, recipeId]
   );
   return (
-    <Form
-      onSubmit={onSubmit}
-      className="flex flex-col space-y-5 sm:space-y-0 sm:flex-row sm:space-x-5"
-    >
-      <Input
-        type="text"
-        name="content"
-        placeholder="Escribe un comentario"
-        options={{
-          required: {
-            value: true,
-            message: "Escribe algo!",
-          },
-          minLength: {
-            value: 5,
-            message: "Mínimo 5 caracteres",
-          },
-          maxLength: {
-            value: 200,
-            message: "Máximo 200 caracteres",
-          },
-        }}
-      />
-      <div>
-        <ButtonSubmit label="Enviar" isFull />
+    <Form onSubmit={onSubmit} className="grid gap-3 grid-cols-12">
+      <div className="col-span-full sm:col-span-9 md:col-span-10">
+        <Input
+          type="text"
+          name="content"
+          placeholder="Escribe un comentario"
+          options={{
+            required: {
+              value: true,
+              message: "Escribe algo!",
+            },
+            minLength: {
+              value: 5,
+              message: "Mínimo 5 caracteres",
+            },
+            maxLength: {
+              value: 200,
+              message: "Máximo 200 caracteres",
+            },
+          }}
+        />
+      </div>
+      <div className="col-span-full sm:col-span-3 md:col-span-2">
+        <ButtonSubmit label="Enviar" isFull isLoading={loading} />
       </div>
     </Form>
   );

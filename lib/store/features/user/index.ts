@@ -61,7 +61,6 @@ export const userSlice = createSlice({
       .addCase(signUp.rejected, (state, action) => {
         state.status = "failed";
         state.onSignUp = false;
-        console.log(action);
         toast.error("Usuario o contraseña incorrectos");
       });
     builder

@@ -1,25 +1,56 @@
 import { Comment } from "@/models/recipe/comment";
+import { selectOnRemoveComment } from "@/store/features/comments";
+import { removeComment } from "@/store/features/comments/thunk";
+import { selectUserUsername } from "@/store/features/user";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { formatDate } from "@/utils/date";
 import { Avatar } from "components/common/Avatar";
-import { FC } from "react";
+import { Icon } from "components/common/Icons";
+import { FC, useCallback } from "react";
 
 type Props = {
   comment: Comment;
 };
 
-const CommentC: FC<Props> = ({ comment: { author, content, created } }) => {
+const CommentC: FC<Props> = ({ comment }) => {
+  const currentUser = useAppSelector(selectUserUsername);
+  const isOwner = currentUser === comment.author;
+  const loading = useAppSelector(selectOnRemoveComment);
+  const dispatch = useAppDispatch();
+  const onRemove = useCallback(() => {
+    if (currentUser && comment._id) {
+      dispatch(removeComment(comment));
+    }
+  }, [dispatch, currentUser, comment]);
+  const cnRemove =
+    loading && comment._id
+      ? "btn btn-sm btn-ghost btn-circle loading"
+      : "btn btn-sm btn-ghost btn-circle";
+  console.log();
   return (
     <div className="space-y-3">
-      <div className="sm:flex sm:items-center sm:justify-between md:space-x-2">
-        <div className="space-x-2">
-          <Avatar size="xs" />
-          <span className="font-medium">@{author}</span>
+      <div className="flex justify-between items-center space-x-1">
+        <div className="sm:flex sm:items-center sm:justify-between md:space-x-2 w-full">
+          <div className="space-x-2 flex items-center">
+            <Avatar size="xs" />
+            <span className="font-medium">@{comment.author}</span>
+          </div>
+
+          <span className="text-xs text-gray-500 dark:text-gray-600">
+            {formatDate(comment.created)}
+          </span>
         </div>
-        <span className="text-xs text-gray-500 dark:text-gray-600">
-          {formatDate(created)}
-        </span>
+        {isOwner && (
+          <button className={cnRemove} onClick={onRemove}>
+            {!loading && (
+              <Icon icon="TrashIcon" kind="outline" className="w-5 h-5" />
+            )}
+          </button>
+        )}
       </div>
-      <p className="text-sm text-gray-600 dark:text-gray-500">{content}</p>
+      <p className="text-sm text-gray-600 dark:text-gray-500">
+        {comment.content}
+      </p>
       <hr className="bg-gray-100"></hr>
     </div>
   );

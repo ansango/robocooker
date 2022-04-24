@@ -28,3 +28,17 @@ export const onPostCommentService = async (
     throw error;
   }
 };
+
+export const onDeleteCommentService = async (
+  comment: Comment
+): Promise<void> => {
+  try {
+    await fetcher(`/api/comments/${comment.recipeId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ comment }),
+    });
+  } catch (error) {
+    throw error;
+  }
+};

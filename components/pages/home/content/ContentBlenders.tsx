@@ -17,7 +17,7 @@ const ContentBlenders = () => {
     if (!blenders && !loading) dispatch(getBlenders());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(loading);
+
   return (
     <>
       {loading && (

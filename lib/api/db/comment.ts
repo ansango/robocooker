@@ -17,3 +17,7 @@ export const insertComment = async (
   await db.collection("comments").insertOne({ ...newComment });
   return newComment;
 };
+
+export const deleteComment = async (db: Db, commentId: CommentId) => {
+  await db.collection("comments").deleteOne({ _id: new ObjectId(commentId) });
+};

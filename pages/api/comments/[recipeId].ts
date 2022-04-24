@@ -1,7 +1,11 @@
 import nc from "next-connect";
 import { auth, database } from "@/api/middlewares";
 import { options } from "@/api/nc";
-import { findAllCommentsByRecipeId, insertComment } from "@/api/db/comment";
+import {
+  deleteComment,
+  findAllCommentsByRecipeId,
+  insertComment,
+} from "@/api/db/comment";
 import { Comment } from "@/models/recipe/comment";
 
 const handler = nc(options);
@@ -13,7 +17,7 @@ handler.get(async (req, res) => {
   }
 
   const recipeId = req.query.recipeId;
-  console.log(recipeId);
+
   try {
     const comments = (await findAllCommentsByRecipeId(
       req.db,
@@ -39,6 +43,25 @@ handler.post(...auth, async (req, res) => {
   try {
     const newComment = await insertComment(req.db, comment);
     return res.json({ comment: newComment });
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
+});
+
+handler.delete(...auth, async (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  if (!req.query.recipeId) {
+    return res.status(400).json({ error: "recipeId is required" });
+  }
+  if (!req.body.comment) {
+    return res.status(400).json({ error: "commentId is required" });
+  }
+  const comment = req.body.comment as Comment;
+  try {
+    await deleteComment(req.db, comment._id);
+    return res.status(204).end();
   } catch (error) {
     return res.status(500).json({ error });
   }

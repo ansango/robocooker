@@ -1,8 +1,6 @@
 import { selectComments } from "@/store/features/comments";
-import { getComments } from "@/store/features/comments/thunk";
-import { selectRecipe } from "@/store/features/recipes/recipe";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { FC, useEffect } from "react";
+import { useAppSelector } from "@/store/hooks";
+import { FC } from "react";
 import CommentC from "./Comment";
 
 type Props = {};
