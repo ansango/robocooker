@@ -18,7 +18,7 @@ export const onPostCommentService = async (
   comment: CommentDAO
 ): Promise<Comment> => {
   try {
-    const response = await fetcher(`/api/comments`, {
+    const response = await fetcher(`/api/comments/${comment.recipeId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ comment }),
