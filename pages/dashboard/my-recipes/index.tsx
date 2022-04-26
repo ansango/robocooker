@@ -32,7 +32,7 @@ const MyRecipes: NextPage = () => {
             {myRecipes.map(({ _id, img, name }) => (
               <li key={_id}>
                 <div className="card w-full shadow-xl image-full before:opacity-50">
-                  <figure className="w-full h-44 lg:h-40 relative">
+                  <figure className="w-full h-32 relative">
                     {img && (
                       <Image
                         src={img}
