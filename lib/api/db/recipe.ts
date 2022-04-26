@@ -144,6 +144,24 @@ export const findRecipeByIdPopulated = async (
   }
 };
 
+export const findRecipesByIds = async (
+  db: Db,
+  recipeIds: RecipeId[]
+): Promise<Recipe[] | void> => {
+  try {
+    const data = (await db
+      .collection("recipes")
+      .find({
+        _id: { $in: recipeIds.map((id) => new ObjectId(id)) },
+      })
+      .toArray()) as Recipe[];
+
+    return data as Recipe[];
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const updateImageRecipeById = async (
   db: Db,
   id: string,

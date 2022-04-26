@@ -1,6 +1,6 @@
 import { findAccountById } from "@/api/db/account";
 import { findRecipesByAccountId } from "@/api/db/recipe";
-import { findUserByAccountId, findUserByUsername } from "@/api/db/user";
+import { findUserByUsername } from "@/api/db/user";
 import { database } from "@/api/middlewares";
 import { options } from "@/api/nc";
 import { RecipeDTO } from "@/models/recipe/recipe";

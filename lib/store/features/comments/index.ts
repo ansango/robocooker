@@ -35,7 +35,7 @@ export const commentsSlice = createSlice({
       state.status = "failed";
       state.onAddComment = false;
     });
-    builder.addCase(removeComment.pending, (state) => {
+    builder.addCase(removeComment.pending, (state, action) => {
       state.status = "loading";
       state.onRemoveComment = true;
     });

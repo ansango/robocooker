@@ -10,9 +10,13 @@ const Comments: FC<Props> = () => {
 
   return (
     <div className="space-y-4">
-      {comments?.map((comment, i) => (
-        <CommentC key={i} comment={comment} />
-      ))}
+      {comments && comments.length > 0 ? (
+        comments.map((comment, i) => <CommentC key={i} comment={comment} />)
+      ) : (
+        <p className="p-5 bg-base-200 rounded-lg font-medium">
+          Parece que nadie ha comentado esta receta aún. ¡Sé el primero!
+        </p>
+      )}
     </div>
   );
 };

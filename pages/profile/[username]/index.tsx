@@ -52,4 +52,5 @@ const Profile: NextPage = () => {
     </MainLayout>
   );
 };
+
 export default Profile;

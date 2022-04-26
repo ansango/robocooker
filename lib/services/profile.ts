@@ -16,3 +16,14 @@ export const onGetProfileService = async (
     throw error;
   }
 };
+
+export const onGetAllProfilesService = async (): Promise<Profile[]> => {
+  try {
+    const response = await fetcher(`/api/profiles`, {
+      method: "GET",
+    });
+    return response.profiles;
+  } catch (error) {
+    throw error;
+  }
+};

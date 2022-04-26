@@ -11,7 +11,6 @@ const ActionLike: FC<Props> = () => {
   const favorites = useAppSelector(selectFavorites);
   const recipeId = useAppSelector(selectRecipeId);
   const isLiked = favorites.includes(recipeId);
-
   return (
     <>
       {isLiked && <UnLike />} {!isLiked && <Like />}

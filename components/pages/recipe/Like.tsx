@@ -1,6 +1,6 @@
 import { onLikeRecipeService } from "@/services/account";
 import {
-  addFavoriteRecipe,
+addFavoriteRecipe,  
   selectAccountId,
 } from "@/store/features/account/account";
 import { likeRecipe, selectRecipeId } from "@/store/features/recipes/recipe";

@@ -13,6 +13,7 @@ export const profileSlice = createSlice({
     builder
       .addCase(getProfile.pending, (state) => {
         state.status = "loading";
+        state.value = null;
       })
       .addCase(getProfile.fulfilled, (state, action) => {
         state.status = "idle";

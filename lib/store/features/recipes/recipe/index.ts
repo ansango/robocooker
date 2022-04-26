@@ -21,6 +21,7 @@ export const recipeSlice = createSlice({
     builder
       .addCase(getRecipe.pending, (state) => {
         state.status = "loading";
+        state.value = null;
       })
       .addCase(getRecipe.fulfilled, (state, action) => {
         state.status = "idle";
