@@ -7,6 +7,10 @@ type Bookmark = {
   collections: CollectionId[];
 };
 
+type BookmarkPopulated = {
+  recipes: Recipe[];
+} & Bookmark;
+
 type Collection = {
   _id: CollectionId;
   name: Name;
@@ -15,4 +19,4 @@ type Collection = {
   created: Date;
 };
 
-export { type Collection, type Bookmark };
+export { type Collection, type Bookmark, type BookmarkPopulated };
