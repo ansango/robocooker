@@ -1,11 +1,16 @@
 import { FC } from "react";
 
-type Props = {};
+type Props = {
+  className?: string;
+};
 
-const Spinner: FC = () => {
+const Spinner: FC<Props> = ({ className }) => {
+  const cn = className
+    ? `animate-spin ${className}`
+    : "animate-spin h-6 w-6 text-primary";
   return (
     <svg
-      className="animate-spin h-6 w-6 text-secondary"
+      className={cn}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

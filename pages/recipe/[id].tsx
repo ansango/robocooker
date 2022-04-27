@@ -17,6 +17,7 @@ import IngredientsBlock from "components/pages/recipe/IngredientsBlock";
 import CategoriesDescriptionBlock from "components/pages/recipe/CategoriesDescriptionBlock";
 import AuthorOptionsBlock from "components/pages/recipe/AuthorOptionsBlock";
 import { getComments } from "@/store/features/comments/thunk";
+import { getBookmark } from "@/store/features/account/bookmark/thunks";
 
 const Recipe: NextPage = () => {
   const { query } = useRouter();
@@ -28,6 +29,7 @@ const Recipe: NextPage = () => {
     if (!Array.isArray(id) && id) {
       dispatch(getRecipe(id));
       dispatch(getComments(id));
+      dispatch(getBookmark());
     }
   }, [id, dispatch]);
   if (!recipe || !id || Array.isArray(id)) return null;

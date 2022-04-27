@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import { type Db, ObjectId } from "mongodb";
 import { normalizeEmail } from "@/utils/validations";
 import { Account, Address, User } from "lib/models/user/user";
+import { Bookmark } from "@/models/user/bookmark";
 
 const dbProjectionUsers = (prefix = "") => {
   return {
@@ -81,7 +82,7 @@ export const findUserByEmail = async (
   return user || null;
 };
 
-export const findUserByAccountId = async(
+export const findUserByAccountId = async (
   db: Db,
   accountId: AccountId
 ): Promise<User | null> => {
@@ -90,7 +91,7 @@ export const findUserByAccountId = async(
     .findOne(
       { accountId: new ObjectId(accountId) },
       { projection: dbProjectionUsers() }
-  )
+    )
     .then((user) => user || null)) as User;
   return user || null;
 };
@@ -161,6 +162,7 @@ export const insertUser = async (
   }
 ) => {
   const password = await bcrypt.hash(originalPassword, 10);
+  const accountId = new ObjectId();
 
   const address: Address = {
     address: "",
@@ -169,8 +171,15 @@ export const insertUser = async (
     zip: "",
   };
 
-  const account: Account = {
+  const bookmark: Bookmark = {
     _id: new ObjectId(),
+    accountId,
+    recipes: [],
+    collections: [],
+  };
+  await db.collection("bookmarks").insertOne({ ...bookmark });
+  const account: Account = {
+    _id: accountId,
     about: "",
     avatar: "",
     firstName: "",
@@ -179,7 +188,7 @@ export const insertUser = async (
     birthday: null,
     address,
     recipes: [],
-    collections: [],
+    bookmark: bookmark._id,
     favorites: [],
     chat: [],
     followers: [],
@@ -196,7 +205,7 @@ export const insertUser = async (
 
   const user: User = {
     _id: new ObjectId(),
-    accountId: account._id,
+    accountId,
     username,
     email,
     emailVerified: false,
@@ -231,6 +240,9 @@ export const deleteUserById = async (
     await db
       .collection("accounts")
       .deleteOne({ _id: new ObjectId(user.accountId) });
+    await db
+      .collection("bookmarks")
+      .deleteOne({ accountId: new ObjectId(user.accountId) });
     return true;
   } catch (error) {
     throw error;

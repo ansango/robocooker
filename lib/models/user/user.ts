@@ -25,13 +25,13 @@ type Account = {
   birthday: Birthday | null;
   address: Address;
   recipes: RecipeId[];
-  collections: CollectionId[];
+  bookmark: BookmarkId;
   favorites: RecipeId[];
   chat: Chat[];
   followers: Follower[];
   following: Follower[];
   preferences: string[] | CategoryName[] | BlenderName[];
-  social: SocialNetwork
+  social: SocialNetwork;
 };
 
 type SocialNetwork = {

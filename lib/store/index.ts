@@ -10,12 +10,14 @@ import recipeReducer from "./features/recipes/recipe";
 import commentsReducer from "./features/comments";
 import profileReducer from "./features/profile";
 import favoritesReducer from "./features/account/favorites";
+import bookmarkReducer from "./features/account/bookmark";
 export function makeStore() {
   return configureStore({
     reducer: {
       user: userReducer,
       account: accountReducer,
       favorites: favoritesReducer,
+      bookmark: bookmarkReducer,
       myRecipes: myRecipesReducer,
       categories: categoriesReducer,
       blenders: blenderReducer,

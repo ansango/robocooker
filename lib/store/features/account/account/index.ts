@@ -34,6 +34,7 @@ export const accountSlice = createSlice({
         state.status = "idle";
         state.value = action.payload;
         state.favorites = action.payload.favorites;
+        state.collections = action.payload.collections;
       })
       .addCase(getAccount.rejected, (state) => {
         state.status = "failed";

@@ -10,7 +10,7 @@ type CommentId = ObjectId | string;
 type CollectionId = ObjectId | string;
 type MessageId = ObjectId | string;
 type TokenId = ObjectId | string;
-
+type BookmarkId = ObjectId | string;
 // Generics
 
 type Name = string;
