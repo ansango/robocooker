@@ -31,7 +31,7 @@ const UnLike: FC<Props> = () => {
       onClick={onUnLike}
     >
       {!isLoading && <Icon icon="HeartIcon" kind="solid" className="w-6 h-6" />}
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner className="h-6 w-6 text-secondary"/>}
     </button>
   );
 };

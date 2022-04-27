@@ -33,7 +33,7 @@ const Like: FC = () => {
       {!isLoading && (
         <Icon icon="HeartIcon" kind="outline" className="w-6 h-6" />
       )}
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner className="h-6 w-6 text-secondary" />}
     </button>
   );
 };

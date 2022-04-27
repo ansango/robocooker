@@ -35,7 +35,7 @@ const AddBookmark: FC = () => {
           className="w-6 h-6 text-accent-focus"
         />
       )}
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner className="h-6 w-6 text-accent-focus" />}
     </button>
   );
 };
@@ -66,7 +66,7 @@ const RemoveBookmark: FC = () => {
           className="w-6 h-6 text-accent-focus fill-accent-focus"
         />
       )}
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner className="h-6 w-6 text-accent-focus" />}
     </button>
   );
 };
