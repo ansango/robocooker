@@ -11,6 +11,26 @@ export const findBookmarkById = async (
   return bookmark as Bookmark;
 };
 
+export const findBookmarkByIdPopulated = async (
+  db: Db,
+  bookmarkId: BookmarkId
+): Promise<any> => {
+  const bookmark = (await db
+    .collection("bookmarks")
+    .findOne({ _id: new ObjectId(bookmarkId) })) as Bookmark;
+  if (!bookmark) return null;
+  const ids = bookmark.recipes.map((id) => new ObjectId(id));
+  const recipes = await db
+    .collection("recipes")
+    .find({ _id: { $in: ids } })
+    .toArray();
+  const data = {
+    ...bookmark,
+    recipes,
+  };
+  return data;
+};
+
 export const updateRecipesBookmark = async (
   db: Db,
   bookmarkId: BookmarkId,
@@ -19,6 +39,5 @@ export const updateRecipesBookmark = async (
   const bookmark = await db
     .collection("bookmarks")
     .findOneAndUpdate({ _id: new ObjectId(bookmarkId) }, { $set: { recipes } });
-  console.log(bookmark);
   return bookmark.value as Bookmark;
 };

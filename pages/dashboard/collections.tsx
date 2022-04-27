@@ -1,5 +1,6 @@
+import { selectBookmarkRecipes } from "@/store/features/account/bookmark";
 import { getBookmark } from "@/store/features/account/bookmark/thunks";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Icon } from "components/common/Icons";
 import ContainerDashboard from "components/dashboard/ContainerDashboard";
 import DashboardLayout from "components/layout/DashboardLayout";
@@ -8,6 +9,7 @@ import React, { useEffect } from "react";
 
 const Collections: NextPage = () => {
   const dispatch = useAppDispatch();
+  const recipes = useAppSelector(selectBookmarkRecipes)
   useEffect(() => {
     dispatch(getBookmark());
   }, [dispatch]);
