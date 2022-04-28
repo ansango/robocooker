@@ -8,6 +8,7 @@ type Bookmark = {
 };
 
 type Collection = {
+  position: string;
   name: Name;
   description: Content;
   recipes: Recipe[];

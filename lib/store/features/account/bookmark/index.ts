@@ -5,7 +5,12 @@ import { getBookmark, saveRecipeBookmark } from "./thunks";
 const bookmarkSlice = createSlice({
   name: "bookmark",
   initialState,
-  reducers: {},
+  reducers: {
+    // TODO : change to thunks
+    addCollection: (state, action) => {
+      state.value && state.value.collections.push(action.payload);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getBookmark.pending, (state) => {
       state.status = "loading";
@@ -29,9 +34,12 @@ const bookmarkSlice = createSlice({
     });
   },
 });
+export const { addCollection } = bookmarkSlice.actions;
 export const selectBookmark = (state: AppState) => state.bookmark.value;
 export const selectBookmarkRecipes = (state: AppState) =>
   state.bookmark.value && state.bookmark.value.recipes;
 export const selectBookmarkStatus = (state: AppState) => state.bookmark.status;
+export const selectCollections = (state: AppState) =>
+  state.bookmark.value && state.bookmark.value.collections;
 
 export default bookmarkSlice.reducer;

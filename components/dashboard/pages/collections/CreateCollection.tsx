@@ -1,5 +1,9 @@
+import { Collection } from "@/models/user/bookmark";
 import { selectAccountId } from "@/store/features/account/account";
-import { selectBookmarkRecipes } from "@/store/features/account/bookmark";
+import {
+  addCollection,
+  selectBookmarkRecipes,
+} from "@/store/features/account/bookmark";
 import { useAppSelector } from "@/store/hooks";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import { Checkbox, Form, Input } from "components/common/Forms";
@@ -10,6 +14,7 @@ import ModalContent from "components/common/Modal/ModalContent";
 import ModalTitle from "components/common/Modal/ModalTitle";
 import { closeModal } from "components/common/Modal/utils";
 import Step from "components/common/Stepper/Step";
+import { ObjectId } from "mongodb";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC, useCallback } from "react";
@@ -19,14 +24,31 @@ import CreateButton from "./CreateButton";
 const CreateCollection: FC<{ id: string }> = ({ id }) => {
   const accountId = useAppSelector(selectAccountId);
   const dispatch = useDispatch();
-  const recipes = useAppSelector(selectBookmarkRecipes);
+  const recipesSelector = useAppSelector(selectBookmarkRecipes);
   const { push } = useRouter();
 
   const onSubmit = useCallback(
-    (data: any) => {
-      console.log(data);
-      closeModal(id);
-      push("/dashboard/favorites");
+    ({ name, description, recipes }: any) => {
+      if (recipesSelector) {
+        const recipeIds = Object.keys(recipes).filter(
+          (key) => recipes[key] === true
+        );
+        const recipesData = recipesSelector.filter((recipe) =>
+          recipeIds.includes(recipe._id)
+        );
+
+        const collection: Collection = {
+          position: Math.floor(Math.random() * 1000).toString(),
+          name,
+          description,
+          recipes: recipesData,
+          created: new Date(),
+        };
+        console.log(collection);
+        dispatch(addCollection(collection));
+        closeModal(id);
+        // push("/dashboard/favorites");
+      }
     },
     [id, push]
   );
@@ -84,9 +106,9 @@ const CreateCollection: FC<{ id: string }> = ({ id }) => {
                   icon={{ kind: "outline", type: "CollectionIcon" }}
                 >
                   <div className="py-2">
-                    {recipes && recipes.length > 0 ? (
+                    {recipesSelector && recipesSelector.length > 0 ? (
                       <div className="grid grid-cols-12 gap-5 max-h-96 overflow-y-auto py-7">
-                        {recipes.map(({ _id, img, name }, i) => (
+                        {recipesSelector.map(({ _id, img, name }, i) => (
                           <div key={_id} className="col-span-4">
                             <div className="relative w-24 h-24 space-y-2">
                               <div className="z-10 right-0 top-0 bg-transparent absolute">
