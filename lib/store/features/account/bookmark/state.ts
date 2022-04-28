@@ -1,8 +1,8 @@
-import { Bookmark, BookmarkPopulated } from "@/models/user/bookmark";
+import { Bookmark } from "@/models/user/bookmark";
 
 export interface BookmarkState {
   status: "idle" | "loading" | "failed";
-  value: Bookmark | BookmarkPopulated | null;
+  value: Bookmark | null;
 }
 
 export const initialState: BookmarkState = {

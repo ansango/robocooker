@@ -4,7 +4,7 @@ import {
   selectBookmarkStatus,
 } from "@/store/features/account/bookmark";
 import { saveRecipeBookmark } from "@/store/features/account/bookmark/thunks";
-import { selectRecipeId } from "@/store/features/recipes/recipe";
+import { selectRecipe, selectRecipeId } from "@/store/features/recipes/recipe";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Icon } from "components/common/Icons";
 import Spinner from "components/common/Spinner/Spinner";
@@ -14,14 +14,14 @@ import ActionLike from "./ActionLike";
 const AddBookmark: FC = () => {
   const bookmark = useAppSelector(selectBookmark);
   const dispatch = useAppDispatch();
-  const recipeId = useAppSelector(selectRecipeId);
+  const recipe = useAppSelector(selectRecipe);
   const isLoading = useAppSelector(selectBookmarkStatus) === "loading";
   const action = () => {
-    if (bookmark && recipeId) {
+    if (bookmark && recipe) {
       dispatch(
         saveRecipeBookmark({
           ...bookmark,
-          recipes: [...bookmark.recipes, recipeId],
+          recipes: [...bookmark.recipes, recipe],
         })
       );
     }
@@ -44,10 +44,13 @@ const RemoveBookmark: FC = () => {
   const bookmark = useAppSelector(selectBookmark);
   const isLoading = useAppSelector(selectBookmarkStatus) === "loading";
   const dispatch = useAppDispatch();
-  const recipeId = useAppSelector(selectRecipeId);
+  const recipe = useAppSelector(selectRecipe);
   const action = () => {
-    if (bookmark && recipeId) {
-      const newRecipes = bookmark.recipes.filter((id) => id !== recipeId);
+    if (bookmark && recipe) {
+      const newRecipes = bookmark.recipes.filter(
+        ({ _id }) => _id !== recipe._id
+      );
+
       dispatch(
         saveRecipeBookmark({
           ...bookmark,
@@ -75,7 +78,9 @@ const ActionBookmark: FC = () => {
   const recipeId = useAppSelector(selectRecipeId);
   const bookmarkedRecipes = useAppSelector(selectBookmarkRecipes);
   const isBookmarked =
-    bookmarkedRecipes && bookmarkedRecipes.includes(recipeId);
+    bookmarkedRecipes &&
+    bookmarkedRecipes.filter(({ _id }) => _id === recipeId).length > 0;
+
   return (
     <>
       {isBookmarked && <RemoveBookmark />} {!isBookmarked && <AddBookmark />}

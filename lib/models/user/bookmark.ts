@@ -3,20 +3,15 @@ import { Recipe } from "lib/models/recipe/recipe";
 type Bookmark = {
   _id: BookmarkId;
   accountId: AccountId;
-  recipes: RecipeId[];
-  collections: CollectionId[];
+  recipes: Recipe[];
+  collections: Collection[];
 };
 
-type BookmarkPopulated = {
-  recipes: Recipe[];
-} & Bookmark;
-
 type Collection = {
-  _id: CollectionId;
   name: Name;
   description: Content;
   recipes: Recipe[];
   created: Date;
 };
 
-export { type Collection, type Bookmark, type BookmarkPopulated };
+export { type Collection, type Bookmark };

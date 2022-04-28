@@ -10,6 +10,7 @@ import ContainerDashboard from "components/dashboard/ContainerDashboard";
 import DashboardLayout from "components/layout/DashboardLayout";
 import { NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Props = {};
@@ -31,15 +32,16 @@ const Recipes: NextPage = () => {
             icon={{ icon: "BookmarkAltIcon", kind: "outline" }}
           />
         </Breadcrumb>
+        <div className="flex w-full justify-end">
+          <button className="btn btn-circle btn-primary btn-sm">
+            <Icon kind="outline" icon="PlusIcon" className="w-4 h-4" />
+          </button>
+        </div>
         <div className="overflow-x-auto w-full">
           <table className="table w-full">
             <thead>
               <tr>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
+                <th></th>
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Rac</th>
@@ -53,6 +55,7 @@ const Recipes: NextPage = () => {
                   {recipes.map(
                     (
                       {
+                        _id,
                         img,
                         name,
                         description,
@@ -85,7 +88,7 @@ const Recipes: NextPage = () => {
                             <div>
                               <div className="font-bold">{name}</div>
                               <div className="text-sm opacity-50 capitalize">
-                                {blenders[0]}
+                                {blenders.length > 0 && blenders[0]}
                               </div>
                             </div>
                           </div>
@@ -122,13 +125,15 @@ const Recipes: NextPage = () => {
                           </span>
                         </td>
                         <th>
-                          <button className="btn btn-ghost btn-sm btn-circle">
-                            <Icon
-                              icon="EyeIcon"
-                              kind="outline"
-                              className="w-5 h-5 text-primary"
-                            />
-                          </button>
+                          <Link href={`/recipe/${_id}`} passHref>
+                            <button className="btn btn-ghost btn-sm btn-circle">
+                              <Icon
+                                icon="EyeIcon"
+                                kind="outline"
+                                className="w-5 h-5 text-primary"
+                              />
+                            </button>
+                          </Link>
                         </th>
                       </tr>
                     )

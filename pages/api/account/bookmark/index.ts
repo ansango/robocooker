@@ -1,5 +1,5 @@
 import { findAccountByUserId } from "@/api/db/account";
-import { findBookmarkById } from "@/api/db/bookmark";
+import { findBookmarkById} from "@/api/db/bookmark";
 import { auth, database } from "@/api/middlewares";
 import { options } from "@/api/nc";
 import { Account } from "@/models/user/user";

@@ -3,7 +3,10 @@ import { getBookmark } from "@/store/features/account/bookmark/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import { Icon } from "components/common/Icons";
+import ModalAction from "components/common/Modal/ModalAction";
+import ModalOpen from "components/common/Modal/ModalOpen";
 import ContainerDashboard from "components/dashboard/ContainerDashboard";
+import CreateCollection from "components/dashboard/pages/collections/CreateCollection";
 import DashboardLayout from "components/layout/DashboardLayout";
 import { NextPage } from "next";
 import Link from "next/link";
@@ -20,9 +23,12 @@ const Collections: NextPage = () => {
       <ContainerDashboard>
         <GenericDashboardHero title="Colecciones" />
         <div className="flex w-full justify-end">
-          <button className="btn btn-circle btn-primary">
+          <ModalOpen
+            id="create-collection"
+            className="btn btn-circle btn-primary"
+          >
             <Icon kind="outline" icon="PlusIcon" className="w-5 h-5" />
-          </button>
+          </ModalOpen>
         </div>
         <div className="indicator">
           <span className="indicator-item badge badge-secondary z-10">
@@ -31,7 +37,9 @@ const Collections: NextPage = () => {
           <Link href="/dashboard/collections/recipes">
             <a className="stack">
               <div className="text-center shadow-md w-36 card bg-base-100">
-                <div className="card-body text-sm font-medium">Todas las recetas</div>
+                <div className="card-body text-sm font-medium">
+                  Todas las recetas
+                </div>
               </div>
               <div className="text-center shadow w-36 card bg-base-100">
                 <div className="card-body">B</div>
@@ -42,6 +50,7 @@ const Collections: NextPage = () => {
             </a>
           </Link>
         </div>
+        <CreateCollection id="create-collection" />
       </ContainerDashboard>
     </DashboardLayout>
   );

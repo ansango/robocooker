@@ -2,7 +2,7 @@ import { Bookmark } from "@/models/user/bookmark";
 import fetcher from "@/utils/fetcher";
 
 export const onGetBookmarkService = async () => {
-  const response = await fetcher("/api/account/bookmark/populated");
+  const response = await fetcher("/api/account/bookmark/");
   return response.bookmark;
 };
 
