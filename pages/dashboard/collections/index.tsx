@@ -6,7 +6,6 @@ import { getBookmark } from "@/store/features/account/bookmark/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import { Icon } from "components/common/Icons";
-import ModalAction from "components/common/Modal/ModalAction";
 import ModalOpen from "components/common/Modal/ModalOpen";
 import ContainerDashboard from "components/dashboard/ContainerDashboard";
 import CreateCollection from "components/dashboard/pages/collections/CreateCollection";
@@ -57,12 +56,12 @@ const Collections: NextPage = () => {
           </div>
           {collections && collections.length > 0 ? (
             <>
-              {collections.map(({ name, recipes }, index) => (
+              {collections.map(({ name, recipes, uuid }, index) => (
                 <div className="indicator" key={index}>
                   <span className="indicator-item badge badge-secondary z-10">
                     {recipes.length}
                   </span>
-                  <Link href="/dashboard/collections/recipes">
+                  <Link href={`/dashboard/collections/${uuid}`}>
                     <a className="stack">
                       <div className="text-center shadow-md w-36 h-24 card bg-base-100">
                         <div className="card-body text-sm font-medium">

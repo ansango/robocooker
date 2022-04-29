@@ -1,4 +1,4 @@
-import { Bookmark } from "@/models/user/bookmark";
+import { Bookmark, Collection } from "@/models/user/bookmark";
 import { Db, ObjectId } from "mongodb";
 
 export const findBookmarkById = async (
@@ -20,4 +20,22 @@ export const updateRecipesBookmark = async (
     .collection("bookmarks")
     .findOneAndUpdate({ _id: new ObjectId(bookmarkId) }, { $set: { recipes } });
   return bookmark.value as Bookmark;
+};
+
+export const addCollectionBookmark = async (
+  db: Db,
+  bookmarkId: BookmarkId,
+  collection: any
+): Promise<boolean> => {
+  try {
+    await db
+      .collection("bookmarks")
+      .findOneAndUpdate(
+        { _id: new ObjectId(bookmarkId) },
+        { $push: { collections: collection } }
+      );
+    return true;
+  } catch (error) {
+    return false;
+  }
 };

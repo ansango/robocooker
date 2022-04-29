@@ -8,7 +8,7 @@ type Bookmark = {
 };
 
 type Collection = {
-  position: string;
+  uuid: string;
   name: Name;
   description: Content;
   recipes: Recipe[];

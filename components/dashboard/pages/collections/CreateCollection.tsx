@@ -1,10 +1,11 @@
 import { Collection } from "@/models/user/bookmark";
-import { selectAccountId } from "@/store/features/account/account";
 import {
-  addCollection,
+  selectBookmarkId,
   selectBookmarkRecipes,
 } from "@/store/features/account/bookmark";
+import { addCollection } from "@/store/features/account/bookmark/thunks";
 import { useAppSelector } from "@/store/hooks";
+import { generateUuid } from "@/utils/uuid";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import { Checkbox, Form, Input } from "components/common/Forms";
 import Modal from "components/common/Modal/Modal";
@@ -14,7 +15,6 @@ import ModalContent from "components/common/Modal/ModalContent";
 import ModalTitle from "components/common/Modal/ModalTitle";
 import { closeModal } from "components/common/Modal/utils";
 import Step from "components/common/Stepper/Step";
-import { ObjectId } from "mongodb";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC, useCallback } from "react";
@@ -22,14 +22,13 @@ import { useDispatch } from "react-redux";
 import CreateButton from "./CreateButton";
 
 const CreateCollection: FC<{ id: string }> = ({ id }) => {
-  const accountId = useAppSelector(selectAccountId);
+  const bookmarkId = useAppSelector(selectBookmarkId);
   const dispatch = useDispatch();
   const recipesSelector = useAppSelector(selectBookmarkRecipes);
-  const { push } = useRouter();
 
   const onSubmit = useCallback(
     ({ name, description, recipes }: any) => {
-      if (recipesSelector) {
+      if (recipesSelector && bookmarkId) {
         const recipeIds = Object.keys(recipes).filter(
           (key) => recipes[key] === true
         );
@@ -38,19 +37,17 @@ const CreateCollection: FC<{ id: string }> = ({ id }) => {
         );
 
         const collection: Collection = {
-          position: Math.floor(Math.random() * 1000).toString(),
+          uuid: generateUuid(),
           name,
           description,
           recipes: recipesData,
           created: new Date(),
         };
-        console.log(collection);
-        dispatch(addCollection(collection));
+        dispatch(addCollection({ collection, bookmarkId }));
         closeModal(id);
-        // push("/dashboard/favorites");
       }
     },
-    [id, push]
+    [bookmarkId, dispatch, id, recipesSelector]
   );
   return (
     <Modal id={id}>
