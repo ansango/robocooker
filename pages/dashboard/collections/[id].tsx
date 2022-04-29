@@ -1,6 +1,6 @@
-import { Collection } from "@/models/user/bookmark";
-import { selectBookmark } from "@/store/features/account/bookmark";
-import { useAppSelector } from "@/store/hooks";
+import { selectCollection } from "@/store/features/account/collection";
+import { getCollection } from "@/store/features/account/collection/thunks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Breadcrumb from "components/common/Breadcrumb/Breadcrumb";
 import BreadcrumbLink from "components/common/Breadcrumb/BreadcrumbLink";
 import BreadcrumbNoLink from "components/common/Breadcrumb/BreadcrumbNoLink";
@@ -10,13 +10,18 @@ import CollectionView from "components/dashboard/pages/collections/CollectionVie
 import DashboardLayout from "components/layout/DashboardLayout";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const CollectionPage: NextPage = () => {
   const { query } = useRouter();
-  const { uuid } = query;
-  const collection = useAppSelector(selectBookmark)?.collections.filter(
-    (collection) => collection.uuid === uuid
-  )[0];
+  const { id } = query;
+  const collection = useAppSelector(selectCollection);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!Array.isArray(id) && id) {
+      dispatch(getCollection(id));
+    }
+  }, [id, dispatch]);
   if (!collection) return null;
   return (
     <DashboardLayout>
@@ -33,7 +38,7 @@ const CollectionPage: NextPage = () => {
             icon={{ icon: "BookmarkAltIcon", kind: "outline" }}
           />
         </Breadcrumb>
-        <CollectionView uuid={collection.uuid} />
+        <CollectionView />
       </ContainerDashboard>
     </DashboardLayout>
   );

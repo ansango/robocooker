@@ -32,8 +32,8 @@ const IngredientsForm: FC<Props> = ({ ingredients, id }) => {
   const onSubmit = useCallback(
     (values: any) => {
       const ingredients = values.ingredients.filter(
-        ({ name, quantity, measure }: Ingredient) => {
-          return name && quantity && measure;
+        ({ name, quantity, measure }: any) => {
+          return name && parseInt(quantity) && measure;
         }
       );
       dispatch(updateMyIngredientsRecipe({ recipeId: id, ingredients }));

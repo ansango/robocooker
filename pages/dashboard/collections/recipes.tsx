@@ -1,6 +1,7 @@
 import { Recipe } from "@/models/recipe/recipe";
 import { selectBookmarkRecipes } from "@/store/features/account/bookmark";
-import { useAppSelector } from "@/store/hooks";
+import { getBookmarkRecipes } from "@/store/features/account/bookmark/thunks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Breadcrumb from "components/common/Breadcrumb/Breadcrumb";
 import BreadcrumbLink from "components/common/Breadcrumb/BreadcrumbLink";
 import BreadcrumbNoLink from "components/common/Breadcrumb/BreadcrumbNoLink";
@@ -11,12 +12,16 @@ import DashboardLayout from "components/layout/DashboardLayout";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 type Props = {};
 
 const Recipes: NextPage = () => {
+  const dispatch = useAppDispatch();
   const recipes = useAppSelector(selectBookmarkRecipes);
+  useEffect(() => {
+    dispatch(getBookmarkRecipes());
+  }, [dispatch]);
   return (
     <DashboardLayout>
       <ContainerDashboard>

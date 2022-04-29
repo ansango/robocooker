@@ -11,6 +11,7 @@ import commentsReducer from "./features/comments";
 import profileReducer from "./features/profile";
 import favoritesReducer from "./features/account/favorites";
 import bookmarkReducer from "./features/account/bookmark";
+import collectionReducer from "./features/account/collection";
 export function makeStore() {
   return configureStore({
     reducer: {
@@ -18,6 +19,7 @@ export function makeStore() {
       account: accountReducer,
       favorites: favoritesReducer,
       bookmark: bookmarkReducer,
+      collection: collectionReducer,
       myRecipes: myRecipesReducer,
       categories: categoriesReducer,
       blenders: blenderReducer,

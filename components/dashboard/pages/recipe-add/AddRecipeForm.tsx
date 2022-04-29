@@ -1,4 +1,4 @@
-import { RecipeDAO } from "@/models/recipe/recipe";
+import { Ingredient, RecipeDAO } from "@/models/recipe/recipe";
 import { selectCategories } from "@/store/features/categories";
 import { getCategories } from "@/store/features/categories/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -89,9 +89,16 @@ const AddRecipeForm = () => {
           servings: values.servings,
           categories: selectedCategories.map(({ value }) => value),
           blenders: selectedBlenders.map(({ value }) => value),
-          ingredients: values.ingredients,
+          ingredients: values.ingredients.map((ingredient: any) => {
+            return {
+              name: ingredient.name,
+              quantity: parseInt(ingredient.quantity),
+              measure: ingredient.measure,
+            };
+          }),
           steps: values.steps,
         };
+
         const redirect = (id: string) => replace(`/recipe/${id}`);
         dispatch(addMyRecipe({ recipe, file: formData, redirect }));
       }

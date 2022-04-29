@@ -1,8 +1,10 @@
-import { Bookmark, Collection } from "@/models/user/bookmark";
+import { Bookmark, Collection, CollectionDAO } from "@/models/user/bookmark";
 import {
   onGetBookmarkService,
   onSaveRecipeBookmarkService,
   onAddCollectionService,
+  onGetBookmarkRecipesService,
+  onGetBookmarkCollectionsService,
 } from "@/services/bookmark";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -22,16 +24,26 @@ export const saveRecipeBookmark = createAsyncThunk(
   }
 );
 
+export const getBookmarkRecipes = createAsyncThunk(
+  "bookmark/getBookmarkRecipes",
+  async () => {
+    const response = onGetBookmarkRecipesService();
+    return response;
+  }
+);
+
+export const getBookmarkCollections = createAsyncThunk(
+  "bookmark/getBookmarkCollections",
+  async () => {
+    const response = onGetBookmarkCollectionsService();
+    return response;
+  }
+);
+
 export const addCollection = createAsyncThunk(
   "bookmark/addCollection",
-  async ({
-    bookmarkId,
-    collection,
-  }: {
-    bookmarkId: BookmarkId;
-    collection: Collection;
-  }) => {
-    const response = onAddCollectionService({ bookmarkId, collection });
+  async ({ collection }: { collection: CollectionDAO }) => {
+    const response = onAddCollectionService({ collection });
     return response;
   }
 );

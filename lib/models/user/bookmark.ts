@@ -1,18 +1,31 @@
-import { Recipe } from "lib/models/recipe/recipe";
+import { Recipe } from "../recipe/recipe";
 
 type Bookmark = {
   _id: BookmarkId;
   accountId: AccountId;
-  recipes: Recipe[];
-  collections: Collection[];
+  recipes: RecipeId[];
+  collections: CollectionId[];
+};
+
+type CollectionDAO = {
+  bookmarkId: BookmarkId;
+  name: Name;
+  description: Content;
+  recipes: RecipeId[];
 };
 
 type Collection = {
-  uuid: string;
-  name: Name;
-  description: Content;
-  recipes: Recipe[];
+  _id: CollectionId;
   created: Date;
-};
+} & CollectionDAO;
 
-export { type Collection, type Bookmark };
+type CollectionDTO = {
+  recipes: Recipe[];
+} & Collection;
+
+export {
+  type Collection,
+  type Bookmark,
+  type CollectionDAO,
+  type CollectionDTO,
+};

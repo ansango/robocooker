@@ -1,8 +1,11 @@
 import {
-  selectBookmarkRecipes,
+  selectBookmarkTotalRecipes,
   selectCollections,
 } from "@/store/features/account/bookmark";
-import { getBookmark } from "@/store/features/account/bookmark/thunks";
+import {
+  getBookmark,
+  getBookmarkCollections,
+} from "@/store/features/account/bookmark/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import GenericDashboardHero from "components/common/Hero/GenericDashboardHero";
 import { Icon } from "components/common/Icons";
@@ -16,10 +19,11 @@ import React, { useEffect } from "react";
 
 const Collections: NextPage = () => {
   const dispatch = useAppDispatch();
-  const counter = useAppSelector(selectBookmarkRecipes)?.length;
+  const counter = useAppSelector(selectBookmarkTotalRecipes);
   const collections = useAppSelector(selectCollections);
   useEffect(() => {
     dispatch(getBookmark());
+    dispatch(getBookmarkCollections());
   }, [dispatch]);
   return (
     <DashboardLayout>
@@ -56,12 +60,12 @@ const Collections: NextPage = () => {
           </div>
           {collections && collections.length > 0 ? (
             <>
-              {collections.map(({ name, recipes, uuid }, index) => (
+              {collections.map(({ name, recipes, _id }, index) => (
                 <div className="indicator" key={index}>
                   <span className="indicator-item badge badge-secondary z-10">
                     {recipes.length}
                   </span>
-                  <Link href={`/dashboard/collections/${uuid}`}>
+                  <Link href={`/dashboard/collections/${_id}`}>
                     <a className="stack">
                       <div className="text-center shadow-md w-36 h-24 card bg-base-100">
                         <div className="card-body text-sm font-medium">

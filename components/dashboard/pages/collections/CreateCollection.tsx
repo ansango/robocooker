@@ -1,11 +1,13 @@
-import { Collection } from "@/models/user/bookmark";
+import { CollectionDAO } from "@/models/user/bookmark";
 import {
   selectBookmarkId,
   selectBookmarkRecipes,
 } from "@/store/features/account/bookmark";
-import { addCollection } from "@/store/features/account/bookmark/thunks";
+import {
+  addCollection,
+  getBookmarkRecipes,
+} from "@/store/features/account/bookmark/thunks";
 import { useAppSelector } from "@/store/hooks";
-import { generateUuid } from "@/utils/uuid";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import { Checkbox, Form, Input } from "components/common/Forms";
 import Modal from "components/common/Modal/Modal";
@@ -16,8 +18,7 @@ import ModalTitle from "components/common/Modal/ModalTitle";
 import { closeModal } from "components/common/Modal/utils";
 import Step from "components/common/Stepper/Step";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { FC, useCallback } from "react";
+import { FC, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import CreateButton from "./CreateButton";
 
@@ -25,29 +26,27 @@ const CreateCollection: FC<{ id: string }> = ({ id }) => {
   const bookmarkId = useAppSelector(selectBookmarkId);
   const dispatch = useDispatch();
   const recipesSelector = useAppSelector(selectBookmarkRecipes);
-
+  useEffect(() => {
+    dispatch(getBookmarkRecipes());
+  }, [dispatch]);
   const onSubmit = useCallback(
     ({ name, description, recipes }: any) => {
-      if (recipesSelector && bookmarkId) {
-        const recipeIds = Object.keys(recipes).filter(
+      if (bookmarkId) {
+        const recipesIds = Object.keys(recipes).filter(
           (key) => recipes[key] === true
         );
-        const recipesData = recipesSelector.filter((recipe) =>
-          recipeIds.includes(recipe._id)
-        );
 
-        const collection: Collection = {
-          uuid: generateUuid(),
+        const collection: CollectionDAO = {
+          bookmarkId,
           name,
           description,
-          recipes: recipesData,
-          created: new Date(),
+          recipes: recipesIds,
         };
-        dispatch(addCollection({ collection, bookmarkId }));
+        dispatch(addCollection({ collection }));
         closeModal(id);
       }
     },
-    [bookmarkId, dispatch, id, recipesSelector]
+    [bookmarkId, dispatch, id]
   );
   return (
     <Modal id={id}>

@@ -1,9 +1,30 @@
-import { Bookmark, Collection } from "@/models/user/bookmark";
+import { Bookmark, Collection, CollectionDAO } from "@/models/user/bookmark";
 import fetcher from "@/utils/fetcher";
 
 export const onGetBookmarkService = async () => {
   const response = await fetcher("/api/account/bookmark/");
   return response.bookmark;
+};
+
+export const onGetBookmarkRecipesService = async () => {
+  const response = await fetcher("/api/account/bookmark/recipes");
+  return response.recipes;
+};
+
+export const onGetBookmarkCollectionsService = async (): Promise<
+  Collection[]
+> => {
+  const response = await fetcher("/api/account/bookmark/collections");
+  return response.collections;
+};
+
+export const onGetCollectionService = async (
+  collectionId: CollectionId
+): Promise<Collection> => {
+  const response = await fetcher(
+    `/api/account/bookmark/collections/${collectionId}`
+  );
+  return response.collection;
 };
 
 export const onSaveRecipeBookmarkService = async (
@@ -26,11 +47,9 @@ export const onSaveRecipeBookmarkService = async (
 };
 
 export const onAddCollectionService = async ({
-  bookmarkId,
   collection,
 }: {
-  bookmarkId: BookmarkId;
-  collection: Collection;
+  collection: CollectionDAO;
 }): Promise<Collection> => {
   try {
     const response = await fetcher("/api/account/bookmark/collections", {
@@ -39,7 +58,6 @@ export const onAddCollectionService = async ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        bookmarkId,
         collection,
       }),
     });

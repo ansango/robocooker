@@ -61,7 +61,7 @@ const Ingredients: FC = () => {
             className="btn btn-success normal-case btn-circle btn-md"
             type="button"
             onClick={() => {
-              append({ name: "", measure: "", quantity: "" });
+              append({ name: "", measure: "gr", quantity: 0 });
             }}
           >
             <Icon icon="PlusIcon" kind="outline" className="w-5 h-5" />

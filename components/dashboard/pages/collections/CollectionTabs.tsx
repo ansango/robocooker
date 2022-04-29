@@ -1,12 +1,15 @@
-import { Collection } from "@/models/user/bookmark";
+import { selectCollectionId } from "@/store/features/account/collection";
+import { useAppSelector } from "@/store/hooks";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 
-const CollectionTabs: FC<{ uuid: Collection["uuid"] }> = ({ uuid }) => {
+const CollectionTabs: FC = () => {
+  const collectionId = useAppSelector(selectCollectionId);
+  if (!collectionId) return null;
   return (
     <div className="tabs flex justify-end">
       <NavLink
-        to={`/dashboard/collections/${uuid}`}
+        to={`/dashboard/collections/${collectionId}`}
         className={({ isActive }) =>
           isActive ? "tab tab-lifted tab-active" : "tab tab-lifted"
         }
@@ -16,7 +19,7 @@ const CollectionTabs: FC<{ uuid: Collection["uuid"] }> = ({ uuid }) => {
       </NavLink>
 
       <NavLink
-        to={`/dashboard/collections/${uuid}/ingredients`}
+        to={`/dashboard/collections/${collectionId}/ingredients`}
         className={({ isActive }) =>
           isActive ? "tab tab-lifted tab-active" : "tab tab-lifted"
         }
