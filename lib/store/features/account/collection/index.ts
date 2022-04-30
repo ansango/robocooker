@@ -1,7 +1,8 @@
 import { AppState } from "../../../";
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./state";
-import { getCollection } from "./thunks";
+import { getCollection, deleteCollection } from "./thunks";
+import toast from "react-hot-toast";
 
 const collectionSlice = createSlice({
   name: "collection",
@@ -21,6 +22,20 @@ const collectionSlice = createSlice({
         state.status = "failed";
         state.value = null;
       });
+    builder.addCase(deleteCollection.pending, (state) => {
+      state.status = "loading";
+      state.onDeleteCollection = true;
+    });
+    builder.addCase(deleteCollection.fulfilled, (state) => {
+      state.status = "idle";
+      state.onDeleteCollection = false;
+      toast.success("Colección eliminada");
+    });
+    builder.addCase(deleteCollection.rejected, (state) => {
+      state.status = "failed";
+      state.onDeleteCollection = false;
+      toast.error("Error al eliminar la colección");
+    });
   },
 });
 

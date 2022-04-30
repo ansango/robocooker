@@ -66,3 +66,15 @@ export const onAddCollectionService = async ({
     throw error;
   }
 };
+
+export const onDeleteCollectionService = async (
+  collectionId: CollectionId
+): Promise<void> => {
+  try {
+    await fetcher(`/api/account/bookmark/collections/${collectionId}`, {
+      method: "DELETE",
+    });
+  } catch (error) {
+    throw error;
+  }
+};

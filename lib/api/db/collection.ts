@@ -50,3 +50,35 @@ export const findCollectedRecipesByIds = async (
     .toArray()) as Recipe[];
   return recipes;
 };
+
+export const deleteCollectionById = async (
+  db: Db,
+  collectionId: CollectionId
+): Promise<boolean> => {
+  try {
+    await db
+      .collection("collections")
+      .deleteOne({ _id: new ObjectId(collectionId) });
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteCollectionBookmark = async (
+  db: Db,
+  collectionId: CollectionId,
+  bookmarkId: BookmarkId
+): Promise<boolean> => {
+  try {
+    await db
+      .collection("bookmarks")
+      .updateOne(
+        { _id: new ObjectId(bookmarkId) },
+        { $pull: { collections: collectionId.toString() } }
+      );
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};

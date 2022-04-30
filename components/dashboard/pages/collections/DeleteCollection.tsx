@@ -1,4 +1,5 @@
 import { selectCollection } from "@/store/features/account/collection";
+import { deleteCollection } from "@/store/features/account/collection/thunks";
 import { useAppSelector } from "@/store/hooks";
 import { Form } from "components/common/Forms";
 import Modal from "components/common/Modal/Modal";
@@ -18,12 +19,10 @@ const DeleteCollection: FC<{ id: string }> = ({ id }) => {
   const redirect = () => push("/dashboard/collections");
   const dispatch = useDispatch();
   const onSubmit = () => {
-    // dispatch(
-    //   removeMyRecipe({
-    //     id: idCollection
-    //     redirect,
-    //   })
-    // );
+    if (collectionId) {
+      dispatch(deleteCollection(collectionId));
+      redirect();
+    }
     closeModal(id);
   };
   return (

@@ -57,7 +57,6 @@ const bookmarkSlice = createSlice({
     builder
       .addCase(saveRecipeBookmark.pending, (state) => {
         state.status = "loading";
-        
       })
       .addCase(saveRecipeBookmark.fulfilled, (state, action) => {
         state.status = "idle";
@@ -73,7 +72,9 @@ const bookmarkSlice = createSlice({
       })
       .addCase(addCollection.fulfilled, (state, action) => {
         state.status = "idle";
-        state.collections && state.collections.push(action.payload);
+        state.collections
+          ? state.collections.push(action.payload)
+          : (state.collections = [action.payload]);
         state.onAddCollection = false;
         toast.success("Colección creada");
       })
