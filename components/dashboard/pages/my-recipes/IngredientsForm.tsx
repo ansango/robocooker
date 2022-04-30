@@ -31,11 +31,17 @@ const IngredientsForm: FC<Props> = ({ ingredients, id }) => {
   const { handleSubmit } = methods;
   const onSubmit = useCallback(
     (values: any) => {
-      const ingredients = values.ingredients.filter(
+      const ingredientsFiltered = values.ingredients.filter(
         ({ name, quantity, measure }: any) => {
-          return name && parseInt(quantity) && measure;
+          return name && quantity && measure;
         }
       );
+      const ingredients = ingredientsFiltered.map((ingredient: any) => {
+        return {
+          ...ingredient,
+          quantity: parseInt(ingredient.quantity),
+        };
+      });
       dispatch(updateMyIngredientsRecipe({ recipeId: id, ingredients }));
     },
     [dispatch, id]

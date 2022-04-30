@@ -46,7 +46,7 @@ const Favorites: NextPage = () => {
                     </figure>
                     <div className="card-body p-5 justify-between">
                       <Link href={`/recipe/${_id}`} passHref>
-                        <h2 className="card-title capitalize text-white hover:underline hover:cursor-pointer">
+                        <h2 className="card-title capitalize text-white hover:underline hover:cursor-pointer line-clamp-1">
                           {name}
                         </h2>
                       </Link>

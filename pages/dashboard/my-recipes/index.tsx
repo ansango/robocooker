@@ -44,7 +44,9 @@ const MyRecipes: NextPage = () => {
                     )}
                   </figure>
                   <div className="card-body p-5 justify-between">
-                    <h2 className="card-title capitalize text-white">{name}</h2>
+                    <h2 className="card-title capitalize text-white line-clamp-1">
+                      {name}
+                    </h2>
 
                     <div className="w-full flex justify-end space-x-2">
                       <Link href={`/dashboard/my-recipes/${_id}`} passHref>

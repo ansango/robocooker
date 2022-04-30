@@ -60,10 +60,10 @@ const EditCollection: FC<{ id: string }> = ({ id }) => {
         };
         console.log(data);
         dispatch(editCollection(data));
-        // closeModal(id);
+        closeModal(id);
       }
     },
-    [bookmarkId, dispatch, id]
+    [bookmarkId, dispatch, id, collection]
   );
 
   // if (!collection) return null;
