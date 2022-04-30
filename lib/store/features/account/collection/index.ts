@@ -11,6 +11,7 @@ const collectionSlice = createSlice({
     builder
       .addCase(getCollection.pending, (state) => {
         state.status = "loading";
+        state.value = null;
       })
       .addCase(getCollection.fulfilled, (state, action) => {
         state.status = "idle";
@@ -18,6 +19,7 @@ const collectionSlice = createSlice({
       })
       .addCase(getCollection.rejected, (state) => {
         state.status = "failed";
+        state.value = null;
       });
   },
 });

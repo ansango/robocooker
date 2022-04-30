@@ -17,6 +17,7 @@ const bookmarkSlice = createSlice({
     builder
       .addCase(getBookmark.pending, (state) => {
         state.status = "loading";
+        state.value = null;
       })
       .addCase(getBookmark.fulfilled, (state, action) => {
         state.status = "idle";
@@ -24,10 +25,12 @@ const bookmarkSlice = createSlice({
       })
       .addCase(getBookmark.rejected, (state) => {
         state.status = "failed";
+        state.value = null;
       });
     builder
       .addCase(getBookmarkRecipes.pending, (state) => {
         state.status = "loading";
+        state.recipes = null;
       })
       .addCase(getBookmarkRecipes.fulfilled, (state, action) => {
         state.status = "idle";
@@ -35,10 +38,12 @@ const bookmarkSlice = createSlice({
       })
       .addCase(getBookmarkRecipes.rejected, (state) => {
         state.status = "failed";
+        state.recipes = null;
       });
     builder
       .addCase(getBookmarkCollections.pending, (state) => {
         state.status = "loading";
+        state.collections = null;
       })
       .addCase(getBookmarkCollections.fulfilled, (state, action) => {
         state.status = "idle";
@@ -46,11 +51,13 @@ const bookmarkSlice = createSlice({
       })
       .addCase(getBookmarkCollections.rejected, (state) => {
         state.status = "failed";
+        state.collections = null;
       });
 
     builder
       .addCase(saveRecipeBookmark.pending, (state) => {
         state.status = "loading";
+        
       })
       .addCase(saveRecipeBookmark.fulfilled, (state, action) => {
         state.status = "idle";

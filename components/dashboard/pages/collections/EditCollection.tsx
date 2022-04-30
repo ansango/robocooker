@@ -8,6 +8,7 @@ import {
   getBookmark,
   getBookmarkRecipes,
 } from "@/store/features/account/bookmark/thunks";
+import { selectCollection } from "@/store/features/account/collection";
 import { useAppSelector } from "@/store/hooks";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import { Checkbox, Form, Input } from "components/common/Forms";
@@ -19,24 +20,24 @@ import ModalTitle from "components/common/Modal/ModalTitle";
 import { closeModal } from "components/common/Modal/utils";
 import Step from "components/common/Stepper/Step";
 import Image from "next/image";
-import { FC, useCallback, useEffect } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import CreateButton from "./CreateButton";
 import EditButton from "./EditButton";
 
-const EditCollection: FC<{ id: string; collection: CollectionDTO }> = ({
-  id,
-  collection,
-}) => {
+const EditCollection: FC<{ id: string }> = ({ id }) => {
+  const collection = useAppSelector(selectCollection);
   const bookmarkId = useAppSelector(selectBookmarkId);
   const dispatch = useDispatch();
   const allMyBookMarkedRecipes = useAppSelector(selectBookmarkRecipes) || [];
+
   useEffect(() => {
     dispatch(getBookmarkRecipes());
   }, [dispatch]);
+
   useEffect(() => {
     if (!bookmarkId) dispatch(getBookmark());
   }, [dispatch, bookmarkId]);
+
   const onSubmit = useCallback(
     ({ name, description, recipes }: any) => {
       console.log(name, description, recipes);
@@ -58,6 +59,8 @@ const EditCollection: FC<{ id: string; collection: CollectionDTO }> = ({
     },
     [bookmarkId, dispatch, id]
   );
+
+  // if (!collection) return null;
   return (
     <Modal id={id}>
       <ModalBox id={id}>
@@ -75,32 +78,38 @@ const EditCollection: FC<{ id: string; collection: CollectionDTO }> = ({
                   <CardSlimContent>
                     <div className="grid gap-4 grid-cols-12 py-5">
                       <div className="col-span-full sm:col-span-6">
-                        <Input
-                          name="name"
-                          type="text"
-                          placeholder="Nombre"
-                          options={{
-                            required: {
-                              value: true,
-                              message: "Introduce un nombre",
-                            },
-                          }}
-                          {...{ defaultValue: collection.name }}
-                        />
+                        {collection && (
+                          <Input
+                            name="name"
+                            type="text"
+                            placeholder="Nombre"
+                            options={{
+                              required: {
+                                value: true,
+                                message: "Introduce un nombre",
+                              },
+                            }}
+                            {...{
+                              defaultValue: collection.name,
+                            }}
+                          />
+                        )}
                       </div>
                       <div className="col-span-full sm:col-span-6">
-                        <Input
-                          name="description"
-                          type="text"
-                          placeholder="Descripción"
-                          options={{
-                            required: {
-                              value: true,
-                              message: "Introduce una descripción",
-                            },
-                          }}
-                          {...{ defaultValue: collection.description }}
-                        />
+                        {collection && (
+                          <Input
+                            name="description"
+                            type="text"
+                            placeholder="Descripción"
+                            options={{
+                              required: {
+                                value: true,
+                                message: "Introduce una descripción",
+                              },
+                            }}
+                            {...{ defaultValue: collection.description }}
+                          />
+                        )}
                       </div>
                     </div>
                   </CardSlimContent>
@@ -115,7 +124,7 @@ const EditCollection: FC<{ id: string; collection: CollectionDTO }> = ({
                   icon={{ kind: "outline", type: "CollectionIcon" }}
                 >
                   <div className="py-2">
-                    {allMyBookMarkedRecipes.length > 0 ? (
+                    {allMyBookMarkedRecipes.length > 0 && collection ? (
                       <div className="grid grid-cols-12 gap-5 max-h-96 overflow-y-auto py-7">
                         {allMyBookMarkedRecipes.map(({ _id, img, name }, i) => {
                           const checked = collection.recipes

@@ -26,7 +26,7 @@ const CollectionPage: NextPage = () => {
       dispatch(getCollection(id));
     }
   }, [id, dispatch]);
-  if (!collection) return null;
+
   return (
     <DashboardLayout>
       <ContainerDashboard>
@@ -37,10 +37,12 @@ const CollectionPage: NextPage = () => {
             label="Colecciones"
             icon={{ icon: "BookmarkIcon", kind: "outline" }}
           />
-          <BreadcrumbNoLink
-            label={collection.name}
-            icon={{ icon: "BookmarkAltIcon", kind: "outline" }}
-          />
+          {collection && (
+            <BreadcrumbNoLink
+              label={collection.name}
+              icon={{ icon: "BookmarkAltIcon", kind: "outline" }}
+            />
+          )}
         </Breadcrumb>
         <div className="flex w-full justify-end space-x-2">
           <ModalOpen
@@ -57,11 +59,13 @@ const CollectionPage: NextPage = () => {
           </ModalOpen>
         </div>
         <CollectionView />
-        <EditCollection id="edit-collection" collection={collection} />
-        <DeleteCollection
-          id="delete-collection"
-          idCollection={collection._id}
-        />
+        {collection && <EditCollection id="edit-collection" />}
+        {collection && (
+          <DeleteCollection
+            id="delete-collection"
+            idCollection={collection._id}
+          />
+        )}
       </ContainerDashboard>
     </DashboardLayout>
   );
