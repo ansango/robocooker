@@ -7,7 +7,7 @@ const CollectionTabs: FC = () => {
   const collectionId = useAppSelector(selectCollectionId);
   if (!collectionId) return null;
   return (
-    <div className="tabs flex justify-end">
+    <div className="tabs">
       <NavLink
         to={`/dashboard/collections/${collectionId}`}
         className={({ isActive }) =>
