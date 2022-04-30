@@ -32,19 +32,18 @@ const Recipe: NextPage = () => {
       dispatch(getBookmark());
     }
   }, [id, dispatch]);
-  if (!recipe || !id || Array.isArray(id)) return null;
   return (
     <MainLayout>
       <Container>
         <ContainerSection>
-          <AuthorOptionsBlock id={id} />
-          <Hero img={recipe.img} name={recipe.name} />
+          {id && <AuthorOptionsBlock id={id} />}
+          {recipe && <Hero img={recipe.img} name={recipe.name} />}
           <div className="grid gap-5 grid-cols-12 pt-2">
-            <CategoriesDescriptionBlock {...recipe} />
-            <IngredientsBlock ingredients={recipe.ingredients} />
+            {recipe && <CategoriesDescriptionBlock {...recipe} />}
+            {recipe && <IngredientsBlock ingredients={recipe.ingredients} />}
           </div>
           <Divider />
-          <StepsBlock steps={recipe.steps} />
+          {recipe && <StepsBlock steps={recipe.steps} />}
         </ContainerSection>
         <SocialSection />
         <CommentsSection />

@@ -73,7 +73,7 @@ const RemoveBookmark: FC = () => {
 
 const ActionBookmark: FC = () => {
   const recipeId = useAppSelector(selectRecipeId);
-  const bookmarkedRecipes = useAppSelector(selectBookmarkRecipes);
+  const bookmarkedRecipes = useAppSelector(selectBookmark)?.recipes;
   const isBookmarked =
     bookmarkedRecipes &&
     bookmarkedRecipes.filter((id) => id === recipeId).length > 0;
