@@ -25,7 +25,7 @@ const CategoriesDescriptionBlock: FC<Props> = ({
 }) => {
   return (
     <article className="col-span-full md:col-span-6 flex flex-col justify-end space-y-5">
-      <div className="space-y-1 pl-1 flex flex-col justify-center h-full">
+      <div className="space-y-1 pl-1 flex flex-col h-full">
         <div className="flex justify-between">
           <div className="flex flex-row flex-wrap">
             <Categories categories={categories} />
