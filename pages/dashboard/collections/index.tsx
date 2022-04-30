@@ -31,9 +31,9 @@ const Collections: NextPage = () => {
         <div className="flex w-full justify-end">
           <ModalOpen
             id="create-collection"
-            className="btn btn-circle btn-primary"
+            className="btn btn-circle btn-primary btn-sm"
           >
-            <Icon kind="outline" icon="PlusIcon" className="w-5 h-5" />
+            <Icon kind="outline" icon="PlusIcon" className="w-4 h-4" />
           </ModalOpen>
         </div>
         <div className="grid grid-cols-12 gap-5 sm:gap-7">

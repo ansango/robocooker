@@ -1,4 +1,4 @@
-import { CollectionDAO } from "@/models/user/bookmark";
+import { CollectionDAO, CollectionDTO } from "@/models/user/bookmark";
 import {
   selectBookmarkId,
   selectBookmarkRecipes,
@@ -22,10 +22,14 @@ import { FC, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import CreateButton from "./CreateButton";
 
-const CreateCollection: FC<{ id: string }> = ({ id }) => {
+const EditCollection: FC<{ id: string; collection: CollectionDTO }> = ({
+  id,
+  collection,
+}) => {
   const bookmarkId = useAppSelector(selectBookmarkId);
   const dispatch = useDispatch();
   const allMyBookMarkedRecipes = useAppSelector(selectBookmarkRecipes) || [];
+
   useEffect(() => {
     dispatch(getBookmarkRecipes());
   }, [dispatch]);
@@ -52,12 +56,13 @@ const CreateCollection: FC<{ id: string }> = ({ id }) => {
     <Modal id={id}>
       <ModalBox id={id}>
         <Form onSubmit={onSubmit}>
-          <ModalTitle label="Crear colección" />
+          <ModalTitle label="Editar colección" />
           <ModalContent>
             <div className="card card-compact overflow-visible bg-base-100 w-full">
               <div className="card-body">
                 <Step
                   step={1}
+                  expanded
                   title="Datos de la colección"
                   icon={{ kind: "outline", type: "DocumentTextIcon" }}
                 >
@@ -74,6 +79,7 @@ const CreateCollection: FC<{ id: string }> = ({ id }) => {
                               message: "Introduce un nombre",
                             },
                           }}
+                          {...{ defaultValue: collection.name }}
                         />
                       </div>
                       <div className="col-span-full sm:col-span-6">
@@ -87,6 +93,7 @@ const CreateCollection: FC<{ id: string }> = ({ id }) => {
                               message: "Introduce una descripción",
                             },
                           }}
+                          {...{ defaultValue: collection.description }}
                         />
                       </div>
                     </div>
@@ -111,6 +118,9 @@ const CreateCollection: FC<{ id: string }> = ({ id }) => {
                                 <Checkbox
                                   name={`recipes[${_id}]`}
                                   kind="accent"
+                                  {...(collection.recipes.filter(
+                                    (recipe) => recipe._id === _id
+                                  ).length > 0 && { checked: true })}
                                 />
                               </div>
                               <div className="mask mask-squircle w-24 h-24">
@@ -142,4 +152,4 @@ const CreateCollection: FC<{ id: string }> = ({ id }) => {
   );
 };
 
-export default CreateCollection;
+export default EditCollection;

@@ -50,7 +50,7 @@ const MyRecipes: NextPage = () => {
                       <Link href={`/dashboard/my-recipes/${_id}`} passHref>
                         <button className="btn btn-sm btn-info btn-circle">
                           <Icon
-                            icon="PencilAltIcon"
+                            icon="PencilIcon"
                             className="w-4 h-4"
                             kind="outline"
                           />

@@ -32,7 +32,7 @@ const TabIngredients: FC = () => {
   const data = useAppSelector(selectIngredients) || [];
   const ingredients = mergeIngredients(data);
   return (
-    <SubRoute>
+    <SubRoute className="max-w-lg">
       <div className="">
         {ingredients.map((ingredient, index) => (
           <IngredientC key={index} ingredient={ingredient} />
