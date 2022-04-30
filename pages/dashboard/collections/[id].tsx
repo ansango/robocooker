@@ -9,6 +9,7 @@ import { Icon } from "components/common/Icons";
 import ModalOpen from "components/common/Modal/ModalOpen";
 import ContainerDashboard from "components/dashboard/ContainerDashboard";
 import CollectionView from "components/dashboard/pages/collections/CollectionView";
+import DeleteCollection from "components/dashboard/pages/collections/DeleteCollection";
 import EditCollection from "components/dashboard/pages/collections/EditCollection";
 import DashboardLayout from "components/layout/DashboardLayout";
 import { NextPage } from "next";
@@ -41,16 +42,26 @@ const CollectionPage: NextPage = () => {
             icon={{ icon: "BookmarkAltIcon", kind: "outline" }}
           />
         </Breadcrumb>
-        <div className="flex w-full justify-end">
+        <div className="flex w-full justify-end space-x-2">
           <ModalOpen
             id="edit-collection"
             className="btn btn-circle btn-accent btn-sm"
           >
             <Icon kind="outline" icon="PencilIcon" className="w-4 h-4" />
           </ModalOpen>
+          <ModalOpen
+            id="delete-collection"
+            className="btn btn-circle btn-error btn-sm"
+          >
+            <Icon kind="outline" icon="XIcon" className="w-4 h-4" />
+          </ModalOpen>
         </div>
         <CollectionView />
         <EditCollection id="edit-collection" collection={collection} />
+        <DeleteCollection
+          id="delete-collection"
+          idCollection={collection._id}
+        />
       </ContainerDashboard>
     </DashboardLayout>
   );
