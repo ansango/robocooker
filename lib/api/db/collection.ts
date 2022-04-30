@@ -1,5 +1,9 @@
 import { Recipe } from "@/models/recipe/recipe";
-import { Collection, CollectionDAO } from "@/models/user/bookmark";
+import {
+  Collection,
+  CollectionDAO,
+  CollectionDTO,
+} from "@/models/user/bookmark";
 import { Db, ObjectId } from "mongodb";
 
 export const insertCollection = async (
@@ -78,6 +82,31 @@ export const deleteCollectionBookmark = async (
         { $pull: { collections: collectionId.toString() } }
       );
     return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateCollection = async (
+  db: Db,
+  collection: Collection
+): Promise<CollectionDTO> => {
+  try {
+    await db.collection("collections").updateOne(
+      { _id: new ObjectId(collection._id) },
+      {
+        $set: {
+          name: collection.name,
+          description: collection.description,
+          recipes: collection.recipes,
+        },
+      }
+    );
+    const recipesData = await findCollectedRecipesByIds(db, collection.recipes);
+    return {
+      ...collection,
+      recipes: recipesData,
+    };
   } catch (error) {
     throw error;
   }

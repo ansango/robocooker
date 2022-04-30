@@ -1,4 +1,9 @@
-import { Bookmark, Collection, CollectionDAO } from "@/models/user/bookmark";
+import {
+  Bookmark,
+  Collection,
+  CollectionDAO,
+  CollectionDTO,
+} from "@/models/user/bookmark";
 import fetcher from "@/utils/fetcher";
 
 export const onGetBookmarkService = async () => {
@@ -20,7 +25,7 @@ export const onGetBookmarkCollectionsService = async (): Promise<
 
 export const onGetCollectionService = async (
   collectionId: CollectionId
-): Promise<Collection> => {
+): Promise<CollectionDTO> => {
   const response = await fetcher(
     `/api/account/bookmark/collections/${collectionId}`
   );
@@ -74,6 +79,28 @@ export const onDeleteCollectionService = async (
     await fetcher(`/api/account/bookmark/collections/${collectionId}`, {
       method: "DELETE",
     });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const onSaveCollectionService = async (
+  collection: Collection
+): Promise<CollectionDTO> => {
+  try {
+    const response = await fetcher(
+      `/api/account/bookmark/collections/${collection._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          collection,
+        }),
+      }
+    );
+    return response.collection;
   } catch (error) {
     throw error;
   }

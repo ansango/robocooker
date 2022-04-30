@@ -1,7 +1,7 @@
 import { AppState } from "../../../";
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./state";
-import { getCollection, deleteCollection } from "./thunks";
+import { getCollection, deleteCollection, editCollection } from "./thunks";
 import toast from "react-hot-toast";
 
 const collectionSlice = createSlice({
@@ -22,20 +22,38 @@ const collectionSlice = createSlice({
         state.status = "failed";
         state.value = null;
       });
-    builder.addCase(deleteCollection.pending, (state) => {
-      state.status = "loading";
-      state.onDeleteCollection = true;
-    });
-    builder.addCase(deleteCollection.fulfilled, (state) => {
-      state.status = "idle";
-      state.onDeleteCollection = false;
-      toast.success("Colección eliminada");
-    });
-    builder.addCase(deleteCollection.rejected, (state) => {
-      state.status = "failed";
-      state.onDeleteCollection = false;
-      toast.error("Error al eliminar la colección");
-    });
+    builder
+      .addCase(deleteCollection.pending, (state) => {
+        state.status = "loading";
+        state.onDeleteCollection = true;
+      })
+      .addCase(deleteCollection.fulfilled, (state) => {
+        state.status = "idle";
+        state.onDeleteCollection = false;
+        toast.success("Colección eliminada");
+      })
+      .addCase(deleteCollection.rejected, (state) => {
+        state.status = "failed";
+        state.onDeleteCollection = false;
+        toast.error("Error al eliminar la colección");
+      });
+
+    builder
+      .addCase(editCollection.pending, (state) => {
+        state.status = "loading";
+        state.onEditCollection = true;
+      })
+      .addCase(editCollection.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.value = action.payload;
+        state.onEditCollection = false;
+        toast.success("Colección guardada");
+      })
+      .addCase(editCollection.rejected, (state) => {
+        state.status = "failed";
+        state.onEditCollection = false;
+        toast.error("Error al editar la colección");
+      });
   },
 });
 

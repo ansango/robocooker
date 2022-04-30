@@ -1,4 +1,8 @@
-import { CollectionDAO, CollectionDTO } from "@/models/user/bookmark";
+import {
+  Collection,
+  CollectionDAO,
+  CollectionDTO,
+} from "@/models/user/bookmark";
 import {
   selectBookmarkId,
   selectBookmarkRecipes,
@@ -8,6 +12,7 @@ import {
   getBookmarkRecipes,
 } from "@/store/features/account/bookmark/thunks";
 import { selectCollection } from "@/store/features/account/collection";
+import { editCollection } from "@/store/features/account/collection/thunks";
 import { useAppSelector } from "@/store/hooks";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import { Checkbox, Form, Input } from "components/common/Forms";
@@ -40,20 +45,22 @@ const EditCollection: FC<{ id: string }> = ({ id }) => {
   const onSubmit = useCallback(
     ({ name, description, recipes }: any) => {
       console.log(name, description, recipes);
-      if (bookmarkId) {
+      if (bookmarkId && collection) {
         const recipesIds = Object.keys(recipes).filter(
           (key) => recipes[key] === true
         );
 
-        const collection: CollectionDAO = {
+        const data: Collection = {
+          _id: collection._id,
           bookmarkId,
           name,
           description,
           recipes: recipesIds,
+          created: collection.created,
         };
-        console.log(collection);
-        // dispatch(addCollection({ collection }));
-        closeModal(id);
+        console.log(data);
+        dispatch(editCollection(data));
+        // closeModal(id);
       }
     },
     [bookmarkId, dispatch, id]
