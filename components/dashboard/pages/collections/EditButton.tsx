@@ -1,18 +1,17 @@
-import { selectOnAddCollection } from "@/store/features/account/bookmark";
 import { selectOnDeleteRecipeStatus } from "@/store/features/account/myRecipes";
 import { useAppSelector } from "@/store/hooks";
 
-const CreateButton = () => {
+const EditButton = () => {
   const cn =
-    useAppSelector(selectOnAddCollection) === true
+    useAppSelector(selectOnDeleteRecipeStatus) === true
       ? "btn btn-primary normal-case loading"
       : "btn btn-primary normal-case";
 
   return (
     <button className={cn} type="submit">
-      Crear
+      Guardar
     </button>
   );
 };
 
-export default CreateButton;
+export default EditButton;

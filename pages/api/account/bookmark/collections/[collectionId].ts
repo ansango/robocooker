@@ -23,8 +23,7 @@ handler.get(async (req, res) => {
   if (!collection)
     return res.status(404).json({ error: "Collection not found" });
   const recipes = await findCollectedRecipesByIds(req.db, collection.recipes);
-  if (!recipes || recipes.length === 0)
-    return res.status(404).json({ error: "Recipes not found" });
+  if (!recipes) return res.status(404).json({ error: "Recipes not found" });
 
   return res.json({ collection: { ...collection, recipes: [...recipes] } });
 });

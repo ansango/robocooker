@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { RegisterOptions, useFormContext } from "react-hook-form";
 
 enum inputSize {
@@ -23,6 +23,7 @@ type Props = {
   placeholder?: string;
   options?: RegisterOptions;
   register?: any;
+  checked?: boolean;
 };
 
 const Checkbox: FC<Props> = ({
@@ -31,12 +32,15 @@ const Checkbox: FC<Props> = ({
   options,
   kind = "default",
   size = "md",
+  checked = false,
   ...rest
 }) => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
+  const [isChecked, setChecked] = useState(checked);
+  
   return (
     <div className="form-control w-full">
       {label ? (
@@ -62,6 +66,10 @@ const Checkbox: FC<Props> = ({
             }
             {...register(name, { ...options })}
             {...rest}
+            checked={isChecked}
+            onChange={(e) => {
+              setChecked(e.target.checked);
+            }}
           />
         </label>
       ) : (
@@ -74,6 +82,10 @@ const Checkbox: FC<Props> = ({
           }
           {...register(name, { ...options })}
           {...rest}
+          checked={isChecked}
+          onChange={(e) => {
+            setChecked(e.target.checked);
+          }}
         />
       )}
     </div>

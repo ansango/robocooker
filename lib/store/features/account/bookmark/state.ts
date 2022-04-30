@@ -6,6 +6,8 @@ export interface BookmarkState {
   value: Bookmark | null;
   recipes: Recipe[] | null;
   collections: Collection[] | null;
+  onAddCollection: boolean;
+  
 }
 
 export const initialState: BookmarkState = {
@@ -13,4 +15,6 @@ export const initialState: BookmarkState = {
   value: null,
   recipes: null,
   collections: null,
+  onAddCollection: false,
+  
 };

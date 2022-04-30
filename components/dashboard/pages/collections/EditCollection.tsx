@@ -5,6 +5,7 @@ import {
 } from "@/store/features/account/bookmark";
 import {
   addCollection,
+  getBookmark,
   getBookmarkRecipes,
 } from "@/store/features/account/bookmark/thunks";
 import { useAppSelector } from "@/store/hooks";
@@ -21,6 +22,7 @@ import Image from "next/image";
 import { FC, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import CreateButton from "./CreateButton";
+import EditButton from "./EditButton";
 
 const EditCollection: FC<{ id: string; collection: CollectionDTO }> = ({
   id,
@@ -29,12 +31,15 @@ const EditCollection: FC<{ id: string; collection: CollectionDTO }> = ({
   const bookmarkId = useAppSelector(selectBookmarkId);
   const dispatch = useDispatch();
   const allMyBookMarkedRecipes = useAppSelector(selectBookmarkRecipes) || [];
-
   useEffect(() => {
     dispatch(getBookmarkRecipes());
   }, [dispatch]);
+  useEffect(() => {
+    if (!bookmarkId) dispatch(getBookmark());
+  }, [dispatch, bookmarkId]);
   const onSubmit = useCallback(
     ({ name, description, recipes }: any) => {
+      console.log(name, description, recipes);
       if (bookmarkId) {
         const recipesIds = Object.keys(recipes).filter(
           (key) => recipes[key] === true
@@ -46,7 +51,8 @@ const EditCollection: FC<{ id: string; collection: CollectionDTO }> = ({
           description,
           recipes: recipesIds,
         };
-        dispatch(addCollection({ collection }));
+        console.log(collection);
+        // dispatch(addCollection({ collection }));
         closeModal(id);
       }
     },
@@ -111,31 +117,36 @@ const EditCollection: FC<{ id: string; collection: CollectionDTO }> = ({
                   <div className="py-2">
                     {allMyBookMarkedRecipes.length > 0 ? (
                       <div className="grid grid-cols-12 gap-5 max-h-96 overflow-y-auto py-7">
-                        {allMyBookMarkedRecipes.map(({ _id, img, name }, i) => (
-                          <div key={_id} className="col-span-4">
-                            <div className="relative w-24 h-24 space-y-2">
-                              <div className="z-10 right-0 top-0 bg-transparent absolute">
-                                <Checkbox
-                                  name={`recipes[${_id}]`}
-                                  kind="accent"
-                                  {...(collection.recipes.filter(
-                                    (recipe) => recipe._id === _id
-                                  ).length > 0 && { checked: true })}
-                                />
+                        {allMyBookMarkedRecipes.map(({ _id, img, name }, i) => {
+                          const checked = collection.recipes
+                            .map((recipe) => recipe._id)
+                            .includes(_id);
+                          return (
+                            <div key={_id} className="col-span-4">
+                              <div className="relative w-24 h-24 space-y-2">
+                                <div className="z-10 right-0 top-0 bg-transparent absolute">
+                                  <Checkbox
+                                    name={`recipes.${_id}`}
+                                    kind="accent"
+                                    checked={checked}
+                                  />
+                                </div>
+                                <div className="mask mask-squircle w-24 h-24">
+                                  <Image
+                                    src={img}
+                                    loading="lazy"
+                                    alt="hero"
+                                    layout="fill"
+                                    className="object-center object-cover pointer-events-none"
+                                  />
+                                </div>
+                                <div className="text-sm text-center">
+                                  {name}
+                                </div>
                               </div>
-                              <div className="mask mask-squircle w-24 h-24">
-                                <Image
-                                  src={img}
-                                  loading="lazy"
-                                  alt="hero"
-                                  layout="fill"
-                                  className="object-center object-cover pointer-events-none"
-                                />
-                              </div>
-                              <div className="text-sm text-center">{name}</div>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     ) : null}
                   </div>
@@ -144,7 +155,7 @@ const EditCollection: FC<{ id: string; collection: CollectionDTO }> = ({
             </div>
           </ModalContent>
           <ModalAction>
-            <CreateButton />
+            <EditButton />
           </ModalAction>
         </Form>
       </ModalBox>

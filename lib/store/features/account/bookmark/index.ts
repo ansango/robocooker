@@ -8,6 +8,7 @@ import {
   getBookmarkRecipes,
   getBookmarkCollections,
 } from "./thunks";
+import toast from "react-hot-toast";
 const bookmarkSlice = createSlice({
   name: "bookmark",
   initialState,
@@ -61,13 +62,18 @@ const bookmarkSlice = createSlice({
     builder
       .addCase(addCollection.pending, (state) => {
         state.status = "loading";
+        state.onAddCollection = true;
       })
       .addCase(addCollection.fulfilled, (state, action) => {
         state.status = "idle";
         state.collections && state.collections.push(action.payload);
+        state.onAddCollection = false;
+        toast.success("Colección creada");
       })
       .addCase(addCollection.rejected, (state) => {
         state.status = "failed";
+        state.onAddCollection = false;
+        toast.error("Error al crear colección");
       });
   },
 });
@@ -81,5 +87,6 @@ export const selectBookmarkTotalRecipes = (state: AppState) =>
 export const selectBookmarkStatus = (state: AppState) => state.bookmark.status;
 export const selectCollections = (state: AppState) =>
   state.bookmark.collections && state.bookmark.collections;
-
+export const selectOnAddCollection = (state: AppState) =>
+  state.bookmark.onAddCollection;
 export default bookmarkSlice.reducer;
