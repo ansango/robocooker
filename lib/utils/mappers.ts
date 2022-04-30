@@ -38,7 +38,6 @@ const mergeIngredients = (rawData: Ingredient[]): Ingredient[] => {
       quantity: parseInt(ingredient.quantity),
     };
   });
-  console.log(cleanIngredients);
   return cleanIngredients;
 };
 
