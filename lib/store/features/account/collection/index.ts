@@ -65,4 +65,9 @@ export const selectIngredients = (state: AppState) =>
   state.collection.value.recipes.flatMap((recipe) => recipe.ingredients);
 export const selectRecipes = (state: AppState) =>
   state.collection.value && state.collection.value.recipes;
+export const selectOnEditCollection = (state: AppState) =>
+  state.collection.onEditCollection;
+export const selectOnDeleteCollection = (state: AppState) =>
+  state.collection.onDeleteCollection;
+
 export default collectionSlice.reducer;

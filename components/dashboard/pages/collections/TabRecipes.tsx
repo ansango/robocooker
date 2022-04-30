@@ -6,6 +6,7 @@ import TableDesktop from "./TableDesktop";
 import TableMobile from "./TableMobile";
 const TabRecipes: FC = () => {
   const recipes = useAppSelector(selectRecipes) || [];
+
   return (
     <SubRoute>
       <TableMobile recipes={recipes} />

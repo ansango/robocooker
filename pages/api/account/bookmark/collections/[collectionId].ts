@@ -7,8 +7,7 @@ import {
 } from "@/api/db/collection";
 import { auth, database } from "@/api/middlewares";
 import { options } from "@/api/nc";
-import { Collection, CollectionDAO } from "@/models/user/bookmark";
-import { ObjectId } from "mongodb";
+import { Collection } from "@/models/user/bookmark";
 
 import nc from "next-connect";
 

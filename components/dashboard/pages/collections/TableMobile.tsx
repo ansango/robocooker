@@ -1,16 +1,43 @@
 import { Recipe } from "@/models/recipe/recipe";
-import { selectRecipes } from "@/store/features/account/collection";
+import { Collection } from "@/models/user/bookmark";
+import {
+  selectCollection,
+  selectOnEditCollection,
+} from "@/store/features/account/collection";
+import { editCollection } from "@/store/features/account/collection/thunks";
 import { useAppSelector } from "@/store/hooks";
 import { Icon } from "components/common/Icons";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useCallback } from "react";
+import { useDispatch } from "react-redux";
 
 type Props = {
   recipes: Recipe[];
 };
 
 const TableMobile: FC<Props> = ({ recipes }) => {
+  const collection = useAppSelector(selectCollection);
+  const isLoading = useAppSelector(selectOnEditCollection) === true;
+  const cn = isLoading
+    ? "btn btn-error btn-sm btn-circle loading"
+    : "btn btn-error btn-sm btn-circle";
+  const dispatch = useDispatch();
+  const handleDelete = useCallback(
+    (id: RecipeId) => {
+      if (collection) {
+        const data: Collection = {
+          ...collection,
+          recipes: collection.recipes
+            .filter((recipe) => recipe._id !== id)
+            .map((recipe) => recipe._id),
+        };
+        dispatch(editCollection(data));
+        console.log(data);
+      }
+    },
+    [collection, dispatch]
+  );
   return (
     <div className="w-full sm:hidden">
       {recipes.length > 0 ? (
@@ -45,8 +72,10 @@ const TableMobile: FC<Props> = ({ recipes }) => {
                   </div>
                 </div>
               </div>
-              <button className="btn btn-error btn-sm btn-circle">
-                <Icon icon="XIcon" kind="outline" className="w-4 h-4" />
+              <button className={cn} onClick={() => handleDelete(_id)}>
+                {!isLoading && (
+                  <Icon icon="XIcon" kind="outline" className="w-4 h-4" />
+                )}
               </button>
             </div>
           ))}
