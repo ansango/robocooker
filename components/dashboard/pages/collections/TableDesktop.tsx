@@ -1,12 +1,14 @@
-import { selectRecipes } from "@/store/features/account/collection";
-import { useAppSelector } from "@/store/hooks";
+import { Recipe } from "@/models/recipe/recipe";
 import { Icon } from "components/common/Icons";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
-const TableDesktop: FC = () => {
-  const recipes = useAppSelector(selectRecipes) || [];
+type Props = {
+  recipes: Recipe[];
+};
+
+const TableDesktop: FC<Props> = ({ recipes }) => {
   return (
     <div className="hidden sm:block overflow-x-auto w-full">
       <table className="table w-full">

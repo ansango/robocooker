@@ -19,8 +19,7 @@ import React, { useEffect } from "react";
 
 const Collections: NextPage = () => {
   const dispatch = useAppDispatch();
-  const counter = useAppSelector(selectBookmarkTotalRecipes);
-  const collections = useAppSelector(selectCollections);
+  const collections = useAppSelector(selectCollections) || [];
   useEffect(() => {
     dispatch(getBookmark());
     dispatch(getBookmarkCollections());
@@ -37,56 +36,48 @@ const Collections: NextPage = () => {
             <Icon kind="outline" icon="PlusIcon" className="w-5 h-5" />
           </ModalOpen>
         </div>
-        <div className="grid grid-cols-4 gap-5">
-          <div className="indicator">
-            <span className="indicator-item badge badge-secondary z-10">
-              {counter}
-            </span>
-            <Link href="/dashboard/collections/recipes">
-              <a className="stack">
-                <div className="text-center shadow-md w-36 h-24 card bg-base-100">
-                  <div className="card-body text-sm font-medium">
-                    <p className="line-clamp-2">Todas las recetas</p>
-                  </div>
+        <div className="grid grid-cols-12 gap-5 sm:gap-7">
+          <Link href="/dashboard/collections/recipes">
+            <a className="stack col-span-full sm:col-span-6 md:col-span-4 xl:col-span-3">
+              <div className="text-center shadow-md card card-compact bg-base-100">
+                <div className="card-body text-sm font-medium">
+                  <p className="line-clamp-1">Todas las recetas</p>
                 </div>
-                <div className="text-center shadow w-36 card bg-base-100">
-                  <div className="card-body">B</div>
-                </div>
-                <div className="text-center shadow-sm w-36 card bg-base-200">
-                  <div className="card-body">C</div>
-                </div>
-              </a>
-            </Link>
-          </div>
-          {collections && collections.length > 0 ? (
+              </div>
+              <div className="text-center shadow card card-compact bg-base-100">
+                <div className="card-body">B</div>
+              </div>
+              <div className="text-center shadow-sm card card-compact bg-base-200">
+                <div className="card-body">C</div>
+              </div>
+            </a>
+          </Link>
+
+          {collections.length > 0 ? (
             <>
-              {collections.map(({ name, recipes, _id }, index) => (
-                <div className="indicator" key={index}>
-                  <span className="indicator-item badge badge-secondary z-10">
-                    {recipes.length}
-                  </span>
-                  <Link href={`/dashboard/collections/${_id}`}>
-                    <a className="stack">
-                      <div className="text-center shadow-md w-36 h-24 card bg-base-100">
-                        <div className="card-body text-sm font-medium">
-                          <p className="line-clamp-2">
-                            <span>{name}</span>
-                          </p>
-                        </div>
+              {collections.map(({ name, _id }) => (
+                <Link key={_id} href={`/dashboard/collections/${_id}`}>
+                  <a className="stack col-span-full sm:col-span-6 md:col-span-4 xl:col-span-3">
+                    <div className="text-center shadow-md card card-compact bg-base-100">
+                      <div className="card-body text-sm font-medium">
+                        <p className="line-clamp-1">
+                          <span>{name}</span>
+                        </p>
                       </div>
-                      <div className="text-center shadow w-36 card bg-base-100">
-                        <div className="card-body">B</div>
-                      </div>
-                      <div className="text-center shadow-sm w-36 card bg-base-200">
-                        <div className="card-body">C</div>
-                      </div>
-                    </a>
-                  </Link>
-                </div>
+                    </div>
+                    <div className="text-center shadow card card-compact bg-base-100">
+                      <div className="card-body">B</div>
+                    </div>
+                    <div className="text-center shadow-sm card card-compact bg-base-200">
+                      <div className="card-body">C</div>
+                    </div>
+                  </a>
+                </Link>
               ))}
             </>
           ) : null}
         </div>
+
         <CreateCollection id="create-collection" />
       </ContainerDashboard>
     </DashboardLayout>
