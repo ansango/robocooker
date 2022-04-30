@@ -60,12 +60,7 @@ const CollectionPage: NextPage = () => {
         </div>
         <CollectionView />
         {collection && <EditCollection id="edit-collection" />}
-        {collection && (
-          <DeleteCollection
-            id="delete-collection"
-            idCollection={collection._id}
-          />
-        )}
+        {collection && <DeleteCollection id="delete-collection" />}
       </ContainerDashboard>
     </DashboardLayout>
   );

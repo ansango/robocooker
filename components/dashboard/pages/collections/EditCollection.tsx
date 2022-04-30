@@ -4,7 +4,6 @@ import {
   selectBookmarkRecipes,
 } from "@/store/features/account/bookmark";
 import {
-  addCollection,
   getBookmark,
   getBookmarkRecipes,
 } from "@/store/features/account/bookmark/thunks";
