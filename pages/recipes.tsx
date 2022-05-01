@@ -15,6 +15,8 @@ import { onBasicSearchService } from "@/services/search";
 import ContainerHeader from "components/pages/recipes/ContainerHeader";
 import Subtitle from "components/pages/recipes/Subtitle";
 import CardRecipe from "components/common/Cards/Recipe/CardRecipe";
+import FilterRecipes from "components/pages/recipes/FilterRecipes";
+import ModalOpen from "components/common/Modal/ModalOpen";
 
 const Recipes: NextPage = () => {
   const { query, replace } = useRouter();
@@ -57,12 +59,12 @@ const Recipes: NextPage = () => {
             <button className="btn btn-primary normal-case" type="submit">
               Buscar
             </button>
-            {/* <button
+            <ModalOpen
               className="btn btn-outline btn-circle btn-primary normal-case"
-              type="submit"
+              id="filter-recipes"
             >
               <Icon icon="AdjustmentsIcon" kind="outline" className="w-5 h-5" />
-            </button> */}
+            </ModalOpen>
           </div>
         </Form>
       </div>
@@ -90,6 +92,7 @@ const Recipes: NextPage = () => {
           </ContainerContent>
         </Container>
       </div>
+      <FilterRecipes id="filter-recipes" />
     </MainLayout>
   );
 };
