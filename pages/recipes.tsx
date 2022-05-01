@@ -19,6 +19,7 @@ import ModalOpen from "components/common/Modal/ModalOpen";
 const Recipes: NextPage = () => {
   const { query, replace } = useRouter();
   const { search } = query;
+  console.log(query);
   const [recipes, setRecipes] = useState<RecipeDTO[] | null>(null);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -58,7 +59,7 @@ const Recipes: NextPage = () => {
               Buscar
             </button>
             <ModalOpen
-              className="btn btn-outline btn-circle btn-primary normal-case"
+              className="btn btn-outline btn-circle btn-primary normal-case dark:border-gray-400 dark:text-gray-400 dark:hover:bg-gray-400 dark:hover:text-base-300"
               id="filter-recipes"
             >
               <Icon icon="AdjustmentsIcon" kind="outline" className="w-5 h-5" />

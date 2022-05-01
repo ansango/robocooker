@@ -40,17 +40,13 @@ const Checkbox: FC<Props> = ({
     formState: { errors },
   } = useFormContext();
   const [isChecked, setChecked] = useState(checked);
-  
+
   return (
     <div className="form-control w-full">
       {label ? (
         <label
           htmlFor={name}
-          className={
-            !errors[name]
-              ? "label cursor-pointer"
-              : "label cursor-pointer text-red-600"
-          }
+          className={!errors[name] ? "label" : "label text-red-600"}
         >
           <span
             className={!errors[name] ? "label-text" : "label-text text-red-600"}

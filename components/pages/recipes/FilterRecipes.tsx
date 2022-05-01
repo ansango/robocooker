@@ -58,7 +58,7 @@ const FilterRecipes: FC<{ id: string }> = ({ id }) => {
           </ModalContent>
           <ModalAction>
             <button
-              className="btn btn-outline normal-case btn-primary"
+              className="btn btn-outline normal-case btn-primary dark:border-gray-400 dark:text-gray-400 dark:hover:bg-gray-400 dark:hover:text-base-300"
               onClick={() => closeModal(id)}
             >
               Cancelar

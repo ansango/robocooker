@@ -68,6 +68,7 @@ export const findLastRecipesPopulated = async (
     const data = (await db
       .collection("recipes")
       .find()
+      .sort({ created: -1 })
       .limit(limit)
       .toArray()) as Recipe[];
 
