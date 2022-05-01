@@ -15,6 +15,7 @@ import Subtitle from "components/pages/recipes/Subtitle";
 import CardRecipe from "components/common/Cards/Recipe/CardRecipe";
 import FilterRecipes from "components/pages/recipes/FilterRecipes";
 import ModalOpen from "components/common/Modal/ModalOpen";
+import { onGetLastRecipesService } from "@/services/recipes";
 
 const Recipes: NextPage = () => {
   const { query, replace } = useRouter();
@@ -34,6 +35,15 @@ const Recipes: NextPage = () => {
           setLoading(false);
         });
     }
+    if (!search) {
+      onGetLastRecipesService(12).then((results) => {
+        setRecipes(results);
+        setLoading(false);
+      });
+    }
+    return () => {
+      setRecipes(null);
+    };
   }, [search]);
 
   return (
@@ -70,7 +80,7 @@ const Recipes: NextPage = () => {
       <div className="bg-gray-50 dark:bg-gray-800">
         <Container>
           <ContainerHeader>
-            {recipes && recipes.length > 0 && <Subtitle title="Resultados" />}
+            {recipes && recipes.length > 0 && <Subtitle title="Hemos encontrado estas recetas" />}
             {recipes && recipes.length === 0 && (
               <Subtitle title="No hay resultados" />
             )}
