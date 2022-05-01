@@ -5,20 +5,28 @@ import { motion } from "framer-motion";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Recipe } from "lib/models/recipe/recipe";
+import { Recipe, RecipeDTO } from "lib/models/recipe/recipe";
 import MainLayout from "components/layout/MainLayout";
+import GenericHero from "components/common/Hero/GenericHero";
+import Container from "components/pages/recipes/Container";
+import ContainerContent from "components/pages/recipes/ContainerContent";
+import { Icon } from "components/common/Icons";
+import { onBasicSearchService } from "@/services/search";
+import ContainerHeader from "components/pages/recipes/ContainerHeader";
+import Subtitle from "components/pages/recipes/Subtitle";
+import CardRecipe from "components/common/Cards/Recipe/CardRecipe";
 
 const Recipes: NextPage = () => {
   const { query, replace } = useRouter();
   const { search } = query;
-  const [recipes, setRecipes] = useState<Recipe[] | null>(null);
+  const [recipes, setRecipes] = useState<RecipeDTO[] | null>(null);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    if (search) {
+    if (search && !Array.isArray(search)) {
       setLoading(true);
-      getRecipesBySearchParams(search, 2000)
-        .then((recipes) => {
-          setRecipes(recipes);
+      onBasicSearchService(search)
+        .then((results) => {
+          setRecipes(results);
           setLoading(false);
         })
         .catch(() => {
@@ -29,89 +37,59 @@ const Recipes: NextPage = () => {
 
   return (
     <MainLayout>
-      <div className="text-center w-full p-5 space-y-5">
-        <h1 className="text-4xl font-extrabold sm:text-5xl xl:text-6xl">
-          Yummy!
-        </h1>
-        <p className="md:text-lg text-gray-500">Busca cualquier receta.</p>
+      <GenericHero
+        title="Yummy!"
+        description="Aquí encontrarás todas las recetas que buscas. 21 categorías y 6 robots para que puedas filtrar y encontrar más rápido tu nueva receta."
+      />
+      <div className="px-5 pb-10">
+        <Form onSubmit={({ search }) => replace(`/recipes?search=${search}`)}>
+          <div className="max-w-lg sm:mx-auto flex items-center space-x-5">
+            <Input
+              name="search"
+              type="search"
+              placeholder="Introduce una receta"
+              icon={{
+                name: "SearchIcon",
+                kind: "outline",
+              }}
+            />
+
+            <button className="btn btn-primary normal-case" type="submit">
+              Buscar
+            </button>
+            {/* <button
+              className="btn btn-outline btn-circle btn-primary normal-case"
+              type="submit"
+            >
+              <Icon icon="AdjustmentsIcon" kind="outline" className="w-5 h-5" />
+            </button> */}
+          </div>
+        </Form>
       </div>
-
-      <Form onSubmit={({ search }) => replace(`/recipes?search=${search}`)}>
-        <div className="max-w-sm px-5 mx-auto md:flex md:items-center md:space-x-5">
-          <Input
-            name="search"
-            type="search"
-            placeholder="Introduce una receta"
-            icon={{
-              name: "SearchIcon",
-              kind: "outline",
-            }}
-          />
-
-          <button className="btn btn-primary normal-case" type="submit">
-            Buscar
-          </button>
-        </div>
-      </Form>
-
-      {loading ? (
-        <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-          <Cards length={9} />
-        </div>
-      ) : recipes ? (
-        <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-          {recipes.map(
-            ({
-              _id,
-              name,
-              accountId,
-              blenders,
-              categories,
-              comments,
-              created,
-              description,
-              duration,
-              img,
-              ingredients,
-              likes,
-              servings,
-              steps,
-            }) => (
-              <motion.div
-                key={_id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="max-w-sm w-full p-4 mx-auto border border-gray-200 rounded-md shadow-sm max-h-md"
-              >
-                <div className="w-full h-48">
-                  {img && (
-                    <img
-                      src={img}
-                      alt={name}
-                      className="object-cover h-48 w-full rounded-md"
-                    />
-                  )}
-                </div>
-                {categories.map((category) => (
-                  <div
-                    key={category}
-                    className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                  >
-                    {category}
-                  </div>
+      <div className="bg-gray-50 dark:bg-gray-800">
+        <Container>
+          <ContainerHeader>
+            <Subtitle title="Resultados" />
+          </ContainerHeader>
+          <ContainerContent>
+            {loading ? (
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+                <Cards length={9} />
+              </div>
+            ) : recipes ? (
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+                {recipes.map((recipe) => (
+                  <CardRecipe key={recipe._id} {...recipe} />
                 ))}
-                <h5 className="text-xl font-semibold text-gray-700">{name}</h5>
-                <p className="text-gray-700">{description}</p>
-              </motion.div>
-            )
-          )}
-        </div>
-      ) : (
-        <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-          nope
-        </div>
-      )}
+              </div>
+            ) : (
+              <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
+                nope
+              </div>
+            )}
+          </ContainerContent>
+        </Container>
+      </div>
     </MainLayout>
   );
 };

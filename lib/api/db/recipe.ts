@@ -91,6 +91,27 @@ export const findLastRecipesPopulated = async (
   }
 };
 
+export const findQueryRecipesPopulated = async (db: Db, query: any) => {
+  const data = (await db
+    .collection("recipes")
+    .find(query)
+    .toArray()) as Recipe[];
+  const queries = data.map(async (recipe) => {
+    const accountId = recipe.accountId;
+    const { avatar, firstName, lastName } = (await db
+      .collection("accounts")
+      .findOne({ _id: new ObjectId(accountId) })) as Account;
+
+    const { username } = (await db
+      .collection("users")
+      .findOne({ accountId: new ObjectId(accountId) })) as User;
+    return { ...recipe, account: { avatar, firstName, lastName, username } };
+  });
+  return await Promise.all(queries).then((recipes) =>
+    recipes.sort((a, b) => b.created.getTime() - a.created.getTime())
+  );
+};
+
 export const findRecipesByAccountId = async (db: Db, accountId: AccountId) => {
   try {
     const data = await db

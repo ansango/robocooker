@@ -2,11 +2,14 @@ import nc from "next-connect";
 import { database } from "@/api/middlewares";
 import { options } from "@/api/nc";
 import { Recipe } from "@/models/recipe/recipe";
+import { ObjectId } from "mongodb";
+import { Account, User } from "@/models/user/user";
+import { findQueryRecipesPopulated } from "@/api/db/recipe";
 
 const handler = nc(options);
 handler.use(database);
 
-handler.get(async (req, res) => {
+handler.post(async (req, res) => {
   const q = req.body.query
     .replace(/\r\n/g, "")
     .replace(/^\s+|\s+$/, "")
@@ -24,7 +27,7 @@ handler.get(async (req, res) => {
       $or: [
         { name: term },
         { description: term },
-        { ingredients: term },
+        { ingredients: { $elemMatch: { name: term } } },
         { blenders: term },
         { categories: term },
       ],
@@ -32,12 +35,8 @@ handler.get(async (req, res) => {
   }, {});
 
   try {
-    const recipes = (await req.db
-      .collection("recipes")
-      .find(query)
-      .toArray()) as Recipe[];
-
-    return res.json({ recipes });
+    const results = await findQueryRecipesPopulated(req.db, query);
+    return res.json({ results });
   } catch (error) {
     return res.status(500).json({ error });
   }
