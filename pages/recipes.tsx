@@ -71,23 +71,24 @@ const Recipes: NextPage = () => {
       <div className="bg-gray-50 dark:bg-gray-800">
         <Container>
           <ContainerHeader>
-            <Subtitle title="Resultados" />
+            {recipes && recipes.length > 0 && <Subtitle title="Resultados" />}
+            {recipes && recipes.length === 0 && <Subtitle title="No hay resultados" />}
           </ContainerHeader>
+
           <ContainerContent>
             {loading ? (
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
                 <Cards length={9} />
               </div>
-            ) : recipes ? (
-              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-                {recipes.map((recipe) => (
-                  <CardRecipe key={recipe._id} {...recipe} />
-                ))}
-              </div>
             ) : (
-              <div className="w-full grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                nope
-              </div>
+              recipes &&
+              recipes.length > 0 && (
+                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+                  {recipes.map((recipe) => (
+                    <CardRecipe key={recipe._id} {...recipe} />
+                  ))}
+                </div>
+              )
             )}
           </ContainerContent>
         </Container>
