@@ -1,11 +1,9 @@
 import { Form, Input } from "components/common/Forms";
 import Cards from "components/skeletons/Cards";
-import { getRecipesBySearchParams } from "lib/mocks/recipes";
-import { motion } from "framer-motion";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Recipe, RecipeDTO } from "lib/models/recipe/recipe";
+import { RecipeDTO } from "lib/models/recipe/recipe";
 import MainLayout from "components/layout/MainLayout";
 import GenericHero from "components/common/Hero/GenericHero";
 import Container from "components/pages/recipes/Container";
@@ -72,7 +70,9 @@ const Recipes: NextPage = () => {
         <Container>
           <ContainerHeader>
             {recipes && recipes.length > 0 && <Subtitle title="Resultados" />}
-            {recipes && recipes.length === 0 && <Subtitle title="No hay resultados" />}
+            {recipes && recipes.length === 0 && (
+              <Subtitle title="No hay resultados" />
+            )}
           </ContainerHeader>
 
           <ContainerContent>
