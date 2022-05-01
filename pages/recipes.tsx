@@ -16,35 +16,30 @@ import CardRecipe from "components/common/Cards/Recipe/CardRecipe";
 import FilterRecipes from "components/pages/recipes/FilterRecipes";
 import ModalOpen from "components/common/Modal/ModalOpen";
 import { onGetLastRecipesService } from "@/services/recipes";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import {
+  selectSearchDefaultRecipes,
+  selectSearchQuery,
+  selectSearchResults,
+  selectSearchStatus,
+} from "@/store/features/search";
+import { basicSearch, getLastRecipes } from "@/store/features/search/thunks";
 
 const Recipes: NextPage = () => {
-  const { query, replace } = useRouter();
-  const { search } = query;
-  console.log(query);
-  const [recipes, setRecipes] = useState<RecipeDTO[] | null>(null);
-  const [loading, setLoading] = useState(false);
+  const query = useAppSelector(selectSearchQuery);
+  const results = useAppSelector(selectSearchResults);
+  const defaultResults = useAppSelector(selectSearchDefaultRecipes);
+  const isLoading = useAppSelector(selectSearchStatus) === "loading";
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    if (search && !Array.isArray(search)) {
-      setLoading(true);
-      onBasicSearchService(search)
-        .then((results) => {
-          setRecipes(results);
-          setLoading(false);
-        })
-        .catch(() => {
-          setLoading(false);
-        });
+    if (query) {
+      dispatch(basicSearch(query));
     }
-    if (!search) {
-      onGetLastRecipesService(12).then((results) => {
-        setRecipes(results);
-        setLoading(false);
-      });
+    if (!query && !defaultResults) {
+      dispatch(getLastRecipes(12));
     }
-    return () => {
-      setRecipes(null);
-    };
-  }, [search]);
+  }, [dispatch, query, defaultResults]);
 
   return (
     <MainLayout>
@@ -53,10 +48,10 @@ const Recipes: NextPage = () => {
         description="Aquí encontrarás todas las recetas que buscas. 21 categorías y 6 robots para que puedas filtrar y encontrar más rápido tu nueva receta."
       />
       <div className="px-5 pb-10">
-        <Form onSubmit={({ search }) => replace(`/recipes?search=${search}`)}>
+        <Form onSubmit={({ query }) => dispatch(basicSearch(query))}>
           <div className="max-w-lg sm:mx-auto flex items-center space-x-5">
             <Input
-              name="search"
+              name="query"
               type="search"
               placeholder="Introduce una receta"
               icon={{
@@ -80,26 +75,33 @@ const Recipes: NextPage = () => {
       <div className="bg-gray-50 dark:bg-gray-800">
         <Container>
           <ContainerHeader>
-            {recipes && recipes.length > 0 && <Subtitle title="Hemos encontrado estas recetas" />}
-            {recipes && recipes.length === 0 && (
+            {results && results.length > 0 && (
+              <Subtitle title="Hemos encontrado estas recetas" />
+            )}
+            {results && results.length === 0 && (
               <Subtitle title="No hay resultados" />
             )}
           </ContainerHeader>
 
           <ContainerContent>
-            {loading ? (
+            {isLoading && (
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
                 <Cards length={9} />
               </div>
-            ) : (
-              recipes &&
-              recipes.length > 0 && (
-                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-                  {recipes.map((recipe) => (
-                    <CardRecipe key={recipe._id} {...recipe} />
-                  ))}
-                </div>
-              )
+            )}
+            {results && results.length > 0 && (
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+                {results.map((recipe) => (
+                  <CardRecipe key={recipe._id} {...recipe} />
+                ))}
+              </div>
+            )}
+            {!results && defaultResults && (
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+                {defaultResults.map((recipe) => (
+                  <CardRecipe key={recipe._id} {...recipe} />
+                ))}
+              </div>
             )}
           </ContainerContent>
         </Container>

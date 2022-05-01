@@ -12,6 +12,8 @@ import profileReducer from "./features/profile";
 import favoritesReducer from "./features/account/favorites";
 import bookmarkReducer from "./features/account/bookmark";
 import collectionReducer from "./features/account/collection";
+import searchReducer from "./features/search";
+
 export function makeStore() {
   return configureStore({
     reducer: {
@@ -27,6 +29,7 @@ export function makeStore() {
       recipe: recipeReducer,
       comments: commentsReducer,
       profile: profileReducer,
+      search: searchReducer,
     },
   });
 }
