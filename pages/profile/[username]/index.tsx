@@ -24,27 +24,30 @@ const Profile: NextPage = () => {
       dispatch(getProfile(username));
     }
   }, [username, dispatch]);
-  if (!profile || !username || Array.isArray(username)) return null;
+
   return (
     <MainLayout>
       <Container>
-        <CardContainer>
-          <CardFirstCol>
-            <CardAvatar avatar={profile.avatar} />
-            <CardFirstColContent username={profile.username} />
-          </CardFirstCol>
-          <CardSecondCol>
-            <CardSecondColContent profile={profile} />
-          </CardSecondCol>
-        </CardContainer>
+        {profile && (
+          <CardContainer>
+            <CardFirstCol>
+              <CardAvatar avatar={profile.avatar} />
+              <CardFirstColContent username={profile.username} />
+            </CardFirstCol>
+            <CardSecondCol>
+              <CardSecondColContent profile={profile} />
+            </CardSecondCol>
+          </CardContainer>
+        )}
       </Container>
       <div className="bg-gray-50 dark:bg-gray-800">
         <Container>
           <article className="container mx-auto space-y-5">
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-              {profile.recipes.map((recipe) => (
-                <CardRecipe key={recipe._id} {...recipe} id={recipe._id} />
-              ))}
+              {profile &&
+                profile.recipes.map((recipe) => (
+                  <CardRecipe key={recipe._id} {...recipe} id={recipe._id} />
+                ))}
             </div>
           </article>
         </Container>

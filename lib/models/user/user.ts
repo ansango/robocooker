@@ -1,7 +1,7 @@
 import { Chat } from "lib/models/chat/chat";
 
 type Follower = {
-  userId: UserId;
+  accountId: UserId;
   username: Username;
 };
 

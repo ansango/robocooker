@@ -1,4 +1,4 @@
-import { Account } from "lib/models/user/user";
+import { Account, Follower } from "lib/models/user/user";
 import { type Db, ObjectId } from "mongodb";
 
 export const findAccountByUserId = (db: Db, accountId: AccountId) => {
@@ -123,4 +123,75 @@ export const updateAccountDislikesById = async (
   } catch (error) {
     throw error;
   }
+};
+
+export const findIsFollowedById = async (
+  db: Db,
+  accountId: AccountId,
+  accountFollowedId: AccountId
+): Promise<boolean> => {
+  try {
+    const account = await db.collection("accounts").findOne({
+      _id: new ObjectId(accountId),
+      following: { $elemMatch: { accountId: accountFollowedId.toString() } },
+    });
+    if (account) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateFollowingsById = async (
+  db: Db,
+  accountId: AccountId,
+  toFollow: Follower
+) => {
+  return await db
+    .collection("accounts")
+    .updateOne(
+      { _id: new ObjectId(accountId) },
+      { $push: { following: toFollow } }
+    );
+};
+
+export const updateFollowersById = async (
+  db: Db,
+  accountId: AccountId,
+  follower: Follower
+) => {
+  return await db
+    .collection("accounts")
+    .updateOne(
+      { _id: new ObjectId(accountId) },
+      { $push: { followers: follower } }
+    );
+};
+
+export const updateUnFollowingsById = async (
+  db: Db,
+  accountId: AccountId,
+  toUnFollow: Follower
+) => {
+  return await db
+    .collection("accounts")
+    .updateOne(
+      { _id: new ObjectId(accountId) },
+      { $pull: { following: toUnFollow } }
+    );
+};
+
+export const updateUnFollowersById = async (
+  db: Db,
+  accountId: AccountId,
+  follower: Follower
+) => {
+  return await db
+    .collection("accounts")
+    .updateOne(
+      { _id: new ObjectId(accountId) },
+      { $pull: { followers: follower } }
+    );
 };

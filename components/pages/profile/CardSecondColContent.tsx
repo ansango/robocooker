@@ -1,6 +1,7 @@
 import { Profile } from "@/models/user/profile";
-import { Icon, IconSimple } from "components/common/Icons";
+import { IconSimple } from "components/common/Icons";
 import { FC } from "react";
+import ActionFollow from "./ActionFollow";
 
 type Props = {
   profile: Profile;
@@ -16,14 +17,11 @@ const CardSecondColContent: FC<Props> = ({ profile }) => {
           </h1>
         </div>
         <div className="space-x-2">
-          <button className="btn btn-primary normal-case btn-sm space-x-1">
-            <Icon icon="UserAddIcon" kind="solid" className="w-4 h-4" />
-            <span>Seguir</span>
-          </button>
-          <button className="btn btn-primary normal-case btn-sm space-x-1">
+          <ActionFollow />
+          {/* <button className="btn btn-primary normal-case btn-sm space-x-1">
             <Icon icon="PaperAirplaneIcon" kind="solid" className="w-4 h-4" />
             <span>Mensaje</span>
-          </button>
+          </button> */}
         </div>
       </div>
       <p className="space-x-5">
