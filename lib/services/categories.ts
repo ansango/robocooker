@@ -1,7 +1,8 @@
+import { RecipeDTO } from "@/models/recipe/recipe";
 import { Category } from "lib/models/recipe/category";
 import fetcher from "../utils/fetcher";
 
-const onGetAllCategoriesService = async (): Promise<Category[]> => {
+export const onGetAllCategoriesService = async (): Promise<Category[]> => {
   try {
     const response = await fetcher("/api/categories/all", {
       method: "GET",
@@ -12,4 +13,15 @@ const onGetAllCategoriesService = async (): Promise<Category[]> => {
   }
 };
 
-export { onGetAllCategoriesService };
+export const onGetLastRecipesByCategoryService = async (
+  category: CategoryName
+): Promise<RecipeDTO[]> => {
+  try {
+    const response = await fetcher(`/api/categories/last`, {
+      method: "GET",
+    });
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
