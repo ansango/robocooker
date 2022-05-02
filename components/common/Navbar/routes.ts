@@ -14,11 +14,11 @@ const userNavRoutes: Props[] = [
     label: "Dashboard",
     icon: "CogIcon",
   },
-  {
-    path: "/dashboard/messages",
-    label: "Mensajes",
-    icon: "InboxIcon",
-  },
+  // {
+  //   path: "/dashboard/messages",
+  //   label: "Mensajes",
+  //   icon: "InboxIcon",
+  // },
 ];
 
 const routes: Props[] = [
@@ -27,21 +27,21 @@ const routes: Props[] = [
     label: "Recetas",
     icon: "BookOpenIcon",
   },
-  {
-    path: "/categories",
-    label: "Categorías",
-    icon: "ColorSwatchIcon",
-  },
-  {
-    path: "/trending",
-    label: "Tendencias",
-    icon: "SparklesIcon",
-  },
-  {
-    path: "/robousers",
-    label: "Robousers",
-    icon: "UserGroupIcon",
-  },
+  // {
+  //   path: "/categories",
+  //   label: "Categorías",
+  //   icon: "ColorSwatchIcon",
+  // },
+  // {
+  //   path: "/trending",
+  //   label: "Tendencias",
+  //   icon: "SparklesIcon",
+  // },
+  // {
+  //   path: "/robousers",
+  //   label: "Robousers",
+  //   icon: "UserGroupIcon",
+  // },
 ];
 
 const routesDashboard: Props[] = [
@@ -78,12 +78,12 @@ const routesDashboard: Props[] = [
     description: "Eliminar recetas de tus favoritos.",
     color: "violet",
   },
-  {
-    path: "/dashboard/messages",
-    label: "Mensajes",
-    icon: "InboxIcon",
-    description: "Ver tus mensajes y responder a otros usuarios.",
-    color: "blue",
-  },
+  // {
+  //   path: "/dashboard/messages",
+  //   label: "Mensajes",
+  //   icon: "InboxIcon",
+  //   description: "Ver tus mensajes y responder a otros usuarios.",
+  //   color: "blue",
+  // },
 ];
 export { routes, routesDashboard, userNavRoutes };

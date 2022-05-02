@@ -89,9 +89,6 @@ const SocialActions: FC = () => {
     <div className="space-x-1">
       <ActionLike />
       <ActionBookmark />
-      <button className="btn btn-circle btn-ghost">
-        <Icon icon="ShareIcon" kind="outline" className="w-6 h-6" />
-      </button>
     </div>
   );
 };

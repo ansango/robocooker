@@ -6,12 +6,9 @@ import MainLayout from "components/layout/MainLayout";
 import GenericHero from "components/common/Hero/GenericHero";
 import Container from "components/pages/recipes/Container";
 import ContainerContent from "components/pages/recipes/ContainerContent";
-import { Icon } from "components/common/Icons";
 import ContainerHeader from "components/pages/recipes/ContainerHeader";
 import Subtitle from "components/pages/recipes/Subtitle";
 import CardRecipe from "components/common/Cards/Recipe/CardRecipe";
-import FilterRecipes from "components/pages/recipes/FilterRecipes";
-import ModalOpen from "components/common/Modal/ModalOpen";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   selectFilters,
@@ -66,23 +63,6 @@ const Recipes: NextPage = () => {
             <button className="btn btn-primary normal-case" type="submit">
               Buscar
             </button>
-            <div className="indicator">
-              {filters.length > 0 && (
-                <span className="indicator-item badge badge-primary">
-                  {filters.length}
-                </span>
-              )}
-              <ModalOpen
-                className="btn btn-outline btn-circle btn-primary normal-case dark:border-gray-400 dark:text-gray-400 dark:hover:bg-gray-400 dark:hover:text-base-300"
-                id="filter-recipes"
-              >
-                <Icon
-                  icon="AdjustmentsIcon"
-                  kind="outline"
-                  className="w-5 h-5"
-                />
-              </ModalOpen>
-            </div>
           </div>
         </Form>
       </div>
@@ -107,8 +87,6 @@ const Recipes: NextPage = () => {
           </ContainerContent>
         </Container>
       </div>
-      {/* //TODO ESTO ES UNA MIERDA, SE DEBE REVISAR, REPITE QUERIES */}
-      <FilterRecipes id="filter-recipes" />
     </MainLayout>
   );
 };
