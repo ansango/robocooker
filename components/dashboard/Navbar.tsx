@@ -6,7 +6,7 @@ import { FC } from "react";
 
 const Navbar: FC = () => {
   return (
-    <div className="navbar bg-base-300 sticky top-0 z-10">
+    <div className="navbar bg-base-300 sticky top-0 z-50">
       <div className="navbar-start">
         <label
           htmlFor="my-drawer-2"
