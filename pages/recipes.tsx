@@ -107,6 +107,7 @@ const Recipes: NextPage = () => {
           </ContainerContent>
         </Container>
       </div>
+      {/* //TODO ESTO ES UNA MIERDA, SE DEBE REVISAR, REPITE QUERIES */}
       <FilterRecipes id="filter-recipes" />
     </MainLayout>
   );

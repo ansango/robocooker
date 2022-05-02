@@ -26,7 +26,7 @@ const FilterRecipes: FC<{ id: string }> = ({ id }) => {
   const dispatch = useAppDispatch();
   const query = useAppSelector(selectSearchQuery);
   const filters = useAppSelector(selectFilters);
-
+  //TODO ESTO ES UNA MIERDA, SE DEBE REVISAR, REPITE QUERIES
   useEffect(() => {
     if (!blenders) dispatch(getBlenders());
     if (!categories) dispatch(getCategories());
