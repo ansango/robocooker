@@ -1,6 +1,7 @@
 import { categories } from "@/mocks/categories";
+import Card from "components/pages/categories/Card";
 import { motion } from "framer-motion";
-import Card from "../elements/Card";
+
 
 const ContentCategories = () => {
   return (
@@ -12,7 +13,7 @@ const ContentCategories = () => {
         transition={{ duration: 1 }}
       >
         {categories.slice(0, 9).map((category) => (
-          <Card key={category._id} data={category} />
+          <Card key={category._id} data={category} kind="category" />
         ))}
       </motion.ul>
     </>

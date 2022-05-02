@@ -6,11 +6,12 @@ import { FC } from "react";
 
 type Props = {
   data: Category | Blender;
+  kind: "category" | "blender";
 };
-const Card: FC<Props> = ({ data: { _id, img, name } }) => {
+const Card: FC<Props> = ({ data: { _id, img, name }, kind }) => {
   return (
     <li key={_id} className="cursor-pointer">
-      <Link href="/" passHref>
+      <Link href={`${kind}/${name}`} passHref>
         <div className="card w-full bg-base-100 image-full before:opacity-40 shadow-xl transform hover:scale-[1.01] hover:shadow-2xl transition duration-250 ease-out hover:ease-in">
           <figure className="w-full h-44 lg:h-52 relative">
             <Image

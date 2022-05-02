@@ -2,6 +2,7 @@ type Blender = {
   _id: BlenderId;
   name: BlenderName;
   company: CompanyName;
+  description: Content;
   img: Url;
 };
 

@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import GenericHero from "components/common/Hero/GenericHero";
 import Card from "components/pages/categories/Card";
 import MainLayout from "components/layout/MainLayout";
-import { categories } from "@/mocks/categories";
+import { blenders } from "@/mocks/blenders";
 
-const Categories: NextPage = () => {
+const Blenders: NextPage = () => {
   return (
     <MainLayout>
       <GenericHero
-        title="Categorías"
-        description="Aquí encontrarás todas las categorías de recetas. 21 categorías para que puedas filtrar y encontrar más rápido tu nueva receta."
+        title="Robots de cocina"
+        description="Aquí encontrarás todos los robots de cocina que estamos incluyendo. 6 robots para que puedas filtrar y encontrar más rápido tu nueva receta."
       />
       <div className="p-5">
         <div className="container mx-auto">
@@ -20,8 +20,8 @@ const Categories: NextPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            {categories.map((category) => (
-              <Card key={category._id} data={category} kind="category" />
+            {blenders.map((blender) => (
+              <Card key={blender._id} data={blender} kind="blender" />
             ))}
           </motion.ul>
         </div>
@@ -31,4 +31,4 @@ const Categories: NextPage = () => {
   );
 };
 
-export default Categories;
+export default Blenders;

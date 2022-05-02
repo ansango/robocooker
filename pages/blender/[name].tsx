@@ -2,23 +2,23 @@ import { useAppDispatch } from "@/store/hooks";
 import MainLayout from "components/layout/MainLayout";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-
 import Hero from "components/pages/category/Hero";
-import { categories, getCategory } from "@/mocks/categories";
+
 import Container from "components/pages/category/Container";
 import ContainerHeader from "components/pages/category/ContainerHeader";
 import Subtitle from "components/pages/category/Subtitle";
 import SubParagraph from "components/pages/category/SubParagraph";
 import ContainerContent from "components/pages/category/ContainerContent";
+import { blenders, getBlender } from "@/mocks/blenders";
 
 const Category: NextPage = () => {
   const { query } = useRouter();
   const { name } = query;
   const dispatch = useAppDispatch();
-  const category = getCategory(name);
+  const blender = getBlender(name);
   return (
     <MainLayout>
-      {category && <Hero data={category} />}
+      {blender && <Hero data={blender} />}
       <Container>
         <ContainerHeader>
           <Subtitle title="Las recetas más populares" />

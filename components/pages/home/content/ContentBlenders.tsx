@@ -1,6 +1,7 @@
 import { blenders } from "@/mocks/blenders";
+import Card from "components/pages/categories/Card";
 import { motion } from "framer-motion";
-import Card from "../elements/Card";
+
 
 const ContentBlenders = () => {
   return (
@@ -11,7 +12,7 @@ const ContentBlenders = () => {
       transition={{ duration: 1 }}
     >
       {blenders.map((blender) => {
-        return <Card key={blender._id} data={blender} />;
+        return <Card key={blender._id} data={blender} kind="blender" />;
       })}
     </motion.ul>
   );

@@ -149,4 +149,20 @@ const categoriesSelectMapper = categories.map(({ name }) => {
   };
 });
 
-export { categories, categoriesSelectMapper };
+const getCategory = (
+  name: string | string[] | undefined
+): Category | undefined => {
+  if (!name || (Array.isArray(name) && name.length === 0)) {
+    return undefined;
+  }
+  return categories
+    .map((category) => {
+      return {
+        ...category,
+        name: category.name.split(" ").join("-"),
+      };
+    })
+    .find((category) => category.name === name);
+};
+
+export { categories, categoriesSelectMapper, getCategory };
