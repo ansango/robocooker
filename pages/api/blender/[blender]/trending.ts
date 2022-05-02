@@ -1,7 +1,4 @@
-import {
-  findMostCommentedRecipesByCategory,
-  findPopularRecipesByCategory,
-} from "@/api/db/category";
+import { findPopularRecipesByBlender } from "@/api/db/blender";
 import { database } from "@/api/middlewares";
 import { options } from "@/api/nc";
 
@@ -12,14 +9,14 @@ const handler = nc(options);
 handler.use(database);
 
 handler.get(async (req, res) => {
-  if (!req.query.category) {
-    res.status(400).json({ error: "category is required" });
+  if (!req.query.blender) {
+    res.status(400).json({ error: "blender is required" });
   }
 
   try {
-    const recipes = await findMostCommentedRecipesByCategory(
+    const recipes = await findPopularRecipesByBlender(
       req.db,
-      req.query.category as string,
+      req.query.blender as string,
       4
     );
     return res.json({ recipes });

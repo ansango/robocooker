@@ -44,3 +44,73 @@ export const findAllRecipesByCategory = async (
     throw error;
   }
 };
+
+export const findPopularRecipesByCategory = async (
+  db: Db,
+  category: CategoryName,
+  limit: number
+): Promise<RecipeDTO[] | void> => {
+  try {
+    const data = (await db
+      .collection("recipes")
+      .find({
+        categories: category,
+      })
+      .sort({ likes: -1 })
+      .limit(limit)
+      .toArray()) as Recipe[];
+
+    const queries = data.map(async (recipe) => {
+      const accountId = recipe.accountId;
+      const { avatar, firstName, lastName } = (await db
+        .collection("accounts")
+        .findOne({ _id: new ObjectId(accountId) })) as Account;
+
+      const { username } = (await db
+        .collection("users")
+        .findOne({ accountId: new ObjectId(accountId) })) as User;
+      return { ...recipe, account: { avatar, firstName, lastName, username } };
+    });
+
+    return Promise.all(queries).then((recipes) =>
+      recipes.sort((a, b) => b.likes.length - a.likes.length)
+    );
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const findMostCommentedRecipesByCategory = async (
+  db: Db,
+  category: CategoryName,
+  limit: number
+): Promise<RecipeDTO[] | void> => {
+  try {
+    const data = (await db
+      .collection("recipes")
+      .find({
+        categories: category,
+      })
+      .sort({ comments: -1 })
+      .limit(limit)
+      .toArray()) as Recipe[];
+
+    const queries = data.map(async (recipe) => {
+      const accountId = recipe.accountId;
+      const { avatar, firstName, lastName } = (await db
+        .collection("accounts")
+        .findOne({ _id: new ObjectId(accountId) })) as Account;
+
+      const { username } = (await db
+        .collection("users")
+        .findOne({ accountId: new ObjectId(accountId) })) as User;
+      return { ...recipe, account: { avatar, firstName, lastName, username } };
+    });
+
+    return Promise.all(queries).then((recipes) =>
+      recipes.sort((a, b) => b.comments.length - a.comments.length)
+    );
+  } catch (error) {
+    throw error;
+  }
+};
