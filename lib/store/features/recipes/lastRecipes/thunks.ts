@@ -3,8 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getLastRecipes = createAsyncThunk(
   "lastRecipes/getLastRecipes",
-  async () => {
-    const response = await onGetLastRecipesService(12);
+  async (limit: number) => {
+    const response = await onGetLastRecipesService(limit);
     return response;
   }
 );

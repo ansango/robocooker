@@ -12,9 +12,8 @@ const ContentLastRecipes = () => {
   const lastRecipes = useAppSelector(selectLastRecipes);
   const loading = useAppSelector(selectLastRecipesStatus) === "loading";
   useEffect(() => {
-    if (!lastRecipes) dispatch(getLastRecipes());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(getLastRecipes(12));
+  }, [dispatch]);
   return (
     <div>
       {!loading && lastRecipes && (
