@@ -18,8 +18,7 @@ import ModalBox from "components/common/Modal/ModalBox";
 import ModalContent from "components/common/Modal/ModalContent";
 import ModalTitle from "components/common/Modal/ModalTitle";
 import { closeModal } from "components/common/Modal/utils";
-import { FC, useCallback, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FC, useCallback, useEffect } from "react";
 
 const FilterRecipes: FC<{ id: string }> = ({ id }) => {
   const categories = useAppSelector(selectCategories);
