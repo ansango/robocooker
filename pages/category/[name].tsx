@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 
 import Hero from "components/pages/category/Hero";
-import { categories, getCategory } from "@/mocks/categories";
+import { getCategory } from "@/mocks/categories";
 import Container from "components/pages/category/Container";
 import ContainerHeader from "components/pages/category/ContainerHeader";
 import Subtitle from "components/pages/category/Subtitle";

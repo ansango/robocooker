@@ -9,7 +9,7 @@ import ThemeIcon from "./ThemeIcon";
 
 const Navbar: FC = () => {
   return (
-    <div className="navbar bg-base-100 sticky top-0 z-20">
+    <div className="navbar bg-base-100 sticky top-0 z-50">
       <div className="navbar-start">
         <NavMobile />
         <Brand />
