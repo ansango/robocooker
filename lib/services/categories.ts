@@ -17,7 +17,33 @@ export const onGetLastRecipesByCategoryService = async (
   category: CategoryName
 ): Promise<RecipeDTO[]> => {
   try {
-    const response = await fetcher(`/api/categories/last`, {
+    const response = await fetcher(`/api/category/${category}/last`, {
+      method: "GET",
+    });
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const onGetTrendingRecipesByCategoryService = async (
+  category: CategoryName
+): Promise<RecipeDTO[]> => {
+  try {
+    const response = await fetcher(`/api/category/${category}/trending`, {
+      method: "GET",
+    });
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const onGetMostCommentedRecipesByCategoryService = async (
+  category: CategoryName
+): Promise<RecipeDTO[]> => {
+  try {
+    const response = await fetcher(`/api/category/${category}/commented`, {
       method: "GET",
     });
     return response.data;
