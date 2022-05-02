@@ -13,6 +13,8 @@ import { MultiSelect } from "components/common/Forms/MultiSelect";
 import Step from "components/common/Stepper/Step";
 import React, { FC, useCallback, useEffect, useState } from "react";
 import CategoriesButton from "./CategoriesButton";
+import { categoriesSelectMapper } from "@/mocks/categories";
+import { blendersSelectMapper } from "@/mocks/blenders";
 
 type Selector = {
   label: any;
@@ -42,41 +44,7 @@ const CategoriesForm: FC<Props> = ({ recipe }) => {
     useState<Selector[]>(categoriesSelected);
   const [selectedBlenders, setSelectedBlenders] =
     useState<Selector[]>(blendersSelected);
-  const [cats, setCat] = useState<any>([]);
-  const [blends, setBlend] = useState<any>([]);
   const dispatch = useAppDispatch();
-  const categories = useAppSelector(selectCategories);
-  const blenders = useAppSelector(selectBlenders);
-  useEffect(() => {
-    if (!categories) {
-      dispatch(getCategories());
-    }
-    if (!blenders) {
-      dispatch(getBlenders());
-    }
-  }, [dispatch, categories, blenders]);
-  useEffect(() => {
-    if (categories) {
-      setCat(
-        categories.map(({ name }) => {
-          return {
-            label: name,
-            value: name,
-          };
-        })
-      );
-    }
-    if (blenders) {
-      setBlend(
-        blenders.map(({ name }) => {
-          return {
-            label: name,
-            value: name,
-          };
-        })
-      );
-    }
-  }, [categories, blenders]);
 
   const onSubmit = useCallback(
     () =>
@@ -104,14 +72,14 @@ const CategoriesForm: FC<Props> = ({ recipe }) => {
             <CardSlimContent>
               <MultiSelect
                 label="Categorías"
-                options={cats}
+                options={categoriesSelectMapper}
                 value={selectedCategories}
                 onChange={setSelectedCategories}
                 labelledBy="Select"
               />
               <MultiSelect
                 label="Robots de cocina"
-                options={blends}
+                options={blendersSelectMapper}
                 value={selectedBlenders}
                 onChange={setSelectedBlenders}
                 labelledBy="Select"
