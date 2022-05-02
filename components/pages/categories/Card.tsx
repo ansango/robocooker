@@ -9,7 +9,7 @@ type Props = {
 const Card: FC<Props> = ({ category: { _id, img, name } }) => {
   return (
     <li key={_id} className="cursor-pointer">
-      <Link href="/" passHref>
+      <Link href={`category/${name}`} passHref>
         <div className="card w-full bg-base-100 shadow-xl image-full before:opacity-40 transform hover:scale-[1.01] hover:shadow-2xl transition duration-250 ease-out hover:ease-in">
           <figure className="w-full h-44 lg:h-52 relative">
             <Image

@@ -4,6 +4,7 @@ import GenericHero from "components/common/Hero/GenericHero";
 import Card from "components/pages/categories/Card";
 import MainLayout from "components/layout/MainLayout";
 import { categories } from "@/mocks/categories";
+import Link from "next/link";
 
 const Categories: NextPage = () => {
   return (

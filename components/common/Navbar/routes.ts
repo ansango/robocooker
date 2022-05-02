@@ -27,11 +27,11 @@ const routes: Props[] = [
     label: "Recetas",
     icon: "BookOpenIcon",
   },
-  // {
-  //   path: "/categories",
-  //   label: "Categorías",
-  //   icon: "ColorSwatchIcon",
-  // },
+  {
+    path: "/categories",
+    label: "Categorías",
+    icon: "ColorSwatchIcon",
+  },
   // {
   //   path: "/trending",
   //   label: "Tendencias",
