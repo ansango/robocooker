@@ -14,7 +14,7 @@ const Hero: FC<{ category: Category }> = ({ category }) => {
       />
       <div className="w-full h-full hero">
         <div className="absolute w-full h-full bg-gray-600 opacity-[0.38] dark:bg-gray-800 dark:opacity-60 z-10"></div>
-        <div className="absolute z-20 flex flex-col items-start justify-end h-full w-full lg:w-auto lg:items-center lg:justify-center px-5">
+        <div className="absolute z-20 flex flex-col items-start justify-end h-full w-full lg:w-auto md:items-center md:justify-center px-5">
           <h1 className="text-5xl font-extrabold sm:text-5xl xl:text-6xl text-white capitalize">
             {category.name}
           </h1>

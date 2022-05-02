@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       <Hero />
       <Container>
         <ContainerHeader>
-          <Subtitle title="Ultimas tendencias" />
+          <Subtitle title="Últimas tendencias" />
           <SubParagraph content="Conoce las recetas favoritas de la comunidad y a los Robousers que mas se crean, cocinan y nos deleitan." />
         </ContainerHeader>
         <ContainerContent>
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
       <Container>
         <ContainerHeader>
           <Subtitle title="Elige categoría" />
-          <SubParagraph content="En busqueda de la receta perfecta, elige de entre las 21 categorias y que te cojan con las manos en la masa" />
+          <SubParagraph content="En búsqueda de la receta perfecta, elige de entre las 21 categorias y que te cojan con las manos en la masa" />
         </ContainerHeader>
         <ContainerContent>
           <ContentCategories />
@@ -52,7 +52,7 @@ const Home: NextPage = () => {
       <div className="bg-gray-50 dark:bg-gray-800 py-5">
         <Container>
           <ContainerHeader>
-            <Subtitle title="Ultimas recetas" />
+            <Subtitle title="Últimas recetas" />
             <SubParagraph content="Estas son las recetas mas recientes que hemos creado, y que estan siendo vistas por miles de usuarios." />
           </ContainerHeader>
           <ContainerContent>
