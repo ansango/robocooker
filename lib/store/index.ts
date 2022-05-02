@@ -2,8 +2,6 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
 import userReducer from "./features/user";
 import accountReducer from "./features/account/account";
-import categoriesReducer from "./features/categories";
-import blenderReducer from "./features/blenders";
 import lastRecipesReducer from "./features/recipes/lastRecipes";
 import myRecipesReducer from "./features/account/myRecipes";
 import recipeReducer from "./features/recipes/recipe";
