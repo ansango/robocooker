@@ -10,35 +10,30 @@ import ContainerHeader from "components/pages/recipes/ContainerHeader";
 import Subtitle from "components/pages/recipes/Subtitle";
 import CardRecipe from "components/common/Cards/Recipe/CardRecipe";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import {
-  selectFilters,
-  selectSearchResults,
-  setQuery,
-} from "@/store/features/search";
+import { selectSearchResults, setQuery } from "@/store/features/search";
 import { search } from "@/store/features/search/thunks";
 
 const Recipes: NextPage = () => {
   const { query } = useRouter();
   const { params } = query;
-  const filters = useAppSelector(selectFilters);
   const dispatch = useAppDispatch();
   const results = useAppSelector(selectSearchResults);
 
   useEffect(() => {
     if (params && !Array.isArray(params)) {
-      dispatch(search({ query: params, filters }));
+      dispatch(search({ query: params }));
       dispatch(setQuery(params));
     }
     if (!params) {
-      dispatch(search({ query: "", filters }));
+      dispatch(search({ query: "" }));
       dispatch(setQuery(""));
     }
-  }, [dispatch, params, filters]);
+  }, [dispatch, params]);
   const onSubmit = useCallback(
     ({ params }: { params: string }) => {
-      dispatch(search({ query: params, filters }));
+      dispatch(search({ query: params }));
     },
-    [dispatch, filters]
+    [dispatch]
   );
   return (
     <MainLayout>

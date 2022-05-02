@@ -7,8 +7,6 @@ const handler = nc(options);
 handler.use(database);
 
 handler.post(async (req, res) => {
-  const filters = req.body.filters as BlenderName[] | CategoryName[];
-
   const q = req.body.query
     .replace(/\r\n/g, "")
     .replace(/^\s+|\s+$/, "")
@@ -32,31 +30,12 @@ handler.post(async (req, res) => {
       ],
     };
   }, {});
-  const queryFiltered = {
-    $and: [
-      {
-        ...query,
-      },
-      {
-        $or: [{ blenders: { $in: filters } }, { categories: { $in: filters } }],
-      },
-    ],
-  };
 
-  if (filters.length === 0) {
-    try {
-      const results = await findQueryRecipesPopulated(req.db, query);
-      return res.json({ results });
-    } catch (error) {
-      return res.status(500).json({ error });
-    }
-  } else {
-    try {
-      const results = await findQueryRecipesPopulated(req.db, queryFiltered);
-      return res.json({ results });
-    } catch (error) {
-      return res.status(500).json({ error });
-    }
+  try {
+    const results = await findQueryRecipesPopulated(req.db, query);
+    return res.json({ results });
+  } catch (error) {
+    return res.status(500).json({ error });
   }
 });
 
