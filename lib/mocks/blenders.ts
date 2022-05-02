@@ -39,4 +39,11 @@ const blenders: Blender[] = [
   },
 ];
 
-export { blenders };
+const blendersSelectMapper = blenders.map(({ name }) => {
+  return {
+    label: name,
+    value: name,
+  };
+});
+
+export { blenders, blendersSelectMapper };

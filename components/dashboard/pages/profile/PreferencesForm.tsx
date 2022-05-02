@@ -1,29 +1,20 @@
+import { blenders } from "@/mocks/blenders";
+import { categories } from "@/mocks/categories";
 import { selectAccount } from "@/store/features/account/account";
 import { updatePreferences } from "@/store/features/account/account/thunks";
-import { selectBlenders } from "@/store/features/blenders";
-import { getBlenders } from "@/store/features/blenders/thunks";
-import { selectCategories } from "@/store/features/categories";
-import { getCategories } from "@/store/features/categories/thunks";
 import { selectUser } from "@/store/features/user";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import CardBasic from "components/common/Cards/Basic/CardBasic";
 import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import { Checkbox, Form } from "components/common/Forms";
-import React, { FC, useCallback, useEffect } from "react";
+import React, { FC, useCallback } from "react";
 import PreferencesButton from "./PreferencesButton";
 
 const PreferencesForm: FC = () => {
   const user = useAppSelector(selectUser);
   const account = useAppSelector(selectAccount);
-  const categories = useAppSelector(selectCategories);
-  const blenders = useAppSelector(selectBlenders);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    if (!blenders) dispatch(getBlenders());
-    if (!categories) dispatch(getCategories());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   const onSubmit = useCallback(
     async (data: { [key: string]: any }) => {
       if (!account) return;
@@ -37,7 +28,7 @@ const PreferencesForm: FC = () => {
     [account, dispatch]
   );
 
-  if (!user || !account || !categories || !blenders) return null;
+  if (!user || !account) return null;
 
   return (
     <CardBasic>

@@ -129,4 +129,11 @@ const categories: Category[] = [
   },
 ];
 
-export { categories };
+const categoriesSelectMapper = categories.map(({ name }) => {
+  return {
+    label: name,
+    value: name,
+  };
+});
+
+export { categories, categoriesSelectMapper };

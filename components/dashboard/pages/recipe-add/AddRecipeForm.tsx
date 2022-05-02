@@ -19,6 +19,8 @@ import CardSlim from "components/common/Cards/Slim/CardSlim";
 import CardSlimContent from "components/common/Cards/Slim/CardSlimContent";
 import AddRecipeButton from "./AddRecipeButton";
 import { selectAccount } from "@/store/features/account/account";
+import { categoriesSelectMapper } from "@/mocks/categories";
+import { blendersSelectMapper } from "@/mocks/blenders";
 type Selector = {
   label: any;
   value: any;
@@ -27,13 +29,8 @@ type Selector = {
 const AddRecipeForm = () => {
   const [selectedCategories, setSelectedCategories] = useState<Selector[]>([]);
   const [selectedBlenders, setSelectedBlenders] = useState<Selector[]>([]);
-  const [cats, setCat] = useState<any>([]);
-  const [blends, setBlend] = useState<any>([]);
   const dispatch = useAppDispatch();
-  const categories = useAppSelector(selectCategories);
-  const blenders = useAppSelector(selectBlenders);
   const accountId = useAppSelector(selectAccount)?._id;
-
   const methods = useForm({
     defaultValues: {
       ingredients: [],
@@ -41,36 +38,7 @@ const AddRecipeForm = () => {
     },
   });
   const { handleSubmit } = methods;
-  useEffect(() => {
-    if (!categories) {
-      dispatch(getCategories());
-    }
-    if (!blenders) {
-      dispatch(getBlenders());
-    }
-  }, [dispatch, categories, blenders]);
-  useEffect(() => {
-    if (categories) {
-      setCat(
-        categories.map(({ name }) => {
-          return {
-            label: name,
-            value: name,
-          };
-        })
-      );
-    }
-    if (blenders) {
-      setBlend(
-        blenders.map(({ name }) => {
-          return {
-            label: name,
-            value: name,
-          };
-        })
-      );
-    }
-  }, [categories, blenders]);
+
   const { replace } = useRouter();
 
   const onSubmit = useCallback(
@@ -211,7 +179,7 @@ const AddRecipeForm = () => {
                   <div className="col-span-full sm:col-span-6 lg:col-span-full ">
                     <MultiSelect
                       label="Categorías"
-                      options={cats}
+                      options={categoriesSelectMapper}
                       value={selectedCategories}
                       onChange={setSelectedCategories}
                       labelledBy="Select"
@@ -220,7 +188,7 @@ const AddRecipeForm = () => {
                   <div className="col-span-full sm:col-span-6 lg:col-span-full ">
                     <MultiSelect
                       label="Robots de cocina"
-                      options={blends}
+                      options={blendersSelectMapper}
                       value={selectedBlenders}
                       onChange={setSelectedBlenders}
                       labelledBy="Select"
