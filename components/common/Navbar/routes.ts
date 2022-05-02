@@ -32,6 +32,11 @@ const routes: Props[] = [
     label: "Categorías",
     icon: "ColorSwatchIcon",
   },
+  {
+    path: "/blenders",
+    label: "Robots",
+    icon: "LightningBoltIcon",
+  },
   // {
   //   path: "/trending",
   //   label: "Tendencias",
