@@ -1,5 +1,3 @@
-import { Avatar } from "components/common/Avatar";
-import { Icon } from "components/common/Icons";
 import React, { FC } from "react";
 
 type Props = {
@@ -18,7 +16,7 @@ const CardBody: FC<Props> = ({ categories, name, description }) => {
           </div>
         ))}
       </div>
-      <h4 className="card-title">{name}</h4>
+      <h4 className="card-title line-clamp-1">{name}</h4>
       <p className="line-clamp-3">{description}</p>
     </div>
   );
