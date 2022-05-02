@@ -1,22 +1,11 @@
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import Image from "next/image";
 
 import { Form, Input } from "components/common/Forms";
 import { useRouter } from "next/router";
-import { useAppDispatch } from "@/store/hooks";
-import { setQuery } from "@/store/features/search";
-import { basicSearch } from "@/store/features/search/thunks";
 
 const Hero: FC = () => {
   const { replace } = useRouter();
-  const dispatch = useAppDispatch();
-  const onSubmit = useCallback(
-    ({ query }: { query: string }) => {
-      dispatch(setQuery(query));
-      replace(`/recipes`);
-    },
-    [replace, dispatch]
-  );
   return (
     <div className="relative h-[30rem] md:h-[35rem] mx-auto">
       <Image
@@ -35,10 +24,12 @@ const Hero: FC = () => {
             Miles de recetas para tu robot de cocina
           </p>
           <div>
-            <Form onSubmit={onSubmit}>
+            <Form
+              onSubmit={({ params }) => replace(`/recipes?params=${params}`)}
+            >
               <div className="max-w-lg sm:mx-auto flex items-center space-x-5">
                 <Input
-                  name="query"
+                  name="params"
                   type="search"
                   placeholder="Introduce una receta"
                   icon={{

@@ -2,6 +2,14 @@ import { selectBlenders } from "@/store/features/blenders";
 import { getBlenders } from "@/store/features/blenders/thunks";
 import { selectCategories } from "@/store/features/categories";
 import { getCategories } from "@/store/features/categories/thunks";
+import {
+  resetFilters,
+  selectFilters,
+  selectSearchQuery,
+  setFilters,
+} from "@/store/features/search";
+
+import { filteredSearch, search } from "@/store/features/search/thunks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Checkbox, Form } from "components/common/Forms";
 import Modal from "components/common/Modal/Modal";
@@ -11,23 +19,34 @@ import ModalContent from "components/common/Modal/ModalContent";
 import ModalTitle from "components/common/Modal/ModalTitle";
 import { closeModal } from "components/common/Modal/utils";
 import { FC, useCallback, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const FilterRecipes: FC<{ id: string }> = ({ id }) => {
   const categories = useAppSelector(selectCategories);
   const blenders = useAppSelector(selectBlenders);
   const dispatch = useAppDispatch();
+  const query = useAppSelector(selectSearchQuery);
+  const filters = useAppSelector(selectFilters);
 
   useEffect(() => {
     if (!blenders) dispatch(getBlenders());
     if (!categories) dispatch(getCategories());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const onSubmit = useCallback(async (data: { [key: string]: any }) => {
-    const checkedCategories: string[] = Object.keys(data).filter(
-      (key) => data[key] === true
-    );
-    console.log(checkedCategories);
-  }, []);
+
+  const onSubmit = useCallback(
+    (data: { [key: string]: any }) => {
+      const filtersSelected: string[] = Object.keys(data).filter(
+        (key) => data[key] === true
+      );
+
+      dispatch(setFilters(filtersSelected));
+      dispatch(search({ query: query ?? "", filters: filtersSelected }));
+      closeModal(id);
+    },
+    [dispatch, query, id]
+  );
+
   return (
     <Modal id={id}>
       <ModalBox id={id}>
@@ -40,9 +59,17 @@ const FilterRecipes: FC<{ id: string }> = ({ id }) => {
 
                 <div className="capitalize grid gap-1 grid-cols-2 sm:grid-cols-3">
                   {blenders &&
-                    blenders.map(({ name }, index) => (
-                      <Checkbox key={index} name={name} label={name} />
-                    ))}
+                    blenders.map(({ name }, index) => {
+                      const isChecked = filters.includes(name);
+                      return (
+                        <Checkbox
+                          key={index}
+                          name={name}
+                          label={name}
+                          checked={isChecked}
+                        />
+                      );
+                    })}
                 </div>
               </div>
               <div>
@@ -50,19 +77,21 @@ const FilterRecipes: FC<{ id: string }> = ({ id }) => {
                 <div className="capitalize grid gap-1 grid-cols-2 sm:grid-cols-3">
                   {categories &&
                     categories.map(({ name }, index) => {
-                      return <Checkbox key={index} name={name} label={name} />;
+                      const isChecked = filters.includes(name);
+                      return (
+                        <Checkbox
+                          key={index}
+                          name={name}
+                          label={name}
+                          checked={isChecked}
+                        />
+                      );
                     })}
                 </div>
               </div>
             </div>
           </ModalContent>
           <ModalAction>
-            <button
-              className="btn btn-outline normal-case btn-primary dark:border-gray-400 dark:text-gray-400 dark:hover:bg-gray-400 dark:hover:text-base-300"
-              onClick={() => closeModal(id)}
-            >
-              Cancelar
-            </button>
             <button className="btn normal-case btn-primary" type="submit">
               Aplicar filtros
             </button>

@@ -68,7 +68,6 @@ export const findLastRecipesPopulated = async (
     const data = (await db
       .collection("recipes")
       .find()
-      .sort({ created: -1 })
       .limit(limit)
       .toArray()) as Recipe[];
 
@@ -108,6 +107,7 @@ export const findQueryRecipesPopulated = async (db: Db, query: any) => {
       .findOne({ accountId: new ObjectId(accountId) })) as User;
     return { ...recipe, account: { avatar, firstName, lastName, username } };
   });
+  console.log(data);
   return await Promise.all(queries).then((recipes) =>
     recipes.sort((a, b) => b.created.getTime() - a.created.getTime())
   );
