@@ -23,8 +23,6 @@ export function makeStore() {
       bookmark: bookmarkReducer,
       collection: collectionReducer,
       myRecipes: myRecipesReducer,
-      categories: categoriesReducer,
-      blenders: blenderReducer,
       lastRecipes: lastRecipesReducer,
       recipe: recipeReducer,
       comments: commentsReducer,

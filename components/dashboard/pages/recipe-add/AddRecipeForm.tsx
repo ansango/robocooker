@@ -1,13 +1,9 @@
-import { Ingredient, RecipeDAO } from "@/models/recipe/recipe";
-import { selectCategories } from "@/store/features/categories";
-import { getCategories } from "@/store/features/categories/thunks";
+import { RecipeDAO } from "@/models/recipe/recipe";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Input, TextArea } from "components/common/Forms";
 import { MultiSelect } from "components/common/Forms/MultiSelect";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import Step from "components/common/Stepper/Step";
-import { selectBlenders } from "@/store/features/blenders";
-import { getBlenders } from "@/store/features/blenders/thunks";
 import { FormProvider, useForm } from "react-hook-form";
 import IngredientFields from "./IngredientFields";
 import StepsFields from "./StepsField";
@@ -21,6 +17,7 @@ import AddRecipeButton from "./AddRecipeButton";
 import { selectAccount } from "@/store/features/account/account";
 import { categoriesSelectMapper } from "@/mocks/categories";
 import { blendersSelectMapper } from "@/mocks/blenders";
+
 type Selector = {
   label: any;
   value: any;
