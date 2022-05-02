@@ -20,7 +20,7 @@ export const onGetLastRecipesByCategoryService = async (
     const response = await fetcher(`/api/category/${category}/last`, {
       method: "GET",
     });
-    return response.data;
+    return response.recipes;
   } catch (err) {
     throw err;
   }
@@ -33,7 +33,7 @@ export const onGetTrendingRecipesByCategoryService = async (
     const response = await fetcher(`/api/category/${category}/trending`, {
       method: "GET",
     });
-    return response.data;
+    return response.recipes;
   } catch (err) {
     throw err;
   }
@@ -46,7 +46,7 @@ export const onGetMostCommentedRecipesByCategoryService = async (
     const response = await fetcher(`/api/category/${category}/commented`, {
       method: "GET",
     });
-    return response.data;
+    return response.recipes;
   } catch (err) {
     throw err;
   }

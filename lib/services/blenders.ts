@@ -20,7 +20,7 @@ export const onGetLastRecipesByBlenderService = async (
     const response = await fetcher(`/api/blender/${blender}/last`, {
       method: "GET",
     });
-    return response.data;
+    return response.recipes;
   } catch (err) {
     throw err;
   }
@@ -33,7 +33,7 @@ export const onGetTrendingRecipesByBlenderService = async (
     const response = await fetcher(`/api/blender/${blender}/trending`, {
       method: "GET",
     });
-    return response.data;
+    return response.recipes;
   } catch (err) {
     throw err;
   }
@@ -46,7 +46,7 @@ export const onGetMostCommentedRecipesByBlenderService = async (
     const response = await fetcher(`/api/blender/${blender}/commented`, {
       method: "GET",
     });
-    return response.data;
+    return response.recipes;
   } catch (err) {
     throw err;
   }

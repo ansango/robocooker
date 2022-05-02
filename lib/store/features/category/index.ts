@@ -85,7 +85,11 @@ const categorySlice = createSlice({
   },
 });
 
-export const selectCategory = (state: AppState) => state.category.value;
+export const selectTrendingRecipes = (state: AppState) =>
+  state.category.value.trending;
+export const selectLastRecipes = (state: AppState) => state.category.value.last;
+export const selectCommentedRecipes = (state: AppState) =>
+  state.category.value.commented;
 export const selectStatusCategory = (state: AppState) => state.category.status;
 
 export default categorySlice.reducer;
