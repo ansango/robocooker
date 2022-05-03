@@ -2,7 +2,7 @@ import {
   selectProfileFollowers,
   selectProfileUser,
 } from "@/store/features/profile";
-import { selectUserUsername } from "@/store/features/user";
+import { selectUser, selectUserUsername } from "@/store/features/user";
 import { useAppSelector } from "@/store/hooks";
 
 import { FC } from "react";
@@ -11,6 +11,7 @@ import Follow from "./Follow";
 import UnFollow from "./UnFollow";
 
 const ActionFollow: FC = () => {
+  const user = useAppSelector(selectUser);
   const currentProfile = useAppSelector(selectProfileUser);
   const currentUser = useAppSelector(selectUserUsername);
   const isFollowing =
@@ -23,8 +24,8 @@ const ActionFollow: FC = () => {
 
   return (
     <>
-      {!isFollowing && <Follow />}
-      {isFollowing && <UnFollow />}
+      {!isFollowing && user && <Follow />}
+      {isFollowing && user && <UnFollow />}
     </>
   );
 };
