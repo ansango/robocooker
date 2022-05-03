@@ -14,8 +14,10 @@ import ContainerHeader from "components/pages/trending/ContainerHeader";
 import Subtitle from "components/pages/trending/Subtitle";
 import SubParagraph from "components/pages/trending/SubParagraph";
 import CardRecipe from "components/common/Cards/Recipe/CardRecipe";
+
 const Trending: NextPage = () => {
   const recipes = useAppSelector(selectLastRecipes) || [];
+
   return (
     <MainLayout>
       <GenericHero
@@ -25,7 +27,7 @@ const Trending: NextPage = () => {
       <div className="relative">
         <Container>
           <ContainerContent>
-            <div className="grid gap-10 mx-auto max-w-lg relative z-10">
+            <motion.div className="grid gap-10 mx-auto max-w-lg relative z-10">
               {recipes.slice(4, 7).map((recipe) => (
                 <motion.div key={recipe._id} whileHover={{ scale: 1.008 }}>
                   <div className="card w-full max-w-lg bg-base-100 shadow-xl image-full before:opacity-60 transform hover:shadow-2xl transition duration-250 ease-out hover:ease-in">
@@ -53,10 +55,7 @@ const Trending: NextPage = () => {
                                 </div>
                               ))}
                           </div>
-                          <Link
-                            href={`/recipe/${recipe._id}`}
-                            passHref
-                          >
+                          <Link href={`/recipe/${recipe._id}`} passHref>
                             <button className="btn btn-ghost btn-circle">
                               <Icon
                                 icon="EyeIcon"
@@ -107,7 +106,7 @@ const Trending: NextPage = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </ContainerContent>
         </Container>
         <div className="bg-gray-50 dark:bg-gray-800 py-5">

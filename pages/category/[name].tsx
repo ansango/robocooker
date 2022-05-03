@@ -20,8 +20,10 @@ import {
   selectLastRecipes,
   selectCommentedRecipes,
   selectTrendingRecipes,
+  selectStatusCategory,
 } from "@/store/features/category";
 import CardRecipe from "components/common/Cards/Recipe/CardRecipe";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Category: NextPage = () => {
   const { query } = useRouter();
@@ -31,6 +33,7 @@ const Category: NextPage = () => {
   const lastRecipes = useAppSelector(selectLastRecipes);
   const commentedRecipes = useAppSelector(selectCommentedRecipes);
   const trendingRecipes = useAppSelector(selectTrendingRecipes);
+  const isLoading = useAppSelector(selectStatusCategory) === "loading";
   useEffect(() => {
     if (name && !Array.isArray(name)) {
       dispatch(getLastRecipesByCategory(name));
@@ -49,13 +52,21 @@ const Category: NextPage = () => {
           </ContainerHeader>
           <ContainerContent>
             <div className="lg:max-w-3xl lg:mx-auto xl:max-w-full">
-              {trendingRecipes && (
-                <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-                  {trendingRecipes.map((recipe) => (
-                    <CardRecipe key={recipe._id} {...recipe} />
-                  ))}
-                </div>
-              )}
+              <AnimatePresence>
+                {trendingRecipes && !isLoading && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.25 }}
+                    exit={{ opacity: 0 }}
+                    className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
+                  >
+                    {trendingRecipes.map((recipe) => (
+                      <CardRecipe key={recipe._id} {...recipe} />
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </ContainerContent>
         </Container>
@@ -66,13 +77,21 @@ const Category: NextPage = () => {
           </ContainerHeader>
           <ContainerContent>
             <div className="lg:max-w-3xl lg:mx-auto xl:max-w-full">
-              {commentedRecipes && (
-                <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-                  {commentedRecipes.map((recipe) => (
-                    <CardRecipe key={recipe._id} {...recipe} />
-                  ))}
-                </div>
-              )}
+              <AnimatePresence>
+                {commentedRecipes && !isLoading && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.25 }}
+                    exit={{ opacity: 0 }}
+                    className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
+                  >
+                    {commentedRecipes.map((recipe) => (
+                      <CardRecipe key={recipe._id} {...recipe} />
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </ContainerContent>
         </Container>
@@ -84,13 +103,21 @@ const Category: NextPage = () => {
           </ContainerHeader>
           <ContainerContent>
             <div className="lg:max-w-3xl lg:mx-auto xl:max-w-full">
-              {lastRecipes && (
-                <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-                  {lastRecipes.map((recipe) => (
-                    <CardRecipe key={recipe._id} {...recipe} />
-                  ))}
-                </div>
-              )}
+              <AnimatePresence>
+                {lastRecipes && !isLoading && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.25 }}
+                    exit={{ opacity: 0 }}
+                    className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
+                  >
+                    {lastRecipes.map((recipe) => (
+                      <CardRecipe key={recipe._id} {...recipe} />
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </ContainerContent>
         </Container>

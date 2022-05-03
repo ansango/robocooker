@@ -1,9 +1,8 @@
 import { FC } from "react";
 import Image from "next/image";
-
 import { Form, Input } from "components/common/Forms";
 import { useRouter } from "next/router";
-import { motion } from "framer-motion";
+
 const Hero: FC = () => {
   const { replace } = useRouter();
   return (
@@ -17,27 +16,12 @@ const Hero: FC = () => {
       />
       <div className="relative z-10 w-full h-full flex items-center">
         <div className="text-center w-full p-5 space-y-5">
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: "-10%",
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              type: "tween",
-              duration: 0.999999,
-            }}
-          >
-            <h1 className="text-5xl font-extrabold sm:text-5xl xl:text-6xl text-white">
-              ¿Que quieres comer hoy?
-            </h1>
-            <p className="text-lg md:text-xl text-white">
-              Miles de recetas para tu robot de cocina
-            </p>
-          </motion.div>
+          <h1 className="text-5xl font-extrabold sm:text-5xl xl:text-6xl text-white">
+            ¿Que quieres comer hoy?
+          </h1>
+          <p className="text-lg md:text-xl text-white">
+            Miles de recetas para tu robot de cocina
+          </p>
 
           <div>
             <Form
