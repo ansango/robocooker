@@ -2,7 +2,7 @@ import { options } from "@/api/nc";
 import nc from "next-connect";
 import { getClientNotion } from "@/api/issues";
 import { Issue } from "@/models/issue";
-import { insertIssue } from "@/api/issues/template";
+import { sendIssue } from "@/api/issues/template";
 
 const handler = nc(options);
 
@@ -14,7 +14,7 @@ handler.post(async (req, res) => {
   if (!issue) return res.status(500).json({ error: "Issue not provided" });
 
   try {
-    const response = await insertIssue({ config, issue });
+    const response = await sendIssue({ config, issue });
     return res.status(200).json({
       response,
     });

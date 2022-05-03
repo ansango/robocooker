@@ -5,7 +5,7 @@ export type NotionObjectTemplate = {
   config: {
     notion: Client;
     database_id: string;
-  },
+  };
   issue: {
     title: string;
     description: {
@@ -16,8 +16,8 @@ export type NotionObjectTemplate = {
   };
 };
 
-export const insertIssue = async ({
- config,
+export const sendIssue = async ({
+  config,
   issue: { title, email, description },
 }: NotionObjectTemplate) => {
   const { notion, database_id } = config;
@@ -81,6 +81,5 @@ export const insertIssue = async ({
         },
       },
     ],
-  }
-}
-
+  });
+};
