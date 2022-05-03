@@ -19,15 +19,20 @@ const ModalIssue: FC<{ id: string }> = ({ id }) => {
         description,
         email,
       };
-      await onPostIssueService(issue);
-      setIsLoading(false);
-      closeModal(id);
+      try {
+        await onPostIssueService(issue);
+        setIsLoading(false);
+        closeModal(id);
+      } catch (error) {
+        setIsLoading(false);
+        closeModal(id);
+      }
     },
     [id]
   );
-    const cn = isLoading
-      ? "btn btn-primary normal-case loading"
-      : "btn btn-primary normal-case";
+  const cn = isLoading
+    ? "btn btn-primary normal-case loading"
+    : "btn btn-primary normal-case";
   return (
     <Modal id={id}>
       <ModalBox id={id}>
