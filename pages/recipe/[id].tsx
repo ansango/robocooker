@@ -18,6 +18,7 @@ import CategoriesDescriptionBlock from "components/pages/recipe/CategoriesDescri
 import AuthorOptionsBlock from "components/pages/recipe/AuthorOptionsBlock";
 import { getComments } from "@/store/features/comments/thunk";
 import { getBookmark } from "@/store/features/account/bookmark/thunks";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Recipe: NextPage = () => {
   const { query } = useRouter();
@@ -34,21 +35,34 @@ const Recipe: NextPage = () => {
   }, [id, dispatch]);
   return (
     <MainLayout>
-      <Container>
-        <ContainerSection>
-          {id && <AuthorOptionsBlock id={id} />}
-          {recipe && <Hero img={recipe.img} name={recipe.name} />}
-          <div className="grid gap-5 grid-cols-12 pt-2">
-            {recipe && <CategoriesDescriptionBlock {...recipe} />}
-            {recipe && <IngredientsBlock ingredients={recipe.ingredients} />}
-          </div>
-          <Divider />
-          {recipe && <StepsBlock steps={recipe.steps} />}
-        </ContainerSection>
-        <SocialSection />
-        <CommentsSection />
-        <CommentsUserSection />
-      </Container>
+      <AnimatePresence>
+        {recipe && id && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.45 }}
+            exit={{ opacity: 0 }}
+          >
+            <Container>
+              <ContainerSection>
+                {id && <AuthorOptionsBlock id={id} />}
+                {recipe && <Hero img={recipe.img} name={recipe.name} />}
+                <div className="grid gap-5 grid-cols-12 pt-2">
+                  {recipe && <CategoriesDescriptionBlock {...recipe} />}
+                  {recipe && (
+                    <IngredientsBlock ingredients={recipe.ingredients} />
+                  )}
+                </div>
+                <Divider />
+                {recipe && <StepsBlock steps={recipe.steps} />}
+              </ContainerSection>
+              <SocialSection />
+              <CommentsSection />
+              <CommentsUserSection />
+            </Container>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </MainLayout>
   );
 };
