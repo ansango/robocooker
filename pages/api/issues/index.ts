@@ -15,9 +15,7 @@ handler.post(async (req, res) => {
 
   try {
     const response = await sendIssue({ config, issue });
-    return res.status(200).json({
-      response,
-    });
+    return res.status(204).end();
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
   }
