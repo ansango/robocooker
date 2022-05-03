@@ -5,6 +5,9 @@ import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import store from "lib/store";
 import { ThemeProvider } from "next-themes";
+import ModalIssue from "components/common/Modal/Issue/ModalIssue";
+import ModalOpen from "components/common/Modal/ModalOpen";
+import { Icon } from "components/common/Icons";
 
 const RoboCooker = ({ Component, pageProps }: AppProps) => {
   return (

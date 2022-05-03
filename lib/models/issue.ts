@@ -1,10 +1,7 @@
 export type Issue = {
   id?: string;
   title: string;
-  description: {
-    content: Content;
-    link: Url;
-  };
+  description: Content;
   status?: IssueStatus;
   email: Email;
 };

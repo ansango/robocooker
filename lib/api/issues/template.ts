@@ -8,10 +8,7 @@ export type NotionObjectTemplate = {
   };
   issue: {
     title: string;
-    description: {
-      content: string;
-      link: string;
-    };
+    description: string;
     email: string;
   };
 };
@@ -71,10 +68,7 @@ export const sendIssue = async ({
             {
               type: "text",
               text: {
-                content: description.content,
-                link: {
-                  url: description.link,
-                },
+                content: description,
               },
             },
           ],
