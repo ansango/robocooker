@@ -12,7 +12,7 @@ type Props = {
 
 const CardFooter: FC<Props> = ({ avatar, username, servings, duration }) => {
   return (
-    <div className="card-body pt-0">
+    <div className="card-body pt-0 justify-end">
       <div className="card-actions justify-between items-center">
         <div className="flex space-x-2 items-center">
           <Avatar size="xs" imgUrl={avatar} />
