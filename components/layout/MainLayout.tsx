@@ -16,13 +16,9 @@ const MainLayout: FC<Props> = ({ children }) => {
       <Navbar />
       <motion.main
         key={route}
-        initial="initial"
-        animate="animate"
-        variants={{
-          initial: { opacity: 0 },
-          animate: { opacity: 1 },
-        }}
-        transition={{ delay: 0.5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.25 }}
         className="h-full"
       >
         {children}

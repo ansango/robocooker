@@ -27,9 +27,14 @@ const ContentTrending = () => {
     >
       {data.map(({ img, title }, index) => {
         return (
-          <li key={index} className="cursor-pointer">
+          <motion.li
+            key={index}
+            className="cursor-pointer"
+            whileHover={{ scale: 1.007 }}
+            whileTap={{ scale: 1 }}
+          >
             <Link href="/" passHref>
-              <div className="card w-full bg-base-100 image-full before:opacity-40 shadow-xl transform hover:scale-[1.006] hover:shadow-2xl transition duration-250 ease-out hover:ease-in">
+              <div className="card w-full bg-base-100 image-full before:opacity-40 shadow-xl hover:shadow-2xl">
                 <figure className="w-full h-44 lg:h-64 xl:h-72 relative">
                   <Image
                     src={img}
@@ -44,7 +49,7 @@ const ContentTrending = () => {
                 </div>
               </div>
             </Link>
-          </li>
+          </motion.li>
         );
       })}
     </motion.ul>

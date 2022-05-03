@@ -3,7 +3,7 @@ import { Category } from "lib/models/recipe/category";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-
+import { motion } from "framer-motion";
 type Props = {
   data: Category | Blender;
   kind: "category" | "blender";
@@ -11,9 +11,14 @@ type Props = {
 const Card: FC<Props> = ({ data: { _id, img, name }, kind }) => {
   const link = `/${kind}/${name.split(" ").join("-")}`;
   return (
-    <li key={_id} className="cursor-pointer">
+    <motion.li
+      whileHover={{ scale: 1.007 }}
+      whileTap={{ scale: 1 }}
+      key={_id}
+      className="cursor-pointer"
+    >
       <Link href={link} passHref>
-        <div className="card w-full bg-base-100 shadow-xl image-full before:opacity-40 transform hover:scale-[1.01] hover:shadow-2xl transition duration-250 ease-out hover:ease-in">
+        <div className="card w-full bg-base-100 shadow-xl image-full before:opacity-40">
           <figure className="w-full h-44 lg:h-52 relative">
             <Image
               src={img}
@@ -28,7 +33,7 @@ const Card: FC<Props> = ({ data: { _id, img, name }, kind }) => {
           </div>
         </div>
       </Link>
-    </li>
+    </motion.li>
   );
 };
 
