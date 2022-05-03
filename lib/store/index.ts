@@ -12,7 +12,7 @@ import bookmarkReducer from "./features/account/bookmark";
 import collectionReducer from "./features/account/collection";
 import searchReducer from "./features/search";
 import categoryReducer from "./features/category";
-
+import trendingReducer from "./features/trending";
 export function makeStore() {
   return configureStore({
     reducer: {
@@ -28,6 +28,7 @@ export function makeStore() {
       profile: profileReducer,
       category: categoryReducer,
       search: searchReducer,
+      trending: trendingReducer,
     },
   });
 }

@@ -144,7 +144,8 @@ export const findRecipeLikedByAccountId = async (
 };
 
 export const findMostLikedRecipes = async (
-  db: Db
+  db: Db,
+  limit: number
 ): Promise<RecipeDTO[] | void> => {
   try {
     const data = (await db
@@ -169,6 +170,7 @@ export const findMostLikedRecipes = async (
           },
         },
         { $sort: { likeCount: -1 } },
+        { $limit: limit },
       ])
       .toArray()) as unknown as Recipe[];
 

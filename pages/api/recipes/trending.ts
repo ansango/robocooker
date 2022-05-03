@@ -8,8 +8,9 @@ const handler = nc(options);
 handler.use(database);
 
 handler.get(async (req, res) => {
+  const limit = parseInt(req.query.limit as string, 12) || 12;
   try {
-    const recipes = await findMostLikedRecipes(req.db);
+    const recipes = await findMostLikedRecipes(req.db, limit);
     const a =
       recipes &&
       recipes.map((recipe) => {

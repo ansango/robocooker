@@ -38,6 +38,18 @@ export const onGetRecipeByIdService = async (
   }
 };
 
+export const onGetTrendingRecipesService = async (
+  limit: number
+): Promise<RecipeDTO[]> => {
+  try {
+    const response = await fetcher(`/api/recipes/trending?limit=${limit}`, {
+      method: "GET",
+    });
+    return response.recipes;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const onPostRecipeService = async (
   recipe: RecipeDAO
