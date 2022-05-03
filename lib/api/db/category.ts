@@ -53,13 +53,38 @@ export const findPopularRecipesByCategory = async (
   try {
     const data = (await db
       .collection("recipes")
-      .find({
-        categories: category,
-      })
-      .sort({ likes: -1 })
-      .limit(limit)
+      .aggregate([
+        {
+          $match: {
+            categories: {
+              $elemMatch: {
+                $eq: category,
+              },
+            },
+          },
+        },
+        {
+          $project: {
+            _id: 1,
+            name: 1,
+            description: 1,
+            img: 1,
+            categories: 1,
+            servings: 1,
+            duration: 1,
+            blenders: 1,
+            ingredients: 1,
+            steps: 1,
+            created: 1,
+            accountId: 1,
+            likes: 1,
+            likeCount: { $size: "$likes" },
+          },
+        },
+        { $sort: { likeCount: -1 } },
+        { $limit: limit },
+      ])
       .toArray()) as Recipe[];
-
     const queries = data.map(async (recipe) => {
       const accountId = recipe.accountId;
       const { avatar, firstName, lastName } = (await db
@@ -88,11 +113,48 @@ export const findMostCommentedRecipesByCategory = async (
   try {
     const data = (await db
       .collection("recipes")
-      .find({
-        categories: category,
-      })
-      .sort({ comments: -1 })
-      .limit(limit)
+      .aggregate([
+        {
+          $match: {
+            categories: {
+              $elemMatch: {
+                $eq: category,
+              },
+            },
+          },
+        },
+        { $addFields: { _id: { $toString: "$_id" } } },
+        {
+          $lookup: {
+            from: "comments",
+            localField: "_id",
+            foreignField: "recipeId",
+            as: "comments",
+          },
+        },
+        {
+          $project: {
+            _id: 1,
+            name: 1,
+            description: 1,
+            img: 1,
+            categories: 1,
+            comments: 1,
+            servings: 1,
+            duration: 1,
+            blenders: 1,
+            ingredients: 1,
+            steps: 1,
+            created: 1,
+            accountId: 1,
+            likes: 1,
+            likeCount: { $size: "$likes" },
+            commentCount: { $size: "$comments" },
+          },
+        },
+        { $sort: { commentCount: -1 } },
+        { $limit: limit },
+      ])
       .toArray()) as Recipe[];
 
     const queries = data.map(async (recipe) => {
@@ -108,7 +170,11 @@ export const findMostCommentedRecipesByCategory = async (
     });
 
     return Promise.all(queries).then((recipes) =>
-      recipes.sort((a, b) => b.comments.length - a.comments.length)
+      recipes.sort((a, b) => {
+        return a.comments && b.comments
+          ? b.comments?.length - a.comments?.length
+          : 0;
+      })
     );
   } catch (error) {
     throw error;

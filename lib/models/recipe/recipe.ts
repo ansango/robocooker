@@ -32,6 +32,8 @@ type Recipe = {
   steps: Step[];
   likes: UserId[];
   likeCount?: number;
+  comments?: Comment[];
+  commentCount?: number;
   created: Date;
   accountId: AccountId;
 };
