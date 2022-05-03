@@ -1,4 +1,4 @@
-import { Comment } from "@/models/recipe/comment";
+import { Comment } from "@/models/comment";
 import { Icon } from "components/common/Icons";
 import React from "react";
 import Comments from "./Comments";

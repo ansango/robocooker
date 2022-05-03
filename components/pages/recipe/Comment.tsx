@@ -1,4 +1,4 @@
-import { Comment } from "@/models/recipe/comment";
+import { Comment } from "@/models/comment";
 import { selectOnRemoveComment } from "@/store/features/comments";
 import { removeComment } from "@/store/features/comments/thunk";
 import { selectRecipeId } from "@/store/features/recipes/recipe";

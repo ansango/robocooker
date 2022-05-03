@@ -1,4 +1,4 @@
-import { Comment, CommentDAO } from "@/models/recipe/comment";
+import { Comment, CommentDAO } from "@/models/comment";
 import { Db, ObjectId } from "mongodb";
 
 export const findAllCommentsByRecipeId = (db: Db, recipeId: RecipeId) => {

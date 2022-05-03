@@ -1,4 +1,4 @@
-import { Comment, CommentDAO } from "@/models/recipe/comment";
+import { Comment, CommentDAO } from "@/models/comment";
 import {
   onDeleteCommentService,
   onGetCommentsService,

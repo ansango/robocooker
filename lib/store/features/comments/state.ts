@@ -1,4 +1,4 @@
-import { Comment } from "@/models/recipe/comment";
+import { Comment } from "@/models/comment";
 
 export interface RecipeState {
   status: "idle" | "loading" | "failed";

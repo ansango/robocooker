@@ -1,4 +1,4 @@
-import { Comment } from "@/models/recipe/comment";
+import { Comment } from "@/models/comment";
 import { RecipeDTO } from "@/models/recipe/recipe";
 
 export interface RecipeState {

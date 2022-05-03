@@ -6,7 +6,7 @@ import {
   findAllCommentsByRecipeId,
   insertComment,
 } from "@/api/db/comment";
-import { Comment } from "@/models/recipe/comment";
+import { Comment } from "@/models/comment";
 
 const handler = nc(options);
 handler.use(database);

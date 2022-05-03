@@ -1,4 +1,4 @@
-import { CommentDAO } from "@/models/recipe/comment";
+import { CommentDAO } from "@/models/comment";
 import { selectOnAddComment } from "@/store/features/comments";
 import { addComment } from "@/store/features/comments/thunk";
 import { selectRecipeId } from "@/store/features/recipes/recipe";

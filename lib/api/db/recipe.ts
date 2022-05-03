@@ -9,10 +9,9 @@ export const insertRecipe = async (
   accountId: AccountId,
   content: RecipeDAO
 ): Promise<RecipeDAO> => {
-  const recipe: any = {
+  const recipe: Recipe = {
     ...content,
     likes: [],
-    comments: [],
     created: new Date(),
     _id: new ObjectId(),
     img: "",
