@@ -1,4 +1,4 @@
-import { Account, Follower } from "lib/models/user/user";
+import { Account, Follower, UserTrending } from "lib/models/user/user";
 import { type Db, ObjectId } from "mongodb";
 
 export const findAccountByUserId = (db: Db, accountId: AccountId) => {
@@ -14,6 +14,60 @@ export const findAccountById = async (db: Db, accountId: AccountId) => {
     .findOne({ _id: new ObjectId(accountId) })
     .then((account) => account || null)) as Account;
   return account;
+};
+
+export const findTrendingAccounts = async (db: Db, limit: number) => {
+  try {
+    const data = (await db
+      .collection("accounts")
+      .aggregate([
+        { $addFields: { _id: { $toString: "$_id" } } },
+        {
+          $lookup: {
+            from: "recipes",
+            localField: "_id",
+            foreignField: "accountId",
+            as: "recipes",
+          },
+        },
+        {
+          $addFields: {
+            recipes: { $size: "$recipes" },
+          },
+        },
+        { $addFields: { _id: { $toObjectId: "$_id" } } },
+        {
+          $lookup: {
+            from: "users",
+            localField: "_id",
+            foreignField: "accountId",
+            as: "users",
+          },
+        },
+        {
+          $addFields: {
+            username: { $arrayElemAt: ["$users.username", 0] },
+            followers: { $size: "$followers" },
+          },
+        },
+        {
+          $project: {
+            accountId: 1,
+            username: 1,
+            avatar: 1,
+            firstName: 1,
+            lastName: 1,
+            recipes: 1,
+            followers: 1,
+          },
+        },
+        { $sort: { recipes: -1 } },
+      ])
+      .toArray()) as UserTrending[];
+    return data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const updateAccountDataById = async (

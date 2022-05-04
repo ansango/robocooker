@@ -5,6 +5,16 @@ type Follower = {
   username: Username;
 };
 
+type UserTrending = {
+  accountId: UserId;
+  username: Username;
+  avatar: Url;
+  firstName: Name;
+  lastName: Name;
+  recipes: number;
+  followers: number;
+};
+
 type User = {
   _id: UserId;
   email: Email;
@@ -54,4 +64,5 @@ export {
   type Address,
   type Follower,
   type SocialNetwork,
+  type UserTrending,
 };
