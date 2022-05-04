@@ -5,7 +5,6 @@ import { Form } from "components/common/Forms";
 import File from "components/common/Forms/File";
 import { useCallback } from "react";
 
-
 import CardBasic from "components/common/Cards/Basic/CardBasic";
 import CardBasicTitle from "components/common/Cards/Basic/CardBasicTitle";
 import CardBasicAction from "components/common/Cards/Basic/CardBasicAction";
@@ -40,7 +39,11 @@ const AvatarForm = () => {
           <div className="my-auto space-y-3">
             <div className="inline-flex flex-shrink ml-1">
               <div className="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 flex">
-                <Avatar size="md" imgUrl={account?.avatar} />
+                <Avatar
+                  size="md"
+                  imgUrl={account?.avatar}
+                  username={user?.username ?? "R"}
+                />
               </div>
             </div>
           </div>

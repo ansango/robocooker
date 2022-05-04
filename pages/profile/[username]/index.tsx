@@ -31,7 +31,7 @@ const Profile: NextPage = () => {
         {profile && (
           <CardContainer>
             <CardFirstCol>
-              <CardAvatar avatar={profile.avatar} />
+              <CardAvatar avatar={profile.avatar} username={profile.username} />
               <CardFirstColContent username={profile.username} />
             </CardFirstCol>
             <CardSecondCol>

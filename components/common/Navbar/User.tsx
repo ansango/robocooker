@@ -13,7 +13,6 @@ import { removeMyRecipes } from "@/store/features/account/myRecipes/thunks";
 import { selectAccount } from "@/store/features/account/account";
 import { removeAccountOnSignOut } from "@/store/features/account/account/thunks";
 
-
 const User: FC = () => {
   const { pathname, replace } = useRouter();
   const dispatch = useAppDispatch();
@@ -31,7 +30,11 @@ const User: FC = () => {
       {user && (
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
-            <Avatar size="xs" imgUrl={account?.avatar} />
+            <Avatar
+              size="xs"
+              imgUrl={account?.avatar}
+              username={user.username}
+            />
           </label>
           <ul
             tabIndex={0}

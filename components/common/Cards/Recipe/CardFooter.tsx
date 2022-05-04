@@ -15,7 +15,7 @@ const CardFooter: FC<Props> = ({ avatar, username, servings, duration }) => {
     <div className="card-body pt-0 justify-end">
       <div className="card-actions justify-between items-center">
         <div className="flex space-x-2 items-center">
-          <Avatar size="xs" imgUrl={avatar} />
+          <Avatar size="xs" imgUrl={avatar} username={username} />
           <Link href={`/profile/${username}`}>
             <a className="text-sm font-medium hover:underline">@{username}</a>
           </Link>

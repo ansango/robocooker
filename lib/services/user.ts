@@ -1,10 +1,19 @@
-import { User } from "lib/models/user/user";
+import { User, UserTrending } from "lib/models/user/user";
 import fetcher from "../utils/fetcher";
 
 const onGetUserService = async (): Promise<User | null> => {
   try {
     const response = await fetcher("/api/user");
     return response.user;
+  } catch (err: any) {
+    throw err;
+  }
+};
+
+export const onGetUsersTrendingService = async (): Promise<UserTrending[]> => {
+  try {
+    const response = await fetcher("/api/user/trending");
+    return response.users;
   } catch (err: any) {
     throw err;
   }

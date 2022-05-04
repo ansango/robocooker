@@ -1,3 +1,5 @@
+import { Comment } from "../comment";
+
 type RecipeDAO = {
   accountId: AccountId;
   blenders: BlenderName[];
@@ -9,15 +11,6 @@ type RecipeDAO = {
   servings: Servings;
   steps: Step[];
 };
-
-type RecipeDTO = {
-  account: {
-    avatar: Url;
-    firstName: Name;
-    lastName: Name;
-    username: Username;
-  };
-} & Recipe;
 
 type Recipe = {
   _id: RecipeId;
@@ -31,12 +24,21 @@ type Recipe = {
   ingredients: Ingredient[];
   steps: Step[];
   likes: UserId[];
-  likeCount?: number;
-  comments?: Comment[];
-  commentCount?: number;
   created: Date;
   accountId: AccountId;
+  comments?: Comment[];
+  commentCount?: number;
+  likeCount?: number;
 };
+
+type RecipeDTO = {
+  account: {
+    avatar: Url;
+    firstName: Name;
+    lastName: Name;
+    username: Username;
+  };
+} & Recipe;
 
 type Step = {
   description: Content;

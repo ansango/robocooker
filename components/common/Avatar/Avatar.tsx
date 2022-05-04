@@ -8,12 +8,13 @@ import { selectUser } from "@/store/features/user";
 type AvatarProps = {
   size: "xs" | "sm" | "md" | "lg";
   imgUrl?: string | null;
+  username: Username;
 };
 
-const Avatar: FC<AvatarProps> = ({ size, imgUrl }) => {
+const Avatar: FC<AvatarProps> = ({ size, imgUrl, username }) => {
   const user = useAppSelector(selectUser);
   const avatar = imgUrl;
-  const username = user?.username;
+  
 
   return avatar ? (
     <FullAvatar size={size} imgUrl={avatar} />

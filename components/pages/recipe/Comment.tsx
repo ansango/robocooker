@@ -36,7 +36,7 @@ const CommentC: FC<Props> = ({ comment }) => {
           <div className="space-x-2 flex items-center">
             <Link href={`/profile/${comment.author}`} passHref>
               <button className="btn btn-ghost btn-circle">
-                <Avatar size="xs" />
+                <Avatar size="xs" username={currentUser ?? "R"} />
               </button>
             </Link>
             <Link href={`/profile/${comment.author}`}>

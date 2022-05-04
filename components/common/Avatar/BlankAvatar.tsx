@@ -20,6 +20,7 @@ enum sizeBlank {
 }
 
 const BlankAvatar: FC<BlankAvatar> = ({ size, username }) => {
+  console.log(username);
   const cnSize = `${sizeBlank[size]} bg-neutral-focus text-neutral-content rounded-full`;
   const cnText = `${textBlank[size]} uppercase`;
   return (

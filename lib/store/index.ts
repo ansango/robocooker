@@ -13,6 +13,8 @@ import collectionReducer from "./features/account/collection";
 import searchReducer from "./features/search";
 import categoryReducer from "./features/category";
 import trendingReducer from "./features/trending";
+import robousersReducer from "./features/robousers";
+
 export function makeStore() {
   return configureStore({
     reducer: {
@@ -29,6 +31,7 @@ export function makeStore() {
       category: categoryReducer,
       search: searchReducer,
       trending: trendingReducer,
+      robousers: robousersReducer,
     },
   });
 }

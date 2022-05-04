@@ -15,7 +15,11 @@ const Author: FC = () => {
           <div className="flex items-center">
             <Link href={`/profile/${recipe.account.username}`} passHref>
               <button className="btn btn-circle btn-ghost">
-                <Avatar size="xs" imgUrl={recipe.account.avatar} />
+                <Avatar
+                  size="xs"
+                  imgUrl={recipe.account.avatar}
+                  username={recipe.account.username}
+                />
               </button>
             </Link>
           </div>

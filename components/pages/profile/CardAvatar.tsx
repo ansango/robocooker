@@ -3,16 +3,17 @@ import { FC } from "react";
 
 type Props = {
   avatar: Url;
+  username: Username;
 };
 
-const CardAvatar: FC<Props> = ({ avatar }) => {
+const CardAvatar: FC<Props> = ({ avatar, username }) => {
   return (
     <>
       <div className="flex items-center md:hidden sm:mt-5">
-        <Avatar size="md" imgUrl={avatar} />
+        <Avatar size="md" imgUrl={avatar} username={username} />
       </div>
       <div className="hidden md:flex md:items-center mt-5">
-        <Avatar size="lg" imgUrl={avatar} />
+        <Avatar size="lg" imgUrl={avatar} username={username} />
       </div>
     </>
   );
