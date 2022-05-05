@@ -44,7 +44,6 @@ const EditCollection: FC<{ id: string }> = ({ id }) => {
 
   const onSubmit = useCallback(
     ({ name, description, recipes }: any) => {
-      console.log(name, description, recipes);
       if (bookmarkId && collection) {
         const recipesIds = Object.keys(recipes).filter(
           (key) => recipes[key] === true
@@ -58,7 +57,6 @@ const EditCollection: FC<{ id: string }> = ({ id }) => {
           recipes: recipesIds,
           created: collection.created,
         };
-        console.log(data);
         dispatch(editCollection(data));
         closeModal(id);
       }

@@ -11,11 +11,6 @@ handler.get(async (req, res) => {
   const limit = parseInt(req.query.limit as string, 12) || 12;
   try {
     const recipes = await findMostLikedRecipes(req.db, limit);
-    const a =
-      recipes &&
-      recipes.map((recipe) => {
-        console.log(recipe.likes.length);
-      });
     return res.json({ recipes });
   } catch (error) {
     return res.status(500).json({ error });

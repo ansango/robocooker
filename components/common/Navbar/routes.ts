@@ -42,11 +42,11 @@ const routes: Props[] = [
     label: "Tendencias",
     icon: "SparklesIcon",
   },
-  {
-    path: "/robousers",
-    label: "Robousers",
-    icon: "UserGroupIcon",
-  },
+  // {
+  //   path: "/robousers",
+  //   label: "Robousers",
+  //   icon: "UserGroupIcon",
+  // },
 ];
 
 const routesDashboard: Props[] = [
