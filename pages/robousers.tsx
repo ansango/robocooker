@@ -5,7 +5,6 @@ import { Avatar } from "components/common/Avatar";
 import GenericHero from "components/common/Hero/GenericHero";
 import MainLayout from "components/layout/MainLayout";
 import { ContainerHeader, SubParagraph, Subtitle } from "components/pages/home";
-import ActionFollow from "components/pages/profile/ActionFollow";
 import Container from "components/pages/trending/Container";
 import ContainerContent from "components/pages/trending/ContainerContent";
 import { NextPage } from "next";
