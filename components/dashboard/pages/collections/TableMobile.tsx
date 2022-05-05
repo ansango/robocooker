@@ -33,7 +33,6 @@ const TableMobile: FC<Props> = ({ recipes }) => {
             .map((recipe) => recipe._id),
         };
         dispatch(editCollection(data));
-        console.log(data);
       }
     },
     [collection, dispatch]
