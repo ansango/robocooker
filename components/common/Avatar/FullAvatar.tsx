@@ -14,7 +14,7 @@ enum sizeFull {
 }
 
 const FullAvatar: FC<FullAvatar> = ({ size, imgUrl }) => {
-  const cnSize = `${sizeFull[size]} rounded-full`;
+  const cnSize = `${sizeFull[size]} rounded-full relative`;
   return (
     <div className="avatar">
       <div className={cnSize}>
@@ -23,7 +23,7 @@ const FullAvatar: FC<FullAvatar> = ({ size, imgUrl }) => {
           alt=""
           layout="fill"
           objectFit="contain"
-          className="rounded-full"
+          className="object-center object-cover pointer-events-none"
         />
       </div>
     </div>

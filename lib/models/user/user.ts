@@ -11,6 +11,7 @@ type UserTrending = {
   avatar: Url;
   firstName: Name;
   lastName: Name;
+  about: Content;
   recipes: number;
   followers: number;
 };

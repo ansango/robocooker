@@ -59,6 +59,7 @@ export const findTrendingAccounts = async (db: Db, limit: number) => {
             lastName: 1,
             recipes: 1,
             followers: 1,
+            about: 1,
           },
         },
         { $sort: { recipes: -1 } },

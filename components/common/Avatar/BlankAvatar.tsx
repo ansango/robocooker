@@ -15,8 +15,8 @@ enum textBlank {
 enum sizeBlank {
   xs = "w-8",
   sm = "w-12",
-  md = "w-16",
-  lg = "w-24",
+  md = "w-24",
+  lg = "w-32",
 }
 
 const BlankAvatar: FC<BlankAvatar> = ({ size, username }) => {
