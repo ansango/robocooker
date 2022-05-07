@@ -27,21 +27,6 @@ const createIndexes = async (db: Db) => {
     db
       .collection("comments")
       .createIndexes([{ key: { created: -1 } }, { key: { recipeId: -1 } }]),
-    db
-      .collection("chat")
-      .createIndexes([
-        { key: { created: -1 } },
-        { key: { members: -1 } },
-        { key: { messages: -1 } },
-      ]),
-
-    db
-      .collection("messages")
-      .createIndexes([
-        { key: { created: -1 } },
-        { key: { chatId: -1 } },
-        { key: { userId: -1 } },
-      ]),
     db.collection("accounts").createIndexes([{ key: { accountId: -1 } }]),
     db.collection("users").createIndexes([
       { key: { email: 1 }, unique: true },
