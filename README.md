@@ -19,6 +19,9 @@
   <ol>
     <li><a href="#about">Introduction</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="sctructure">Structure</a></li>
+    <li><a href="#frontend">Frontend</a></li>
+    <li><a href="#backend">Backend</a></li>
     <li><a href="#environment-variables">Environment variables</a></li>
     <li><a href="#deploy">Deploy</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -55,6 +58,81 @@ yarn dev # npm run dev
 
 <p align="right"><a href="#top">back to top</a></p>
 
+## Structure
+
+The project is based in Next.js, so it has a structure similar to the one of Next.js. You have a `pages` folder, where you can create your pages, and inside this one you have an api folder with the API routes.
+
+Lib folder contains the libraries services, and queries used by the project.
+
+
+├── components
+│   ├── common
+│   ├── dashboard
+│   ├── layout
+│   ├── pages
+│   └── skeletons
+├── lib
+│   ├── api
+│   ├── mocks
+│   ├── models
+│   ├── services
+│   ├── store
+│   └── utils
+├── pages
+│   ├── api
+│   ├── blender
+│   ├── category
+│   ├── dashboard
+│   ├── profile
+│   ├── recipe
+│   ├── recovery
+│   └── verify
+├── styles
+└── types
+
+## Frontend
+
+You can find the frontend in the `pages` folder, redux store in the `store` folder, and components in the `components` folder.
+
+├── components
+│   ├── common
+│   ├── dashboard
+│   ├── layout
+│   ├── pages
+│   └── skeletons
+├── lib
+│   ├── store
+├── pages
+│   ├── blender
+│   ├── category
+│   ├── dashboard
+│   ├── profile
+│   ├── recipe
+│   ├── recovery
+│   └── verify
+├── styles
+
+<p> <a href="#top">back to top</a></p>
+
+## Backend
+
+Next.js is based on Express.js, so you can find the backend in the `pages/api` folder. Libraries, configurations, and queries are in the `lib` folder.
+
+├── lib
+│   ├── api
+│   │   ├── auth
+│   │   ├── db
+│   │   ├── issues
+│   │   ├── mail
+│   │   ├── middlewares
+│   │   ├── nc
+│   │   └── schemas
+│   ├── services
+├── pages
+│   ├── api
+
+
+<p> <a href="#top">back to top</a></p>
 ## Environment variables
 
 We will proceed to configure the environment variables. Inside the project we will find an example file (.envexample) to configure the necessary environment variables to be able to have the project fully configured. We must rename it to .env.local to run in dev mode.
@@ -86,7 +164,6 @@ NOTION_DATABASE_ID= # your notion database id
 The easiest way to deploy is to use the [Vercel Platform](https://vercel.com/).
 
 Remember to configure the environment variables as in env.local but into settings at Vercel
-
 
 [Check the official documentation](https://vercel.com/docs/concepts/projects/environment-variables).
 
