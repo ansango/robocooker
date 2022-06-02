@@ -19,7 +19,7 @@
   <ol>
     <li><a href="#about">Introduction</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
-    <li><a href="sctructure">Structure</a></li>
+    <li><a href="#structure">Structure</a></li>
     <li><a href="#frontend">Frontend</a></li>
     <li><a href="#backend">Backend</a></li>
     <li><a href="#environment-variables">Environment variables</a></li>
