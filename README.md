@@ -85,8 +85,14 @@ NOTION_DATABASE_ID= # your notion database id
 
 The easiest way to deploy is to use the [Vercel Platform](https://vercel.com/).
 
-Remember to configure the environment variables [Check the official documentation](https://vercel.com/docs/concepts/projects/environment-variables).
+Remember to configure the environment variables as in env.local but into settings at Vercel
 
+
+[Check the official documentation](https://vercel.com/docs/concepts/projects/environment-variables).
+
+<div align="center">
+  <img src="readme.png" width="650">
+</div>
 
 <p align="right"><a href="#top">back to top</a></p>
 
