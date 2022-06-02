@@ -64,7 +64,7 @@ The project is based in Next.js, so it has a structure similar to the one of Nex
 
 Lib folder contains the libraries services, and queries used by the project.
 
-
+```bash
 ├── components
 │   ├── common
 │   ├── dashboard
@@ -89,11 +89,13 @@ Lib folder contains the libraries services, and queries used by the project.
 │   └── verify
 ├── styles
 └── types
+```
 
 ## Frontend
 
 You can find the frontend in the `pages` folder, redux store in the `store` folder, and components in the `components` folder.
 
+```bash
 ├── components
 │   ├── common
 │   ├── dashboard
@@ -110,13 +112,16 @@ You can find the frontend in the `pages` folder, redux store in the `store` fold
 │   ├── recipe
 │   ├── recovery
 │   └── verify
-├── styles
+└── styles
+```
 
 <p> <a href="#top">back to top</a></p>
 
 ## Backend
 
 Next.js is based on Express.js, so you can find the backend in the `pages/api` folder. Libraries, configurations, and queries are in the `lib` folder.
+
+```bash
 
 ├── lib
 │   ├── api
@@ -128,11 +133,13 @@ Next.js is based on Express.js, so you can find the backend in the `pages/api` f
 │   │   ├── nc
 │   │   └── schemas
 │   ├── services
-├── pages
-│   ├── api
+└── pages
+  └── api
 
+```
 
 <p> <a href="#top">back to top</a></p>
+
 ## Environment variables
 
 We will proceed to configure the environment variables. Inside the project we will find an example file (.envexample) to configure the necessary environment variables to be able to have the project fully configured. We must rename it to .env.local to run in dev mode.
