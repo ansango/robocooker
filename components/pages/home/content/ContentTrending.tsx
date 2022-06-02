@@ -25,7 +25,7 @@ const ContentTrending = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      {data.map(({ img, title }, index) => {
+      {data.map(({ img, title, link }, index) => {
         return (
           <motion.li
             key={index}
@@ -33,7 +33,7 @@ const ContentTrending = () => {
             whileHover={{ scale: 1.007 }}
             whileTap={{ scale: 1 }}
           >
-            <Link href="/" passHref>
+            <Link href={link} passHref>
               <div className="card w-full bg-base-100 image-full before:opacity-40 shadow-xl hover:shadow-2xl">
                 <figure className="w-full h-44 lg:h-64 xl:h-72 relative">
                   <Image
