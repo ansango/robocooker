@@ -61,8 +61,9 @@ yarn dev # npm run dev
 ## Structure
 
 The project is based in Next.js, so it has a structure similar to the one of Next.js. You have a `pages` folder, where you can create your pages, and inside this one you have an api folder with the API routes.
-
 Lib folder contains the libraries services, and queries used by the project.
+
+> Remember Nextjs is based on React and Express, so Frontend and Backend are ready configured.
 
 ```bash
 ├── components
