@@ -91,6 +91,7 @@ Lib folder contains the libraries services, and queries used by the project.
 ├── styles
 └── types
 ```
+<p align="right"> <a href="#top">back to top</a></p>
 
 ## Frontend
 
@@ -116,7 +117,7 @@ You can find the frontend in the `pages` folder, redux store in the `store` fold
 └── styles
 ```
 
-<p> <a href="#top">back to top</a></p>
+<p align="right"> <a href="#top">back to top</a></p>
 
 ## Backend
 
@@ -139,7 +140,7 @@ Next.js is based on Express.js, so you can find the backend in the `pages/api` f
 
 ```
 
-<p> <a href="#top">back to top</a></p>
+<p align="right"> <a href="#top">back to top</a></p>
 
 ## Environment variables
 
