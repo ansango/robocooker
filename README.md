@@ -91,7 +91,7 @@ Remember to configure the environment variables as in env.local but into setting
 [Check the official documentation](https://vercel.com/docs/concepts/projects/environment-variables).
 
 <div align="center">
-  <img src="readme.png" width="650">
+  <img src="Readme.png" width="650">
 </div>
 
 <p align="right"><a href="#top">back to top</a></p>
