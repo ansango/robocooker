@@ -164,6 +164,8 @@ NOTION_DATABASE_ID= # your notion database id
 
 ```
 
+This connects to the database, cloudinary service, Notion API, and nodemailer service.
+
 <p align="right"><a href="#top">back to top</a></p>
 
 ## Deploy
