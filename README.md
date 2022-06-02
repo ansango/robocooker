@@ -65,6 +65,8 @@ Lib folder contains the libraries services, and queries used by the project.
 
 > Remember Nextjs is based on React and Express, so Frontend and Backend are ready configured.
 
+Checkout the official [Next.js documentation](https://nextjs.org/docs) for more information.
+
 ```bash
 ├── components
 │   ├── common
